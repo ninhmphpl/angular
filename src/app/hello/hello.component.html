@@ -43,3 +43,20 @@
         </tr>
     </table>
 </div>
+<div class="box">
+    <h1 >Pipe - quy định kiểu hiển thị của text</h1>
+    <p>{{ 'chu lon' | uppercase }}</p>
+    <p>{{ 'chu NHO' | lowercase }}</p>
+    <!-- https://angular.io/api/common/DecimalPipe -->
+    <p>{{ '123' | number }}</p>
+    <span>Số tiền: </span><span>{{ '123.23213' | currency:'USD': 'symbol' : '1.3' }}</span><br>
+    <!-- https://angular.io/api/common/DatePipe -->
+    <span>Ngày: </span><span>{{ '2021-11-22' | date : 'd/M/yyyy' }}</span><br>
+    <h2>pipe theo điều kiện</h2>
+    <p>Số tuổi của bạn là {{ age }}</p>
+    <span>{{ age | show | uppercase}}</span>
+</div>
+<div class="box">
+    <h2>Cascading ComboBox - Viết danh sách chọn tỉnh/thành rồi quận/huyện</h2>
+    <app-city></app-city>
+</div>
