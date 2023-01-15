@@ -1,0 +1,45 @@
+<p>hello works! {{ name }}</p>
+
+<!-- gan giá trị trong thẻ -->
+<input value="{{ name }}" /><br>
+<!-- cách 2-->
+<input [value]="name" [title]="'day la ' + name" />
+<h2 *ngIf="age > 18"> Ban da tren 18 tuoi</h2>
+
+<!-- enven -->
+<div class="box">
+    <h1> event - bat su kien</h1>
+    <input type="text" [(ngModel)]="name">
+    <h2>{{name}}</h2>
+    <button (click)="resetName()">reset name</button>
+</div>
+
+<!-- if else -->
+<div class="box">
+    <h1> if else</h1>
+    <input type="number" [(ngModel)]="age">
+    <h2>tuoi cua ban la {{age}}</h2>
+    <div *ngIf="age < 18 ; then tre; else gia"></div>
+    <ng-template #tre><p>ban chua du 18 tuoi</p></ng-template>
+    <ng-template #gia><p>ban da du tuoi</p></ng-template>
+</div>
+
+<div class="box">
+    <h1> for loop</h1>
+    <div *ngFor="let car of cars; let i = index">
+        <li>{{ i + 1 }} . {{ car }}</li>
+    </div>
+</div>
+<div class="box">
+    <h1> for loop table and condition of class</h1>
+    <table>
+        <tr>
+            <td>ten</td>
+            <td>gia</td>
+        </tr>
+        <tr *ngFor="let game of games">
+            <td>{{ game.name }}</td>
+            <td><span [ngClass]="{'danger' : game.price < 500}">{{ game.price }}</span></td>
+        </tr>
+    </table>
+</div>
