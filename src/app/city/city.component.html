@@ -5,4 +5,6 @@
     </option>
 </select>
 <span>Distric</span>
-<select *ngFor="let distric of let districs"></select>
+<select>
+    <option *ngFor="let a of districs">{{ a.name }}</option>
+</select>

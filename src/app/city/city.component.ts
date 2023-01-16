@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./city.component.scss']
 })
 export class CityComponent {
-  public districts = []
+  public districs :any[]= [{name: "Quan/Huyen"}]
   public citys = [
     {
       city: {
@@ -39,6 +39,10 @@ export class CityComponent {
     console.log("ok");
     console.log(even.target);
     console.log(even.target.value);
+    let abc = this.citys.filter((data) => data.city.name === even.target.value)
+    this.districs = abc[0].distric;
+    console.log(this.districs);
+    
     
   }
 }
