@@ -1,3 +1,8 @@
-<select >
-    <option></option>
+<span>City</span>
+<select (change)="change($event)">
+    <option *ngFor="let city of citys" value="{{ city.city.name }}" >
+        {{ city.city.name }}
+    </option>
 </select>
+<span>Distric</span>
+<select *ngFor="let distric of let districs"></select>
