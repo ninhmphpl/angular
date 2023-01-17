@@ -1,0 +1,53 @@
+<div class="boxx">
+    <p>input-output works!</p>
+    <p>Khi sử dụng @input() chúng ta có thể truyền dữ liệu từ thành phần cha sang thành phần con</p>
+    <p>
+        giá trị cha component cha: {{ item }}
+        <app-input [newItem]="item"></app-input>
+        <img src="https://images.viblo.asia/c1f06878-b437-4ab0-aaca-9dbd2de2fd6e.png" alt="">
+    </p>
+    <hr style="width: 100%;">
+    <p>Khi dử dụng @Output(), bạn có thể truyền dữ liệu từ lớp thành phần con đến lớp thành phần cha:</p>
+
+    <table class="table w-75 p-3 border border-primary">
+        <thead>
+            <tr>
+                <th>DECLARATION PARTS</th>
+                <th>DETAILS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="https://viblo.asia/u/Output" target="_blank">@Output</a>()</td>
+                <td>Một hàm decorator đánh dấu thuộc tính như một cách để dữ liệu đi từ con đến cha.</td>
+            </tr>
+            <tr>
+                <td>newItemEvent</td>
+                <td>Tên của <a href="https://viblo.asia/u/Output" target="_blank">@Output</a> ().</td>
+            </tr>
+            <tr>
+                <td>EventEmitter&lt;string&gt;</td>
+                <td>Kiểu của <a href="https://viblo.asia/u/Output" target="_blank">@Output</a> ().</td>
+            </tr>
+            <tr>
+                <td>new EventEmitter&lt;string&gt;()</td>
+                <td>Yêu cầu Angular tạo một trình phát sự kiện mới và dữ liệu mà nó phát ra thuộc loại chuỗi.</td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>
+        đây là 1 mảng trong component cha: [<span *ngFor="let a of items"> {{a}}</span>]
+    </h4>
+    <p>cấu trúc câu lệnh truyền(cha): <span class="tick">{{ ex1 }}</span></p>
+    <div>cấu trúc gán giá trị output.Component.ts(con)
+        <pre class="tick border border-primary">
+            {{ ex2}}
+        </pre>
+    </div>
+    <div>cấu trúc gán giá trị input-output.component.html(cha)
+        <pre class="tick border border-primary">
+            {{ ex3}}
+        </pre>
+    </div>
+    <app-output (newItemOutput)="addItem($event)"></app-output>
+</div>

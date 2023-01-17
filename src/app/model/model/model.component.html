@@ -1,0 +1,10 @@
+
+<div class="boxx">
+    <h2>model works!</h2>
+    <span>Model: </span>
+    <p>Name: {{ product.name }}</p>
+    <p>Age: {{ product.age }}</p>
+    <p>Birth: {{ product.birth | date : 'd/M/yyyy' }}</p>
+    <p>Gender: {{ product.gender?'Nam':'Nu'  }}</p>
+</div>
+
