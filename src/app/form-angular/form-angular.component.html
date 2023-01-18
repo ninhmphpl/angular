@@ -1,0 +1,68 @@
+<div class="boxx">
+    <p>form-angular works!</p>
+    <a href="form-angular#validation">validation</a>
+    <div>
+        <p>
+            Các loại form trong Angular
+            Có 2 loại Form trong Angular là Template-driven form và Model Driven form
+
+        </p>
+        <p>
+            <a href="#">Template-driven form</a> là phương pháp mà chúng ta sẽ tạo forms dựa vào template (giống như
+            trong Angularjs).
+            Chúng ta thực hiện việc thêm các directives và hành vi vào template, sau đó Angular sẽ tự động tạo forms để
+            quản lý và sử dụng.
+        </p>
+        <p>
+            <a href="#">Model Driven Form</a>
+            hay còn gọi là <a href="#">Reactive Form</a> , phương pháp này tránh việc sử dụng các directive ví dụ như
+            ngModel, required, etc, thay vào đó tạo các Object Model ở trong các Component, rồi tạo ra form từ chúng.
+
+        </p>
+        <p>Import FormsModule</p>
+        <pre>
+            {{ ex1 }}
+        </pre>
+        <div>
+            truy cập form:
+            <pre>
+                {{ ex2 }}
+            </pre>
+            <form autocomplete="off" #bookForm="ngForm">
+                <div class="form-group">
+                    <label for="bookName">Book Name</label>
+                    <input name="name"  required minlength="3" ngModel type="text" class="form-control">
+
+                    <label for="year">Year</label>
+                    <input name="year" ngModel type="text" class="form-control">
+
+                    <label for="stars">Stars</label>
+                    <input name="stars" ngModel type="text" class="form-control">
+                </div>
+            </form>
+            <pre>bookForm value: {{ bookForm.value | json }}</pre>
+        </div>
+        <div>
+            <p>Giả sử trong component có sẵn 1 biến book, và chúng ta muốn bind data cho các control với book, lúc này
+                chúng ta sẽ dùng đến binding cho property, và property chúng ta nhắc đến ở đây chính là ngModel.</p>
+            <pre>{{ ex3 }}</pre>
+            <div>
+                <input name="name" [(ngModel)]="book.name" type="text" class="form-control">
+                ...
+                <input name="year" [(ngModel)]="book.year" type="text" class="form-control">
+                ...
+                <input name="stars" [(ngModel)]="book.stars" type="text" class="form-control">
+            </div>
+            Book : <pre>{{ book | json }}</pre>
+        </div>
+        <div id="validation">
+            <h2>validation</h2>
+            <p >
+                Để thêm các validation cho form thì trong Angular có cung cấp một số Validators cơ bản mà chúng ta có thể dùng ngay trong template như: required, minlength, maxlength... Chúng được viết là các directives, nên chúng ta có thể sử dụng như các directives khác trong template của bạn.
+            </p>
+            <pre>
+                {{ ex4 }}
+            </pre>
+        </div>
+    </div>
+</div>

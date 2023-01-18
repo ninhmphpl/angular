@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelloComponent } from './hello/hello.component';
@@ -18,6 +18,8 @@ import { ModelComponent } from './model/model/model.component';
 import { InputOutputComponent } from './input-output/input-output.component';
 import { InputComponent } from './input-output/input/input.component';
 import { OutputComponent } from './input-output/output/output.component';
+import { FormAngularComponent } from './form-angular/form-angular.component';
+import { ValidateComponent } from './validate/validate.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +38,15 @@ import { OutputComponent } from './input-output/output/output.component';
     InputOutputComponent,
     InputComponent,
     OutputComponent,
+    FormAngularComponent,
+    ValidateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
