@@ -21,7 +21,8 @@ export class ValidateComponent implements OnInit {
   public onSubmit(): void {    
   }
   public profileForm = this.formBuilder.group({
-    name: ['', [ Validators.minLength(3),Validators.required]]
+    name: ['', [ Validators.minLength(4),Validators.required]],
+    password: ['', [Validators.minLength(6),Validators.required]]
   })
 
 }

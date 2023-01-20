@@ -1,14 +1,31 @@
 <div class="boxx">
-  <div [formGroup]="profileForm">
-      <input type="text" id="name"  class="form-control" formControlName="name">
-  </div>
-  <div *ngIf="profileForm.invalid && (profileForm.dirty || profileForm.touched)" class="alert alert-danger">
 
-    <div *ngIf="profileForm.get('name')?.errors?.['required']">
-      Name is required.
+  <div [formGroup]="profileForm">
+
+    <input type="text" id="name" class="form-control" formControlName="name">
+
+    <div *ngIf="profileForm.invalid && (profileForm.get('name')?.dirty || profileForm.get('name')?.touched)" class="alert alert-danger">
+      <div *ngIf="profileForm.get('name')?.errors?.['required']">
+        Name is required.
+      </div>
+      <div *ngIf="profileForm.get('name')?.errors?.['minlength']">
+        Name must be at least 4 characters long.
+      </div>
     </div>
-    <div *ngIf="profileForm.get('name')?.errors?.['minlength']">
-      Name must be at least 4 characters long.
+
+    <input type="text" class="form-control"  formControlName="password">
+
+    <div *ngIf="profileForm.invalid && (profileForm.get('password')?.dirty || profileForm.get('password')?.touched)" class="alert alert-danger">
+      <div *ngIf="profileForm.get('password')?.errors?.['required']">
+        Password is required.
+      </div>
+      <div *ngIf="profileForm.get('password')?.errors?.['minlength']">
+        Password must be at least 6 characters long.
+      </div>
     </div>
+
   </div>
+
+
+
 </div>
