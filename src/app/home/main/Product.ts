@@ -4,6 +4,6 @@ export interface ProductLite{
     time: Date;
 }
 
-export product : ProductLite[]{
-    {name: "ninh", }
-}
+// export product : ProductLite[]{
+//     {name: "ninh", }
+// }
