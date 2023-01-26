@@ -1,13 +1,12 @@
-<div class="product">
+<div *ngFor="let product of products" class="product">
     <a href="#" class="text-decoration-none">
-        <img src="https://th.bing.com/th?id=ORMS.279b9db9a9c7b0fe74f1cf58371afca9&pid=Wdp&w=612&h=304&qlt=90&c=1&rs=1&dpr=1.5&p=0"
-            alt="">
+        <img src="{{ product.img }}" alt="">
         <div class="card-body">
-            <p class="card-text">Product NameProduct NameProduct</p>
+            <p class="card-text">{{ product.name }}</p>
             <div class="d-flex justify-content-between align-items-center">
-                <div>1000$</div>
-                <small class="text-muted">9 mins</small>
+                <div class="cart-price">{{ product.price }}$</div>
+                <small class="text-muted"> {{ product.sold }} Sold </small>
             </div>
         </div>
     </a>
-  </div>
+</div>
