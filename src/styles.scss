@@ -1,1 +1,33 @@
-/* You can add global styles to this file, and also import other style files */
+#header{
+    background-color: rgb(160, 96, 96);
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+#main{
+    background-color: aqua;
+    position: absolute;
+    margin-left: 200px;
+    margin-top: 120px;
+
+}
+#footer{
+    background-color: aquamarine;
+    width: 100px;
+    position: absolute;
+}
+#nav{
+    height: 100%;
+    position: fixed;
+    top: 100px;
+    left: 0px;
+    background-color: bisque;
+}
+#header #main #footer #nav{
+    border: 1px solid black;
+}
+#container{
+    position: relative;
+}
