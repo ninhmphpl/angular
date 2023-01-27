@@ -9,6 +9,7 @@ import { NavComponent } from './home/nav/nav.component';
 import { MainComponent } from './home/main/main.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DetaltComponent } from './detalt/detalt.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NavComponent,
     MainComponent,
     FooterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DetaltComponent
   ],
   imports: [
     BrowserModule,

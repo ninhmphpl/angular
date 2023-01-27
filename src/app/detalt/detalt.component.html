@@ -1,0 +1,92 @@
+<div id="container">
+    <div id="header">
+        <app-header></app-header>
+    </div>
+    <div id="body" class="d-flex justify-content-between">
+        <div class="img">
+            <div class="img-body">
+                <img src="" alt="">
+            </div>
+            <div class="img-footer">
+                <div class="img-child">
+                    <img src="" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <h3>Content name</h3>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="rate d-left font-main-color">
+                    4.3 *****
+                </div>
+                |
+                <div class="rate-number d-left">
+                    15k <small>Rate</small> 
+                </div>
+                |
+                <div class="sold d-left">
+                    1.5k <small>Sold</small> 
+                </div>
+                <div class="report d-right">
+                    <a href="" class="text-decoration-none">Report</a>
+                </div>
+            </div>
+            <div id="price">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div id="old-price">
+                        {{ 1000 | currency: 'VND' }}
+                    </div>
+                    <div class="new-price font-main-color">
+                        {{ 1000 | currency: 'VND' }}
+                        <span class="sale background-main-color">
+                            50% Sale off
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <table class="info">
+                <tr>
+                    <td class="title-info">
+                        Shop Vouchers
+                    </td>
+                    <td>
+                        <span class="voucher background-main-color">10k</span>
+                        <span class="voucher background-main-color">10k</span>
+                        <span class="voucher background-main-color">10k</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Shipping
+                    </td>
+                    <td>
+                        <img style="width: 20px;" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/74f3e9ac01da8565c3baead996ed6e2a.png" alt="">
+                        Free Shipping
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Color
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary">White</button>
+                        <button class="btn btn-outline-primary">Black</button>
+                        <button class="btn active btn-outline-primary">Red</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Quantity
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-quantity">Left</button>
+                            <input style="width: 40px; text-align: center;" type="number" pattern="[0-9]+" value="0">
+                            <button type="button" class="btn btn-quantity">Right</button>
+                          </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
