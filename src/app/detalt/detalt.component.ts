@@ -14,23 +14,24 @@ export class DetaltComponent implements OnInit {
   public sold = this.renderString(this.product.sold);
   public saleOff = (100 - (this.product.newPrice/this.product.oldPrice * 100))
 
-  public selectOffChoice = -1;
-  public numberProduct = 0;
+  public saleOffChoice = -1;
+  public numberProductChoice : number = 0;
+  public colorChoices : number = -1;
 
   public changeIMG(img: string) {
     this.img = img
   }
 
   public plus(){
-    this.numberProduct++;
-    if(this.numberProduct > this.product.available){
-      this.numberProduct = this.product.available
+    this.numberProductChoice++;
+    if(this.numberProductChoice > this.product.available){
+      this.numberProductChoice = this.product.available
     }
   }
   public minus(){
-    this.numberProduct--;
-    if (this.numberProduct < 0 ) {
-      this.numberProduct = 0;
+    this.numberProductChoice--;
+    if (this.numberProductChoice < 0 ) {
+      this.numberProductChoice = 0;
     }
   }
 
@@ -38,7 +39,10 @@ export class DetaltComponent implements OnInit {
   }
 
   public choiceSaleOff(value: number){
-    this.selectOffChoice = value
+    this.saleOffChoice = value
+  }
+  public colorChoice(id : number){
+    this.colorChoices = id;
   }
 
   public renderString(property: number): string {

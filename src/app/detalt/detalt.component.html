@@ -78,7 +78,7 @@
                     </td>
                     <td>
                         <button class="voucher background-main-color" *ngFor="let voucher of product.voucher"
-                            [ngClass]="{'select': voucher.id == selectOffChoice}" (click)="choiceSaleOff(voucher.id)">
+                            [ngClass]="{'select': voucher.id == saleOffChoice}" (click)="choiceSaleOff(voucher.id)">
                             {{ renderString(voucher.value) }}
                         </button>
                     </td>
@@ -99,9 +99,7 @@
                         Color
                     </td>
                     <td>
-                        <button class="btn active btn-outline-primary">White</button>
-                        <button class="btn btn-outline-primary">Black</button>
-                        <button class="btn btn-outline-primary">Red</button>
+                        <button class="btn active btn-outline-primary" [ngClass]="{'active' : color.id == colorChoices}" *ngFor="let color of product.color" (click)="colorChoice(color.id)">{{ color.name }}</button>
                     </td>
                 </tr>
                 <tr>
@@ -111,7 +109,7 @@
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" class="btn btn-outline-primary" (click)="minus()">Minus</button>
-                            <input style="width: 40px; text-align: center;" type="number" [(ngModel)]="numberProduct">
+                            <input style="width: 40px; text-align: center;" type="text" [(ngModel)]="numberProductChoice">
                             <button type="button" class="btn btn-outline-primary" (click)="plus()">Plus</button>
                         </div>
                     </td>
