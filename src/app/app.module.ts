@@ -10,6 +10,8 @@ import { MainComponent } from './home/main/main.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DetaltComponent } from './detalt/detalt.component';
+import { RatingStarComponent } from './rating-star/rating-star.component';
+import { StarPercenComponent } from './rating-star/star-percen/star-percen.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { DetaltComponent } from './detalt/detalt.component';
     MainComponent,
     FooterComponent,
     PageNotFoundComponent,
-    DetaltComponent
+    DetaltComponent,
+    RatingStarComponent,
+    StarPercenComponent
   ],
   imports: [
     BrowserModule,
