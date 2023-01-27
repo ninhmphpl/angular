@@ -15,22 +15,22 @@ export class DetaltComponent implements OnInit {
   public saleOff = (100 - (this.product.newPrice/this.product.oldPrice * 100))
 
   public selectOffChoice = -1;
-  public number = 0;
+  public numberProduct = 0;
 
   public changeIMG(img: string) {
     this.img = img
   }
 
   public plus(){
-    this.number++;
-    if(this.number > this.product.available){
-      this.number = this.product.available
+    this.numberProduct++;
+    if(this.numberProduct > this.product.available){
+      this.numberProduct = this.product.available
     }
   }
   public minus(){
-    this.number--;
-    if (this.number < 0 ) {
-      this.number = 0;
+    this.numberProduct--;
+    if (this.numberProduct < 0 ) {
+      this.numberProduct = 0;
     }
   }
 
