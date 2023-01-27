@@ -26,12 +26,12 @@
                 </div>
                 <div class="img-child" *ngFor="let img of product.img">
                     <a (click)="changeIMG(img)"><img src="{{ img }}" alt=""></a>
-                    
+
                 </div>
             </div>
         </div>
         <div class="content">
-            <h3>Content name</h3>
+            <h3>{{ product.name }}</h3>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="rate d-left font-main-color d-flex justify-content-between align-items-center">
                     <span>{{ product.rate }}</span> <app-star-percen [star]="product.rate"></app-star-percen>
@@ -77,10 +77,10 @@
                         Shop Vouchers
                     </td>
                     <td>
-                        <button 
-                        class="voucher background-main-color" 
-                        *ngFor="let voucher of product.voucher"
-                        [ngStyle]="{boxShadow: '0px 0px 5px red', border: 'none'}">{{ renderString(voucher.value) }}</button>
+                        <button class="voucher background-main-color" *ngFor="let voucher of product.voucher"
+                            [ngClass]="{'select': voucher.id == selectOffChoice}" (click)="choiceSaleOff(voucher.id)">
+                            {{ renderString(voucher.value) }}
+                        </button>
                     </td>
                 </tr>
                 <tr>
@@ -110,9 +110,9 @@
                     </td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-outline-primary">Left</button>
-                            <input style="width: 40px; text-align: center;" type="number" pattern="[0-9]+" value="0">
-                            <button type="button" class="btn btn-outline-primary">Right</button>
+                            <button type="button" class="btn btn-outline-primary" (click)="minus()">Minus</button>
+                            <input style="width: 40px; text-align: center;" type="number" [(value)]="number">
+                            <button type="button" class="btn btn-outline-primary" (click)="plus()">Plus</button>
                         </div>
                     </td>
                 </tr>

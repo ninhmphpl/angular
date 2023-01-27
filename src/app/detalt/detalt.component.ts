@@ -14,11 +14,31 @@ export class DetaltComponent implements OnInit {
   public sold = this.renderString(this.product.sold);
   public saleOff = (100 - (this.product.newPrice/this.product.oldPrice * 100))
 
+  public selectOffChoice = -1;
+  public number = 0;
+
   public changeIMG(img: string) {
     this.img = img
   }
 
+  public plus(){
+    this.number++;
+    if(this.number > this.product.available){
+      this.number = this.product.available
+    }
+  }
+  public minus(){
+    this.number--;
+    if (this.number < 0 ) {
+      this.number = 0;
+    }
+  }
+
   ngOnInit(): void {
+  }
+
+  public choiceSaleOff(value: number){
+    this.selectOffChoice = value
   }
 
   public renderString(property: number): string {
