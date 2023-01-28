@@ -1,0 +1,28 @@
+<div class="img">
+    <div class="img-body">
+        <img src="{{ img }}" alt="">
+    </div>
+    <div class="img-footer d-flex justify-content-between">
+        <div>
+            <button href="#" class="pree-img" [ngClass]="{'d-none' : first <= 0}" (click)="pree()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                    class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                </svg>
+            </button>
+            <button href="#" class="next-img" [ngClass]="{'d-none' : last >= imgs.length - 1}" (click)="next()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                    class="bi bi-chevron-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+        </div>
+        <div class="img-child" *ngFor="let imga of imgShow" [ngClass]="{'selected' : imga == img}">
+            <a (click)="changeIMG(imga)" >
+                <img src="{{ imga }}" alt="" >
+            </a>
+        </div>
+    </div>
+</div>

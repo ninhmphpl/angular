@@ -9,7 +9,6 @@ import { product_detalt } from './Detalt';
 export class DetaltComponent implements OnInit {
 
   public product = product_detalt;
-  public img = this.product.img[0];
   public ratings = this.renderString(this.product.ratings);
   public sold = this.renderString(this.product.sold);
   public saleOff = (100 - (this.product.newPrice/this.product.oldPrice * 100))
@@ -18,9 +17,7 @@ export class DetaltComponent implements OnInit {
   public numberProductChoice : number = 0;
   public colorChoices : number = -1;
 
-  public changeIMG(img: string) {
-    this.img = img
-  }
+
 
   public plus(){
     this.numberProductChoice++;

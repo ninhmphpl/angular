@@ -11,6 +11,10 @@ export const product_detalt = {
         'https://mekongnama.com.vn/wp-content/uploads/2021/07/nuoc-anh-mua-dong-1.jpg',
         'https://vuongquocanh.com/wp-content/uploads/2018/05/london-eye-800x534.jpg',
         'https://vuongquocanh.com/wp-content/uploads/2018/03/england-wal.jpg',
+        'https://visanuocngoai.vn/wp-content/uploads/2021/08/thu-do-nuoc-anh-la-gi-1.jpg',
+        'https://visanuocngoai.vn/wp-content/uploads/2021/08/thu-do-nuoc-anh-la-gi-1.jpg',
+        'https://visanuocngoai.vn/wp-content/uploads/2021/08/thu-do-nuoc-anh-la-gi-1.jpg',
+        'https://visanuocngoai.vn/wp-content/uploads/2021/08/thu-do-nuoc-anh-la-gi-1.jpg',
         'https://visanuocngoai.vn/wp-content/uploads/2021/08/thu-do-nuoc-anh-la-gi-1.jpg'
 
     ],
