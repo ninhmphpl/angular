@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { product_detalt } from './Detalt';
+import { product_detail } from './Detail';
 
 @Component({
   selector: 'app-detalt',
-  templateUrl: './detalt.component.html',
-  styleUrls: ['./detalt.component.scss']
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.scss']
 })
-export class DetaltComponent implements OnInit {
+export class DetailComponent implements OnInit {
 
-  public product = product_detalt;
+  public product = product_detail;
   public ratings = this.renderString(this.product.ratings);
   public sold = this.renderString(this.product.sold);
   public saleOff = (100 - (this.product.newPrice/this.product.oldPrice * 100))

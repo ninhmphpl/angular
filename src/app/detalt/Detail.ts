@@ -2,7 +2,7 @@ import { reduce } from "rxjs";
 
 
 
-export const product_detalt = {
+export const product_detail = {
     name: "Tai nghe bluetooth không dây I7S TWS có micro hỗ trợ tập thể thao thích hợp cho Apple IPhone Xiaomi",
     rate: 4.3,
     ratings: 15090,
