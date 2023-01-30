@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { product_detail } from './Detail';
 
 @Component({
@@ -17,6 +18,8 @@ export class DetailComponent implements OnInit {
   public numberProductChoice : number = 0;
   public colorChoices : number = -1;
 
+  constructor(){}
+
 
 
   public plus(){
@@ -33,6 +36,7 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.params
   }
 
   public choiceSaleOff(value: number){
