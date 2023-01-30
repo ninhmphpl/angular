@@ -1,12 +1,52 @@
-<div *ngFor="let product of products" class="product">
-    <a href="/detalt/1" class="text-decoration-none">
-        <img src="{{ product.img }}" alt="">
-        <div class="card-body">
-            <p class="card-text">{{ product.name }}</p>
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="cart-price">{{ product.price }}$</div>
-                <small class="text-muted"> {{ product.sold }} Sold </small>
+<div>
+    <!-- start filter -->
+    <div class="filter clear background-second-color">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="left">
+                <span>
+                    Sort By
+                </span>
+                <button *ngFor="let f of filters let i = index" [ngClass]="{'background-main-color' : i == filter}"
+                    (click)="setFilter(i)">
+                    {{ f }}
+                </button>
+                <button class="dropdowns" [ngClass]="{'choice' : sort != 0}">
+                    {{ sorts[sort] }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                    </svg>
+                    <div class="dropdown-content">
+                        <a *ngFor="let c of sorts let i = index" [ngClass]="{'choice' : i == sort, 'd-none': i == 0}"
+                            (click)="setSort(i)">
+                            {{ c }}
+                        </a>
+                    </div>
+                </button>
+            </div>
+            <div class="right">
+
             </div>
         </div>
-    </a>
+    </div>
+    <!-- End Filer -->
+
+    <!-- Start Product -->
+    <div>
+        <div *ngFor="let product of products" class="product">
+            <a href="/detalt/1" class="text-decoration-none">
+                <img src="{{ product.img }}" alt="">
+                <div class="card-body">
+                    <p class="card-text">{{ product.name }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="cart-price">{{ product.price }}$</div>
+                        <small class="text-muted"> {{ product.sold }} Sold </small>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- End Product -->
+   <app-controller-page [productsIn]="products" (productsOut)="setProducts($event)"></app-controller-page>
 </div>
