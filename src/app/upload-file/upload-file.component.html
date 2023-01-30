@@ -1,0 +1,4 @@
+<h1>UploadFile</h1>
+<input type="file" (change)="getFile($event)">
+<button (click)="post()">Post</button>
+<p *ngFor="let file of imgSrc">{{file.file.name}} <img [src]="file.src"></p>
