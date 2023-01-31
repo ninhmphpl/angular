@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { filter } from 'rxjs';
-import { PRODUCT, ProductLite } from './Product';
-import { ProductServiceService } from './product-service.service';
+import { ProductServiceLite as ProductLiteService } from 'src/app/service/ProductLiteService';
+import { ProductLite } from './Product';
 
 @Component({
   selector: 'app-main',
@@ -10,7 +9,9 @@ import { ProductServiceService } from './product-service.service';
 })
 export class MainComponent implements OnInit {
 
-  public products: ProductLite[] = []
+  public products: ProductLite[] = [];
+  public productShow: ProductLite[] = []
+
   public sorts: string[] = ['Price', 'Price: Low to High ', 'Price: High to Low'];
   // >0 ==> choice
   public sort: number = 0;
@@ -18,15 +19,18 @@ export class MainComponent implements OnInit {
   // >=0 ==> choice
   public filter: number = 0;
 
-  ngOnInit(): void {
-    this.products = PRODUCT
-  }
   constructor(
-    productService: ProductServiceService
+    private service: ProductLiteService
   ) { }
 
-  public setProducts(products : ProductLite[]){
-    this.products = products
+  ngOnInit(): void {
+    this.service.findAll('/products/lites').subscribe((data: ProductLite[]) => { this.products =  [...data ]; console.log('find all: ');console.log( this.products);
+     })
+  }
+
+
+  public setProducts(products: ProductLite[]) {
+    this.productShow = products
   }
 
   public setSort(i: number) {
@@ -37,6 +41,8 @@ export class MainComponent implements OnInit {
     this.filter = i;
     this.sort = 0;
   }
+
+  
 
 
 
