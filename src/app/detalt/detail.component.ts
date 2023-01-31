@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
+import { ProductDetailService } from '../service/product-detail.service';
 import { product_detail } from './Detail';
 
 @Component({
@@ -18,7 +20,19 @@ export class DetailComponent implements OnInit {
   public numberProductChoice : number = 0;
   public colorChoices : number = -1;
 
-  constructor(){}
+  constructor(
+    private router:Router, 
+    private activatedRoute: ActivatedRoute,
+    private service: ProductDetailService
+  ){}
+
+
+  ngOnInit() {
+    // this.product = this.service.getProductDetail(
+    //   switchMap((params: ParamMap) =>
+    //     this.service.getProductDetail(params.get('id')!))
+    // );
+  }
 
 
 
@@ -35,9 +49,6 @@ export class DetailComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.params
-  }
 
   public choiceSaleOff(value: number){
     this.saleOffChoice = value
