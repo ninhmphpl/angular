@@ -10,11 +10,11 @@ import { NavComponent } from './home/nav/nav.component';
 import { MainComponent } from './home/main/main.component';
 import { FooterComponent } from './home/footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { DetailComponent as DetailComponent } from './detalt/detail.component';
+import { DetailComponent } from './detail/detail.component';
 import { RatingStarComponent } from './rating-star/rating-star.component';
 import { StarPercenComponent } from './rating-star/star-percen/star-percen.component';
 import { FormsModule } from '@angular/forms';
-import { ImgComponent } from './detalt/img/img.component';
+import { ImgComponent } from './detail/img/img.component';
 import { ControllerPageComponent } from './home/main/controller-page/controller-page.component';
 
 @NgModule({

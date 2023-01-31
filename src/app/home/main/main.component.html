@@ -34,8 +34,8 @@
 
     <!-- Start Product -->
     <div>
-        <div *ngFor="let product of products" class="product">
-            <a href="/detail/{{ products.id }}" class="text-decoration-none">
+        <div *ngFor="let product of productShow" class="product">
+            <a href="/detail/{{ product.id }}" class="text-decoration-none">
                 <img src="{{ product.img }}" alt="">
                 <div class="card-body">
                     <p class="card-text">{{ product.name }}</p>

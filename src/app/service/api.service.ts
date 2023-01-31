@@ -15,19 +15,19 @@ export const host = {
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ApiService <E>{
 
   constructor(private http : HttpClient) { }
 
-  public findAll(plusURL : string) {
-    return this.http.get<any>(host.url + plusURL).pipe(
+  public findAll(plusURL : string) : Observable<E[]> {
+    return this.http.get<E[]>(host.url + plusURL).pipe(
       retry(3), // retry times after program has error
       catchError(this.handleError)
     )
   }
 
   /* GET object whose name contains search term */
-  findByParamName(name: string , plusURL : string): Observable<any[]> {
+  findByParamName(name: string , plusURL : string): Observable<E[]> {
     name = name.trim();
 
     // Add safe, URL encoded search parameter if there is a search term
@@ -37,22 +37,22 @@ export class ApiService {
         // .set('number', 123)
     } : {};
 
-    return this.http.get<any[]>(host.url + plusURL, options)
+    return this.http.get<E[]>(host.url + plusURL, options)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  findBy(plusURL : string, options : any): Observable<any> {
-    return this.http.get<any>(host.url + plusURL, options)
+  findBy(plusURL : string): Observable<E> {
+    return this.http.get<E>(host.url + plusURL)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   /** POST: add a new object to the database */
-  add(object: any, plusURL : string): Observable<any> {
-    return this.http.post<any>(host.url + plusURL, object, httpOptions)
+  add(object: E, plusURL : string): Observable<E> {
+    return this.http.post<E>(host.url + plusURL, object, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
@@ -67,11 +67,11 @@ export class ApiService {
   }
 
   /** PUT: update the hero on the server. Returns the updated hero upon success. */
-  update(hero: any, plusURL : string): Observable<any> {
+  update(hero: E, plusURL : string): Observable<E> {
     httpOptions.headers =
       httpOptions.headers.set('Authorization', 'my-new-auth-token');
 
-    return this.http.put<any>(host.url + plusURL, hero, httpOptions)
+    return this.http.put<E>(host.url + plusURL, hero, httpOptions)
       .pipe(
         catchError(this.handleError)
       );

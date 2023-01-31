@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ProductDetail } from '../home/main/Product';
 import { ApiService } from './api.service';
 
@@ -9,16 +10,12 @@ import { ApiService } from './api.service';
 export class ProductDetailService {
 
   constructor(
-    private api : ApiService,
+    private api : ApiService<ProductDetail>,
   ) { }
 
-  public getProductDetail(id : number) : ProductDetail{
+  public getProductDetail(id : string | null) : Observable<ProductDetail>{
     let plusURL = '/' + id
-    let productDetail : ProductDetail;
-    this.api.findBy(plusURL,{}).subscribe((data: ProductDetail) => {
-      productDetail = { ...data }
-    })
-    return productDetail;
+    return this.api.findBy(plusURL)
   }
 
 }

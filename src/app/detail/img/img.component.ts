@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { first } from 'rxjs';
+import { Img } from 'src/app/home/main/Product';
 
 @Component({
   selector: 'app-img',
@@ -7,14 +8,14 @@ import { first } from 'rxjs';
   styleUrls: ['./img.component.scss']
 })
 export class ImgComponent implements OnInit{
-  @Input() imgs : string [] = []
+  @Input() imgs : Img [] = []
   public img : string = '';
   public imgShow : string [] = []
   public first = 0;
   public last = 0;
   
   ngOnInit(): void {
-    this.img = this.imgs[0];
+    this.img = this.imgs[0].name;
     this.render(0)
   }
 
@@ -24,7 +25,7 @@ export class ImgComponent implements OnInit{
     }
     this.imgShow = []
     for ( let i : number = first ; (this.imgShow.length < 5) && i < (this.imgs.length) ; i++){
-      this.imgShow.push(this.imgs[i])
+      this.imgShow.push(this.imgs[i].name)
     }
     this.first = first;
     if(this.first + 4 < this.imgs.length){

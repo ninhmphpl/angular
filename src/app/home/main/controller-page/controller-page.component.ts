@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ProductLite } from '../Product';
 
 @Component({
@@ -6,21 +6,26 @@ import { ProductLite } from '../Product';
   templateUrl: './controller-page.component.html',
   styleUrls: ['./controller-page.component.scss']
 })
-export class ControllerPageComponent implements OnInit {
+export class ControllerPageComponent implements OnChanges {
 
-  @Input() productsIn: ProductLite[] = []
+  @Input() productsIn: ProductLite[] = [];
   @Output() productsOut =  new EventEmitter<ProductLite[]>;
-
-    //Start page
+  
   public onProduct: ProductLite[][] = []
   public numberPages: number = 0;
   public pageNow: number = 0;
   public pageFooter: number[] = []
 
-  ngOnInit(): void {
+  constructor(){}
+  ngOnChanges(changes: SimpleChanges): void {
     this.shapeProduct(this.productsIn)
     this.renderFootPage()
   }
+
+  ngOnChange(): void {
+
+  }
+
   public shapeProduct(products: ProductLite[]) {
     let NUMBER_PRODUCT_DEFAUT = 8;
     let page = 0;
@@ -37,6 +42,8 @@ export class ControllerPageComponent implements OnInit {
       this.productsOut.emit(this.onProduct[0])
     }
     this.numberPages = this.onProduct.length
+    console.log(this.onProduct);
+    
   }
 
   public nextPage() {
