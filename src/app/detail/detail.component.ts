@@ -81,6 +81,7 @@ export class DetailComponent implements OnInit {
     this.colorChoices = id;
   }
 
+
   public renderString(property: number): string {
     if (property >= 1000) {
       return Math.floor(property / 1000) + "k";
@@ -91,4 +92,5 @@ export class DetailComponent implements OnInit {
     }
     return property + ''
   }
+
 }

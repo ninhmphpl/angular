@@ -62,19 +62,7 @@ export class MainComponent implements OnInit {
   // Start Footer
   foot! : number[];
   
-  next(){
-    let number = this.page.pageable.pageNumber + 1;
-    this.httpOption.params = new HttpParams().append('page', number)
-    this.getPage()
-  }
-
-  pree(){
-    let number = this.page.pageable.pageNumber - 1;
-    this.httpOption.params = new HttpParams().append('page', number)
-    this.getPage()
-  }
-
-  setPageNumer(number : number){
+  public setPageNumer(number : number){
     this.httpOption.params = new HttpParams().append('page', number)
     this.getPage()
   }
