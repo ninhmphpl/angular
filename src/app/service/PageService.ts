@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ProductDetail } from '../Model/Product';
+import { Page } from '../Model/Page';
 import { ApiService } from './api.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductDetailService extends ApiService<ProductDetail>{
-
+export class PageService extends ApiService<Page>{
 }

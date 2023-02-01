@@ -1,17 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'my-auth-token'
-  })
-};
-export const host = {
-  url : "http://localhost:8080", 
-}
-
+import { HttpOptions } from '../Model/Api';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,59 +9,39 @@ export class ApiService <E>{
 
   constructor(private http : HttpClient) { }
 
-  public findAll(plusURL : string) : Observable<E[]> {
-    return this.http.get<E[]>(host.url + plusURL).pipe(
+  public getArray(url : string, httpOptions : HttpOptions) : Observable<E[]> {
+    return this.http.get<E[]>(url, httpOptions).pipe(
       retry(3), // retry times after program has error
       catchError(this.handleError)
     )
   }
 
-  /* GET object whose name contains search term */
-  findByParamName(name: string , plusURL : string): Observable<E[]> {
-    name = name.trim();
-
-    // Add safe, URL encoded search parameter if there is a search term
-    const options = name ? {
-      params: new HttpParams()
-        .set('name', name)
-        // .set('number', 123)
-    } : {};
-
-    return this.http.get<E[]>(host.url + plusURL, options)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  findBy(plusURL : string): Observable<E> {
-    return this.http.get<E>(host.url + plusURL)
+  getOne(url : string, httpOptions : HttpOptions): Observable<E> {
+    return this.http.get<E>(url, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   /** POST: add a new object to the database */
-  add(object: E, plusURL : string): Observable<E> {
-    return this.http.post<E>(host.url + plusURL, object, httpOptions)
+  post(url : string , object : E, httpOptions : HttpOptions): Observable<E> {
+    return this.http.post<E>(url, object, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
 
   /** DELETE: delete the hero from the server */
-  delete(id: number, plusURL : string): Observable<unknown> {
-    return this.http.delete(host.url + plusURL , httpOptions)
+  delete(url : string, httpOptions : HttpOptions): Observable<unknown> {
+    return this.http.delete(url , httpOptions)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  /** PUT: update the hero on the server. Returns the updated hero upon success. */
-  update(hero: E, plusURL : string): Observable<E> {
-    httpOptions.headers =
-      httpOptions.headers.set('Authorization', 'my-new-auth-token');
-
-    return this.http.put<E>(host.url + plusURL, hero, httpOptions)
+  /** PUT: update the object on the server. Returns the updated hero upon success. */
+  put( url : string, object: E, httpOptions : HttpOptions): Observable<E> {
+    return this.http.put<E>(url , object , httpOptions)
       .pipe(
         catchError(this.handleError)
       );

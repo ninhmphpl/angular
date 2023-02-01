@@ -15,7 +15,6 @@ import { RatingStarComponent } from './rating-star/rating-star.component';
 import { StarPercenComponent } from './rating-star/star-percen/star-percen.component';
 import { FormsModule } from '@angular/forms';
 import { ImgComponent } from './detail/img/img.component';
-import { ControllerPageComponent } from './home/main/controller-page/controller-page.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,6 @@ import { ControllerPageComponent } from './home/main/controller-page/controller-
     RatingStarComponent,
     StarPercenComponent,
     ImgComponent,
-    ControllerPageComponent
   ],
   imports: [
     BrowserModule,

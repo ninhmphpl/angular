@@ -22,10 +22,10 @@ export interface ProductDetail{
     shipForm: ShipFrom;
     description: string;
 }
-
 export interface Img{
     id : number;
     name: string;
+    url : string;
 }
 export interface Voucher{
     id : number;

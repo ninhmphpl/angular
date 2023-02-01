@@ -1,6 +1,12 @@
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ProductServiceLite as ProductLiteService } from 'src/app/service/ProductLiteService';
-import { ProductLite } from './Product';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpOptions } from 'src/app/Model/Api';
+import { Page } from 'src/app/Model/Page';
+import { ProductLite } from 'src/app/Model/Product';
+import { PageService } from 'src/app/Service/PageService';
+
+
 
 @Component({
   selector: 'app-main',
@@ -8,30 +14,40 @@ import { ProductLite } from './Product';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  public page!: Page;
+  public httpOption: HttpOptions;
+  public url!: string;
 
   public products: ProductLite[] = [];
-  public productShow: ProductLite[] = []
-
-  public sorts: string[] = ['Price', 'Price: Low to High ', 'Price: High to Low'];
-  // >0 ==> choice
-  public sort: number = 0;
-  public filters: string[] = ['Popular', 'Laster', 'Top Seller'];
-  // >=0 ==> choice
-  public filter: number = 0;
 
   constructor(
-    private service: ProductLiteService
-  ) { }
+    private service: PageService) {
+    this.httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'my-auth-token'
+      }),
+      params: new HttpParams().append('page', 0)
+    }
+    this.getPage()
+  }
 
   ngOnInit(): void {
-    this.service.findAll('/products/lites').subscribe((data: ProductLite[]) => { this.products =  [...data ]; console.log('find all: ');console.log( this.products);
-     })
   }
-
-
-  public setProducts(products: ProductLite[]) {
-    this.productShow = products
+  //Start Page
+  getPage() {
+    this.url = 'http://localhost:8080/products/lites/pages'
+    this.service.getOne(this.url, this.httpOption).subscribe((data: Page) => this.page = { ...data })
   }
+  //End Page
+
+  // Start filter
+  public sorts: string[] = ['Price', 'Price: Low to High ', 'Price: High to Low'];
+  public filters: string[] = ['Popular', 'Laster', 'Top Seller'];
+  // >0 ==> choice
+  public sort: number = 0;
+  // >=0 ==> choice
+  public filter: number = 0;
 
   public setSort(i: number) {
     this.sort = i;
@@ -41,8 +57,33 @@ export class MainComponent implements OnInit {
     this.filter = i;
     this.sort = 0;
   }
+  // End filter
 
+  // Start Footer
+  foot! : number[];
   
+  next(){
+    let number = this.page.pageable.pageNumber + 1;
+    this.httpOption.params = new HttpParams().append('page', number)
+    this.getPage()
+  }
+
+  pree(){
+    let number = this.page.pageable.pageNumber - 1;
+    this.httpOption.params = new HttpParams().append('page', number)
+    this.getPage()
+  }
+
+  setPageNumer(number : number){
+    this.httpOption.params = new HttpParams().append('page', number)
+    this.getPage()
+  }
+  // End Footer
+
+
+
+
+
 
 
 

@@ -1,8 +1,10 @@
+import { HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { ProductDetail } from '../home/main/Product';
-import { ProductDetailService } from '../service/product-detail.service';
+import { HttpOptions } from '../Model/Api';
+import { ProductDetail } from '../Model/Product';
+import { ProductDetailService } from '../Service/product-detail.service';
 
 @Component({
   selector: 'app-detail',
@@ -16,27 +18,39 @@ export class DetailComponent implements OnInit {
   public sold!: string;
   public saleOff!: number;
 
+
   public saleOffChoice = -1;
   public numberProductChoice: number = 0;
   public colorChoices: number = -1;
+
+  public url!: string;
+  public httpOptions : HttpOptions;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private service: ProductDetailService
-  ) { }
+  ) {
+    this.url = 'http://localhost:8080/products/detail/'
+    this.httpOptions = {
+      headers : new HttpHeaders({})
+    }
+   }
 
   ngOnInit() {
     this.getProductDetail()
-    this.ratings = this.renderString(this.product.available);
-    this.sold = this.renderString(this.product.sold);
-    this.saleOff = this.renderSaleOff();
   }
 
   public getProductDetail() {
     this.activatedRoute.paramMap.pipe(
-      switchMap((params: ParamMap) => this.service.getProductDetail(params.get('id')))
-    ).subscribe((data : ProductDetail) => this.product = {...data})
+      switchMap((params: ParamMap)=> this.service.getOne(`${this.url}${params.get('id')}`, this.httpOptions)
+      )
+    ).subscribe((data: ProductDetail) => {
+      this.product = { ...data }
+      this.ratings = this.renderString(this.product.available);
+      this.sold = this.renderString(this.product.sold);
+      this.saleOff = this.renderSaleOff();
+    })
   }
 
 

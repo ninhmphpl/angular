@@ -2,7 +2,7 @@
     <div class="img-body">
         <img src="{{ img }}" alt="">
     </div>
-    <div class="img-footer d-flex justify-content-between">
+    <div class="img-footer d-flex flex-row">
         <div>
             <button href="#" class="pree-img" [ngClass]="{'d-none' : first <= 0}" (click)="pree()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
@@ -25,4 +25,6 @@
             </a>
         </div>
     </div>
+    <div>img:show{{ imgShow | json }}</div>
+    <div>imgs: {{ imgs | json }}</div>
 </div>
