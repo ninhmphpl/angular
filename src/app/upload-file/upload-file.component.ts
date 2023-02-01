@@ -24,7 +24,7 @@ export class UploadFileComponent {
     let f: File = file.target.files.item(0);
 
     const reader = new FileReader();
-    reader.onload = e => this.imgSrc.push({src: reader.result, file: f});
+    reader.onload = () => this.imgSrc.push({src: reader.result, file: f});
     reader.readAsDataURL(f);
 
     this.files.push(f)
