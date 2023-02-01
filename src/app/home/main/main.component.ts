@@ -1,10 +1,9 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { HttpOptions } from 'src/app/Model/Api';
 import { Page } from 'src/app/Model/Page';
 import { ProductLite } from 'src/app/Model/Product';
-import { PageService } from 'src/app/Service/PageService';
+import { PageService } from 'src/app/service/page.service';
 
 
 
@@ -61,8 +60,8 @@ export class MainComponent implements OnInit {
 
   // Start Footer
   foot! : number[];
-  
-  public setPageNumer(number : number){
+
+  public setPageNumber(number : number){
     this.httpOption.params = new HttpParams().append('page', number)
     this.getPage()
   }

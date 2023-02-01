@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { HttpOptions } from '../Model/Api';
 import { ProductDetail } from '../Model/Product';
-import { ProductDetailService } from '../Service/product-detail.service';
+import {ProductDetailService} from "../service/product-detail.service";
 
 @Component({
   selector: 'app-detail',
