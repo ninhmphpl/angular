@@ -12,7 +12,6 @@ export class StarPercenComponent implements OnInit{
   public styleRate : Record<string,string> = {};
   ngOnInit(): void {
     this.wit = document.getElementById('star')?.offsetWidth
-    console.log(this.wit);
     this.style = {
       'width' : this.wit + 'px'
     }

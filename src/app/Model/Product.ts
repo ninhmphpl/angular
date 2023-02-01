@@ -11,16 +11,16 @@ export interface ProductDetail{
     ratings : number;
     img : string;
     imgs : Img[];
-    sold: number;
-    oldPrice: number;
-    newPrice: number;
-    voucher: Voucher[];
-    color: Color[];
-    available: number;
-    category: Category;
-    brand: Brand;
-    shipForm: ShipFrom;
-    description: string;
+    sold : number;
+    oldPrice : number;
+    newPrice : number;
+    voucher : Voucher[];
+    color : Color[];
+    available : number;
+    category : Category;
+    brand : Brand;
+    shipForm : ShipFrom;
+    description : string;
 }
 export interface Img{
     id : number;

@@ -82,8 +82,6 @@ export class DetailComponent implements OnInit {
   }
 
   public renderString(property: number): string {
-    console.log(property);
-
     if (property >= 1000) {
       return Math.floor(property / 1000) + "k";
     } else if (property >= 10 ** 6) {

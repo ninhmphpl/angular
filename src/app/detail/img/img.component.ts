@@ -7,11 +7,11 @@ import { Img } from 'src/app/Model/Product';
   styleUrls: ['./img.component.scss']
 })
 export class ImgComponent implements OnInit{
-  @Input() imgs : Img [] = []
-  public img : string = '';
-  public imgShow : string [] = []
-  public first = 0;
-  public last = 0;
+  @Input() imgs! : Img [];
+  public img! : string;
+  public imgShow! : string [];
+  public first! : number;
+  public last! : number;
   
   ngOnInit(): void {
     this.img = this.imgs[0].url;
