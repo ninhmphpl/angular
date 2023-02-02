@@ -23,7 +23,7 @@ import { environment } from '../environments/environment';
     AngularFireStorageModule
   ],
   providers: [
-    { provide: BUCKET, useValue: 'product-2023' }
+    // { provide: BUCKET, useValue: 'file' }
   ],
   bootstrap: [AppComponent]
 })
