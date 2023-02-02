@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../environments/environment';
 
 @NgModule({
