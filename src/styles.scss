@@ -1,4 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+// start header
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+// end header
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// start body
+.body{
+    padding-top: 100px;
+}
+// end body
+
+// start nav-left
+.nav-left{
+
+}
+// end nav-left
+
+// start nav-right
+.nav-right{
+
+}
+// end nav-right
+
+// star main
+
+// end main
+
+// start bootstrap
+.container-xxl{
+    background-color: rgba(0, 0, 0, 0.035);
+}
+// end bootstrap
+
+// start all
+div{
+    border : 1px solid rgba(81, 0, 255, 0.1)
+}
+// end all

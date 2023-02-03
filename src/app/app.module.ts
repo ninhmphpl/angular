@@ -9,10 +9,22 @@ import { AngularFireModule } from '@angular/fire/compat';
 import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../environments/environment';
+import { HeaderComponent } from './header/header.component';
+import { NavLeftComponent } from './nav-left/nav-left.component';
+import { NavRightComponent } from './nav-right/nav-right.component';
+import { HomeComponent } from './home/home.component';
+import { ProdutComponent } from './produt/produt.component';
+import { NavProductComponent } from './produt/nav-product/nav-product.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    NavLeftComponent,
+    NavRightComponent,
+    HomeComponent,
+    ProdutComponent,
+    NavProductComponent
   ],
   imports: [
     BrowserModule,
