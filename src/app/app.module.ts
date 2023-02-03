@@ -15,6 +15,10 @@ import { RatingStarComponent } from './rating-star/rating-star.component';
 import { StarPercenComponent } from './rating-star/star-percen/star-percen.component';
 import { FormsModule } from '@angular/forms';
 import { ImgComponent } from './detail/img/img.component';
+import { SellerCenterComponent } from './seller-center/seller-center.component';
+import { ProductManagerComponent } from './product/product-manager/product-manager.component';
+import { SellerCenterHeaderComponent } from './seller-center/seller-center-header/seller-center-header.component';
+import { SellerCenterNavComponent } from './seller-center/seller-center-nav/seller-center-nav.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,10 @@ import { ImgComponent } from './detail/img/img.component';
     RatingStarComponent,
     StarPercenComponent,
     ImgComponent,
+    SellerCenterComponent,
+    ProductManagerComponent,
+    SellerCenterHeaderComponent,
+    SellerCenterNavComponent,
   ],
   imports: [
     BrowserModule,
