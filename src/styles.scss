@@ -27,6 +27,14 @@
 
 // start all
 textarea{
-    resize: none;
+    resize: none !important;
+}
+.table{
+    border : 1px solid rgba(0, 0, 255, 0.144)
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 // end all
