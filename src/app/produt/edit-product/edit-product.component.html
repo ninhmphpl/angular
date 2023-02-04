@@ -3,40 +3,79 @@
     <div class="row main">
         <app-nav-product class="col-2"></app-nav-product>
         <div class="col-10">
-            <table class="table">
-                <tr>
-                    <td>Picture</td>
-                    <td>
-                        <input type="file">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Video</td>
-                    <td>
-                        <input type="file">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Name Product</td>
-                    <td>
-                        <input class="form-control" type="text">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Category</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="">None</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Description</td>
-                    <td>
-                        <textarea class="form-control" rows="4" aria-label="With textarea"></textarea>
-                    </td>
-                </tr>
-            </table>
+            <div>
+                {{ productForm.value | json }}
+                {{ files | json}}
+                {{ validFile }}
+            </div>
+            <form [formGroup]="productForm">
+                <table class="table">
+                    <tr>
+                        <td>Picture</td>
+                        <td>
+                            <div class="row row-cols-auto">
+                                <img src="" alt="" class="col">
+                            </div>
+                            <input class="form-control" multiple type="file" (change)="getFile($event)">
+                            <div *ngIf="validFile">
+                                <div  *ngIf="files.length > 4">
+                                    Too more, just choice 4 image, please choice again
+                                </div>
+                                <div  *ngIf="files.length == 0">
+                                    Please choice img
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name Product</td>
+                        <td>
+                            <input class="form-control" type="text" formControlName="name">
+                            <div *ngIf="productForm.invalid && (productForm.get('name')?.dirty || productForm.get('name')?.touched)">
+                                <div  *ngIf="productForm.get('name')?.errors?.['required']">
+                                    Please input name
+                                </div>
+                                <div  *ngIf="productForm.get('name')?.errors?.['maxlength']">
+                                    Over length, please write less
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td>
+                            <input class="form-control" type="number" formControlName="price">
+                            <div *ngIf="productForm.invalid && (productForm.get('price')?.dirty || productForm.get('price')?.touched)">
+                                <div  *ngIf="productForm.get('price')?.errors?.['min']">
+                                    Please input price
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Category</td>
+                        <td formGroupName="category">
+                                <select class="form-select" formControlName="id">
+                                    <option value="1">Iphone</option>
+                                    <option value="2">XiaoMi</option>
+                                    <option value="3">Nokia</option>
+                                </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>
+                            <textarea class="form-control" rows="4" aria-label="With textarea" formControlName="description"></textarea>
+                            <div *ngIf="productForm.invalid && (productForm.get('description')?.dirty || productForm.get('description')?.touched)">
+                                <div  *ngIf="productForm.get('description')?.errors?.['maxlength']">
+                                    Too long, please write less
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <button class="btn btn-primary" [disabled]="productForm.invalid || validFile">Up load</button>
+            </form>
         </div>
     </div>
 </div>

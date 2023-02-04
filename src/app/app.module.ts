@@ -17,6 +17,11 @@ import { ProdutComponent } from './produt/produt.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavProductComponent } from './produt/nav-product/nav-product.component';
 import { EditProductComponent } from './produt/edit-product/edit-product.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,7 @@ import { EditProductComponent } from './produt/edit-product/edit-product.compone
   providers: [
     // { provide: BUCKET, useValue: 'file' }
     HttpClientModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })
