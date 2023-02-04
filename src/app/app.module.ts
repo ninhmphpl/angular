@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavProductComponent } from './produt/nav-product/nav-product.component';
 import { EditProductComponent } from './produt/edit-product/edit-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    DragDropModule
   ],
   providers: [
     // { provide: BUCKET, useValue: 'file' }

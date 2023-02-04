@@ -22,8 +22,6 @@ export interface ProductDetail{
     shipForm ?: ShipFrom;
     description ?: string;
 }
-export class Image implements Img{
-}
 export interface Img{
     id ?: number;
     name?: string;

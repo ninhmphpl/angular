@@ -3,25 +3,37 @@
     <div class="row main">
         <app-nav-product class="col-2"></app-nav-product>
         <div class="col-10">
-            <div>
+            <!-- <div>
                 {{ productForm.value | json }}
                 {{ files | json}}
                 {{ validFile }}
-            </div>
-            <form [formGroup]="productForm">
+            </div> -->
+            <form [formGroup]="productForm" (ngSubmit)="submit()">
                 <table class="table">
                     <tr>
                         <td>Picture</td>
                         <td>
-                            <div class="row row-cols-auto">
-                                <img src="" alt="" class="col">
+                            <!-- >> drag drop -->
+                            <div cdkDropList cdkDropListOrientation="horizontal" class="example-list row row-cols-auto"
+                                (cdkDropListDropped)="drop($event)">
+                                <div class="example-box col-2" *ngFor="let file of files ; let i = index" cdkDrag>
+                                    <div class="card">
+                                        <img src="{{file.src}}" class="card-img square-1">
+                                        <div *ngIf="i == 0" class="card-footer border-success bg-primary">Cover</div>
+                                    </div>
+                                </div>
+                                <label for="fileInput" class="col-2">
+                                    <img class="square-1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuSvpEy9aZjMHA2xLuviJfzjJe7ejt72miYN7z2xEJKPter-o1zBNTvjvQ4NZuResK2Rs&usqp=CAU" alt="">
+                                </label>
+
                             </div>
-                            <input class="form-control" multiple type="file" (change)="getFile($event)">
+                            <!-- drag drop -->
+                            <input id="fileInput" class="form-control d-none" multiple type="file" (change)="getFile($event)">
                             <div *ngIf="validFile">
-                                <div  *ngIf="files.length > 4">
+                                <div *ngIf="files.length > 4">
                                     Too more, just choice 4 image, please choice again
                                 </div>
-                                <div  *ngIf="files.length == 0">
+                                <div *ngIf="files.length == 0">
                                     Please choice img
                                 </div>
                             </div>
@@ -31,11 +43,12 @@
                         <td>Name Product</td>
                         <td>
                             <input class="form-control" type="text" formControlName="name">
-                            <div *ngIf="productForm.invalid && (productForm.get('name')?.dirty || productForm.get('name')?.touched)">
-                                <div  *ngIf="productForm.get('name')?.errors?.['required']">
+                            <div
+                                *ngIf="productForm.invalid && (productForm.get('name')?.dirty || productForm.get('name')?.touched)">
+                                <div *ngIf="productForm.get('name')?.errors?.['required']">
                                     Please input name
                                 </div>
-                                <div  *ngIf="productForm.get('name')?.errors?.['maxlength']">
+                                <div *ngIf="productForm.get('name')?.errors?.['maxlength']">
                                     Over length, please write less
                                 </div>
                             </div>
@@ -45,8 +58,9 @@
                         <td>Price</td>
                         <td>
                             <input class="form-control" type="number" formControlName="price">
-                            <div *ngIf="productForm.invalid && (productForm.get('price')?.dirty || productForm.get('price')?.touched)">
-                                <div  *ngIf="productForm.get('price')?.errors?.['min']">
+                            <div
+                                *ngIf="productForm.invalid && (productForm.get('price')?.dirty || productForm.get('price')?.touched)">
+                                <div *ngIf="productForm.get('price')?.errors?.['min']">
                                     Please input price
                                 </div>
                             </div>
@@ -55,26 +69,28 @@
                     <tr>
                         <td>Category</td>
                         <td formGroupName="category">
-                                <select class="form-select" formControlName="id">
-                                    <option value="1">Iphone</option>
-                                    <option value="2">XiaoMi</option>
-                                    <option value="3">Nokia</option>
-                                </select>
+                            <select class="form-select" formControlName="id">
+                                <option value="1">Iphone</option>
+                                <option value="2">XiaoMi</option>
+                                <option value="3">Nokia</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Description</td>
                         <td>
-                            <textarea class="form-control" rows="4" aria-label="With textarea" formControlName="description"></textarea>
-                            <div *ngIf="productForm.invalid && (productForm.get('description')?.dirty || productForm.get('description')?.touched)">
-                                <div  *ngIf="productForm.get('description')?.errors?.['maxlength']">
+                            <textarea class="form-control" rows="4" aria-label="With textarea"
+                                formControlName="description"></textarea>
+                            <div
+                                *ngIf="productForm.invalid && (productForm.get('description')?.dirty || productForm.get('description')?.touched)">
+                                <div *ngIf="productForm.get('description')?.errors?.['maxlength']">
                                     Too long, please write less
                                 </div>
                             </div>
                         </td>
                     </tr>
                 </table>
-                <button class="btn btn-primary" [disabled]="productForm.invalid || validFile">Up load</button>
+                <button class="btn btn-primary" [disabled]="productForm.invalid || validFile" type="submit">Up load</button>
             </form>
         </div>
     </div>
