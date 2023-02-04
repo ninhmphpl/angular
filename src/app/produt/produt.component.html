@@ -1,7 +1,31 @@
-<app-header class="header"></app-header>
-<div class="body row">
-    <app-nav-product class="nav col-2"></app-nav-product>
-    <div class="main">
-        
+<div class="container-fluid">
+    <app-header class="header"></app-header>
+    <div class="body row">
+        <app-nav-product class="nav col-2"></app-nav-product>
+        <div class="main col-10">
+            <div>
+                <button class="btn btn-warning">Add Product</button>
+            </div>
+            <table class="table table-striped text-center" *ngIf="page">
+                <thead>
+                    <tr>
+                        <th class="text-center col-1">Img</th>
+                        <th class="text-center col-4">Name</th>
+                        <th class="text-center col-3">Price</th>
+                        <th class="text-center col-2">Update</th>
+                        <th class="text-center col-2">Stop Sell</th>
+                    </tr>
+                </thead>
+                <tBody>
+                    <tr class="product" *ngFor="let product of page.content">
+                        <td class="align-middle"><img src="{{product.img}}" alt=""></td>
+                        <td class="align-middle">{{ product.name }}</td>
+                        <td class="align-middle">{{ product.price }}</td>
+                        <td class="align-middle"><button class="btn btn-primary">Update</button></td>
+                        <td class="align-middle"><button class="btn btn-danger">Stop Sell</button></td>
+                    </tr>
+                </tBody>
+            </table>
+        </div>
     </div>
 </div>

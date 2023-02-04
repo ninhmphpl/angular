@@ -14,7 +14,9 @@ import { NavLeftComponent } from './nav-left/nav-left.component';
 import { NavRightComponent } from './nav-right/nav-right.component';
 import { HomeComponent } from './home/home.component';
 import { ProdutComponent } from './produt/produt.component';
+import { HttpClientModule } from '@angular/common/http';
 import { NavProductComponent } from './produt/nav-product/nav-product.component';
+import { EditProductComponent } from './produt/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,9 @@ import { NavProductComponent } from './produt/nav-product/nav-product.component'
     NavLeftComponent,
     NavRightComponent,
     HomeComponent,
-    ProdutComponent,
-    NavProductComponent
+    ProdutComponent, 
+    NavProductComponent, EditProductComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { NavProductComponent } from './produt/nav-product/nav-product.component'
   ],
   providers: [
     // { provide: BUCKET, useValue: 'file' }
+    HttpClientModule,
   ],
   bootstrap: [AppComponent]
 })
