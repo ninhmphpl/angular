@@ -31,7 +31,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     NavRightComponent,
     HomeComponent,
     ProdutComponent, 
-    NavProductComponent, EditProductComponent,
+    NavProductComponent, 
+    EditProductComponent,
     
   ],
   imports: [
@@ -45,7 +46,10 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
   providers: [
     // { provide: BUCKET, useValue: 'file' }
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
   ],
   bootstrap: [AppComponent]
 })
