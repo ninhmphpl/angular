@@ -19,9 +19,6 @@ import { NavProductComponent } from './produt/nav-product/nav-product.component'
 import { EditProductComponent } from './produt/edit-product/edit-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { AngularFireModule } from '@angular/fire/compat';
-import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [
@@ -40,16 +37,13 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    HttpClientModule,
+    ReactiveFormsModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule
   ],
   providers: [
     // { provide: BUCKET, useValue: 'file' }
-    HttpClientModule,
-    ReactiveFormsModule,
-    AngularFireModule,
-    AngularFireDatabaseModule,
-    AngularFireStorageModule,
   ],
   bootstrap: [AppComponent]
 })
