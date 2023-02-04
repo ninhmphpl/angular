@@ -1,5 +1,6 @@
 import { Component, ErrorHandler } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FileUploadFireBase } from 'src/environments/update-file-firebase';
 
 @Component({
   selector: 'app-edit-product',
@@ -7,7 +8,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./edit-product.component.scss']
 })
 export class EditProductComponent {
-  files : File[] = [];
+  files : FileUploadFireBase[] = [];
   validFile = true;
   public productForm = this.fb.group({
     name : ['',[Validators.required, Validators.maxLength(225)]],
@@ -27,6 +28,8 @@ export class EditProductComponent {
   getFile(even : any){
     this.files = even.target.files
     this.validFile = (this.files.length > 4 || this.files.length == 0)
+
+    
   }
 
 
