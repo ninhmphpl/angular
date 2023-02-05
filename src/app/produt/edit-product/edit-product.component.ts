@@ -1,6 +1,6 @@
 import { Component, ErrorHandler } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { FileUploadFireBase } from 'src/environments/update-file-firebase';
+import { FileUploadFireBase, upFileArray } from 'src/environments/update-file-firebase';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
@@ -33,15 +33,17 @@ export class EditProductComponent {
 
   public submit() {
     if (this.productForm.valid || this.validFile) {
-      let fileURL: string[] = []
-      // for (let file of this.files) {
-      //   fileURL.push(file.up().url)
-      //   console.log(file.url);
-      // }
-      let productDetail : any = this.productForm.value
-      productDetail.imgs = fileURL;
-      console.log(productDetail);
-      this.serviceProductDetail.post(`${url}/products/detail`, productDetail, httpOptions).subscribe()
+      upFileArray(this.files, () => {
+        let fileURL: string[] = []
+        for (let fileUrl of this.files) {
+          fileURL.push(fileUrl.url)
+        }
+        let productDetail: any = this.productForm.value
+        productDetail.imgs = fileURL;
+        console.log(productDetail);
+        this.serviceProductDetail.post(`${url}/products/detail`, productDetail, httpOptions).subscribe()
+      })
+
     }
   }
 
