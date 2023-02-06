@@ -1,15 +1,54 @@
-<table>
-  <tr>
-    <td>Stt</td>
-    <td>Tên địa điểm</td>
-    <td>Giá</td>
-    <td colspan="2">Hành Động</td>
-  </tr>
-  <tr *ngFor="let tour of tours">
-    <td>{{tour.id}}</td>
-    <td>{{tour.title}}</td>
-    <td>{{tour.price}}</td>
-    <td><button>Update</button></td>
-    <td><button>Delete</button></td>
-  </tr>
-</table>
+<button (click)="formCreate()" class="btn btn-primary">Add</button>
+
+<div [ngSwitch]="action">
+  <table *ngSwitchCase="0" class="table table-hover">
+    <tHead>
+          <tr>
+      <td>Stt</td>
+      <td>Tên địa điểm</td>
+      <td>Giá</td>
+      <td colspan="2">Hành Động</td>
+    </tr>
+    </tHead>
+    <tBody>
+      <tr *ngFor="let tour of tours">
+        <td>{{tour.id}}</td>
+        <td><a (click)="detail(tour.id)">{{tour.title}}</a></td>
+        <td>{{tour.price}}</td>
+        <td><button (click)="formUpdate(tour.id)" class="btn btn-warning">Update</button></td>
+        <td><button (click)="deleteTour(tour.id)" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tBody>
+
+
+  </table>
+
+  <div *ngSwitchCase="1">
+    <button (click)="action = 0 " class="btn btn-primary">Quay lại</button>
+    <form [formGroup]="tourForm" (submit)="submit()">
+      Địa chỉ
+      <input class="form-control" placeholder="Địa chỉ" type="text" formControlName="title">
+      Giá
+      <input class="form-control" placeholder="Giá" type="number" formControlName="price">
+      Chi tiết
+      <input class="form-control" placeholder="Chi tiết" type="text" formControlName="description">
+      <button class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <div *ngSwitchCase="2">
+    <button (click)="action = 0 " class="btn btn-primary">Quay lại</button>
+    <div class="row">
+      <div class="col-2">Tên Địa điểm: </div>
+      <div class="col-5">{{tourDetail.title}}</div>
+    </div>
+    <div class="row">
+      <div class="col-2">Giá: </div>
+      <div class="col-5">{{tourDetail.price}}</div>
+    </div>
+    <div>
+      <div>Chi tiết: </div>
+      <div>{{tourDetail.description}}</div>
+    </div>
+  </div>
+</div>

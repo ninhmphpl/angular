@@ -1,7 +1,8 @@
 export class Tour {
-    id ? : number;
-    title ? : string;
-    price ? : number;
-    description ? : string;
+    id ? : number = 0;
+    title ? : string = '';
+    price ? : number = 0;
+    description ? : string ='';
+
     constructor(){}
 }
