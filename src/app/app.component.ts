@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ChatService } from './service/chat.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'source';
+  constructor(public chat : ChatService){
+    chat.connect()
+  }
+  
 }
