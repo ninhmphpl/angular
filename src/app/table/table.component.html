@@ -1,0 +1,21 @@
+
+<div *ngIf="!username">
+  <input type="text" placeholder="UserName" #username>
+  <button (click)="connectTable(username.value)">Connect</button>
+</div>
+<div *ngIf="username">
+  <div>
+    <input type="number" placeholder="Id room" #idRoom>
+    <button (click)="createRoom(idRoom.value)">Create</button>
+  </div>
+  <div>
+    <div class="row row-cols-auto">
+      <div class="col row p-5" *ngFor="let table of tables">
+        <div class="tre col">{{table.player1?table.player1.name:''}}</div>
+        <a class="table col" (click)="join(table.id)"><div >{{table.id}}</div></a>
+        <div class="tre col">{{table.player2?table.player2.name:''}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+

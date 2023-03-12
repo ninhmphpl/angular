@@ -1,1 +1,25 @@
-<app-table></app-table>
+<div class="row row-cols-auto" *ngIf="table">
+  <div class="col">
+    <div>{{table.player1.name}}</div>
+    <div>{{table.player1.status}}</div>
+  </div>
+  <div class="col">
+    <table>
+      <tBody>
+      <tr *ngFor="let row of chess">
+        <td *ngFor="let unit of row">
+          <img *ngIf="unit" [src]="unit.image" alt="Unit">
+        </td>
+      </tr>
+      </tBody>
+    </table>
+  </div>
+  <div class="col">
+    <div>{{table.player2.name}}</div>
+    <div>{{table.player2.status}}</div>
+  </div>
+  <div *ngIf="player">
+    <button>{{player.status}}</button>
+  </div>
+
+</div>

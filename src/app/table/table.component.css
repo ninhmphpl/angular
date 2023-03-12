@@ -1,9 +1,10 @@
 .tre{
   background: #1976d2;
+  border-radius: 50%;
 }
 .table{
   background: aquamarine;
-  border-radius: 50%;
+
 }
 .tre, .table{
   width: 50px;
