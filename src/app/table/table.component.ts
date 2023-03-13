@@ -51,7 +51,7 @@ export class TableComponent implements OnInit{
       }
     }
     this.api.postMapping(url, table, (data : any)=>{
-
+      this.join(data.id)
     })
   }
 
