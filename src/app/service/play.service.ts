@@ -8,7 +8,8 @@ declare const SockJS: any
   providedIn: 'root'
 })
 export class PlayService {
-  stomp: any
+  stomp: any;
+  unit : any;
 
   constructor() {
     let sock = new SockJS(environment.ws)
@@ -41,5 +42,9 @@ export class PlayService {
     this.stomp.send("/app/ready", {}, JSON.stringify(table))
   }
 
+  move(move : any){
+
+    this.stomp.send("/app/chess.move", {}, move)
+  }
 
 }
