@@ -1,0 +1,54 @@
+<table>
+  <thead>
+  <tr>
+    <td>Text</td>
+    <td>Unicode 1</td>
+    <td>Unicode 2</td>
+    <td>Unicode 3</td>
+    <td>Unicode 4</td>
+    <td>Unicode 5</td>
+    <td colspan="2">Action</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let emoji of dataEmoji let i = index">
+    <td><input type="text" [(ngModel)]="emoji.text"></td>
+    <td>
+      <select [(ngModel)]="emoji.unicode1">
+      <option *ngFor="let e of listEmoji" [value]="e" [innerHTML]="e|unicode"></option>
+    </select>
+    </td>
+    <td>
+      <select [(ngModel)]="emoji.unicode2">
+        <option *ngFor="let e of listEmoji" [value]="e" [innerHTML]="e|unicode"></option>
+      </select>
+    </td>
+    <td>
+      <select [(ngModel)]="emoji.unicode3">
+        <option *ngFor="let e of listEmoji" [value]="e" [innerHTML]="e|unicode"></option>
+      </select>
+    </td>
+    <td>
+      <select [(ngModel)]="emoji.unicode4">
+        <option *ngFor="let e of listEmoji" [value]="e" [innerHTML]="e|unicode"></option>
+      </select>
+    </td>
+    <td>
+      <select [(ngModel)]="emoji.unicode5">
+        <option *ngFor="let e of listEmoji" [value]="e" [innerHTML]="e|unicode"></option>
+      </select>
+    </td>
+    <td>
+      <button *ngIf="!emoji.create" class="btn btn-primary" (click)="save(i)">Save</button>
+      <button *ngIf="emoji.create" class="btn btn-primary" (click)="add(i)">Add</button>
+    </td>
+    <td>
+      <button *ngIf="!emoji.create" class="btn btn-danger" (click)="deleteDataEmoji(i)">Delete</button>
+      <button *ngIf="emoji.create" class="btn btn-danger" (click)="cancel(i)">Cancel</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" (click)="create()">Create</button>
+
+

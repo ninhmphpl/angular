@@ -1,0 +1,35 @@
+<table>
+  <thead>
+  <tr>
+    <th>Thumb</th>
+    <th>Name</th>
+    <th>Sound</th>
+    <th colspan="2">Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let sound of sounds let i = index">
+    <td style="position: relative">
+      <img style="width: 100px; height: 100px" [src]="sound.thumb" alt="ImgSound">
+      <label style="font-size: 40px;color: red;position: absolute; bottom: -10px; right: -10px; z-index: 10" for="{{'t' + i}}">&#8660;</label>
+      <input id="{{'t' + i}}" class="d-none" type="file" (change)="upThumb(i, $event)">
+    </td>
+    <td><input type="text" [(ngModel)]="sound.name"></td>
+    <td style="position: relative">
+      <audio class="audios" [src]="sound.sound" controls></audio>
+      <label style="font-size: 40px;color: red;position: absolute; bottom: 0; left: 200px; z-index: 10"
+             for="{{'s' + i}}">&#8660;</label>
+      <input class="d-none" id="{{'s' + i}}" type="file" (change)="upSound(i, $event)">
+    </td>
+    <td>
+      <button *ngIf="!sound.create" class="btn btn-primary" (click)="update(i)">Save</button>
+      <button *ngIf="sound.create" class="btn btn-primary" (click)="add(i)">Add</button>
+    </td>
+    <td>
+      <button *ngIf="!sound.create" class="btn btn-danger" (click)="deleteById(i)">Delete</button>
+      <button *ngIf="sound.create" class="btn btn-danger" (click)="cancel(i)">Cancel</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" (click)="create()">Create</button>

@@ -1,0 +1,59 @@
+
+<div #video [hidden]="true" class="border" style="width: 200px;position: fixed; z-index: 20">
+  <button (click)="video.hidden = true; srcVideo.pause()">X</button>
+  <video style="width: 200px" #srcVideo src="" controls></video>
+</div>
+<table>
+  <thead>
+  <tr>
+    <th class="text-center">Stt</th>
+    <th class="text-center">Thumbnail</th>
+    <th class="text-center">Import Id</th>
+    <th class="text-center">Title</th>
+    <th class="text-center">Filter</th>
+    <th class="text-center">Credit</th>
+    <th class="text-center">Link Video</th>
+    <th class="text-center">Level</th>
+    <th class="text-center" colspan="2">Action</th>
+  </tr>
+  </thead>
+  <tbody *ngIf="emojis">
+  <tr *ngFor="let data of emojis; let i = index">
+    <td><input class="text-center" style="width: 30px" type="number" [(ngModel)]="data.stt"></td>
+    <td class="position-relative">
+      <img (click)="video.hidden = false; srcVideo.src = data.linkVideo; srcVideo.play() " style="width: 100px; height: 100px" [src]="data.thumbnail?data.thumbnail:'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBYWFRgWFRYYGBgYGBwcGhocGhocHB0aGiEaGhwcHBocIS4lHB4rHxwZJjgmKy8xNTU1HyQ7QDs0Py40NTEBDAwMEA8QHBISGjYrJCY0Pz00ODU2Njo7Pzc/Pz87Oj8/MUA0MThAPTRAMTQ0PzE1NjE/NTQxNjQ2Pzo0OjE0Nv/AABEIAOEA4QMBIgACEQEDEQH/xAAbAAADAAMBAQAAAAAAAAAAAAAAAQIDBQYHBP/EAEQQAAECAwQHBwEFBgUDBQAAAAEC8AADEQQhMUEFElFhgZHBBiJxobHR4RMHQpLC8SNSYnKi0hQyc4KyY6PTFiQ0Q1P/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAgMEAQX/xAAnEQEAAgEDAwMFAQEAAAAAAAAAAQIDBBExEiFBE1FxBRRhgfChMv/aAAwDAQACEQMRAD8A8wULoktv3sjKAjCJOMVG31RDb65CG3fzNVt9QxFMKjb5XZTE6rb6BBDb6ATFENvlcUgIKW31mjb533TJt+KCW31CaNvqjF0e1veEQGMtv2KNvpVG30mmxt7gAIRLb61SE2/kJDfHz5ukPVbfUgJIbfQLb9mRCbfwCpDgpAYBFt+4G37jb+Rt/IFIAIDBSAKNvoUhQ4BUgh0ggNkTlAbroukJQuYebwCHSERFkN+Dp3ZPR+jyCQmEqMgGyER5tvWDGU/pE0jIX+nF17yPjAYyIIspzyb4coo34fpTuhJECjFqDb6IpybfiEUMKKbee+8Lb9wgiFGQxDb+AUIQyG3dyIAiYeq2+qbfyCgrBDIgJrAYCG30CG30AEBggwbfmBBA2/kgFr7ocF0EBtMm3zdG30ZJhk35t+UBJDfgOWVO6kDJ16PhTfk8AQGPHpDb5uverWuhavu6u874CKN+J57+8AbotScroVd1dsBBHzudPLddBDb8Kd3JSB/N3B4BjLb9ijb60RAoQGJQb8XXvLVbd++/Nq5xFNogIhareD4ZPGJIp49YCKeTfxcUii+j8IREBNG31ht/N0yhkQGOjb6lIqkBEBjIbfRANu7lZEFICaQm380IQEBNG31ZEBgrAFBBBBAbUiCjb6gxbfJ3PNveBVvg8US2+o3jt38a941n59d+Ode8DQeUKmZboeXKgPDHh4P5iQN+98vLKndAIq3sdDRUv6dIdcW/jKndfg29kBPhxb95UW3fzpQb8d+O++CL/N8/POveAo2+ple29zSnb7vHz5hF9/y34BIwby8uSJ2t3vBgfG59Mqd1hJYezyyp3QgfGcSR5tuuSmLb8ISt2eT8fPP7wYy2/dERT2vzxzr3nRt9QxurfRP19nlag/ng8lRujGX3QxkbW3uRG6LAbfQIgIIbfWS2/eqNvxzVG/F5goVYdIG38BJbfsqQy2/YgHXdBD4w4D7w2/Z5NvnCYoK5UgKJuDLv9d9QZFvF4y35vC1EYQDuhKD5ezpchFA+rfxUEbm93lsuKPY7oQFYaRvvgEsZ4Ns3hBzLv9/XixvgrRt1gEo0dW+KCf0gPpugJgJKWLnkxcU9G/DDKwm57tnB0rFHk/iAK+kIJ2XvZxedEXfETXiOkAEN/PrVERT9WzRAQEFPww+kENu7llMStPD58McufMMZDb6JSYZAhekAlBt9ZIbfWqQlQE0hEXNvk4ICC2/ZwEQoC6HbBEUO2CA+0Gubb21XybdIbfyyaVbfAKUqhb/TKndpJbd34YG1v2/DSVdG/wBAtMbLRWhJtpCzJ1e4QDU0xqRgDXDzzz1RXcY7X7N11TP/AJkeim6xZhpF7xWWTXZrYMM3rzG3LX/+jLV/0vxn+189bHN7IWsCuohW5K01/qoPPnHR9qu1KrItCRLSvWTWpURS+mQjW6M+0JK1hM6VqAmmsFVArnQgXb6xptiwVt0zM7vNpqfqF6RkrSJj+/LlbRIXLUUrSUKGKVAg027xnXDfdUfRorRi7Sool6oKU6x1iU92oGQxruHCnd9E7TaMTPkLFBrpSVIVmFAVpXYqlDwOIEcl9ni6z5hH/wCJ/wCSW6Cu2n6ckVme0tFPqE5NLbLWNrV8IPYu0/8AT/Gf7XTkldjbUL9VCqZCYK81ADn+vU9q+0CrIhCggK1iRQkilBXKOfs32jd4fUkUGZSq8bwCL+Yiy2LBW3TaZ3ZsOq+oZaRkrSJj+/Lm7dYZkpWrNQpJxAULjkaEVCsaXVxzr3vnGPy9vnnUa3rtts0u1SdU0UlaQUkYio7qhvoeN4Nxjy3R+jlTJyZApraxCjjq0rrGhxoAcc7s6qpy4JpaIjvE8Nuj10Z6Wm8bTXkrFYpk1WrKQpSqX0wFa0KlE0TWmJI6xu5fYm0m8qkp3Fa6/wBKSPPpTtUJk2SScES0CqicScKk4qUTTxuEcba/tFOsfpSRq5FZNSPAXDmYtnBixxHqT3/DLGt1WotP29I6Y8y+K29lLTLFdULAxMs6xH+0gKOGQyGF2ro2Xw8uA9C7O9sZdoV9NSfpzD/lFahW4Ggodxj5+2mhkqQq0IFFpvWBTvJwJP8AEnGuYF+Ajl9PWa9eOd4WYNflrljDqa7TPExw0tg7FWy0SUz5CETUq/dmywQRilQUoUUMwf110nQE9U1UlSQiagVKJh1FHG8V/wAw34X1vF6snZjtPOsE3Xl95CqfUlk91YGf8Khkr1z9V0imz6VkJnSl6sxF8uaLly14lCxs2p4jfkjbfvw9W0TNZ6Z7+N3jukdGzpJAmoUmuBNCknYFJJBON1fn4lYR6XJtZUV2W1oSmckUWk3pmJyWg5pON2Hp8GjuzUuVNUsnWANZaVfdzqTmQcOeOGz7ObbWxzvE/wCPO+/6Imuau1o8RxPw5eydnbRMAUmWUg3gqITd4E1pvps4audL1SU6yVUNKpNUmmw5jfu5dF2p7TldZMlXcwWofe2pSf3dpz8MeWQtt9KMtaVnprO+3MtentlvXqyREb8R5/ayIRDb61SJLb96mhLbz5hhhObb8WA2+oKrqPaCHq73zggMtYvWjGC2+lAtvqGSsMF+kY63tvfei2/cJUuO2+zc0RP/AJkeio4iO1+z9VEzv5keio06ON80ft5/1ON9NaPhXbvRc6fMlmVLUsBFCRS4lRuvOyNHYex9oWsBSPpoqKqUU3DOiQSSaYesdhpztKizKSlSVK1k6wKabaZmNXN+0CXTuSlk71BI5isac2LD6kza3f2YtNl1kYYpjxxt4n+l1uk7amTJWtRoEIPE0okeJNBHBfZof/cTf9L8yI02m+0E21GiyEpBqED/AC12nMlgXxuvs7unr/0j/wAkt1MJyxlzV6eITjRzp9Jk6ubct7290fNnolCUhSylSiQKXCgGccjZuyVqUQDKKf4lEADxvJ5Ax32n9OpsqUqUlSgokDVIFKCucYtA9pZdqKkpBSpIrQkVKdopsPqIty4cV8u027z4Z9NqNTi00dNImsb921syEyZSUlXclIAKjdckXqOzCscR2GmiZbLRN/eSojdrrEfR9oap4SnVV+xVcoAUOtiNY5g5ZVF+Uc72R0gLPaApRohYKFHZrUIJ3BQHnFeXJEZq1mNohbptLadLkvE72vHj+5dR9pM5X0ZSRWilkn/aLgeZPCPPkSo9Y7R6LFpklAICkkKSThrCooaZEEjzvpHnM7RU9CtVcpYIz1SQfBQBB4fBr1mO3qdW3aWn6Xkp6EU37xM7vhRVBSpJopJBB2FN4j2a0AKQpKsFIII3EUMee6B7OTJi0rmpKJaSD3hQqpeAAb6bScsK4x1XaXSYkyFqr3lApSMyVXV4C+LtJSaY7Wt2hn+ozXNmx0p3tDyxCq3Rtuz+l51lmhUmqtaiVS7yFjIUH3thF43311UhBJASCSSAABUknAAbY9F7PaETZkmbNKfqatSSRSWKXgHCtMTwF2OPDhtlttHHmXp6nU1wU3nvM8R7votlrOkJetKsdqK5aiETUJSTLWKVSe9WmFUnHzjlO0mlLUhIkT5SpCykFesCCoHCmxJpfTE1GVI7RUyZIm/4uxka5A+pLr3J6Mb6YKGSmd5pA2XTFmBvStNdVVP2kleaVDMXXpwNAcQCJ5K5cG9d+0/6hhyYdTEX6e8e/MS8JQmMyBSPu0tomZZpplzU0ULwRelSclJOYPMYG/H46tvrmbChQ6wkht9AaxBWABvweR6Nu4Cp2QQuJ5QQGQFt9GW37xWHWAYLfj57+8y28c8wNv3lcAKMb7stpqXICxNKhrFJFE1wBEaBKb43XZzs5Mts76aClCUp1pi1V1UI2naTkLsMgKiePJOO0WrzCvLirlrNbcSx9rNKS7QtBlk0Skg1FL619I1KLMCI7cdntCqV9JOkpgmVoFql/sdbDHVA1a561N8cpaZIQtaAtMxKVlIWmuqoAkayajAut0cveb2m1uZdx4646xWvEPjMsA+LbruuyulJdnmqVM1glSKCgqa6yT0LvPw2OzBc2Wg1AXMQgnMBagkkVzoXntO2OgkWW1Ls6FqWlAQdZQGsdZAUa6opdV5qXmkxaOYMmOMlZrbiVdsNOSbSiWmUVEpUSappcQAI0NgnqlLTMlmikmo2HaDuIqHdJkRsdDaLmWiaiRKSFLWaCpoBcSVKOSQASc7ttI7fLa9uqeUcWGmOnp14/LqZ/auyTZZRNC6KTRSaVodx2gi47RHCqSmqgk6yQTQkUqMjTK7L2u7qf2Y0RJUZM/SMwzkmizLl/s0qzBOqrA4966l9KXajTXYyZZp8uWlaZkueKyJybkLFAaGldU0IOJF4NaVpLJmtlmN4jdHFp6aeJ6Znbnux6F7WLkgImJ+ogXA1opI2X4jx5x0crtfZSKlak7ik1/pBEef2iUQVBQIKSUqBxBBIKbt8dfo3snYBYJVttdony/qTFIohKVDWSpYF2qTelBMW49ZlpHTz8qcmgwZZ6ttpn2Zbd21kpH7MKWrK7VTxJv8AKOM0npKZPXrzFVpckDADYA6x1WkeyNlXZZlrsFpVNTJI+pLmI1VAGl4N2ANcLxW+ooeOTIJ3RDLqcmXtae3tC3DpMWHvWO/vLoNA2+y2dP1FEqnEYBJ7oOSSaCu1XAXY/Fp3tDMtHdpqywa6tcdhUc/DAecfALOVEISCpSiEpAxKlGiQPEx13bHsMmySETZU4zShaZdoF1ELUhK00peE35/vJiM57dHRHaPx5+Uvt6ep6k95/Pj4aLQXaRckaigVIyGaf5a5bo2c7tFLRM/xFnWUzcFoIITMTsVS7WGRjlQiPv0DoxNotMmStRSmYtKSpNKgHMVujv3Fpx+nbaY8b+P2fb0jJ6le0+dvPy63SPaixWuVqzwqWoXpOqVFKtqSK1G0GlRHEKAqaK1hU0UAQCNt948Dt5/Z2i0Umz2qdIQpSky16oUaaxFAb6XZxrkopg299C5lyiTi291z3w1Nv26IBb8HS6m38L0bdzgDXLPzBBR3QQDEBhZNvmNv4Btv4qkQS34P7rJfg3kDUocY6/sPN1rPbrMggTZ0ruX01gAtJTX/AHD8UccBfthpmqQpK0KUlSTUKSaEeBF75hsNEaLUu0ypM2WsJK0pWnVUCEV719LvGHpyypk2mdKlg6iFkJBNTSgzzjKrthbtXV+uabQhFeer4RpzNUSVKUVKN5Uokkk4kkxwbDRRpPk7p0s/1pbu6D7RFKVpCaoJUQUy8Ek4ITmH05WXMUkhYNFJIUk3XKTeDQ3YgPDbnttpAD/5H/blf2PnQNas0xFDsIoY6/sBapUicJ31E1MlSFIUoJWlalAhSQblJ1UgXHOOPtFuXOWqZOVrLUQVKoBUgBIuSABckDDLlgmG8EXGoIIxByIOT4yiYie8bo2iZjtOzo0dlqEfVtKKqNaICpilHOguJJ3Axv8ATeklWGRIkgFRSFfSE1SSpKSSSrUSLhVRSAqhpdgI5iV200ghGqLQSBcCpCFKp/MUknLGvpXST7SuapS5ilLUrFSjU7r8huw6zjJEf8xtPvzKqcM2/wC7TMe3EGZxWSpRqSSpROZN5PEmsegSdKIlaHsxm2dNpSbQsBCiQASqeda4G+lRxjz1Ka7o2li7SWyQgSpM3VQmtE6ks0KiVG9Sa4k/GVa+HX2S3otdgtcqVZ/8ElCfqEoI1JhSCrUWSgGndFaHZlcfPZS7r4+7SHaS1z06k6epSTikBKQdx1QKjcf01ibjTGODr+wFmQbQbTNITLsydbWUaJ11XIqdwqrcdWN7ohEtZtUqbbZM8W2qihJOsmZeUqSCThdQfwp2R59/j5olKkJVSUtQUpISL1CmKqaxwTnkOPxylqQpK0EpUkhSSMQReD6PEM86UpC1IUKKQopUN6TQ03Rsuyy9W22Y7JqY1drta5izMmHWWqlTRKa0FBUJAGFL2alWhSFJWg6qkGqTcaEbiKHjHRte1oWbdaFBKiCvJJINw2Rp/G7J1jaHtdbh/wDefwS/7Y1ip6lqUtRqpaipRwqpRqTQYXvZwEIcW3mxDPFt59EFt+7EAbf9w2/kJ1d/pBFX7YIAbfyGCHSARbfsANvoQ6wCrDCW31BAIB0FNrbxSUisMqxrxhpPOApPk/Z5LUb8PLKndd90AMAvp3N/pyvU6e17+US3nFkv3gAoB8P1eeOf3p1BsbLrfQ4PbCrub6wEkY0hFAx8/T0eVpGXtEqMBBljY36fhNShbfKiYkwCIq2/MUkNuu/vMmAmAinANu8Cbobe+ACARQG36GoA2/JiAmAEwAVbfmCAQCIbd++9iAwUgHyfCFBUwQCIhlt+6Db9gtv3Ark2/EBbfUb5v7zDb9wICW+LwCYRbeHIG2/gpE1bfRiAtt/Krm2763otv3CW3fnXvBYU2+tDBt8oDb92W37BVdobd3dCeHk3hljJbwwf3WLm34XBe6FrZN+/NAwqt+Lr3gVWW/8AkyRCDfHz/EwW31BEv1bAW35d0I8m3REN+H6U7oNt/CMMBt9FADb9b0C3i+Lo27/xGTebzAAgIo2/JwFt4cgVW/Dy5FL/AJb8ink+nl+EDb9gPp74INZ1ggFfDrCJgMAFt+7MTTm27nAAMOFADS5t+IBbfswYH+j+V5QDMMFt9VBXY29wBEOsIvrDpwgKLb9pJhAtvDiNvZxCoImsBb4QFNv5kQ0tv2QpAV4wi28uBSHVt9QVIDB4QGAC+rZFCAtv2MX5P9AK7IKwxCrSARDb6EFW31ZMAtZ0giqjdDgMZEDb+CBUANvLkJbfsNv4YDb6AhBVvF8QQJfg3tBC9t+dCtYbbz5zAMem9scobeW7u2G37Ib23uBjBt8ht/JWAwCUp7X133iS2+ro2+oW37gCED5N9KXOsBbfsAG3hu7pugAb8Hk63wBtfg2VrNvxr3ht/LIbd/ME+f6l40YVcm34hwzgAt8PLKndEtvhS4bfwO5v0Arwgq2+d5k+MAfFvMEG37sBt9RTb9wQDoYcRdBASYoGJhmADAIA2/cJbfUAw4Imrb6A4BBVt9HSABChlt+6beedbwKQQJbfuGAcHjCDb9ht/AMQEQCE2/kDWhpN8BLb6gEACGTCLb9ht/AMiHXKE2/hwA/SFWE2/lht+4EAEEANG35AGAwEtvo4BU3wQ6HbBAY/b2gU/OCCAZ9/zwZq8f7oIIBqw4n1ETnxH5IIIBpwTw9EQs+HtBBAHt0XFHPj+eCCAE4nj6qik9faCCAxy/8AM/4IeXAflgggEcOHQwjg9i4IICpmCvH/AMkUvN5mCCADinx/tgR7fkhQQDRiOH5YJmAeRhQQAMDx/PGRXv8AngggMYxe2Kl4jh+WCCAEZP8AciUY8ukEEBlggggP/9k='" alt="">
+      <label class="btn btn-warning btn-sm" for="{{'t' + i}}">Upload Avatar
+        <div class="spinner-border spinner-border-sm" role="status" *ngIf="data.avatarUpload">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </label>
+      <input class="d-none" id="{{'t' + i}}" type="file" (change)="upThumb(i, $event)">
+    </td>
+    <td class="text-center">{{data.importId?data.importId:'null'}}</td>
+    <td><input class="text-center" type="text" [(ngModel)]="data.title"></td>
+    <td><input class="text-center" type="text" [(ngModel)]="data.filter"></td>
+    <td><input class="text-center" type="text" [(ngModel)]="data.credit"></td>
+    <td class="position-relative">
+      <input class="text-center" style="width: 100px" type="text" [(ngModel)]="data.linkVideo">
+      <label class="btn btn-warning btn-sm" for="{{'v' + i}}">Upload Video
+        <div class="spinner-border spinner-border-sm" role="status" *ngIf="data.videoUpload">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </label>
+      <input class="d-none" id="{{'v' + i}}" type="file" (change)="upVideo(i, $event)">
+    </td>
+    <td><input class="text-center" type="text" [(ngModel)]="data.level"></td>
+    <td>
+      <button class="btn btn-primary" *ngIf="!data.create" (click)="update(data)">Save</button>
+      <button class="btn btn-primary" *ngIf="data.create" (click)="create(data)">Create</button>
+    </td>
+    <td>
+      <button class="btn btn-danger" *ngIf="!data.create" (click)="deleteById(data.id)">Delete</button>
+      <button class="btn btn-danger" *ngIf="data.create" (click)="cancel(i)">Cancel</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" (click)="add()">Add</button>
+
+

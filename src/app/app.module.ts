@@ -9,6 +9,8 @@ import { Sound2Component } from './sound2/sound2.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { UnicodePipe } from './unicode.pipe';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { UnicodePipe } from './unicode.pipe';
     EmojiComponent,
     DataEmojiComponent,
     Sound2Component,
-    UnicodePipe
+    UnicodePipe,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

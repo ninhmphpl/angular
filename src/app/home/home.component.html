@@ -1,0 +1,12 @@
+<div>
+  <div class="row">
+    <div class="col"><button (click)="display='emoji'">Emoji</button></div>
+    <div class="col"><button (click)="display='dataemoji'">Data Emoji</button></div>
+    <div class="col"><button (click)="display='sound2'">Sound 2</button></div>
+  </div>
+  <div>
+    <app-emoji *ngIf="display=='emoji'"></app-emoji>
+    <app-data-emoji *ngIf="display=='dataemoji'"></app-data-emoji>
+    <app-sound2 *ngIf="display=='sound2'"></app-sound2>
+  </div>
+</div>

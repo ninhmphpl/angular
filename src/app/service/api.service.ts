@@ -75,12 +75,10 @@ export class APIService {
     this.httpOption.params = parm
   }
 
-  getMapping(url: string, action: any) {
+  getMapping(url: string, option : any, action: any) {
     console.log(url)
     this.apiOnload = true
-    let token : any = this.getToken()
-    this.setHeader(new HttpHeaders().append('Authorization', token))
-    this.http.get<any>(url, this.httpOption)
+    this.http.get<any>(url, option)
       .pipe(
         retry(3), catchError((err : any)=>this.handleError(err))
       ).subscribe((data) => {
@@ -90,12 +88,10 @@ export class APIService {
   }
 
   /** POST: add a new object to the database */
-  postMapping(url: string, object: any, action: any) {
+  postMapping(url: string, object: any, option : any, action: any) {
     console.log(url)
     this.apiOnload = true
-    let token : any = this.getToken()
-    this.setHeader(new HttpHeaders().append('Authorization', token))
-    this.http.post<any>(url, object, this.httpOption)
+    this.http.post<any>(url, object, option)
       .pipe(
         retry(3), catchError((err : any)=>this.handleError(err))
       ).subscribe((data) => {
@@ -104,12 +100,10 @@ export class APIService {
   }
 
   /** DELETE: delete the hero from the server */
-  deleteMapping(url: string, action: any) {
+  deleteMapping(url: string, option : any, action: any) {
     console.log(url)
     this.apiOnload = true
-    let token : any = this.getToken()
-    this.setHeader(new HttpHeaders().append('Authorization', token))
-    this.http.delete<any>(url, this.httpOption)
+    this.http.delete<any>(url, option)
       .pipe(
         retry(3), catchError((err : any)=>this.handleError(err))
       ).subscribe((data) => {
@@ -118,12 +112,10 @@ export class APIService {
   }
 
   /** PUT: update the object on the server. Returns the updated hero upon success. */
-  putMapping(url: string, object: any, action: any) {
+  putMapping(url: string, object: any, option : any, action: any) {
     console.log(url)
     this.apiOnload = true
-    let token : any = this.getToken()
-    this.setHeader(new HttpHeaders().append('Authorization', token))
-    this.http.put<any>(url, object, this.httpOption)
+    this.http.put<any>(url, object, option)
       .pipe(
         retry(3), catchError((err : any)=>this.handleError(err))
       ).subscribe((data) => {
@@ -133,8 +125,6 @@ export class APIService {
 
   public filterData(data: any, action: any) {
     if (typeof data == 'string') {
-      this.apiError = data.split(',')
-      this.route.navigate(['/error'])
     } else {
       console.log('data: ')
       console.log(data);

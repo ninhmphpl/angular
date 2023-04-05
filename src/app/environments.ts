@@ -1,7 +1,8 @@
 import Swal from "sweetalert2";
 
 export const environment = {
-  host : "http://192.53.115.249:1001",
+  // host : "http://192.53.115.249:1001",
+  host : "http://localhost:1001",
   emojiJson : "{\n" +
     "            \"title\": \"New title\",\n" +
     "            \"credit\": \"Credit\",\n" +
