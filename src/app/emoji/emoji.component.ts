@@ -112,7 +112,7 @@ export class EmojiComponent implements OnInit {
     let url = environment.host + "/upload"
     let formData: FormData = new FormData();
     formData.append("files", event.target.files[0])
-    this.api.postMapping(url, formData, this.option, (data: any) => {
+    this.api.postMapping(url, formData, this.api.headerFromData(), (data: any) => {
       if (data.code === 200) {
         this.emojis[i].thumbnail = environment.host + data.data[0]
         successAlert("Upload Complete")
@@ -131,7 +131,7 @@ export class EmojiComponent implements OnInit {
     let url = environment.host + "/upload"
     let formData: FormData = new FormData();
     formData.append("files", event.target.files[0])
-    this.api.postMapping(url, formData, this.option, (data: any) => {
+    this.api.postMapping(url, formData, this.api.headerFromData(), (data: any) => {
       if (data.code === 200) {
         this.emojis[i].linkVideo = environment.host + data.data[0]
         successAlert("Upload Complete")
@@ -156,5 +156,7 @@ export class EmojiComponent implements OnInit {
   backLogin(){
     this.router.navigate(["/login"] )
   }
+
+
 
 }

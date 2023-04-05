@@ -14,7 +14,7 @@ export class APIService {
   apiError : any
   constructor(
     private http: HttpClient,
-    public route: Router,
+    public router: Router,
   ) { }
 
   alertError(title : string){
@@ -80,7 +80,7 @@ export class APIService {
     this.apiOnload = true
     this.http.get<any>(url, option)
       .pipe(
-        retry(3), catchError((err : any)=>this.handleError(err))
+        catchError((err : any)=>this.handleError(err))
       ).subscribe((data) => {
       this.filterData(data, action)
       this.apiOnload = false
@@ -93,7 +93,7 @@ export class APIService {
     this.apiOnload = true
     this.http.post<any>(url, object, option)
       .pipe(
-        retry(3), catchError((err : any)=>this.handleError(err))
+        catchError((err : any)=>this.handleError(err))
       ).subscribe((data) => {
       this.filterData(data, action)
     })
@@ -105,7 +105,7 @@ export class APIService {
     this.apiOnload = true
     this.http.delete<any>(url, option)
       .pipe(
-        retry(3), catchError((err : any)=>this.handleError(err))
+        catchError((err : any)=>this.handleError(err))
       ).subscribe((data) => {
       this.filterData(data, action)
     })
@@ -117,7 +117,7 @@ export class APIService {
     this.apiOnload = true
     this.http.put<any>(url, object, option)
       .pipe(
-        retry(3), catchError((err : any)=>this.handleError(err))
+        catchError((err : any)=>this.handleError(err))
       ).subscribe((data) => {
       this.filterData(data, action)
     })
@@ -136,6 +136,7 @@ export class APIService {
   // bắt lỗi của chương trình
   private handleError(error: HttpErrorResponse) {
     this.apiError = error
+    console.log("Error code : " + error.status)
     if (error.status === 0) {
       // Lỗi trả về từ client
       // A client-side or network error occurred. Handle it accordingly.
@@ -147,5 +148,22 @@ export class APIService {
     // Lỗi không rõ
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.(Lỗi không rõ)'));
+  }
+
+  headerFromData(){
+    let token: any = localStorage.getItem("Prox-Token");
+    if (!token) {
+      this.backLogin()
+      return
+    }
+    return {
+      headers: new HttpHeaders({
+        Authorization: token
+      })
+    };
+  }
+
+  backLogin(){
+    this.router.navigate(["/login"] )
   }
 }

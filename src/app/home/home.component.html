@@ -1,8 +1,9 @@
 <div>
   <div class="row">
-    <div class="col"><button (click)="display='emoji'">Emoji</button></div>
-    <div class="col"><button (click)="display='dataemoji'">Data Emoji</button></div>
-    <div class="col"><button (click)="display='sound2'">Sound 2</button></div>
+    <div class="col"><button class="btn btn-primary" (click)="display='emoji'">Emoji</button></div>
+    <div class="col"><button class="btn btn-primary" (click)="display='dataemoji'">Data Emoji</button></div>
+    <div class="col"><button class="btn btn-primary" (click)="display='sound2'">Sound 2</button></div>
+    <div class="col"><button class="btn btn-primary" (click)="backLogin()">Logout</button></div>
   </div>
   <div>
     <app-emoji *ngIf="display=='emoji'"></app-emoji>

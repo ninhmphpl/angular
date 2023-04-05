@@ -29,7 +29,7 @@
       </label>
       <input class="d-none" id="{{'t' + i}}" type="file" (change)="upThumb(i, $event)">
     </td>
-    <td class="text-center">{{data.importId?data.importId:'null'}}</td>
+    <td><input class="text-center col-12" type="text" [(ngModel)]="data.importId" disabled></td>
     <td><input class="text-center" type="text" [(ngModel)]="data.title"></td>
     <td><input class="text-center" type="text" [(ngModel)]="data.filter"></td>
     <td><input class="text-center" type="text" [(ngModel)]="data.credit"></td>
