@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, throwError} from "rxjs";
-import {environment} from "../../environment/environtments";
 
 @Component({
   selector: 'app-root',
@@ -9,8 +8,8 @@ import {environment} from "../../environment/environtments";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  host = environment.host
-  version = environment.version
+  host = ""
+  version = ""
 
   constructor(private http: HttpClient) {
   }
@@ -44,7 +43,12 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getList();
+    this.http.get("../assets/environment.json",
+      { headers: new HttpHeaders({ 'Cache-Control': 'no-cache' })}).subscribe((data : any)=>{
+      this.host = data.host;
+      this.version = data.version;
+      this.getList();
+    })
   }
 
   filterName(event: any) {
