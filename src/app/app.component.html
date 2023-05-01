@@ -1,16 +1,33 @@
-<p>Data server : {{version}}</p>
+<p>Fe version : {{version}}</p>
 <h5>Filter</h5>
 <table>
   <tr>
     <td>Name</td>
-    <td><input type="text" (change)="filterName($event)"></td>
+    <td><input #name type="text" (change)="filter(name.value, typeName.value)"></td>
   </tr>
   <tr>
     <td>Type Name</td>
-    <td><input type="text" (change)="filterTypeName($event)"></td>
+    <td><input #typeName type="text" (change)="filter(name.value, typeName.value)"></td>
   </tr>
 
 </table>
+<br>
+<h5>Upload File</h5>
+<table>
+  <tr>
+    <td>Type Name</td>
+    <td><input #typeNameUpload type="text"></td>
+    <td rowspan="2"><textarea cols="50" rows="3" disabled [value]="log"></textarea></td>
+  </tr>
+  <tr>
+    <td>Upload File</td>
+    <td>
+      <input id="upload" [hidden]="true" type="file" (change)="uploadFile($event, typeNameUpload.value)" multiple>
+      <button><label for="upload">Upload</label></button>
+    </td>
+  </tr>
+</table>
+<br>
 <table>
   <tr>
     <th>ID</th>
@@ -21,15 +38,17 @@
     <th>fileType</th>
     <th>size</th>
     <th>description</th>
+    <th>Delete</th>
   </tr>
   <tr *ngFor="let file of fileData ; let i = index">
     <td *ngIf="file.status">{{file.id}}</td>
-    <td *ngIf="file.status">{{file.url}}</td>
+    <td *ngIf="file.status"><input type="text" [value]="file.url" disabled></td>
     <td *ngIf="file.status"><input type="text" [(ngModel)]="file.name" (change)="update(i)"></td>
     <td *ngIf="file.status">{{file.duration}}</td>
-    <td *ngIf="file.status">{{file.typeName}}</td>
+    <td *ngIf="file.status"><input type="text" [(ngModel)]="file.typeName" (change)="update(i)"></td>
     <td *ngIf="file.status">{{file.typeType}}</td>
     <td *ngIf="file.status">{{file.size}}</td>
     <td *ngIf="file.status"><input type="text" [(ngModel)]="file.description" (change)="update(i)"></td>
+    <td *ngIf="file.status"><button (click)="delete(file.url, file.id)">Delete</button></td>
   </tr>
 </table>
