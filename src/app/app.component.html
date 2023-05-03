@@ -46,7 +46,7 @@
     <td *ngIf="file.status"><input type="text" [(ngModel)]="file.name" (change)="update(i)"></td>
     <td *ngIf="file.status">{{file.duration}}</td>
     <td *ngIf="file.status"><input type="text" [(ngModel)]="file.typeName" (change)="update(i)"></td>
-    <td *ngIf="file.status">{{file.typeType}}</td>
+    <td *ngIf="file.status">{{file.fileType}}</td>
     <td *ngIf="file.status">{{file.size}}</td>
     <td *ngIf="file.status"><input type="text" [(ngModel)]="file.description" (change)="update(i)"></td>
     <td *ngIf="file.status"><button (click)="delete(file.url, file.id)">Delete</button></td>
