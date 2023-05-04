@@ -1,8 +1,7 @@
 import Swal from "sweetalert2";
-import {HttpHeaders} from "@angular/common/http";
 
 export const environment = {
-  host : "http://192.53.115.249:1001",
+  host : "http://emojiapi.antliaespacelab.com",
   // host : "http://localhost:1001",
   emojiJson : "{\n" +
     "            \"title\": \"New title\",\n" +

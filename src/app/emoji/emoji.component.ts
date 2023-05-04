@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {APIService} from "../service/api.service";
 import {environment, errorAlert, successAlert} from "../environments";
 import Swal from "sweetalert2";
-import {HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {initializeApp} from "firebase/app";
+import {getStorage} from "firebase/storage";
 
 @Component({
   selector: 'app-emoji',
@@ -15,7 +17,9 @@ export class EmojiComponent implements OnInit {
   a: any
   option: any
 
-  constructor(private api: APIService, private router: Router) {
+  constructor(private api: APIService,
+              private router: Router,
+              private http : HttpClient) {
   }
 
   ngOnInit(): void {
@@ -31,6 +35,14 @@ export class EmojiComponent implements OnInit {
         Authorization: token
       })
     };
+  }
+
+  configFirebaseMethod(){
+    this.http.get("../assets/environment.json",
+      {headers: new HttpHeaders({'Cache-Control': 'no-cache'})}).subscribe((data: any) => {
+      const app = initializeApp(data.firebaseConfig);
+      getStorage(app)
+    })
   }
 
   getList() {
