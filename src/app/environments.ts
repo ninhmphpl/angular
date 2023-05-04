@@ -1,8 +1,6 @@
 import Swal from "sweetalert2";
 
-export const environment = {
-  host : "http://emojiapi.antliaespacelab.com",
-  // host : "http://localhost:1001",
+export const form = {
   emojiJson : "{\n" +
     "            \"title\": \"New title\",\n" +
     "            \"credit\": \"Credit\",\n" +

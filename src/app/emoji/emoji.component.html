@@ -27,7 +27,8 @@
           <span class="visually-hidden">Loading...</span>
         </div>
       </label>
-      <input class="d-none" id="{{'t' + i}}" type="file" (change)="upThumb(i, $event)">
+<!--      <input class="d-none" id="{{'t' + i}}" type="file" (change)="upThumb(i, $event)">-->
+      <input id="{{'t' + i}}" class="d-none" type="file" (change)="upThumb2($event, i)">
     </td>
     <td><input class="text-center col-12" type="text" [(ngModel)]="data.importId" disabled></td>
     <td><input class="text-center" type="text" [(ngModel)]="data.title"></td>
@@ -40,12 +41,12 @@
           <span class="visually-hidden">Loading...</span>
         </div>
       </label>
-      <input class="d-none" id="{{'v' + i}}" type="file" (change)="upVideo(i, $event)">
+      <input class="d-none" id="{{'v' + i}}" type="file" (change)="upVideo2($event, i)">
     </td>
     <td><input class="text-center" type="text" [(ngModel)]="data.level"></td>
     <td>
-      <button class="btn btn-primary" *ngIf="!data.create" (click)="update(data)">Save</button>
-      <button class="btn btn-primary" *ngIf="data.create" (click)="create(data)">Create</button>
+      <button class="btn btn-primary" *ngIf="!data.create" (click)="saveUpdate(data)">Save</button>
+      <button class="btn btn-primary" *ngIf="data.create" (click)="saveCreate(data)">Create</button>
     </td>
     <td>
       <button class="btn btn-danger" *ngIf="!data.create" (click)="deleteById(data.id)">Delete</button>

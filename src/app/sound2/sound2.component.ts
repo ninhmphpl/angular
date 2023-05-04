@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {APIService} from "../service/api.service";
-import {deleteAlert, environment, errorAlert, successAlert} from "../environments";
+import {deleteAlert, form, errorAlert, successAlert} from "../environments";
 import {HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {EnvironmentService} from "../service/environment.service";
 
 @Component({
   selector: 'app-sound2',
@@ -12,27 +13,33 @@ import {Router} from "@angular/router";
 export class Sound2Component implements OnInit{
   sounds : any;
   option : any;
+  environment : any
   constructor(private api : APIService,
-              private router : Router) {
+              private router : Router,
+              private evi : EnvironmentService) {
   }
 
-  ngOnInit(): void {
-    this.getList()
+  ngOnInit() {
     let token : any = localStorage.getItem("Prox-Token")
     if (!token){
       this.backLogin()
       return
-    }
-    this.option = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        Authorization: token
+    } else {
+      this.option = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          Authorization: token
+        })
+      };
+      this.evi.instance((data : any)=>{
+        this.environment = data;
+        this.getList();
       })
-    };
+    }
   }
 
   getList(){
-    let url = environment.host + "/sound2/all"
+    let url = this.environment.emojiHost + "/sound2/all"
     this.api.getMapping(url,this.option, (data : any)=>{
       if(data.code === 200){
         this.sounds = data.data
@@ -45,7 +52,7 @@ export class Sound2Component implements OnInit{
   }
 
   add(i : any){
-    let url = environment.host + "/sound2"
+    let url = this.environment.emojiHost + "/sound2"
     this.api.postMapping(url, this.sounds[i],this.option, (data : any)=>{
       if(data.code === 200){
         this.sounds[i] = data.data
@@ -64,7 +71,7 @@ export class Sound2Component implements OnInit{
   }
 
   update(i : number){
-    let url = environment.host + "/sound2"
+    let url = this.environment.emojiHost + "/sound2"
     this.api.putMapping(url, this.sounds[i],this.option, (data : any )=>{
       if(data.code === 200){
         this.sounds[i] = data.data
@@ -80,7 +87,7 @@ export class Sound2Component implements OnInit{
 
   deleteById(i : number){
     deleteAlert(()=>{
-      let url = environment.host + "/sound2/" + this.sounds[i].id
+      let url = this.environment.emojiHost + "/sound2/" + this.sounds[i].id
       this.api.deleteMapping(url,this.option, (data : any)=>{
         if(data.code === 200){
           this.sounds.splice(i,1)
@@ -123,12 +130,12 @@ export class Sound2Component implements OnInit{
 
   upSound(i : number, event : any){
     console.log(event.files)
-    let url = environment.host + "/upload"
+    let url = this.environment.emojiHost + "/upload"
     let formData : FormData = new FormData();
     formData.append("files", event.target.files[0])
     this.api.postMapping(url, formData,this.option, (data : any)=>{
       if(data.code === 200){
-        this.sounds[i].sound = environment.host + data.data[0]
+        this.sounds[i].sound = this.environment.emojiHost + data.data[0]
         successAlert("Upload Complete")
       } else if (data.code === 403) {
         this.backLogin()
@@ -140,12 +147,12 @@ export class Sound2Component implements OnInit{
   }
 
   upThumb(i : number, event : any){
-    let url = environment.host + "/upload"
+    let url = this.environment.emojiHost + "/upload"
     let formData : FormData = new FormData();
     formData.append("files", event.target.files[0])
     this.api.postMapping(url, formData,this.option, (data : any)=>{
       if(data.code === 200){
-        this.sounds[i].thumb = environment.host + data.data[0]
+        this.sounds[i].thumb = this.environment.emojiHost + data.data[0]
         successAlert("Upload Complete")
       } else if (data.code === 403) {
         this.backLogin()
@@ -157,7 +164,7 @@ export class Sound2Component implements OnInit{
   }
 
   create(){
-    this.sounds.push(JSON.parse(environment.sound2Json))
+    this.sounds.push(JSON.parse(form.sound2Json))
     setTimeout(this.setListenAudio,100)
   }
 

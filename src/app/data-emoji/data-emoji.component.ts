@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {APIService} from "../service/api.service";
-import {environment, errorAlert, successAlert} from "../environments";
-import {DomSanitizer} from '@angular/platform-browser';
+import {form, errorAlert, successAlert} from "../environments";
 import Swal from 'sweetalert2'
 import {HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {EnvironmentService} from "../service/environment.service";
 
 @Component({
   selector: 'app-data-emoji',
@@ -13,15 +13,16 @@ import {Router} from "@angular/router";
 })
 export class DataEmojiComponent implements OnInit {
   dataEmoji: any;
-  listEmoji = environment.emoji
+  listEmoji = form.emoji
   option: any;
+  environment : any
 
   constructor(private api: APIService,
-              private router: Router) {
+              private router: Router,
+              private evi : EnvironmentService) {
   }
 
   ngOnInit(): void {
-    this.getList()
     let token: any = localStorage.getItem("Prox-Token")
     if (!token) {
       this.backLogin()
@@ -33,10 +34,14 @@ export class DataEmojiComponent implements OnInit {
         Authorization: token
       })
     };
+    this.evi.instance((data : any)=>{
+      this.environment = data
+      this.getList()
+    })
   }
 
   getList() {
-    let url = environment.host + "/dataemoji/all"
+    let url = this.environment.emojiHost + "/dataemoji/all"
     this.api.getMapping(url, this.option, (data: any) => {
       if (data.code === 200) {
         this.dataEmoji = data.data
@@ -46,12 +51,11 @@ export class DataEmojiComponent implements OnInit {
       } else {
         errorAlert("List Error: " + data.data.name)
       }
-
     })
   }
 
   add(i: number) {
-    let url = environment.host + "/dataemoji"
+    let url = this.environment.emojiHost + "/dataemoji"
     this.api.postMapping(url, this.dataEmoji[i], this.option, (data: any) => {
       if (data.code === 200) {
         this.dataEmoji[i] = data.data
@@ -66,7 +70,7 @@ export class DataEmojiComponent implements OnInit {
   }
 
   save(i: any) {
-    let url = environment.host + "/dataemoji"
+    let url = this.environment.emojiHost + "/dataemoji"
     this.api.putMapping(url, this.dataEmoji[i], this.option, (data: any) => {
       if (data.code === 200) {
         this.dataEmoji[i] = data.data
@@ -91,7 +95,7 @@ export class DataEmojiComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        let url = environment.host + "/dataemoji/" + this.dataEmoji[i].id
+        let url = this.environment.emojiHost + "/dataemoji/" + this.dataEmoji[i].id
         this.api.deleteMapping(url, this.option, (data: any) => {
           if (data.code === 200) {
             this.dataEmoji.splice(i, 1)
@@ -105,11 +109,10 @@ export class DataEmojiComponent implements OnInit {
         })
       }
     })
-
   }
 
   create() {
-    this.dataEmoji.push(JSON.parse(environment.emojiDataJson))
+    this.dataEmoji.push(JSON.parse(form.emojiDataJson))
   }
 
   cancel(i: number) {
