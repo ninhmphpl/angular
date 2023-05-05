@@ -1,16 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-
 @Component({
   selector: 'app-upload-file',
   templateUrl: './upload-file.component.html',
   styleUrls: ['./upload-file.component.scss']
 })
 export class UploadFileComponent implements OnInit {
-  sockets :any;
   uploadFile: any;
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   uploadFileFunction(event: any) {
     const file: File = event.target.files[0];
@@ -18,13 +17,13 @@ export class UploadFileComponent implements OnInit {
     const totalChunks = Math.ceil(file.size / chunkSize); // Tổng số phần dữ liệu
     let currentChunk = 0; // Số phần dữ liệu đã upload
 
-    this.sockets = new WebSocket("ws://localhost:1999/upload?" + file.name);
-    this.sockets.onopen = () => {
+    let sockets = new WebSocket("ws://localhost:8080/upload?" + file.name);
+    sockets.onopen = () => {
       console.log("connected")
       const reader = new FileReader();
       reader.onload = (event: any) => {
         const data : ArrayBuffer = event.target.result;
-        this.sockets.send(data);
+        sockets.send(data);
 
         currentChunk++;
         if (currentChunk < totalChunks) {
@@ -35,32 +34,35 @@ export class UploadFileComponent implements OnInit {
           reader.readAsArrayBuffer(nextChunk);
         } else {
           // Nếu đã upload hết phần dữ liệu, gửi yêu cầu hoàn tất upload
-          this.sockets.send("done");
+          sockets.send("done");
         }
       };
       // Bắt đầu upload phần dữ liệu đầu tiên
       const firstChunk = file.slice(0, chunkSize);
       reader.readAsArrayBuffer(firstChunk);
     }
+      sockets.onmessage = function (event) {
+        alert("Received message: " + event.data);
+      };
   }
 
   // soket() {
-  //   this.sockets.onopen = () => {
+  //   sockets.onopen = () => {
   //     console.log("WebSocket connection opened.");
   //     const buffer = new ArrayBuffer(10);
-  //     this.sockets.send(buffer)
+  //     sockets.send(buffer)
   //   };
   //
-  //   this.sockets.onmessage = function (event) {
+  //   sockets.onmessage = function (event) {
   //     console.log("Received message: " + event.data);
   //   };
   //
   //
-  //   this.sockets.onclose = function () {
+  //   sockets.onclose = function () {
   //     console.log("WebSocket connection closed.");
   //   };
   //
-  //   this.sockets.onerror = function (event) {
+  //   sockets.onerror = function (event) {
   //     console.error("WebSocket error:", event);
   //   };
   // }
