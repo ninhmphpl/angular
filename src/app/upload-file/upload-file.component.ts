@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {uploadFile} from "../upload.socket";
+import {Status, uploadFile} from "../../lib/upload.socket";
 
 @Component({
   selector: 'app-upload-file',
@@ -15,9 +15,10 @@ export class UploadFileComponent implements OnInit {
 
   uploadFileFunction(event: any) {
     const file: File = event.target.files[0];
+    // let url = "ws://52.54.246.154:8080/upload"
     let url = "ws://localhost:8080/upload"
-    uploadFile(file,url, "test",(data : any)=>{
-      console.log(data)
+    this.uploadFile = uploadFile(file,url, "test",(data : string)=>{
+      alert(data)
     })
   }
 
