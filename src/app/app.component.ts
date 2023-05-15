@@ -5,6 +5,7 @@ import {initializeApp} from "firebase/app";
 import {getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject} from "firebase/storage";
 import {getDurationFromFile} from "./ToolAudio";
 import {log} from "./Log";
+import {uploadFile} from "../lib/upload.socket";
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,13 @@ export class AppComponent implements OnInit {
   host = ""
   version = ""
   firebaseConfig: any;
-  log : any;
+  log: any;
+  server: string = "server"
 
   constructor(private http: HttpClient) {
   }
 
-  fileData : any[] = [];
+  fileData: any[] = [];
   title = 'source';
 
   getList() {
@@ -86,13 +88,20 @@ export class AppComponent implements OnInit {
 
   uploadFile(event: any, typeName: string) {
     let files: File[] = event.target.files
-    for(let file of files){
-      this.upload(file, typeName)
-      // this.upload(file);
+    for (let file of files) {
+      if (this.server === "server") this.uploadServer(file, typeName)
+      if (this.server === "firebase") this.uploadFirebase(file, typeName)
     }
   }
 
-  private upload(file: File, typeName: string) {
+  private uploadServer(file: File, typeName: string) {
+    let url = `ws://${this.host}/upload`
+    uploadFile(file, url, typeName, (urlDownload: string) => {
+      this.createFile(file, urlDownload, typeName)
+    })
+  }
+
+  private uploadFirebase(file: File, typeName: string) {
     const storage = getStorage();
     const storageRef = ref(storage, file.name);
 
@@ -106,7 +115,7 @@ export class AppComponent implements OnInit {
       (snapshot) => {
         // Observe state change events such as progress, pause, and resume
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        const progress : number = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        const progress: number = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log('Upload is ' + Math.round(progress) + '%');
         this.log = log(Math.round(progress), file.name)
         switch (snapshot.state) {
@@ -131,6 +140,7 @@ export class AppComponent implements OnInit {
     );
   }
 
+  // create file on server data
   createFile(file: File, urlDownload: string, typeName: string) {
     getDurationFromFile(file, (duration: number) => {
       let object = {
@@ -164,6 +174,7 @@ export class AppComponent implements OnInit {
     })
   }
 
+  // delete file on firebase server
   firebaseDelete(objectName: string, action: any) {
     const storage = getStorage();
 
@@ -176,7 +187,7 @@ export class AppComponent implements OnInit {
     }).catch((error: any) => {
       // Uh-oh, an error occurred!
       let conf = confirm("File not found on Firebase, do you want continue delete ?")
-      if(conf){
+      if (conf) {
         action()
       }
     });

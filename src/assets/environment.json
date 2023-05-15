@@ -1,0 +1,13 @@
+{
+  "host" : "api.antliaespacelab.com",
+  "version" : "1.0.1",
+  "firebaseConfig" : {
+    "apiKey": "AIzaSyBx2xWdtSBH7hXM9yikVEutVz9qA0DkUfY",
+    "authDomain": "prox-data.firebaseapp.com",
+    "projectId": "prox-data",
+    "storageBucket": "prox-data.appspot.com",
+    "messagingSenderId": "21770115734",
+    "appId": "1:21770115734:web:eba669645709f08a1680b7",
+    "measurementId": "G-6X8RJTZDYQ"
+  }
+}
