@@ -14,8 +14,8 @@ export function uploadFile(file: File, url: string, typeName: string, action: (u
     percent: ""
   }
   let name = file.name.substring(0, file.name.lastIndexOf("."))
-  let fileName = new Date().getTime() + file.name.substring(file.name.lastIndexOf("."))
   name = convertSpecialCharacters(name, "-", ".");
+  let fileName = name + new Date().getTime() + file.name.substring(file.name.lastIndexOf("."))
   let sockets = new WebSocket(url + "?" + fileName + "&" + name + "&" + typeName + "&" + file.size);
   sockets.onopen = () => {
     console.log("connected")
