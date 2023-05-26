@@ -1,35 +1,64 @@
-<table>
-  <thead>
-  <tr>
-    <th>Thumb</th>
-    <th>Name</th>
-    <th>Sound</th>
-    <th colspan="2">Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let sound of sounds let i = index">
-    <td style="position: relative">
-      <img style="width: 100px; height: 100px" [src]="sound.thumb" alt="ImgSound">
-      <label style="font-size: 40px;color: red;position: absolute; bottom: -10px; right: -10px; z-index: 10" for="{{'t' + i}}">&#8660;</label>
-      <input id="{{'t' + i}}" class="d-none" type="file" (change)="upThumb(i, $event)">
-    </td>
-    <td><input type="text" [(ngModel)]="sound.name"></td>
-    <td style="position: relative">
-      <audio class="audios" [src]="sound.sound" controls></audio>
-      <label style="font-size: 40px;color: red;position: absolute; bottom: 0; left: 200px; z-index: 10"
-             for="{{'s' + i}}">&#8660;</label>
-      <input class="d-none" id="{{'s' + i}}" type="file" (change)="upSound(i, $event)">
-    </td>
-    <td>
-      <button *ngIf="!sound.create" class="btn btn-primary" (click)="update(i)">Save</button>
-      <button *ngIf="sound.create" class="btn btn-primary" (click)="add(i)">Add</button>
-    </td>
-    <td>
-      <button *ngIf="!sound.create" class="btn btn-danger" (click)="deleteById(i)">Delete</button>
-      <button *ngIf="sound.create" class="btn btn-danger" (click)="cancel(i)">Cancel</button>
-    </td>
-  </tr>
-  </tbody>
-</table>
-<button class="btn btn-primary" (click)="create()">Create</button>
+<div [hidden]="true" style="position: fixed;width: 100%; bottom: 0; z-index: 20;" #audioContainer>
+  <div class="position-relative">
+    <audio #audioTag style="width: 100%; color: rgba(90,35,200,0); border-radius: 0"
+           src="http://api.antliaespacelab.com/file/UngQuaChung-AMEE-8783624 - Copy (2)1684221990136.mp3"
+           controls></audio>
+    <button
+      style="width: 20px; height: 20px; border-radius: 50%; position: absolute; top: -10px; right: 50%; border: none; font-size: 20px; background: rgba(0,0,0,0)"
+      (click)="audioContainer.hidden=true; audioTag.pause()">▼
+    </button>
+  </div>
+</div>
+
+<div class="container-sm">
+  <table class="table table-striped">
+    <tbody>
+    <tr *ngFor="let sound of sounds let i = index">
+      <td>
+        <img style="width: 100px; height: 100px" [src]="sound.thumb" alt="ImgSound">
+      </td>
+      <td>
+        <table>
+          <tr>
+            <td>Name</td>
+            <td><input type="text" [(ngModel)]="sound.name"></td>
+            <td>
+              <button *ngIf="!sound.create" class="btn btn-warning btn-sm" (click)="saveUpdate(i)">Save</button>
+              <button *ngIf="sound.create" class="btn btn-warning btn-sm" (click)="saveAdd(i)">Add</button>
+            </td>
+            <td>
+              <button *ngIf="!sound.create" class="btn btn-danger btn-sm" (click)="deleteById(i)">Delete</button>
+              <button *ngIf="sound.create" class="btn btn-danger btn-sm" (click)="cancel(i)">Cancel</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Link thumbnail</td>
+            <td><input type="text" [(ngModel)]="sound.thumb"></td>
+            <td colspan="2">
+              <input #uploadThumb class="d-none" type="file" (change)="upThumb(i, $event)">
+              <button class="btn btn-primary btn-sm" (click)="uploadThumb.click()" [disabled]="sound.create">Upload Thumbnail</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Link Audio</td>
+            <td><input type="text" [(ngModel)]="sound.sound"></td>
+            <td>
+              <button class="btn btn-warning btn-sm" (click)="audioContainer.hidden=false;
+                             audioTag.src=sound.sound;
+                             audioTag.play()">Play
+              </button>
+            </td>
+            <td>
+              <input class="d-none" #uploadSound type="file" (change)="upSound(i, $event)">
+              <button class="btn btn-primary btn-sm" (click)="uploadSound.click()" [disabled]="sound.create">Upload Sound</button>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary btn-sm" (click)="add()">Create</button>
+</div>
+
+

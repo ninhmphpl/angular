@@ -3,7 +3,7 @@ import {APIService} from "../service/api.service";
 import {form, errorAlert, successAlert} from "../environments";
 import {HttpHeaders, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {EnvironmentService} from "../service/environment.service";
+import {EnvironmentService} from "../environment.service";
 
 @Component({
   selector: 'app-login',
@@ -60,6 +60,4 @@ export class LoginComponent implements OnInit{
         }
       })
   }
-
-
 }
