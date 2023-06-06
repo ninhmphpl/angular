@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {APIService} from "../service/api.service";
-import {form, errorAlert, successAlert} from "../environments";
-import {HttpHeaders, HttpParams} from "@angular/common/http";
+import {environment, errorAlert, successAlert} from "../environments";
+import {HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {EnvironmentService} from "../environment.service";
 
 @Component({
   selector: 'app-login',
@@ -14,11 +13,11 @@ export class LoginComponent implements OnInit{
   username: any;
   password: any;
   remember : boolean = false
-  environment : any;
+  url : any
+
 
   constructor(private api: APIService,
-              private router: Router,
-              private evi : EnvironmentService) {
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -31,13 +30,11 @@ export class LoginComponent implements OnInit{
       this.remember = user[2]
     }
     // lấy biến môi trường
-    this.evi.instance((data : any)=>{
-      this.environment = data
-    })
+      this.url = environment.urlEmoji
   }
 
   submit() {
-    let url = this.environment.emojiHost + "/api/login"
+    let url = this.url + "/api/login"
     this.api.postMapping(url,
       {},
       {

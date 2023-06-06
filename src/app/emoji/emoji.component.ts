@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {APIService} from "../service/api.service";
-import {form, errorAlert, successAlert} from "../environments";
+import {form, errorAlert, successAlert, environment} from "../environments";
 import Swal from "sweetalert2";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {EnvironmentService} from "../environment.service";
 import {uploadFile} from "../../lib/upload.socket";
 
 @Component({
@@ -16,12 +15,12 @@ export class EmojiComponent implements OnInit {
   emojis: any;
   a: any
   option: any;
-  environment : any;
+  urlEmoji : any;
+  urlUpload : any;
 
   constructor(private api: APIService,
               private router: Router,
-              private http: HttpClient,
-              private evi: EnvironmentService) {
+              private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -39,18 +38,16 @@ export class EmojiComponent implements OnInit {
       })
     };
     // lấy biến môi trường và danh sách list
-    this.evi.instance((data : any)=>{
-      this.environment = data
-
+      this.urlEmoji = environment.urlEmoji;
+      this.urlUpload = environment.urlUpload;
       this.getList()
-    })
   }
 
   /**
    * Lấy danh sách emoji
    */
   getList() {
-    let url = this.environment.emojiHost + "/emoji/all"
+    let url = this.urlEmoji + "/emoji/all"
     let token : any = localStorage.getItem("Prox-Token");
     let option = {
       headers: new HttpHeaders({
@@ -74,7 +71,7 @@ export class EmojiComponent implements OnInit {
    * lưu cập nhật thông tin danh đối tượng Emoji
    */
   saveUpdate(emoji: any, action? : any) {
-    let url = this.environment.emojiHost + "/emoji"
+    let url = this.urlEmoji + "/emoji"
     this.api.putMapping(url, emoji, this.option, (data: any) => {
       if (data.code === 200) {
         if(action){
@@ -96,7 +93,7 @@ export class EmojiComponent implements OnInit {
    * @param emoji
    */
   saveCreate(emoji: any) {
-    let url = this.environment.emojiHost + "/emoji"
+    let url = this.urlEmoji + "/emoji"
     this.api.postMapping(url, emoji, this.option, (data: any) => {
         if (data.code === 200) {
           successAlert("Create complete")
@@ -125,7 +122,7 @@ export class EmojiComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        let url = this.environment.emojiHost + "/emoji/" + id
+        let url = this.urlEmoji + "/emoji/" + id
         this.api.deleteMapping(url, this.option, (data: any) => {
           if (data.code === 200) {
             this.getList()
@@ -146,13 +143,13 @@ export class EmojiComponent implements OnInit {
    */
   upThumb2(event : any, i: number) {
     let file : File = event.target.files[0];
-    let urlDataServer = this.environment.dataHost + "/upload";
+    let urlDataServer = this.urlUpload + "/upload";
     // lấy url sau khi upload
     uploadFile(file, urlDataServer, "thumbnail-emoji",(downloadURL: string) => {
       // Sửa lại thông tin tại giao diện
       this.emojis[i].thumbnail = downloadURL;
       // Lưu thông tin vào máy chủ emoji
-      this.http.put(`${this.environment.emojiHost}/emoji`, this.emojis[i], this.option).subscribe((data: any) => {
+      this.http.put(`${this.urlEmoji}/emoji`, this.emojis[i], this.option).subscribe((data: any) => {
         if(data.code === 200){
           this.emojis[i] = data.data;
           successAlert("Ok")
@@ -167,7 +164,7 @@ export class EmojiComponent implements OnInit {
    */
   upVideo2(event : any, i : number){
     let file : File = event.target.files[0];
-    let urlDataServer = this.environment.dataHost + "/upload";
+    let urlDataServer = this.urlUpload + "/upload";
     uploadFile(file,urlDataServer, "video-emoji",(urlDownload : any)=>{
       this.emojis[i].linkVideo = urlDownload;
       // Lưu vào máy chủ emoji
