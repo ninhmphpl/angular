@@ -20,17 +20,6 @@
     <td rowspan="2"><textarea cols="50" rows="3" disabled [value]="log"></textarea></td>
   </tr>
   <tr>
-    <td>
-      Host
-    </td>
-    <td>
-      <select [(ngModel)]="server">
-        <option value="server">Server</option>
-        <option value="firebase">firebase</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
     <td>Upload File</td>
     <td>
       <input id="upload" [hidden]="true" type="file" (change)="uploadFile($event, typeNameUpload.value)" multiple>
@@ -60,6 +49,6 @@
     <td *ngIf="file.status">{{file.fileType}}</td>
     <td *ngIf="file.status">{{file.size}}</td>
     <td *ngIf="file.status"><input type="text" [(ngModel)]="file.description" (change)="update(i)"></td>
-    <td *ngIf="file.status"><button (click)="delete(file.url, file.id)">Delete</button></td>
+    <td *ngIf="file.status"><button (click)="delete(file.id)">Delete</button></td>
   </tr>
 </table>

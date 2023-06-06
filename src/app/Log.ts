@@ -1,4 +1,5 @@
 const data : {id : number, progress : number, name : string}[] = []
+let data2 : string = '';
 export function log(progress : number, name : string) : string{
   for(let i = 0 ; i < data.length ; i ++){
     if(data[i].name === name){
@@ -8,6 +9,13 @@ export function log(progress : number, name : string) : string{
   }
   data.push( {id : data.length, progress : progress, name : name})
   return toString();
+}
+
+export function log2(name : string, process : string) : string{
+  if(process === "done"){
+    return data2 += name + ":" + process + "\n";
+  }
+  return data2;
 }
 
 function toString() : string{
