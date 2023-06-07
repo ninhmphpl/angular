@@ -1,0 +1,28 @@
+<table>
+  <tr>
+    <td>Group</td>
+    <td><input type="text" #newGroup ></td>
+  </tr>
+  <tr>
+    <td>List Icon</td>
+    <td><input type="file" #newFile multiple></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><button (click)="create(newGroup.value, newFile.files)">Create</button></td>
+  </tr>
+</table>
+
+<table>
+  <tr *ngFor="let icon of icons">
+    <td>{{icon.group}}</td>
+    <td>
+      <div class="grid-container">
+        <div class="grid-item" *ngFor="let img of icon.data">
+          <img style="width: 100px; height: 100px" src="{{img}}">
+        </div>
+      </div>
+
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,81 @@
+
+
+
+<table>
+  <td><img style="width: 40px; height: 40px" #imgCreate1
+           src="" alt=""
+           (click)="choiceImg = imgCreate1; modal.click()"></td>
+  <td><img style="width: 40px; height: 40px" #imgCreate2
+           src="" alt=""
+           (click)="choiceImg = imgCreate2; modal.click()"></td>
+  <td><img style="width: 40px; height: 40px" #imgCreate3
+           src="" alt=""
+           (click)="choiceImg = imgCreate3; modal.click()"></td>
+  <td><img style="width: 40px; height: 40px" #imgCreate4
+           src="" alt=""
+           (click)="choiceImg = imgCreate4; modal.click()"></td>
+  <td><img style="width: 40px; height: 40px" #imgCreate5
+           src="" alt=""
+           (click)="choiceImg = imgCreate5; modal.click()"></td>
+  <td>
+    <button (click)="save(null, imgCreate1.src, imgCreate2.src, imgCreate3.src, imgCreate4.src, imgCreate5.src)">Save</button>
+  </td>
+</table>
+
+<table>
+  <tr *ngFor="let dataEmoji of dataEmojiV2">
+    <td>Id : {{dataEmoji.id}}</td>
+    <td><img #unicode1 src="{{dataEmoji.unicode1}}" style="width: 40px; height: 40px" (click)="choiceImg = unicode1; modal.click()">
+    </td>
+    <td><img #unicode2 src="{{dataEmoji.unicode2}}" style="width: 40px; height: 40px" (click)="choiceImg = unicode2; modal.click()">
+    </td>
+    <td><img #unicode3 src="{{dataEmoji.unicode3}}" style="width: 40px; height: 40px" (click)="choiceImg = unicode3; modal.click()">
+    </td>
+    <td><img #unicode4 src="{{dataEmoji.unicode4}}" style="width: 40px; height: 40px" (click)="choiceImg = unicode4; modal.click()">
+    </td>
+    <td><img #unicode5 src="{{dataEmoji.unicode5}}" style="width: 40px; height: 40px" (click)="choiceImg = unicode5; modal.click()">
+    </td>
+    <td>
+      <button (click)="save(dataEmoji.id, unicode1.src, unicode2.src, unicode3.src, unicode4.src, unicode5.src)">Save</button>
+    </td>
+    <td>
+      <button (click)="delete(dataEmoji.id)">Delete</button>
+    </td>
+  </tr>
+</table>
+
+
+<!-- Button trigger modal -->
+<button type="button" #modal class="d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div *ngFor="let icon of icons">
+            <p>{{icon.group}}</p>
+            <div>
+              <div class="grid-container">
+                <div class="grid-item" *ngFor="let img of icon.data">
+                  <img #imgChoice style="width: 50px; height: 50px" src="{{img}}"
+                       (click)="selectImg(imgChoice.src); closeModal.click()">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #closeModal>Close</button>
+      </div>
+    </div>
+  </div>
+</div>

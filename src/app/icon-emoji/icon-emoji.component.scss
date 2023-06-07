@@ -1,0 +1,12 @@
+.grid-container {
+  margin: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Số cột trong lưới */
+  gap: 10px; /* Khoảng cách giữa các phần tử */
+}
+
+.grid-item {
+  background-color: #e0e0e0;
+  padding: 10px;
+  text-align: center;
+}
