@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {APIService} from "../service/api.service";
 import {deleteAlert, form, errorAlert, successAlert, environment} from "../environments";
-import {HttpHeaders} from "@angular/common/http";
+import {HttpHeaders, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {uploadFile} from "../../lib/upload.socket";
 
@@ -39,8 +39,16 @@ export class Sound2Component implements OnInit {
   }
 
   getList() {
-    let url = this.url + "/sound2/all"
-    this.api.getMapping(url, this.option, (data: any) => {
+    let url = this.url + "/sound2/all";
+    let token: any = localStorage.getItem("Prox-Token")
+    let option = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: token
+      }),
+      params : new HttpParams().append("version", "v2")
+    }
+    this.api.getMapping(url, option, (data: any) => {
       if (data.code === 200) {
         this.sounds = data.data
       } else if (data.code === 403) {

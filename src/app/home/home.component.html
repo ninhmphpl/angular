@@ -2,12 +2,16 @@
   <div class="row">
     <div class="col"><button class="btn btn-primary" (click)="display='emoji'">Emoji</button></div>
     <div class="col"><button class="btn btn-primary" (click)="display='dataemoji'">Data Emoji</button></div>
+    <div class="col"><button class="btn btn-primary" (click)="display='dataemojiV2'">Data Emoji v2</button></div>
+    <div class="col"><button class="btn btn-primary" (click)="display='icon'">Icon data emoji</button></div>
     <div class="col"><button class="btn btn-primary" (click)="display='sound2'">Sound 2</button></div>
     <div class="col"><button class="btn btn-primary" (click)="backLogin()">Logout</button></div>
   </div>
   <div>
     <app-emoji *ngIf="display=='emoji'"></app-emoji>
     <app-data-emoji *ngIf="display=='dataemoji'"></app-data-emoji>
+    <app-dataemoji2 *ngIf="display=='dataemojiV2'"></app-dataemoji2>
+    <app-icon-emoji *ngIf="display=='icon'"></app-icon-emoji>
     <app-sound2 *ngIf="display=='sound2'"></app-sound2>
   </div>
 </div>

@@ -11,6 +11,8 @@ import {FormsModule} from "@angular/forms";
 import { UnicodePipe } from './unicode.pipe';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { IconEmojiComponent } from './icon-emoji/icon-emoji.component';
+import { Dataemoji2Component } from './dataemoji2/dataemoji2.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { HomeComponent } from './home/home.component';
     Sound2Component,
     UnicodePipe,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    IconEmojiComponent,
+    Dataemoji2Component
   ],
   imports: [
     BrowserModule,
