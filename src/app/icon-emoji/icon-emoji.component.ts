@@ -13,7 +13,7 @@ export class IconEmojiComponent implements OnInit {
   urlEmoji: any;
   urlUpload: any;
   option: any;
-  icons : any;
+  icons: any;
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -34,19 +34,20 @@ export class IconEmojiComponent implements OnInit {
     this.urlUpload = environment.urlUpload;
     this.getList()
   }
-  getList(){
+
+  getList() {
     let url = this.urlEmoji + '/dataemoji/list/icon';
-    this.http.get(url, this.option).subscribe((data : any)=>{
+    this.http.get(url, this.option).subscribe((data: any) => {
       this.icons = data.data;
-    }, (error : any)=>{
+    }, (error: any) => {
       errorAlert("Error")
     })
   }
 
   create(groupName: string, files: any) {
     let fileSave: string[] = [];
-    for (let i = 0 ; i < files.length ; i ++) {
-      let file : any = files.item(i);
+    for (let i = 0; i < files.length; i++) {
+      let file: any = files.item(i);
       uploadFile(file, this.urlUpload + '/upload', "icon_emoji", (urlDownload: string) => {
         fileSave.push(urlDownload);
         if (fileSave.length == files.length) {
@@ -57,13 +58,34 @@ export class IconEmojiComponent implements OnInit {
           }
           this.http.post(url, body, this.option)
             .subscribe((data: any) => {
-              successAlert("Update Complete")
-              this.getList();
-            }, (error : any) =>{
-              errorAlert("Update Error")
+              if (data.code == 200) {
+                successAlert("Update Complete")
+                this.getList();
+              } else {
+                errorAlert("login again, token error")
+                this.router.navigate(["/login"]);
+              }
+            }, (error: any) => {
+              errorAlert("Error")
             })
         }
       })
     }
+  }
+
+  delete(group: string) {
+    let url = this.urlEmoji + "/dataemoji/icon/" + group;
+    this.http.delete(url, this.option)
+      .subscribe((data: any) => {
+        if (data.code == 200) {
+          successAlert("Update Complete")
+          this.getList();
+        } else {
+          errorAlert("login again, token error")
+          this.router.navigate(["/login"]);
+        }
+      }, (error: any) => {
+        errorAlert("Error")
+      })
   }
 }
