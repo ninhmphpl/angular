@@ -63,21 +63,21 @@ export class AppComponent implements OnInit {
   filterTypeName(event: any) {
     for (let a of this.fileData) {
       if (a.status) {
-        a.status = a.typeName.toLowerCase().indexOf(event.toLowerCase()) != -1;
+        a.status = a.group.toLowerCase().indexOf(event.toLowerCase()) != -1;
       }
     }
   }
 
-  filter(name: any, typeName: any) {
+  filter(name: any, group: any) {
     this.filterName(name)
-    this.filterTypeName(typeName)
+    this.filterTypeName(group)
   }
 
-  uploadFile(event: any, typeName: string) {
+  uploadFile(event: any, group: string) {
     let files: File[] = event.target.files
     for (let file of files) {
       let url = `ws://${this.host}/upload2`
-      uploadFile(file, url, typeName, (data: string) => {
+      uploadFile(file, url, group, (data: string) => {
         this.log.set(file.name, data)
         this.getList()
       }, (percent : string)=>{
