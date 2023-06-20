@@ -3,6 +3,9 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, throwError} from "rxjs";
 import {uploadFile} from "../lib/upload.socket";
 import {log2} from "./Log";
+import {alertError} from "../lib/alert";
+
+declare const environmentJs: any;
 
 @Component({
   selector: 'app-root',
@@ -12,21 +15,21 @@ import {log2} from "./Log";
 export class AppComponent implements OnInit {
   host = ""
   version = ""
-  log: any;
-
+  log : Map<string, string> = new Map<string, string>();
   constructor(private http: HttpClient) {
   }
 
   fileData: any[] = [];
-  title = 'source';
+
 
   getList() {
-    let url = `http://${this.host}/upload/manager`;
+    let url = `http://${this.host}/data/v2`;
     this.http.get<any>(url).pipe(catchError((error: any) => {
       alert(JSON.stringify(error))
       return throwError(() => new Error('Something bad happened; please try again later.(Lỗi không rõ)'))
     })).subscribe((data: any) => {
-      this.fileData = data
+      if (data.code != 200) alertError("Error something")
+      this.fileData = data.data
       for (let a of this.fileData) {
         a.status = true;
       }
@@ -35,24 +38,20 @@ export class AppComponent implements OnInit {
 
   update(i: number) {
     let file = this.fileData[i];
-    let url = `http://${this.host}/upload/manager`;
-    this.http.put(url, file).pipe(catchError((error: any) => {
+    let url = `http://${this.host}/data/v2`;
+    this.http.post(url, file).pipe(catchError((error: any) => {
         alert(JSON.stringify(error))
         return throwError(() => new Error('Something bad happened; please try again later.(Lỗi không rõ)'))
       }
     )).subscribe((data: any) => {
-      data.status = true;
-      this.fileData[i] = data;
+      if(data.code != 200) alertError("Update Error " + data.data )
+      this.getList();
     })
   }
 
   ngOnInit(): void {
-    this.http.get("../assets/environment.json",
-      {headers: new HttpHeaders({'Cache-Control': 'no-cache'})}).subscribe((data: any) => {
-      this.host = data.host;
-      this.version = data.version;
-      this.getList();
-    })
+    this.host = environmentJs.url;
+    this.getList()
   }
 
   filterName(event: any) {
@@ -77,16 +76,19 @@ export class AppComponent implements OnInit {
   uploadFile(event: any, typeName: string) {
     let files: File[] = event.target.files
     for (let file of files) {
-      let url = `ws://${this.host}/upload`
+      let url = `ws://${this.host}/upload2`
       uploadFile(file, url, typeName, (data: string) => {
-        this.log = log2(file.name , data)
+        console.log(data)
+        this.log.set(file.name, data)
         this.getList()
+      }, (percent : string)=>{
+        this.log.set(file.name, percent)
       })
     }
   }
 
-  delete( id: number) {
-    let url = `http://${this.host}/upload/manager/` + id;
+  delete(id: number) {
+    let url = `http://${this.host}/data/v2/` + id;
     this.http.delete(url).pipe(catchError((error: any) => {
       alert(JSON.stringify(error))
       return throwError(() => new Error('Something bad happened; please try again later.(Lỗi không rõ)'))
