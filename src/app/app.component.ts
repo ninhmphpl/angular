@@ -78,7 +78,6 @@ export class AppComponent implements OnInit {
     for (let file of files) {
       let url = `ws://${this.host}/upload2`
       uploadFile(file, url, typeName, (data: string) => {
-        console.log(data)
         this.log.set(file.name, data)
         this.getList()
       }, (percent : string)=>{
