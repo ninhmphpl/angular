@@ -50,8 +50,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.host = environmentJs.url;
-    this.getList()
+      this.host = window.location.hostname;;
+      this.getList()
   }
 
   filterName(event: any) {
