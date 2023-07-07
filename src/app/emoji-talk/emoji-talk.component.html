@@ -1,0 +1,53 @@
+<button #addModal type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add emoji talk</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table>
+          <tr>
+            <td>Name</td>
+            <td><input type="text" [(ngModel)]="formEmojiTalk.name"></td>
+          </tr>
+          <tr *ngFor="let emoji of formEmojiTalk.data ; let i = index">
+            <td>{{i}}</td>
+            <td><input type="text" [(ngModel)]="formEmojiTalk.data[i]"></td>
+          </tr>
+          <tr>
+            <td><button (click)="formEmojiTalk.data.push('a')">Add</button></td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" #close class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="save(formEmojiTalk); close.click()" >Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button (click)="addModal.click(); formEmojiTalk = {name : '', data : ['a']}">Add new</button>
+
+<table>
+  <tr *ngFor="let emojiTalk of emojiTalksList; let indexEmojiTalk = index">
+    <td><input type="text" [(ngModel)]="emojiTalk.name"></td>
+    <td>
+      <div class="row" *ngFor="let emoji of emojiTalk.data; let indexEmoji = index">
+        <input class="col"  [(ngModel)]="emojiTalk.data[indexEmoji]">
+        <button class="col" (click)="deleteEmoji(indexEmojiTalk, indexEmoji)">Delete</button>
+      </div>
+      <div>
+        <button (click)="emojiTalk.data.push('')">Add</button>
+      </div>
+    </td>
+    <td><button (click)="save(emojiTalk)">Save</button></td>
+    <td><button (click)="delete(emojiTalk.id)">Delete</button></td>
+  </tr>
+</table>
