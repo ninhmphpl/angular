@@ -13,6 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { IconEmojiComponent } from './icon-emoji/icon-emoji.component';
 import { Dataemoji2Component } from './dataemoji2/dataemoji2.component';
+import { EmojiTalkComponent } from './emoji-talk/emoji-talk.component';
+import {ArrayPipe} from "./array.pipe";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { Dataemoji2Component } from './dataemoji2/dataemoji2.component';
     LoginComponent,
     HomeComponent,
     IconEmojiComponent,
-    Dataemoji2Component
+    Dataemoji2Component,
+    EmojiTalkComponent,
+    ArrayPipe
   ],
   imports: [
     BrowserModule,
