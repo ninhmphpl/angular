@@ -1,0 +1,13 @@
+<div class="p-2 bg-light border">
+  <p>Create sticker</p>
+  <input #createSticker type="file" multiple accept="image/*" (change)="save(createSticker.files)">
+</div>
+
+<div>
+  <div class="row row-cols-auto">
+    <div class="col m-2" style="width: 150px" *ngFor="let sticker of stickers; let stickerIndex = index">
+      <img style="width: 150px; height: 150px" [src]="sticker.url">
+      <button class="btn btn-danger mt-2" (click)="delete(sticker.id)">Delete</button>
+    </div>
+  </div>
+</div>
