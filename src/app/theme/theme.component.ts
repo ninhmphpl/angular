@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environment/environments";
 import {Theme} from "../../model/Theme";
 import {Category} from "../../model/Category";
+import {Type} from "../../model/Type";
 
 const url = environment.url
 
@@ -14,12 +15,14 @@ const url = environment.url
 export class ThemeComponent implements OnInit {
   list: Theme[] = [];
   categories : Category[] = []
+  types : Type[] = []
   constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
     this.getList()
     this.getCategoryList()
+    this.getType()
   }
 
   getList() {
@@ -33,6 +36,15 @@ export class ThemeComponent implements OnInit {
     this.http.get(url + "/category").subscribe((data: any) => {
       this.categories = data.data
     }, (error: any) => {
+      console.log(error)
+    })
+  }
+
+  getType(){
+    this.http.get(url + "/type").subscribe((payload : any) =>{
+      if(payload.code == 200) this.types = payload.data
+      else console.log("error code: " + payload.code)
+    }, (error : any)=>{
       console.log(error)
     })
   }
@@ -59,6 +71,14 @@ export class ThemeComponent implements OnInit {
       if (data.code == 200) this.getList()
     }, (error: any) => {
       console.log(error);
+    })
+  }
+  saveCallIconType(type : any){
+    this.http.post(url + "/type", type).subscribe((payload : any)=>{
+      if(payload.code == 200) this.getType();
+      else console.log("save type error code : " + payload.code)
+    }, (error : any)=>{
+      console.log(error)
     })
   }
 

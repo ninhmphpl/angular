@@ -4,4 +4,5 @@ export interface CallIcon{
   deny : any;
   acceptJson : any;
   denyJson : any;
+  type : any;
 }

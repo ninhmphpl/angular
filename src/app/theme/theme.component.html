@@ -6,58 +6,94 @@
   <p>Add new</p>
   <table>
     <tr>
-      <td>Back ground</td>
-      <td><input #CreateFileBackground type="file"></td>
-    </tr>
-    <tr>
-      <td>Avatar</td>
-      <td><input #CreateFileAvatar type="file"></td>
-    </tr>
-    <tr>
-      <td>Ring stone</td>
-      <td><input #CreateFileRingStone type="file"></td>
-    </tr>
-    <tr>
-      <td>Access Call Icon</td>
-      <td><input #CreateFileCallIconAccept type="file"></td>
-    </tr>
-    <tr>
-      <td>Deny Call Icon</td>
-      <td><input #CreateFileCallIconDeny type="file"></td>
-    </tr>
-    <tr>
-      <td>Access Call Icon Json</td>
-      <td><input #CreateFileCallIconAcceptJson type="file"></td>
-    </tr>
-    <tr>
-      <td>Deny Call Icon Json</td>
-      <td><input #CreateFileCallIconDenyJson type="file"></td>
-    </tr>
-    <tr>
-      <td>Category</td>
-      <td>
-        <select #createCategory>
-          <option *ngFor="let category of categories" [value]="category.category" [innerText]="category.category"></option>
-        </select>
+      <td class="input-group mb-3">
+        <label class="input-group-text" for="CreateFileBackground">Back ground</label>
+        <input  #CreateFileBackground id="CreateFileBackground" type="file" class="form-control">
       </td>
     </tr>
     <tr>
-      <td>Note</td>
-      <td><input #note type="text"></td>
+      <td class="input-group mb-3">
+        <label class="input-group-text" for="CreateFileAvatar">Avatar</label>
+        <input #CreateFileAvatar id="CreateFileAvatar" type="file" class="form-control">
+      </td>
     </tr>
     <tr>
-      <td>Title</td>
-      <td><input #title type="text"></td>
+      <td class="input-group mb-3">
+        <label class="input-group-text" for="CreateFileRingStone">Ring stone</label>
+        <input #CreateFileRingStone id="CreateFileRingStone" type="file" class="form-control">
+      </td>
     </tr>
     <tr>
-      <td>Name</td>
-      <td><input #name type="text"></td>
+      <td class="input-group mb-3">
+        <label class="input-group-text" for="CreateFileCallIconAccept">Access Call Icon</label>
+        <input #CreateFileCallIconAccept id="CreateFileCallIconAccept" type="file" class="form-control">
+      </td>
     </tr>
     <tr>
-      <td></td>
+      <td class="input-group mb-3">
+        <label class="input-group-text" for="CreateFileCallIconDeny">Deny Call Icon</label>
+        <input #CreateFileCallIconDeny id="CreateFileCallIconDeny" type="file" class="form-control">
+      </td>
+    </tr>
+    <tr>
+      <td class="input-group mb-3">
+        <label class="input-group-text" for="CreateFileCallIconAcceptJson">Access Call Icon Json</label>
+        <input #CreateFileCallIconAcceptJson id="CreateFileCallIconAcceptJson" type="file" class="form-control">
+      </td>
+    </tr>
+    <tr>
+      <td class="input-group mb-3">
+        <label class="input-group-text" for="CreateFileCallIconDenyJson">Deny Call Icon Json</label>
+        <input #CreateFileCallIconDenyJson id="CreateFileCallIconDenyJson" type="file" class="form-control">
+      </td>
+    </tr>
+    <tr>
+      <td class="input-group input-group-sm mb-3">
+        <span class="input-group-text">Call Icon type</span>
+        <select class="form-select" #createCallIconType>
+          <option *ngFor="let type of types" [value]="type.name" [innerText]="type.name"></option>
+        </select>
+      </td>
       <td>
-        <button class="btn-sm btn-primary btn" (click)="save(
-        {note : note.value, title : title.value, categories : createCategory.value, name : name.value},
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text">Make new type</span>
+          <input class="form-control" #createNewCallIconType type="text">
+          <button class="btn-primary btn" (click)="saveCallIconType({name : createNewCallIconType.value})">
+            Create
+          </button>
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td class="input-group input-group-sm mb-3">
+        <span class="input-group-text">Category</span>
+        <select class="form-select" #createCategory>
+          <option *ngFor="let category of categories" [value]="category.category"
+                  [innerText]="category.category"></option>
+        </select>
+      </td>
+
+    </tr>
+    <tr>
+      <td class="input-group input-group-sm mb-3">
+        <span class="input-group-text">Note</span>
+        <input class="form-control" #note type="text"></td>
+    </tr>
+    <tr>
+      <td class="input-group input-group-sm mb-3">
+        <span class="input-group-text">Title</span>
+        <input class="form-control" #title type="text"></td>
+    </tr>
+    <tr>
+      <td class="input-group input-group-sm mb-3">
+        <span class="input-group-text">Name</span>
+        <input class="form-control" #name type="text"></td>
+    </tr>
+    <tr>
+      <td>
+        <button class="btn-sm btn-primary btn text-end" (click)="save(
+        {note : note.value, title : title.value, categories : createCategory.value, name : name.value, call_icon : {type : createCallIconType.value}},
        CreateFileAvatar.files,
        CreateFileRingStone.files,
        CreateFileBackground.files,
@@ -73,8 +109,22 @@
 
 
 <div>
-  <table>
-    <tr *ngFor="let theme of list; let themeIndex = index">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Background</th>
+        <th>Avatar</th>
+        <th>Avatar</th>
+        <th>Accept</th>
+        <th>Deny</th>
+        <th>Json upload</th>
+        <th>Detail item</th>
+        <th>Ring Stone</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let theme of list; let themeIndex = index">
       <td [innerText]="theme.id"></td>
       <td class="col-1">
         <img class="img-thumbnail" [src]="theme.backGround">
@@ -96,29 +146,50 @@
         <input type="file" class="d-none" #updateFileCallIconDeny>
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconDeny.click()">Upload File</button>
       </td>
-      <td>
+      <td class="col-2">
         <input type="file" class="d-none" #updateFileCallIconAcceptJson>
-        <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconAcceptJson.click()">Update Accept Call Icon Json</button>
-      </td>
-      <td>
+        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileCallIconAcceptJson.click()">Update Accept
+          Call Icon Json
+        </button>
         <input type="file" class="d-none" #updateFileCallIconDenyJson>
-        <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconDenyJson.click()">Update Deny Call Icon Json</button>
+        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileCallIconDenyJson.click()">Update Deny Call
+          Icon Json
+        </button>
       </td>
       <td>
-        <select [(ngModel)]="theme.category">
-          <option *ngFor="let category of categories" [value]="category.category" [innerText]="category.category"></option>
-        </select>
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text">Note</span>
+          <input id="update-note" placeholder="note" class="form-control" type="text" [(ngModel)]="theme.note">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text">Title</span>
+          <input id="update-title" placeholder="title" class="form-control" type="text" [(ngModel)]="theme.title">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text">Name</span>
+          <input id="update-name" placeholder="name" class="form-control" type="text" [(ngModel)]="theme.name">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text">Update category</span>
+          <select class="form-select" id="update-category" [(ngModel)]="theme.category">
+            <option *ngFor="let category of categories" [value]="category.category"
+                    [innerText]="category.category"></option>
+          </select>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text">Call Icon Type</span>
+          <select class="form-select" id="icon-type" [(ngModel)]="theme.call_icon.type">
+            <option *ngFor="let type of types" [value]="type.name" [innerText]="type.name"></option>
+          </select>
+        </div>
       </td>
-      <td><input placeholder="note" class="w-75" type="text" [(ngModel)]="theme.note"></td>
-      <td><input placeholder="title" class="w-75" type="text" [(ngModel)]="theme.title"></td>
-      <td><input placeholder="name" class="w-75" type="text" [(ngModel)]="theme.name"></td>
       <td>
-        <button class="btn-sm btn-primary btn btn w-100" (click)="audioTab.src = theme.ringstone_url; ">Play</button>
-        <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileRingStone.click()">Upload File</button>
+        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="audioTab.src = theme.ringstone_url; ">Play</button>
+        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileRingStone.click()">Upload File</button>
         <input class="d-none" type="file" #updateFileRingStone>
       </td>
       <td>
-        <button class="btn-sm btn-primary btn btn w-100" (click)="save(theme,
+        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="save(theme,
       updateFileAvatar.files,
        updateFileRingStone.files,
        updateFileBackground.files,
@@ -128,10 +199,9 @@
        updateFileCallIconAcceptJson.files
       )">Save
         </button>
-      </td>
-      <td>
-        <button class="btn-sm btn-primary btn btn w-100" (click)="delete(theme.id)">Delete</button>
+        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="delete(theme.id)">Delete</button>
       </td>
     </tr>
+    </tbody>
   </table>
 </div>
