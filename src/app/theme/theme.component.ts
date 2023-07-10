@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../environment/environments";
+import {deleteAlert, environment, errorAlert, successAlert} from "../../../environment/environments";
 import {Theme} from "../../model/Theme";
 import {Category} from "../../model/Category";
 import {Type} from "../../model/Type";
@@ -27,25 +27,26 @@ export class ThemeComponent implements OnInit {
 
   getList() {
     this.http.get(url + "/theme/all").subscribe((data: any) => {
-      this.list = data.data
+      if(data.code == 200)this.list = data.data
+      else errorAlert("Error code: " + data.code)
     }, (error: any) => {
-      console.log(error)
+      errorAlert(error)
     })
   }
   getCategoryList(){
     this.http.get(url + "/category").subscribe((data: any) => {
       this.categories = data.data
     }, (error: any) => {
-      console.log(error)
+      errorAlert(error)
     })
   }
 
   getType(){
     this.http.get(url + "/type").subscribe((payload : any) =>{
       if(payload.code == 200) this.types = payload.data
-      else console.log("error code: " + payload.code)
+      else errorAlert("error code: " + payload.code)
     }, (error : any)=>{
-      console.log(error)
+      errorAlert(error)
     })
   }
   save(theme: any,
@@ -65,28 +66,35 @@ export class ThemeComponent implements OnInit {
     if(fileCallIconAccept && fileCallIconAccept.length > 0)body.append("file_call_icon_accept", fileCallIconAccept[0])
     if(fileCallIconAcceptJson && fileCallIconAcceptJson.length > 0)body.append("file_call_icon_accept_json", fileCallIconAcceptJson[0])
     if(fileCallIconDenyJson && fileCallIconDenyJson.length > 0)body.append("file_call_icon_deny_json", fileCallIconDenyJson[0])
-
-    console.log(body)
     this.http.post(url + "/theme", body).subscribe((data: any) => {
-      if (data.code == 200) this.getList()
+      if (data.code == 200){
+        successAlert("Ok")
+        this.getList()
+      }
     }, (error: any) => {
-      console.log(error);
+      errorAlert(error);
     })
   }
   saveCallIconType(type : any){
     this.http.post(url + "/type", type).subscribe((payload : any)=>{
       if(payload.code == 200) this.getType();
-      else console.log("save type error code : " + payload.code)
+      else errorAlert("save type error code : " + payload.code)
     }, (error : any)=>{
-      console.log(error)
+      errorAlert(error)
     })
   }
 
   delete(id: any) {
-    this.http.delete(url + "/theme/" + id).subscribe((data: any) => {
-      if (data.code == 200) this.getList()
-    }, (error: any) => {
-      console.log(error)
+    deleteAlert(()=>{
+      this.http.delete(url + "/theme/" + id).subscribe((data: any) => {
+        if (data.code == 200){
+          this.getList()
+          successAlert("Ok")
+        }
+        else errorAlert("Error code: " + data.code)
+      }, (error: any) => {
+        errorAlert(error)
+      })
     })
   }
 }

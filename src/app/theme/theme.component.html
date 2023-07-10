@@ -8,43 +8,43 @@
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileBackground">Back ground</label>
-        <input  #CreateFileBackground id="CreateFileBackground" type="file" class="form-control">
+        <input  #CreateFileBackground id="CreateFileBackground" type="file" class="form-control" accept="image/*">
       </td>
     </tr>
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileAvatar">Avatar</label>
-        <input #CreateFileAvatar id="CreateFileAvatar" type="file" class="form-control">
+        <input #CreateFileAvatar id="CreateFileAvatar" type="file" class="form-control" accept="image/*">
       </td>
     </tr>
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileRingStone">Ring stone</label>
-        <input #CreateFileRingStone id="CreateFileRingStone" type="file" class="form-control">
+        <input #CreateFileRingStone id="CreateFileRingStone" type="file" class="form-control" accept="audio/*">
       </td>
     </tr>
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileCallIconAccept">Access Call Icon</label>
-        <input #CreateFileCallIconAccept id="CreateFileCallIconAccept" type="file" class="form-control">
+        <input #CreateFileCallIconAccept id="CreateFileCallIconAccept" type="file" class="form-control" accept="image/*">
       </td>
     </tr>
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileCallIconDeny">Deny Call Icon</label>
-        <input #CreateFileCallIconDeny id="CreateFileCallIconDeny" type="file" class="form-control">
+        <input #CreateFileCallIconDeny id="CreateFileCallIconDeny" type="file" class="form-control" accept="image/*">
       </td>
     </tr>
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileCallIconAcceptJson">Access Call Icon Json</label>
-        <input #CreateFileCallIconAcceptJson id="CreateFileCallIconAcceptJson" type="file" class="form-control">
+        <input #CreateFileCallIconAcceptJson id="CreateFileCallIconAcceptJson" type="file" class="form-control" accept="application/json">
       </td>
     </tr>
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileCallIconDenyJson">Deny Call Icon Json</label>
-        <input #CreateFileCallIconDenyJson id="CreateFileCallIconDenyJson" type="file" class="form-control">
+        <input #CreateFileCallIconDenyJson id="CreateFileCallIconDenyJson" type="file" class="form-control" accept="application/json">
       </td>
     </tr>
     <tr>
@@ -93,7 +93,7 @@
     <tr>
       <td>
         <button class="btn-sm btn-primary btn text-end" (click)="save(
-        {note : note.value, title : title.value, categories : createCategory.value, name : name.value, call_icon : {type : createCallIconType.value}},
+        {note : note.value, title : title.value, category : createCategory.value, name : name.value, call_icon : {type : createCallIconType.value}},
        CreateFileAvatar.files,
        CreateFileRingStone.files,
        CreateFileBackground.files,
@@ -128,30 +128,30 @@
       <td [innerText]="theme.id"></td>
       <td class="col-1">
         <img class="img-thumbnail" [src]="theme.backGround">
-        <input type="file" class="d-none" #updateFileBackground>
+        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileBackground accept="image/*">
         <button class="btn-sm btn-primary btn w-100" (click)="updateFileBackground.click()">Upload File</button>
       </td>
       <td class="col-1">
         <img class="img-thumbnail" [src]="theme.avatar">
-        <input type="file" class="d-none" #updateFileAvatar>
+        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileAvatar accept="image/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileAvatar.click()">Upload File</button>
       </td>
       <td class="col-1">
         <img class="img-thumbnail" [src]="theme.call_icon.accept">
-        <input type="file" class="d-none" #updateFileCallIconAccept>
+        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconAccept accept="image/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconAccept.click()">Upload File</button>
       </td>
       <td class="col-1">
         <img class="img-thumbnail" [src]="theme.call_icon.deny">
-        <input type="file" class="d-none" #updateFileCallIconDeny>
+        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconDeny accept="image/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconDeny.click()">Upload File</button>
       </td>
       <td class="col-2">
-        <input type="file" class="d-none" #updateFileCallIconAcceptJson>
+        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconAcceptJson accept="application/json">
         <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileCallIconAcceptJson.click()">Update Accept
           Call Icon Json
         </button>
-        <input type="file" class="d-none" #updateFileCallIconDenyJson>
+        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconDenyJson accept="application/json">
         <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileCallIconDenyJson.click()">Update Deny Call
           Icon Json
         </button>
@@ -184,12 +184,12 @@
         </div>
       </td>
       <td>
-        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="audioTab.src = theme.ringstone_url; ">Play</button>
+        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="audioTab.src = theme.ringstone_url; audioTab.play()">Play</button>
         <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileRingStone.click()">Upload File</button>
-        <input class="d-none" type="file" #updateFileRingStone>
+        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileRingStone accept="audio/*">
       </td>
       <td>
-        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="save(theme,
+        <button #updateButton class="btn-sm btn-primary btn btn w-100 my-2" (click)="save(theme,
       updateFileAvatar.files,
        updateFileRingStone.files,
        updateFileBackground.files,
@@ -199,7 +199,7 @@
        updateFileCallIconAcceptJson.files
       )">Save
         </button>
-        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="delete(theme.id)">Delete</button>
+        <button class="btn-sm btn-danger btn btn w-100 my-2" (click)="delete(theme.id)">Delete</button>
       </td>
     </tr>
     </tbody>
