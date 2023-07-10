@@ -1,0 +1,47 @@
+<div class="mx-5">
+  <div class="bg-light">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="upload-file">File upload</label>
+      <input #createFile type="file" class="form-control" id="upload-file" multiple>
+      <button class="btn btn-outline-secondary" (click)="uploadFile(createFile.files)">Upload</button>
+    </div>
+  </div>
+
+  <div class="p-3">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Image</th>
+        <th>Url</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Size</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let emojiFrame of emojiFrames ; let emojiFrameIndex = index">
+        <td class="col-1">
+          <img class="img-thumbnail" [src]="emojiFrame.url" alt="Img">
+        </td>
+        <td>
+          <input class="form-control" type="text" [value]="emojiFrame.url" disabled>
+        </td>
+        <td>
+          <input class="form-control" type="text" [(ngModel)]="emojiFrame.name">
+        </td>
+        <td>{{emojiFrame.type}}</td>
+        <td>{{emojiFrame.size}}</td>
+        <td>
+          <input class="form-control" type="text" [(ngModel)]="emojiFrame.description">
+        </td>
+        <td>
+          <button class="btn btn-primary btn-sm w-100 m-2" (click)="update(emojiFrame)">Save</button>
+          <button class="btn btn-danger btn-sm w-100 m-2" (click)="delete(emojiFrame.id)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
