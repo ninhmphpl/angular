@@ -9,5 +9,6 @@ export interface Theme {
   note : any;
   title : any;
   ringstone_url : any;
-  call_icon : CallIcon
+  call_icon : CallIcon;
+  top : any;
 }
