@@ -50,7 +50,7 @@
     <tr>
       <td class="input-group input-group-sm mb-3">
         <span class="input-group-text">Call Icon type</span>
-        <select class="form-select" #createCallIconType>
+        <select class="form-select" [(ngModel)]="formCreate.call_icon.type">
           <option *ngFor="let type of types" [value]="type.name" [innerText]="type.name"></option>
         </select>
       </td>
@@ -68,7 +68,7 @@
     <tr>
       <td class="input-group input-group-sm mb-3">
         <span class="input-group-text">Category</span>
-        <select class="form-select" #createCategory>
+        <select class="form-select" [(ngModel)]="formCreate.category">
           <option *ngFor="let category of categories" [value]="category.category"
                   [innerText]="category.category"></option>
         </select>
@@ -78,22 +78,22 @@
     <tr>
       <td class="input-group input-group-sm mb-3">
         <span class="input-group-text">Note</span>
-        <input class="form-control" #note type="text"></td>
+        <input class="form-control" [(ngModel)]="formCreate.note" type="text"></td>
     </tr>
     <tr>
       <td class="input-group input-group-sm mb-3">
         <span class="input-group-text">Title</span>
-        <input class="form-control" #title type="text"></td>
+        <input class="form-control" [(ngModel)]="formCreate.title" type="text"></td>
     </tr>
     <tr>
       <td class="input-group input-group-sm mb-3">
         <span class="input-group-text">Name</span>
-        <input class="form-control" #name type="text"></td>
+        <input class="form-control" [(ngModel)]="formCreate.name" type="text"></td>
     </tr>
     <tr>
       <td>
         <button class="btn-sm btn-primary btn text-end" (click)="save(
-        {note : note.value, title : title.value, category : createCategory.value, name : name.value, call_icon : {type : createCallIconType.value}},
+       formCreate,
        CreateFileAvatar.files,
        CreateFileRingStone.files,
        CreateFileBackground.files,
@@ -124,30 +124,30 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let theme of list; let themeIndex = index">
+      <tr *ngFor="let theme of list">
       <td [innerText]="theme.id"></td>
       <td class="col-1">
         <div>
-          <img *ngIf="isImage(theme.backGround)" class="img-thumbnail" [src]="theme.backGround">
+          <img *ngIf="isImage(theme.backGround)" class="img-thumbnail" [src]="theme.backGround" alt="Img">
           <video controls *ngIf="isVideo(theme.backGround)" class="img-thumbnail" [src]="theme.backGround"></video>
         </div>
         <input type="file" (change)="updateButton.click()" class="d-none" #updateFileBackground accept="image/*">
         <button class="btn-sm btn-primary btn w-100" (click)="updateFileBackground.click()">Upload File</button>
       </td>
       <td class="col-1">
-        <img *ngIf="isImage(theme.avatar)" class="img-thumbnail" [src]="theme.avatar">
+        <img *ngIf="isImage(theme.avatar)" class="img-thumbnail" [src]="theme.avatar" alt="Img">
         <video controls *ngIf="isVideo(theme.avatar)" class="img-thumbnail" [src]="theme.avatar"></video>
         <input type="file" (change)="updateButton.click()" class="d-none" #updateFileAvatar accept="image/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileAvatar.click()">Upload File</button>
       </td>
       <td class="col-1">
-        <img  *ngIf="isImage(theme.call_icon.accept)"  class="img-thumbnail" [src]="theme.call_icon.accept">
+        <img  *ngIf="isImage(theme.call_icon.accept)"  class="img-thumbnail" [src]="theme.call_icon.accept" alt="Img">
         <video controls *ngIf="isVideo(theme.call_icon.accept)"  class="img-thumbnail" [src]="theme.call_icon.accept"></video>
         <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconAccept accept="image/*, video/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconAccept.click()">Upload File</button>
       </td>
       <td class="col-1">
-        <img *ngIf="isImage(theme.call_icon.deny)" class="img-thumbnail" [src]="theme.call_icon.deny">
+        <img *ngIf="isImage(theme.call_icon.deny)" class="img-thumbnail" [src]="theme.call_icon.deny" alt="Img">
         <video controls *ngIf="isVideo(theme.call_icon.deny)" class="img-thumbnail" [src]="theme.call_icon.deny"></video>
         <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconDeny accept="image/*, video/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconDeny.click()">Upload File</button>

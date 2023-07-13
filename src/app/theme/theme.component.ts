@@ -4,8 +4,10 @@ import {deleteAlert, environment, errorAlert, successAlert} from "../../../envir
 import {Theme} from "../../model/Theme";
 import {Category} from "../../model/Category";
 import {Type} from "../../model/Type";
+import {uploadFile} from "../../../environment/upload.socket";
 
 const url = environment.url
+const urlUploadFile = environment.urlUploadFileSocket + '/upload2'
 
 @Component({
   selector: 'app-theme',
@@ -14,8 +16,28 @@ const url = environment.url
 })
 export class ThemeComponent implements OnInit {
   list: Theme[] = [];
-  categories : Category[] = []
-  types : Type[] = []
+  categories: Category[] = []
+  types: Type[] = []
+  formCreate : Theme = {
+    id : null,
+    name : null,
+    backGround : null,
+    category : null,
+    avatar : null,
+    note : null,
+    title : null,
+    ringstone_url : null,
+    call_icon : {
+      id : null,
+      accept : null,
+      deny : null,
+      acceptJson : null,
+      denyJson : null,
+      type : null
+    },
+    top : null,
+  };
+
   constructor(private http: HttpClient) {
   }
 
@@ -27,13 +49,14 @@ export class ThemeComponent implements OnInit {
 
   getList() {
     this.http.get(url + "/theme/all").subscribe((data: any) => {
-      if(data.code == 200)this.list = data.data
+      if (data.code == 200) this.list = data.data
       else errorAlert("Error code: " + data.code)
     }, (error: any) => {
       errorAlert(error)
     })
   }
-  getCategoryList(){
+
+  getCategoryList() {
     this.http.get(url + "/category").subscribe((data: any) => {
       this.categories = data.data
     }, (error: any) => {
@@ -41,15 +64,16 @@ export class ThemeComponent implements OnInit {
     })
   }
 
-  getType(){
-    this.http.get(url + "/type").subscribe((payload : any) =>{
-      if(payload.code == 200) this.types = payload.data
+  getType() {
+    this.http.get(url + "/type").subscribe((payload: any) => {
+      if (payload.code == 200) this.types = payload.data
       else errorAlert("error code: " + payload.code)
-    }, (error : any)=>{
+    }, (error: any) => {
       errorAlert(error)
     })
   }
-  save(theme: any,
+
+  save(theme: Theme,
        fileAvatar: any,
        fileRingStone: any,
        fileBackground: any,
@@ -57,17 +81,62 @@ export class ThemeComponent implements OnInit {
        fileCallIconAccept: any,
        fileCallIconDenyJson: any,
        fileCallIconAcceptJson: any) {
-    let body = new FormData();
-    if(theme)body.append("theme", JSON.stringify(theme))
-    if(fileAvatar && fileAvatar.length > 0)body.append("file_avatar", fileAvatar[0])
-    if(fileRingStone && fileRingStone.length > 0)body.append("file_ring_stone", fileRingStone[0])
-    if(fileBackground && fileBackground.length > 0)body.append("file_back_ground", fileBackground[0])
-    if(fileCallIconDeny && fileCallIconDeny.length > 0)body.append("file_call_icon_deny", fileCallIconDeny[0])
-    if(fileCallIconAccept && fileCallIconAccept.length > 0)body.append("file_call_icon_accept", fileCallIconAccept[0])
-    if(fileCallIconAcceptJson && fileCallIconAcceptJson.length > 0)body.append("file_call_icon_accept_json", fileCallIconAcceptJson[0])
-    if(fileCallIconDenyJson && fileCallIconDenyJson.length > 0)body.append("file_call_icon_deny_json", fileCallIconDenyJson[0])
-    this.http.post(url + "/theme", body).subscribe((data: any) => {
-      if (data.code == 200){
+
+    let process = 0;
+    if (fileAvatar && fileAvatar.length > 0) {
+      process++;
+      uploadFile(fileAvatar[0], urlUploadFile, "theme_color_file", (urlDownload: any) => {
+        theme.avatar = urlDownload;
+        if (--process == 0) this.saveTheme(theme)
+      })
+    }
+    if (fileRingStone && fileRingStone.length > 0) {
+      process++;
+      uploadFile(fileRingStone[0], urlUploadFile, "theme_color_file", (urlDownload: any) => {
+        theme.ringstone_url = urlDownload;
+        if (--process == 0) this.saveTheme(theme)
+      })
+    }
+    if (fileBackground && fileBackground.length > 0) {
+      process++;
+      uploadFile(fileBackground[0], urlUploadFile, "theme_color_file", (urlDownload: any) => {
+        theme.backGround = urlDownload;
+        if (--process == 0) this.saveTheme(theme)
+      })
+    }
+    if (fileCallIconDeny && fileCallIconDeny.length > 0) {
+      process++;
+      uploadFile(fileCallIconDeny[0], urlUploadFile, "theme_color_file", (urlDownload: any) => {
+        theme.call_icon.deny = urlDownload;
+        if (--process == 0) this.saveTheme(theme)
+      })
+    }
+    if (fileCallIconAccept && fileCallIconAccept.length > 0) {
+      process++;
+      uploadFile(fileCallIconAccept[0], urlUploadFile, "theme_color_file", (urlDownload: any) => {
+        theme.call_icon.accept = urlDownload;
+        if (--process == 0) this.saveTheme(theme)
+      })
+    }
+    if (fileCallIconAcceptJson && fileCallIconAcceptJson.length > 0) {
+      process++;
+      uploadFile(fileCallIconAcceptJson[0], urlUploadFile, "theme_color_file", (urlDownload: any) => {
+        theme.call_icon.acceptJson = urlDownload;
+        if (--process == 0) this.saveTheme(theme)
+      })
+    }
+    if (fileCallIconDenyJson && fileCallIconDenyJson.length > 0) {
+      process++;
+      uploadFile(fileCallIconDenyJson[0], urlUploadFile, "theme_color_file", (urlDownload: any) => {
+        theme.call_icon.denyJson = urlDownload;
+        if (--process == 0) this.saveTheme(theme)
+      })
+    }
+  }
+
+  saveTheme(theme: Theme) {
+    this.http.post(url + "/theme", theme).subscribe((data: any) => {
+      if (data.code == 200) {
         successAlert("Ok")
         this.getList()
       }
@@ -75,23 +144,23 @@ export class ThemeComponent implements OnInit {
       errorAlert(error);
     })
   }
-  saveCallIconType(type : any){
-    this.http.post(url + "/type", type).subscribe((payload : any)=>{
-      if(payload.code == 200) this.getType();
+
+  saveCallIconType(type: any) {
+    this.http.post(url + "/type", type).subscribe((payload: any) => {
+      if (payload.code == 200) this.getType();
       else errorAlert("save type error code : " + payload.code)
-    }, (error : any)=>{
+    }, (error: any) => {
       errorAlert(error)
     })
   }
 
   delete(id: any) {
-    deleteAlert(()=>{
+    deleteAlert(() => {
       this.http.delete(url + "/theme/" + id).subscribe((data: any) => {
-        if (data.code == 200){
+        if (data.code == 200) {
           this.getList()
           successAlert("Ok")
-        }
-        else errorAlert("Error code: " + data.code)
+        } else errorAlert("Error code: " + data.code)
       }, (error: any) => {
         errorAlert(error)
       })
@@ -99,11 +168,13 @@ export class ThemeComponent implements OnInit {
   }
 
   isImage(url: string): boolean {
+    if (url == null) return false;
     const fileExtension = url.split('.').pop()!.toLowerCase();
     return ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'].indexOf(fileExtension) !== -1;
   }
 
   isVideo(url: string): boolean {
+    if (url == null) return false;
     const fileExtension = url.split('.').pop()!.toLowerCase();
     return ['mp4', 'webm', 'avi', 'mov', 'wmv', 'flv', 'mkv'].indexOf(fileExtension) !== -1;
   }
