@@ -127,22 +127,28 @@
       <tr *ngFor="let theme of list; let themeIndex = index">
       <td [innerText]="theme.id"></td>
       <td class="col-1">
-        <img class="img-thumbnail" [src]="theme.backGround">
+        <div>
+          <img *ngIf="isImage(theme.backGround)" class="img-thumbnail" [src]="theme.backGround">
+          <video controls *ngIf="isVideo(theme.backGround)" class="img-thumbnail" [src]="theme.backGround"></video>
+        </div>
         <input type="file" (change)="updateButton.click()" class="d-none" #updateFileBackground accept="image/*">
         <button class="btn-sm btn-primary btn w-100" (click)="updateFileBackground.click()">Upload File</button>
       </td>
       <td class="col-1">
-        <img class="img-thumbnail" [src]="theme.avatar">
+        <img *ngIf="isImage(theme.avatar)" class="img-thumbnail" [src]="theme.avatar">
+        <video controls *ngIf="isVideo(theme.avatar)" class="img-thumbnail" [src]="theme.avatar"></video>
         <input type="file" (change)="updateButton.click()" class="d-none" #updateFileAvatar accept="image/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileAvatar.click()">Upload File</button>
       </td>
       <td class="col-1">
-        <img class="img-thumbnail" [src]="theme.call_icon.accept">
+        <img  *ngIf="isImage(theme.call_icon.accept)"  class="img-thumbnail" [src]="theme.call_icon.accept">
+        <video controls *ngIf="isVideo(theme.call_icon.accept)"  class="img-thumbnail" [src]="theme.call_icon.accept"></video>
         <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconAccept accept="image/*, video/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconAccept.click()">Upload File</button>
       </td>
       <td class="col-1">
-        <img class="img-thumbnail" [src]="theme.call_icon.deny">
+        <img *ngIf="isImage(theme.call_icon.deny)" class="img-thumbnail" [src]="theme.call_icon.deny">
+        <video controls *ngIf="isVideo(theme.call_icon.deny)" class="img-thumbnail" [src]="theme.call_icon.deny"></video>
         <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconDeny accept="image/*, video/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconDeny.click()">Upload File</button>
       </td>

@@ -97,4 +97,14 @@ export class ThemeComponent implements OnInit {
       })
     })
   }
+
+  isImage(url: string): boolean {
+    const fileExtension = url.split('.').pop()!.toLowerCase();
+    return ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp'].indexOf(fileExtension) !== -1;
+  }
+
+  isVideo(url: string): boolean {
+    const fileExtension = url.split('.').pop()!.toLowerCase();
+    return ['mp4', 'webm', 'avi', 'mov', 'wmv', 'flv', 'mkv'].indexOf(fileExtension) !== -1;
+  }
 }
