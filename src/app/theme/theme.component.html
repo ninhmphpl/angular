@@ -8,7 +8,7 @@
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileBackground">Back ground</label>
-        <input  #CreateFileBackground id="CreateFileBackground" type="file" class="form-control" accept="image/*">
+        <input #CreateFileBackground id="CreateFileBackground" type="file" class="form-control" accept="image/*">
       </td>
     </tr>
     <tr>
@@ -26,25 +26,29 @@
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileCallIconAccept">Access Call Icon</label>
-        <input #CreateFileCallIconAccept id="CreateFileCallIconAccept" type="file" class="form-control" accept="image/*, video/*">
+        <input #CreateFileCallIconAccept id="CreateFileCallIconAccept" type="file" class="form-control"
+               accept="image/*, video/*">
       </td>
     </tr>
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileCallIconDeny">Deny Call Icon</label>
-        <input #CreateFileCallIconDeny id="CreateFileCallIconDeny" type="file" class="form-control" accept="image/*, video/*">
+        <input #CreateFileCallIconDeny id="CreateFileCallIconDeny" type="file" class="form-control"
+               accept="image/*, video/*">
       </td>
     </tr>
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileCallIconAcceptJson">Access Call Icon Json</label>
-        <input #CreateFileCallIconAcceptJson id="CreateFileCallIconAcceptJson" type="file" class="form-control" accept="application/json">
+        <input #CreateFileCallIconAcceptJson id="CreateFileCallIconAcceptJson" type="file" class="form-control"
+               accept="application/json">
       </td>
     </tr>
     <tr>
       <td class="input-group mb-3">
         <label class="input-group-text" for="CreateFileCallIconDenyJson">Deny Call Icon Json</label>
-        <input #CreateFileCallIconDenyJson id="CreateFileCallIconDenyJson" type="file" class="form-control" accept="application/json">
+        <input #CreateFileCallIconDenyJson id="CreateFileCallIconDenyJson" type="file" class="form-control"
+               accept="application/json">
       </td>
     </tr>
     <tr>
@@ -111,20 +115,20 @@
 <div>
   <table class="table table-striped">
     <thead>
-      <tr>
-        <th>Background</th>
-        <th>Avatar</th>
-        <th>Avatar</th>
-        <th>Accept</th>
-        <th>Deny</th>
-        <th>Json upload</th>
-        <th>Detail item</th>
-        <th>Ring Stone</th>
-        <th>Action</th>
-      </tr>
+    <tr>
+      <th>Background</th>
+      <th>Avatar</th>
+      <th>Avatar</th>
+      <th>Accept</th>
+      <th>Deny</th>
+      <th>Json upload</th>
+      <th>Detail item</th>
+      <th>Ring Stone</th>
+      <th>Action</th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let theme of list">
+    <tr *ngFor="let theme of list">
       <td [innerText]="theme.id"></td>
       <td class="col-1">
         <div>
@@ -141,24 +145,34 @@
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileAvatar.click()">Upload File</button>
       </td>
       <td class="col-1">
-        <img  *ngIf="isImage(theme.call_icon.accept)"  class="img-thumbnail" [src]="theme.call_icon.accept" alt="Img">
-        <video controls *ngIf="isVideo(theme.call_icon.accept)"  class="img-thumbnail" [src]="theme.call_icon.accept"></video>
-        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconAccept accept="image/*, video/*">
+        <img *ngIf="isImage(theme.call_icon.accept)" class="img-thumbnail" [src]="theme.call_icon.accept" alt="Img">
+        <video controls *ngIf="isVideo(theme.call_icon.accept)" class="img-thumbnail"
+               [src]="theme.call_icon.accept"></video>
+        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconAccept
+               accept="image/*, video/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconAccept.click()">Upload File</button>
       </td>
       <td class="col-1">
         <img *ngIf="isImage(theme.call_icon.deny)" class="img-thumbnail" [src]="theme.call_icon.deny" alt="Img">
-        <video controls *ngIf="isVideo(theme.call_icon.deny)" class="img-thumbnail" [src]="theme.call_icon.deny"></video>
-        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconDeny accept="image/*, video/*">
+        <video controls *ngIf="isVideo(theme.call_icon.deny)" class="img-thumbnail"
+               [src]="theme.call_icon.deny"></video>
+        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconDeny
+               accept="image/*, video/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconDeny.click()">Upload File</button>
       </td>
       <td class="col-2">
-        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconAcceptJson accept="application/json">
-        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileCallIconAcceptJson.click()">Update Accept
+        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconAcceptJson
+               accept="application/json">
+        <input type="text" [(ngModel)]="theme.call_icon.acceptJson" class="form-control" disabled>
+        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileCallIconAcceptJson.click()">Update
+          Accept
           Call Icon Json
         </button>
-        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconDenyJson accept="application/json">
-        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileCallIconDenyJson.click()">Update Deny Call
+        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconDenyJson
+               accept="application/json">
+        <input type="text" [(ngModel)]="theme.call_icon.denyJson" class="form-control" disabled>
+        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileCallIconDenyJson.click()">Update Deny
+          Call
           Icon Json
         </button>
       </td>
@@ -196,7 +210,9 @@
         </div>
       </td>
       <td>
-        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="audioTab.src = theme.ringstone_url; audioTab.play()">Play</button>
+        <button class="btn-sm btn-primary btn btn w-100 my-2"
+                (click)="audioTab.src = theme.ringstone_url; audioTab.play()">Play
+        </button>
         <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileRingStone.click()">Upload File</button>
         <input type="file" (change)="updateButton.click()" class="d-none" #updateFileRingStone accept="audio/*">
       </td>
