@@ -1,3 +1,6 @@
+<app-header></app-header>
+
+
 <button #addModal type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal
 </button>
@@ -21,7 +24,7 @@
             <td><input type="text" [(ngModel)]="formEmojiTalk.data[i]"></td>
           </tr>
           <tr>
-            <td><button (click)="formEmojiTalk.data.push('a')">Add</button></td>
+            <td><button (click)="formEmojiTalk.data.push('')">Add</button></td>
           </tr>
         </table>
       </div>

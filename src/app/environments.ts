@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 export const environment = {
-  urlEmoji : "http://emojiapi.antliaespacelab.com",
+  urlEmoji : "http://localhost:1001",
   urlUpload : "http://api.antliaespacelab.com",
   urlUpload2 : "http://data2.antliaespacelab.com"
 }

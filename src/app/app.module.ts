@@ -10,12 +10,15 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { UnicodePipe } from './unicode.pipe';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
 import { IconEmojiComponent } from './icon-emoji/icon-emoji.component';
 import { Dataemoji2Component } from './dataemoji2/dataemoji2.component';
 import { EmojiTalkComponent } from './emoji-talk/emoji-talk.component';
 import {ArrayPipe} from "./array.pipe";
 import { EmojiFrameComponent } from './emoji-frame/emoji-frame.component';
+import { IosIconComponent } from './ios-icon/ios-icon.component';
+import { IosDataEmojiComponent } from './ios-data-emoji/ios-data-emoji.component';
+import { IosEmojiTalkComponent } from './ios-emoji-talk/ios-emoji-talk.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +28,15 @@ import { EmojiFrameComponent } from './emoji-frame/emoji-frame.component';
     Sound2Component,
     UnicodePipe,
     LoginComponent,
-    HomeComponent,
     IconEmojiComponent,
     Dataemoji2Component,
     EmojiTalkComponent,
     ArrayPipe,
-    EmojiFrameComponent
+    EmojiFrameComponent,
+    IosIconComponent,
+    IosDataEmojiComponent,
+    IosEmojiTalkComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
