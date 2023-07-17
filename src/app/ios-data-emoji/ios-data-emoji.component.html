@@ -1,0 +1,71 @@
+<app-header></app-header>
+
+<!-- Button trigger modal -->
+<button type="button" #choice class="d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body row row-cols-auto">
+        <div class="col" *ngFor="let icon of iosIcons">
+          <img (click)="elementTag.src = icon.url; closeChoice.click()" class="img-thumbnail m-2"
+               style="height: 50px; width: 50px" alt="Img" [src]="icon.url">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button #closeChoice type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-sm">
+  <div class="bg-light p-3 row row-cols-auto">
+      <img style="width: 50px; height: 50px" #createUnicode1 (click)="choice.click(); elementTag = $event.target"
+           class="img-thumbnail col m-2" [src]="formCreate.unicode1" alt="Img">
+      <img style="width: 50px; height: 50px" #createUnicode2 (click)="choice.click(); elementTag = $event.target"
+           class="img-thumbnail col m-2" [src]="formCreate.unicode2" alt="Img">
+      <img style="width: 50px; height: 50px" #createUnicode3 (click)="choice.click(); elementTag = $event.target"
+           class="img-thumbnail col m-2" [src]="formCreate.unicode3" alt="Img">
+      <img style="width: 50px; height: 50px" #createUnicode4 (click)="choice.click(); elementTag = $event.target"
+           class="img-thumbnail col m-2" [src]="formCreate.unicode4" alt="Img">
+      <img style="width: 50px; height: 50px" #createUnicode5 (click)="choice.click(); elementTag = $event.target"
+           class="img-thumbnail col m-2" [src]="formCreate.unicode5" alt="Img">
+    <button (click)="
+    formCreate.unicode1 = createUnicode1.src;
+    formCreate.unicode2 = createUnicode2.src;
+    formCreate.unicode3 = createUnicode3.src;
+    formCreate.unicode4 = createUnicode4.src;
+    formCreate.unicode5 = createUnicode5.src;
+    save(formCreate)
+    " class="btn btn-primary">Create</button>
+  </div>
+
+  <div>
+    <div *ngFor="let iosDataEmoji of iosDataEmojis" class="row row-cols-auto my-2">
+      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode1 (click)="choice.click(); elementTag = $event.target" [src]="iosDataEmoji.unicode1" style="height: 50px; width: 50px">
+      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode2 (click)="choice.click(); elementTag = $event.target" [src]="iosDataEmoji.unicode2" style="height: 50px; width: 50px">
+      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode3 (click)="choice.click(); elementTag = $event.target" [src]="iosDataEmoji.unicode3" style="height: 50px; width: 50px">
+      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode4 (click)="choice.click(); elementTag = $event.target" [src]="iosDataEmoji.unicode4" style="height: 50px; width: 50px">
+      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode5 (click)="choice.click(); elementTag = $event.target" [src]="iosDataEmoji.unicode5" style="height: 50px; width: 50px">
+      <button class="col btn btn-warning btn-sm m-2" (click)="
+      iosDataEmoji.unicode1 = updateUnicode1.src;
+      iosDataEmoji.unicode2 = updateUnicode2.src;
+      iosDataEmoji.unicode3 = updateUnicode3.src;
+      iosDataEmoji.unicode4 = updateUnicode4.src;
+      iosDataEmoji.unicode5 = updateUnicode5.src;
+      save(iosDataEmoji)
+">Update</button>
+      <button class="btn btn-danger btn-sm m-2" (click)="delete(iosDataEmoji.id)">Delete</button>
+    </div>
+
+  </div>
+</div>

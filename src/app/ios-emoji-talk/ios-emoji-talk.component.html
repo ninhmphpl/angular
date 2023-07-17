@@ -1,0 +1,73 @@
+<app-header></app-header>
+<!-- Button trigger modal -->
+<button type="button" #choice class="d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body row row-cols-auto">
+        <div class="col" *ngFor="let icon of iosIcons">
+          <img (click)="closeChoice.click(); setImg(icon.url)" class="img-thumbnail m-2" style="height: 50px; width: 50px" alt="Img" [src]="icon.url">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button #closeChoice type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-sm bg-light">
+  <div>
+    <div class="input-group">
+      <span class="input-group-text">Name</span>
+      <input class="form-control" type="text" [(ngModel)]="formCreate.name">
+    </div>
+    <div *ngFor="let row of formCreate.data, let y = index" class="row row-cols-auto">
+      <img alt="Img" *ngFor="let col of row, let x = index" (click)=" location.data = row; location.x = x; choice.click()"  class="col img-thumbnail m-2" style="height: 50px; width: 50px" [src]="col">
+      <button style="height: 50px; width: 50px" class="btn btn-primary m-2" (click)="row.push('')">+</button>
+    </div>
+    <button style="height: 50px; width: 50px" class="btn btn-primary m-2" (click)="formCreate.data.push([])">+</button>
+  </div>
+  <button class="btn btn-warning" (click)="save(formCreate)">Create</button>
+</div>
+
+<div class="container-sm my-3">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Detail</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let iosEmojiTalk of iosEmojiTalks">
+      <td>{{iosEmojiTalk.id}}</td>
+      <td>
+        <div class="input-group">
+          <span class="input-group-text">Name</span>
+          <input class="form-control" type="text" [(ngModel)]="iosEmojiTalk.name">
+        </div>
+        <div *ngFor="let row of iosEmojiTalk.data, let y = index" class="row row-cols-auto">
+          <img alt="Img" *ngFor="let col of row, let x = index" (click)=" location.data = row; location.x = x; choice.click()"  class="col img-thumbnail m-2" style="height: 50px; width: 50px" [src]="col">
+          <button style="height: 50px; width: 50px" class="btn btn-primary m-2" (click)="row.push('')">+</button>
+        </div>
+        <button style="height: 50px; width: 50px" class="btn btn-primary m-2" (click)="iosEmojiTalk.data.push([])">+</button>
+      </td>
+      <td>
+        <button class="btn btn-warning m-2" (click)="save(iosEmojiTalk)">Save</button>
+        <button class="btn btn-danger m-2" (click)="delete(iosEmojiTalk.id)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

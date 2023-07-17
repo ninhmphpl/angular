@@ -1,0 +1,19 @@
+<app-header></app-header>
+
+<div class="container-sm">
+  <div class="px-5">
+    <div class="input-group">
+      <span class="input-group-text">File Upload</span>
+      <input class="form-control" type="file" multiple accept="image/*" #createIcon>
+      <button class="btn btn-secondary" (click)="upload(createIcon.files)">Upload</button>
+    </div>
+  </div>
+  <div class="row row-cols-auto">
+    <div class="col" *ngFor="let icon of iosIcons">
+      <img class="img-thumbnail m-2" style="height: 50px; width: 50px" alt="Img" [src]="icon.url">
+      <button class="btn btn-light btn-sm" (click)="delete(icon.id)">Delete</button>
+    </div>
+
+  </div>
+
+</div>
