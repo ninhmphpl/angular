@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 
 export const environment = {
-  url : "http://localhost:8082",
+  url : "",
   urlUploadFileSocket: "ws://data2.antliaespacelab.com",
 }
 
