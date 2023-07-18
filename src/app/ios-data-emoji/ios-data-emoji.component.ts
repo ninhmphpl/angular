@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {deleteAlert, environment, errorAlert} from "../environments";
+import {deleteAlert, environment, errorAlert, successAlert} from "../environments";
 import {IosDataEmoji} from "../../model/IosDataEmoji";
 import {Router} from "@angular/router";
 import {IosIcon} from "../../model/IosIcon";
@@ -78,7 +78,10 @@ export class IosDataEmojiComponent implements OnInit{
   save(iosDataEmoji : IosDataEmoji){
     console.log(iosDataEmoji)
     this.http.post(url + "/ios/data-emoji", iosDataEmoji, this.option).subscribe((payload : any)=>{
-      if(payload.code == 200) this.getList()
+      if(payload.code == 200){
+        this.getList()
+        successAlert("Ok")
+      }
       else {
         errorAlert("Error code: " + payload.code)
         if(confirm("Back to login")) this.router.navigate(["/login"])

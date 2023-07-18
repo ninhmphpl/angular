@@ -29,16 +29,17 @@
 
 <div class="container-sm">
   <div class="bg-light p-3 row row-cols-auto">
-      <img style="width: 50px; height: 50px" #createUnicode1 (click)="choice.click(); elementTag = $event.target"
-           class="img-thumbnail col m-2" [src]="formCreate.unicode1" alt="Img">
-      <img style="width: 50px; height: 50px" #createUnicode2 (click)="choice.click(); elementTag = $event.target"
-           class="img-thumbnail col m-2" [src]="formCreate.unicode2" alt="Img">
-      <img style="width: 50px; height: 50px" #createUnicode3 (click)="choice.click(); elementTag = $event.target"
-           class="img-thumbnail col m-2" [src]="formCreate.unicode3" alt="Img">
-      <img style="width: 50px; height: 50px" #createUnicode4 (click)="choice.click(); elementTag = $event.target"
-           class="img-thumbnail col m-2" [src]="formCreate.unicode4" alt="Img">
-      <img style="width: 50px; height: 50px" #createUnicode5 (click)="choice.click(); elementTag = $event.target"
-           class="img-thumbnail col m-2" [src]="formCreate.unicode5" alt="Img">
+    <input type="text" class="form-control col" [(ngModel)]="formCreate.text" placeholder="Input Text">
+    <img style="width: 50px; height: 50px" #createUnicode1 (click)="choice.click(); elementTag = $event.target"
+         class="img-thumbnail col m-2" [src]="formCreate.unicode1" alt="Img">
+    <img style="width: 50px; height: 50px" #createUnicode2 (click)="choice.click(); elementTag = $event.target"
+         class="img-thumbnail col m-2" [src]="formCreate.unicode2" alt="Img">
+    <img style="width: 50px; height: 50px" #createUnicode3 (click)="choice.click(); elementTag = $event.target"
+         class="img-thumbnail col m-2" [src]="formCreate.unicode3" alt="Img">
+    <img style="width: 50px; height: 50px" #createUnicode4 (click)="choice.click(); elementTag = $event.target"
+         class="img-thumbnail col m-2" [src]="formCreate.unicode4" alt="Img">
+    <img style="width: 50px; height: 50px" #createUnicode5 (click)="choice.click(); elementTag = $event.target"
+         class="img-thumbnail col m-2" [src]="formCreate.unicode5" alt="Img">
     <button (click)="
     formCreate.unicode1 = createUnicode1.src;
     formCreate.unicode2 = createUnicode2.src;
@@ -46,16 +47,25 @@
     formCreate.unicode4 = createUnicode4.src;
     formCreate.unicode5 = createUnicode5.src;
     save(formCreate)
-    " class="btn btn-primary">Create</button>
+    " class="btn btn-primary">Create
+    </button>
   </div>
 
   <div>
     <div *ngFor="let iosDataEmoji of iosDataEmojis" class="row row-cols-auto my-2">
-      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode1 (click)="choice.click(); elementTag = $event.target" [src]="iosDataEmoji.unicode1" style="height: 50px; width: 50px">
-      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode2 (click)="choice.click(); elementTag = $event.target" [src]="iosDataEmoji.unicode2" style="height: 50px; width: 50px">
-      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode3 (click)="choice.click(); elementTag = $event.target" [src]="iosDataEmoji.unicode3" style="height: 50px; width: 50px">
-      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode4 (click)="choice.click(); elementTag = $event.target" [src]="iosDataEmoji.unicode4" style="height: 50px; width: 50px">
-      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode5 (click)="choice.click(); elementTag = $event.target" [src]="iosDataEmoji.unicode5" style="height: 50px; width: 50px">
+      <div class="col m-2">
+        <input type="text" class="form-control" [(ngModel)]="iosDataEmoji.text" placeholder="Input text">
+      </div>
+      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode1 (click)="choice.click(); elementTag = $event.target"
+           [src]="iosDataEmoji.unicode1" style="height: 50px; width: 50px">
+      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode2 (click)="choice.click(); elementTag = $event.target"
+           [src]="iosDataEmoji.unicode2" style="height: 50px; width: 50px">
+      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode3 (click)="choice.click(); elementTag = $event.target"
+           [src]="iosDataEmoji.unicode3" style="height: 50px; width: 50px">
+      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode4 (click)="choice.click(); elementTag = $event.target"
+           [src]="iosDataEmoji.unicode4" style="height: 50px; width: 50px">
+      <img alt="Img" class="col img-thumbnail m-2" #updateUnicode5 (click)="choice.click(); elementTag = $event.target"
+           [src]="iosDataEmoji.unicode5" style="height: 50px; width: 50px">
       <button class="col btn btn-warning btn-sm m-2" (click)="
       iosDataEmoji.unicode1 = updateUnicode1.src;
       iosDataEmoji.unicode2 = updateUnicode2.src;
@@ -63,7 +73,8 @@
       iosDataEmoji.unicode4 = updateUnicode4.src;
       iosDataEmoji.unicode5 = updateUnicode5.src;
       save(iosDataEmoji)
-">Update</button>
+">Update
+      </button>
       <button class="btn btn-danger btn-sm m-2" (click)="delete(iosDataEmoji.id)">Delete</button>
     </div>
 
