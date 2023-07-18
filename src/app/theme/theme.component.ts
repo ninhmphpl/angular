@@ -15,7 +15,7 @@ const urlUploadFile = environment.urlUploadFileSocket + '/upload2'
   styleUrls: ['./theme.component.scss']
 })
 export class ThemeComponent implements OnInit {
-  list: Theme[] = [];
+  themes: Theme[] = [];
   categories: Category[] = []
   types: Type[] = []
   formCreate : Theme = {
@@ -35,7 +35,8 @@ export class ThemeComponent implements OnInit {
       denyJson : null,
       type : null
     },
-    top : null,
+    top : false,
+    lock : false
   };
 
   constructor(private http: HttpClient) {
@@ -49,7 +50,7 @@ export class ThemeComponent implements OnInit {
 
   getList() {
     this.http.get(url + "/theme/all").subscribe((data: any) => {
-      if (data.code == 200) this.list = data.data
+      if (data.code == 200) this.themes = data.data
       else errorAlert("Error code: " + data.code)
     }, (error: any) => {
       errorAlert(error)
@@ -81,7 +82,6 @@ export class ThemeComponent implements OnInit {
        fileCallIconAccept: any,
        fileCallIconDenyJson: any,
        fileCallIconAcceptJson: any) {
-
     let process = 0;
     if (fileAvatar && fileAvatar.length > 0) {
       process++;
@@ -132,13 +132,24 @@ export class ThemeComponent implements OnInit {
         if (--process == 0) this.saveTheme(theme)
       })
     }
+    if(process == 0){
+      this.saveTheme(theme)
+    }
   }
 
   saveTheme(theme: Theme) {
-    this.http.post(url + "/theme", theme).subscribe((data: any) => {
-      if (data.code == 200) {
+    this.http.post(url + "/theme", theme).subscribe((payload: any) => {
+      let i = -1;
+      if (payload.code == 200) {
+        for(let j = 0; j <  this.themes.length; j++ ){
+          if(this.themes[j].id === payload.data.id){
+            i = j
+            break
+          }
+        }
+        if(i === -1) this.themes.push(payload.data)
+        else this.themes[i] = payload.data
         successAlert("Ok")
-        this.getList()
       }
     }, (error: any) => {
       errorAlert(error);

@@ -96,6 +96,24 @@
     </tr>
     <tr>
       <td>
+        <div class="row row-cols-auto m-3">
+          <div class="form-check col">
+            <input class="form-check-input" type="checkbox" value="" id="create-top" [(ngModel)]="formCreate.top">
+            <label class="form-check-label" for="create-top">
+              Top
+            </label>
+          </div>
+          <div class="form-check col">
+            <input class="form-check-input" type="checkbox" value="" id="create-lock" [(ngModel)]="formCreate.lock">
+            <label class="form-check-label" for="create-lock">
+              Lock
+            </label>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
         <button class="btn-sm btn-primary btn text-end" (click)="save(
        formCreate,
        CreateFileAvatar.files,
@@ -128,7 +146,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let theme of list">
+    <tr *ngFor="let theme of themes">
       <td [innerText]="theme.id"></td>
       <td class="col-1">
         <div>
@@ -202,11 +220,19 @@
             <option *ngFor="let type of types" [value]="type.name" [innerText]="type.name"></option>
           </select>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="update-top" [(ngModel)]="theme.top">
-          <label class="form-check-label" for="update-top">
-            Top
-          </label>
+        <div class="row row-cols-auto">
+          <div class="form-check col">
+            <input class="form-check-input" type="checkbox" value="" id="update-top" [(ngModel)]="theme.top">
+            <label class="form-check-label" for="update-top">
+              Top
+            </label>
+          </div>
+          <div class="form-check col">
+            <input class="form-check-input" type="checkbox" value="" id="update-lock" [(ngModel)]="theme.lock">
+            <label class="form-check-label" for="update-lock">
+              Lock
+            </label>
+          </div>
         </div>
       </td>
       <td>

@@ -11,4 +11,5 @@ export interface Theme {
   ringstone_url : any;
   call_icon : CallIcon;
   top : any;
+  lock : any;
 }
