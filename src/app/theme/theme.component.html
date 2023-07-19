@@ -95,6 +95,11 @@
         <input class="form-control" [(ngModel)]="formCreate.name" type="text"></td>
     </tr>
     <tr>
+      <td class="input-group input-group-sm mb-3">
+        <span class="input-group-text">Priority</span>
+        <input class="form-control" [(ngModel)]="formCreate.priority" type="text"></td>
+    </tr>
+    <tr>
       <td>
         <div class="row row-cols-auto m-3">
           <div class="form-check col">
@@ -206,6 +211,10 @@
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text">Name</span>
           <input id="update-name" placeholder="name" class="form-control" type="text" [(ngModel)]="theme.name">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text">Priority</span>
+          <input id="update-priority" placeholder="Input priority" class="form-control" type="number" [(ngModel)]="theme.priority">
         </div>
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text">Update category</span>

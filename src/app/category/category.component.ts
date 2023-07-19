@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {environment} from "../../../environment/environments";
+import {environment, errorAlert, successAlert} from "../../../environment/environments";
 import {HttpClient} from "@angular/common/http";
 import {Category} from "../../model/Category";
 const url = environment.url
@@ -27,7 +27,12 @@ export class CategoryComponent implements OnInit{
     formData.append("category", JSON.stringify(category))
     formData.append("file", (file && file.length > 0)?file[0]:null)
     this.http.post(url + "/category", formData).subscribe((payload : any)=>{
-      if(payload.code == 200) this.getList()
+      if(payload.code == 200){
+        this.getList()
+        successAlert("Ok")
+      }else {
+        errorAlert(JSON.stringify(payload))
+      }
     }, (error : any)=>{
       console.log(error)
     })

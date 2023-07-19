@@ -12,4 +12,5 @@ export interface Theme {
   call_icon : CallIcon;
   top : any;
   lock : any;
+  priority : any;
 }

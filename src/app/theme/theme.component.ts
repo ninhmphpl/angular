@@ -36,7 +36,8 @@ export class ThemeComponent implements OnInit {
       type : null
     },
     top : false,
-    lock : false
+    lock : false,
+    priority : 0,
   };
 
   constructor(private http: HttpClient) {
@@ -138,6 +139,12 @@ export class ThemeComponent implements OnInit {
   }
 
   saveTheme(theme: Theme) {
+    let cValue = 0;
+    for(let c of this.categories){
+      if(theme.category === c.category){
+        cValue = c.priority * 100
+      }
+    }
     this.http.post(url + "/theme", theme).subscribe((payload: any) => {
       let i = -1;
       if (payload.code == 200) {

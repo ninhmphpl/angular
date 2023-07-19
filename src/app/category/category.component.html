@@ -9,8 +9,12 @@
       <td><input type="text" #createCategory></td>
     </tr>
     <tr>
+      <td>Priority</td>
+      <td><input type="text" #createPriority></td>
+    </tr>
+    <tr>
       <td></td>
-      <td><button class="btn btn-primary" (click)="save({category : createCategory.value}, createFile.files)">Create</button></td>
+      <td><button class="btn btn-primary" (click)="save({category : createCategory.value, priority : createPriority.value}, createFile.files)">Create</button></td>
     </tr>
   </table>
 </div>
@@ -23,7 +27,8 @@
       <img style="height: 40px; width: 40px" [src]="category.img">
       <input type="file" #imgFile>
     </td>
-    <td><input type="text" [(ngModel)]="category.category"></td>
+    <td><input type="text" [(ngModel)]="category.category" placeholder="Category Name"></td>
+    <td><input type="text" [(ngModel)]="category.priority" placeholder="Priority"></td>
     <td><button class="btn btn-primary" (click)="save(category, imgFile.files)">Save</button></td>
     <td><button class="btn btn-danger" (click)="delete(category.id)">Delete</button></td>
   </tr>
