@@ -1,1 +1,120 @@
-<p>body works!</p>
+<div class="h-100 p-3" (click)="menuTag.hidden=true; fileMangerService.fileSelect = []"
+     (contextmenu)="menuTag.hidden=true; fileMangerService.menu($event, menuTag)">
+  <!-- Modal Upload-->
+  <div>
+    <!-- Button of modal upload -->
+    <button #buttonModalUpload type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Upload file</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group">
+              <input #fileUpload type="file" class="input-group-text" multiple>
+              <button (click)="fileMangerService.uploadFileSocket(fileUpload.files)" class="btn btn-secondary" >Upload</button>
+            </div>
+            <table *ngIf="fileMangerService.processUpload.length > 0" class="table table-striped">
+              <thead>
+              <tr class="row">
+                <th class="col-9 text-truncate">File Name</th>
+                <th class="col-3">Percent - (%)</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let process of fileMangerService.processUpload">
+                <td>{{process.name}}</td>
+                <td>{{'(' + process.percent + '%)'}}</td>
+              </tr>
+              </tbody>
+
+
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="fileMangerService.processUpload = []" >Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  Model view image-->
+  <div>
+    <!-- Button of modal upload -->
+    <button id="buttonImgView" type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#exampleModalImg"></button>
+    <div class="modal fade" id="exampleModalImg" tabindex="-1" aria-labelledby="exampleModalLabelImg" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabelImg">Img view</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <img #imgView alt="img">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="fileMangerService.processUpload = []" >Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--  Menu right mouse-->
+  <div #menuTag class="list-group position-fixed z-2 " [hidden]="true">
+    <div *ngIf="fileMangerService.fileSelect.length==1 && fileMangerService.fileSelect[0].type == 'zip'"
+         (click)="fileMangerService.action('unzip')"
+         class="list-group-item list-group-item-action">Extra file
+    </div>
+<!--    <div *ngIf="fileMangerService.fileSelect.length==1 && fileMangerService.fileSelect[0].type == 'folder'"-->
+<!--         class="list-group-item list-group-item-action">Zip-->
+<!--    </div>-->
+    <div *ngIf="fileMangerService.fileSelect && fileMangerService.fileSelect.length > 0" class="list-group-item list-group-item-action"
+         (click)="fileMangerService.clipBoardAction('copy')">Copy
+    </div>
+    <div *ngIf="fileMangerService.fileSelect && fileMangerService.fileSelect.length > 0" class="list-group-item list-group-item-action"
+         (click)="fileMangerService.clipBoardAction('cut')">Cut
+    </div>
+    <div *ngIf="fileMangerService.fileSelect && fileMangerService.fileSelect.length > 0" class="list-group-item list-group-item-action"
+         (click)="fileMangerService.action('delete')">Delete
+    </div>
+    <div *ngIf="fileMangerService.clipBoard && fileMangerService.clipBoard.file.length > 0"
+         class="list-group-item list-group-item-action"
+         (click)="fileMangerService.action(fileMangerService.clipBoard.action)">Pate
+    </div>
+    <div class="list-group-item list-group-item-action" (click)="buttonModalUpload.click()">
+      Upload File
+    </div>
+  </div>
+  <div class="rounded-5 p-2 bg-light bg-opacity-50 my-2" style="width: 50px">
+    <img (click)="fileMangerService.back()" src="https://cdn-icons-png.flaticon.com/512/189/189254.png" style="width: 30px; height: 30px" alt="">
+  </div>
+<!--  Thanh path -->
+  <nav aria-label="breadcrumb" class="bg-light text-dark bg-opacity-50 rounded-5 px-5">
+    <ol class="breadcrumb">
+      <li *ngFor="let breadcrumb of fileMangerService.breadcrumb, let indexBreadcrumb = index"
+          class="breadcrumb-item active" (click)="fileMangerService.openFolderBreadcrumb(indexBreadcrumb)"
+          aria-current="page">{{breadcrumb.name}}</li>
+    </ol>
+
+  </nav>
+<!-- Body file list-->
+  <div class="row row-cols-auto">
+    <div *ngFor="let file of fileMangerService.listFile" style="width: 100px" class="col text-center">
+      <img [ngClass]="(fileMangerService.fileSelect.indexOf(file) != -1)?'border border-primary border-5':''" class="z-1"
+           (click)="fileMangerService.push(file); $event.stopPropagation()"
+           (contextmenu)="fileMangerService.menu($event, menuTag)"
+           (dblclick)="fileMangerService.openFile(file, imgView)" [src]="file.type | type" style="height: 70px; width: 70px"
+           alt="file img">
+      <input #rename type="text" class="text-truncate bg-opacity-10 form-control p-0 border-0 text-center rounded-0"
+             (click)="fileMangerService.fileSelect=[]; fileMangerService.push(file); $event.stopPropagation()"
+             (change)="fileMangerService.action('rename',rename.value)" style="font-size: 13px" [(ngModel)]="file.name">
+    </div>
+  </div>
+<!--  Info select and clipboard-->
+  <div class="position-fixed end-0 bottom-0 px-3 text-light">
+    {{'File select: ' + fileMangerService.fileSelect.length + ', File clipboard: ' + fileMangerService.clipBoard.file.length }}
+  </div>
+</div>
+

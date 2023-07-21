@@ -1,6 +1,6 @@
-export interface FileData{
-  name : any
-  type : any
-  path : any
-  files : any
+export class FileData{
+  name! : any
+  type! : any
+  path! : any
+  files! : FileData[];
 }

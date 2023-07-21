@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 
 export const environment = {
-  url: "http://localhost:8080"
+  url: "http://localhost:8081"
 }
 
 export function successAlert(string: string) {
@@ -53,11 +53,11 @@ export function convertSpecialCharacters(str: string, c1: string, c2: string) {
   });
 }
 
-export function uploadFile(url: string, fileName: string, file: File, zip : boolean, getUrlDownload?: (urlDownload: string) => any, getPercent?: (percent: number) => any) {
+export function uploadFile(url: string, urlFolder : string, file: File, getUrlDownload?: (urlDownload: string) => any, getPercent?: (percent: number) => any) {
   const chunkSize = 1024 * 7; // Size of each piece of data (1 MB)
   const totalChunks = Math.ceil(file.size / chunkSize); // data total
   let currentChunk = 0; // number percent downloaded
-  let sockets = new WebSocket(url + "?" + fileName + "&" + (zip)?"un_zip":"zip" + "&" + file.size);
+  let sockets = new WebSocket(url + "?" + urlFolder + "&&&" + file.name+ "&&&" + file.size);
   sockets.onopen = () => {
     console.log("connected")
     const reader = new FileReader();
