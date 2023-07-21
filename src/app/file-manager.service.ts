@@ -70,26 +70,34 @@ export class FileManagerService {
     if (option === 'copy' || option === 'cut') {
       value2 = breadcrumbUrl;
       fileAction = this.clipBoard.file
+    } else if (option === 'new-folder'){
+      this.call(breadcrumbUrl, option, breadcrumbUrl,'new folder')
+      return
     }else {
       fileAction = this.fileSelect
     }
     for (let fileData of fileAction) {
-      let url = `${breadcrumbUrl}&option=${option}${fileData.path ? '&value1=' + fileData.path : ''}${value2 ? '&value2=' + value2 : ''}`
-      console.log("POST " + url)
-      this.http.post(url, {}).subscribe((payload: any) => {
-        if (payload.code == 200) {
-          if (payload.data.status) {
-            this.getList(payload.data.urlFolder, () => {
-            })
-            successAlert(payload.data.resut)
-            if (option === 'cut') this.clipBoard.file = []
-          } else errorAlert(payload.data.result)
-        } else {
-          errorAlert(JSON.stringify(payload))
-        }
-      })
+      this.call(breadcrumbUrl, option, fileData.path, value2);
     }
   }
+
+  private call(breadcrumbUrl: string, option: string, value1: string, value2: string | undefined) {
+    let url = `${breadcrumbUrl}&option=${option}${value1 ? '&value1=' + value1 : ''}${value2 ? '&value2=' + value2 : ''}`
+    console.log("POST " + url)
+    this.http.post(url, {}).subscribe((payload: any) => {
+      if (payload.code == 200) {
+        if (payload.data.status) {
+          this.getList(payload.data.urlFolder, () => {
+          })
+          successAlert(payload.data.resut)
+          if (option === 'cut') this.clipBoard.file = []
+        } else errorAlert(payload.data.result)
+      } else {
+        errorAlert(JSON.stringify(payload))
+      }
+    })
+  }
+
   clipBoardAction(action: string) {
     this.clipBoard.action = action
     if (this.fileSelect != null) {
@@ -116,4 +124,5 @@ export class FileManagerService {
       }
     }
   }
+
 }

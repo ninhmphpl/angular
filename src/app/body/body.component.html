@@ -67,9 +67,7 @@
          (click)="fileMangerService.action('unzip')"
          class="list-group-item list-group-item-action">Extra file
     </div>
-<!--    <div *ngIf="fileMangerService.fileSelect.length==1 && fileMangerService.fileSelect[0].type == 'folder'"-->
-<!--         class="list-group-item list-group-item-action">Zip-->
-<!--    </div>-->
+    <div class="list-group-item list-group-item-action" (click)="fileMangerService.action('new-folder')">New folder</div>
     <div *ngIf="fileMangerService.fileSelect && fileMangerService.fileSelect.length > 0" class="list-group-item list-group-item-action"
          (click)="fileMangerService.clipBoardAction('copy')">Copy
     </div>
@@ -87,9 +85,6 @@
       Upload File
     </div>
   </div>
-  <div class="rounded-5 p-2 bg-light bg-opacity-50 my-2" style="width: 50px">
-    <img (click)="fileMangerService.back()" src="https://cdn-icons-png.flaticon.com/512/189/189254.png" style="width: 30px; height: 30px" alt="">
-  </div>
 <!--  Thanh path -->
   <nav aria-label="breadcrumb" class="bg-light text-dark bg-opacity-50 rounded-5 px-5">
     <ol class="breadcrumb">
@@ -97,8 +92,10 @@
           class="breadcrumb-item active" (click)="fileMangerService.openFolderBreadcrumb(indexBreadcrumb)"
           aria-current="page">{{breadcrumb.name}}</li>
     </ol>
-
   </nav>
+  <div class="rounded-5 p-2 bg-light bg-opacity-50 my-2" style="width: 50px">
+    <img (click)="fileMangerService.back()" src="https://cdn-icons-png.flaticon.com/512/189/189254.png" style="width: 30px; height: 30px" alt="">
+  </div>
 <!-- Body file list-->
   <div class="row row-cols-auto">
     <div *ngFor="let file of fileMangerService.listFile" style="width: 100px" class="col text-center">
@@ -109,7 +106,7 @@
            alt="file img">
       <input #rename type="text" class="text-truncate bg-opacity-10 form-control p-0 border-0 text-center rounded-0"
              (click)="fileMangerService.fileSelect=[]; fileMangerService.push(file); $event.stopPropagation()"
-             (change)="fileMangerService.action('rename',rename.value)" style="font-size: 13px" [(ngModel)]="file.name">
+             (change)="fileMangerService.action('rename',rename.value); $event.preventDefault()" style="font-size: 13px" [(ngModel)]="file.name">
     </div>
   </div>
 <!--  Info select and clipboard-->
