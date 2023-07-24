@@ -8,13 +8,15 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { CategoryComponent } from './category/category.component';
 import { StickerComponent } from './sticker/sticker.component';
+import { CallIconComponent } from './call-icon/call-icon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ThemeComponent,
     CategoryComponent,
-    StickerComponent
+    StickerComponent,
+    CallIconComponent
   ],
     imports: [
         BrowserModule,

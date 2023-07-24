@@ -1,10 +1,8 @@
 <div class="row">
-  <div class="col"><button class="btn btn-light m-2 border" (click)="title = 'theme'">Theme</button></div>
-  <div class="col"><button class="btn btn-light m-2 border" (click)="title = 'category'">Category</button></div>
-  <div class="col"><button class="btn btn-light m-2 border" (click)="title = 'sticker'">Sticker</button></div>
+  <a class="col"><button class="btn btn-light m-2 border" routerLink="/theme">Theme</button></a>
+  <a class="col"><button class="btn btn-light m-2 border" routerLink="/category">Category</button></a>
+  <a class="col"><button class="btn btn-light m-2 border" routerLink="/sticker">Sticker</button></a>
+  <a class="col"><button class="btn btn-light m-2 border" routerLink="/call-icon">CallIcon</button></a>
 </div>
-
-<app-theme *ngIf="title == 'theme'"></app-theme>
-<app-category *ngIf="title == 'category'"></app-category>
-<app-sticker *ngIf="title == 'sticker'"></app-sticker>
+<router-outlet></router-outlet>
 
