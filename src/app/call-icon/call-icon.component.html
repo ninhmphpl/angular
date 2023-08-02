@@ -1,4 +1,18 @@
 <div class="container">
+  <div class="bg-light w-100 row row-cols-auto">
+    <div class="col-8">
+      <button class="btn btn-primary w-100" (click)="save(null)">Add new call icon</button>
+    </div>
+    <div class="col-4">
+      <div class="input-group">
+        <input class="form-control" #createNewCallIconType type="text" placeholder="Input new type">
+        <button class="btn-primary btn" (click)="typeService.saveCallIconType({name : createNewCallIconType.value})">
+          Create new type
+        </button>
+      </div>
+    </div>
+  </div>
+
   <table class="table table-striped">
     <thead>
     <tr>
@@ -7,21 +21,39 @@
     </thead>
     <tbody>
     <tr *ngFor="let icon of callIcons, let indexIcon = index">
-      <td>
+      <td class="d-none">
+        <input #updateAccept type="file" (change)="uploadAccept(updateAccept.files, indexIcon)">
+        <input #updateDeny type="file" (change)="uploadAccept(updateDeny.files, indexIcon)">
+        <input #updateAcceptJson type="file" (change)="uploadAccept(updateAcceptJson.files, indexIcon)">
+        <input #updateDenyJson type="file" (change)="uploadAccept(updateDenyJson.files, indexIcon)">
+      </td>
+      <td>{{icon.id}}</td>
+      <td class="col-1">
         <img class="img-thumbnail" [src]="icon.accept" alt="">
-        <button class="btn btn-primary w-100">Upload</button>
+        <button class="btn btn-primary w-100" (click)="updateAccept.click()">Upload</button>
       </td>
-      <td>
-        <img class="img-thumbnail" [src]="icon.denyJson" alt="">
-        <button class="btn btn-primary w-100">Upload</button>
+      <td class="col-1">
+        <img class="img-thumbnail" [src]="icon.deny" alt="">
+        <button class="btn btn-primary w-100" (click)="updateDeny.click()">Upload</button>
       </td>
-      <td>
+      <td class="col-2">
         <input class="form-control" [(ngModel)]="icon.acceptJson" disabled type="text">
-        <button class="btn btn-primary w-100">Upload</button>
+        <button class="btn btn-primary w-100" (click)="updateAcceptJson.click()">Upload</button>
+      </td>
+      <td class="col-2">
+        <input class="form-control" [(ngModel)]="icon.denyJson" disabled type="text">
+        <button class="btn btn-primary w-100" (click)="updateDenyJson.click()">Upload</button>
       </td>
       <td>
-        <input class="form-control" [(ngModel)]="icon.denyJson" disabled type="text">
-        <button class="btn btn-primary w-100">Upload</button>
+        <div class="input-group">
+          <span class="input-group-text">Type</span>
+          <select class="form-select" [(ngModel)]="icon.type" (change)="save(indexIcon)">
+            <option *ngFor="let type of typeService.types" [value]="type.name">{{type.name}}</option>
+          </select>
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-danger w-100" (click)="delete(indexIcon)">Delete</button>
       </td>
     </tr>
     </tbody>

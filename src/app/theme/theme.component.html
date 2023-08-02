@@ -1,137 +1,127 @@
+
+<!-- Button trigger modal -->
+<button #changeCallIcon type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Call Icon</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>Accept</th>
+            <th>Deny</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let icon of callIconService.callIcons, let iconIndex = index" (click)="uploadIcon(iconIndex)">
+            <td class="col-2">{{icon.id}}</td>
+            <td class="col-5"><img class="img-thumbnail" [src]="icon.accept" alt=""></td>
+            <td class="col-5"><img class="img-thumbnail" [src]="icon.deny" alt=""></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="position-fixed bottom-0">
   <audio #audioTab controls></audio>
 </div>
 
-<div class="bg-light border p-2">
-  <p>Add new</p>
-  <table>
-    <tr>
-      <td class="input-group mb-3">
-        <label class="input-group-text" for="CreateFileBackground">Back ground</label>
-        <input #CreateFileBackground id="CreateFileBackground" type="file" class="form-control" accept="image/*">
-      </td>
-    </tr>
-    <tr>
-      <td class="input-group mb-3">
-        <label class="input-group-text" for="CreateFileAvatar">Avatar</label>
-        <input #CreateFileAvatar id="CreateFileAvatar" type="file" class="form-control" accept="image/*">
-      </td>
-    </tr>
-    <tr>
-      <td class="input-group mb-3">
-        <label class="input-group-text" for="CreateFileRingStone">Ring stone</label>
-        <input #CreateFileRingStone id="CreateFileRingStone" type="file" class="form-control" accept="audio/*">
-      </td>
-    </tr>
-    <tr>
-      <td class="input-group mb-3">
-        <label class="input-group-text" for="CreateFileCallIconAccept">Access Call Icon</label>
-        <input #CreateFileCallIconAccept id="CreateFileCallIconAccept" type="file" class="form-control"
-               accept="image/*, video/*">
-      </td>
-    </tr>
-    <tr>
-      <td class="input-group mb-3">
-        <label class="input-group-text" for="CreateFileCallIconDeny">Deny Call Icon</label>
-        <input #CreateFileCallIconDeny id="CreateFileCallIconDeny" type="file" class="form-control"
-               accept="image/*, video/*">
-      </td>
-    </tr>
-    <tr>
-      <td class="input-group mb-3">
-        <label class="input-group-text" for="CreateFileCallIconAcceptJson">Access Call Icon Json</label>
-        <input #CreateFileCallIconAcceptJson id="CreateFileCallIconAcceptJson" type="file" class="form-control"
-               accept="application/json">
-      </td>
-    </tr>
-    <tr>
-      <td class="input-group mb-3">
-        <label class="input-group-text" for="CreateFileCallIconDenyJson">Deny Call Icon Json</label>
-        <input #CreateFileCallIconDenyJson id="CreateFileCallIconDenyJson" type="file" class="form-control"
-               accept="application/json">
-      </td>
-    </tr>
-    <tr>
-      <td class="input-group input-group-sm mb-3">
-        <span class="input-group-text">Call Icon type</span>
-        <select class="form-select" [(ngModel)]="formCreate.call_icon.type">
-          <option *ngFor="let type of types" [value]="type.name" [innerText]="type.name"></option>
-        </select>
-      </td>
-      <td>
-        <div class="input-group input-group-sm mb-3">
-          <span class="input-group-text">Make new type</span>
-          <input class="form-control" #createNewCallIconType type="text">
-          <button class="btn-primary btn" (click)="saveCallIconType({name : createNewCallIconType.value})">
-            Create
-          </button>
-        </div>
+<!--<div class="bg-light border p-2">-->
+<!--  <p>Add new</p>-->
+<!--  <table>-->
+<!--    <tr>-->
+<!--      <td class="input-group mb-3">-->
+<!--        <label class="input-group-text" for="CreateFileBackground">Back ground</label>-->
+<!--        <input #CreateFileBackground id="CreateFileBackground" type="file" class="form-control" accept="image/*">-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td class="input-group mb-3">-->
+<!--        <label class="input-group-text" for="CreateFileAvatar">Avatar</label>-->
+<!--        <input #CreateFileAvatar id="CreateFileAvatar" type="file" class="form-control" accept="image/*">-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td class="input-group mb-3">-->
+<!--        <label class="input-group-text" for="CreateFileRingStone">Ring stone</label>-->
+<!--        <input #CreateFileRingStone id="CreateFileRingStone" type="file" class="form-control" accept="audio/*">-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td class="input-group input-group-sm mb-3">-->
+<!--        <span class="input-group-text">Category</span>-->
+<!--        <select class="form-select" [(ngModel)]="formCreate.category">-->
+<!--          <option *ngFor="let category of categories" [value]="category.category"-->
+<!--                  [innerText]="category.category"></option>-->
+<!--        </select>-->
+<!--      </td>-->
 
-      </td>
-    </tr>
-    <tr>
-      <td class="input-group input-group-sm mb-3">
-        <span class="input-group-text">Category</span>
-        <select class="form-select" [(ngModel)]="formCreate.category">
-          <option *ngFor="let category of categories" [value]="category.category"
-                  [innerText]="category.category"></option>
-        </select>
-      </td>
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td class="input-group input-group-sm mb-3">-->
+<!--        <span class="input-group-text">Note</span>-->
+<!--        <input class="form-control" [(ngModel)]="formCreate.note" type="text"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td class="input-group input-group-sm mb-3">-->
+<!--        <span class="input-group-text">Title</span>-->
+<!--        <input class="form-control" [(ngModel)]="formCreate.title" type="text"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td class="input-group input-group-sm mb-3">-->
+<!--        <span class="input-group-text">Name</span>-->
+<!--        <input class="form-control" [(ngModel)]="formCreate.name" type="text"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td class="input-group input-group-sm mb-3">-->
+<!--        <span class="input-group-text">Priority</span>-->
+<!--        <input class="form-control" [(ngModel)]="formCreate.priority" type="text"></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>-->
+<!--        <div class="row row-cols-auto m-3">-->
+<!--          <div class="form-check col">-->
+<!--            <input class="form-check-input" type="checkbox" value="" id="create-top" [(ngModel)]="formCreate.top">-->
+<!--            <label class="form-check-label" for="create-top">-->
+<!--              Top-->
+<!--            </label>-->
+<!--          </div>-->
+<!--          <div class="form-check col">-->
+<!--            <input class="form-check-input" type="checkbox" value="" id="create-lock" [(ngModel)]="formCreate.lock">-->
+<!--            <label class="form-check-label" for="create-lock">-->
+<!--              Lock-->
+<!--            </label>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>-->
+<!--        <button class="btn-sm btn-primary btn text-end" (click)="save(-->
+<!--       formCreate,-->
+<!--       CreateFileAvatar.files,-->
+<!--       CreateFileRingStone.files,-->
+<!--       CreateFileBackground.files-->
+<!--       )">Create-->
+<!--        </button>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </table>-->
+<!--</div>-->
 
-    </tr>
-    <tr>
-      <td class="input-group input-group-sm mb-3">
-        <span class="input-group-text">Note</span>
-        <input class="form-control" [(ngModel)]="formCreate.note" type="text"></td>
-    </tr>
-    <tr>
-      <td class="input-group input-group-sm mb-3">
-        <span class="input-group-text">Title</span>
-        <input class="form-control" [(ngModel)]="formCreate.title" type="text"></td>
-    </tr>
-    <tr>
-      <td class="input-group input-group-sm mb-3">
-        <span class="input-group-text">Name</span>
-        <input class="form-control" [(ngModel)]="formCreate.name" type="text"></td>
-    </tr>
-    <tr>
-      <td class="input-group input-group-sm mb-3">
-        <span class="input-group-text">Priority</span>
-        <input class="form-control" [(ngModel)]="formCreate.priority" type="text"></td>
-    </tr>
-    <tr>
-      <td>
-        <div class="row row-cols-auto m-3">
-          <div class="form-check col">
-            <input class="form-check-input" type="checkbox" value="" id="create-top" [(ngModel)]="formCreate.top">
-            <label class="form-check-label" for="create-top">
-              Top
-            </label>
-          </div>
-          <div class="form-check col">
-            <input class="form-check-input" type="checkbox" value="" id="create-lock" [(ngModel)]="formCreate.lock">
-            <label class="form-check-label" for="create-lock">
-              Lock
-            </label>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <button class="btn-sm btn-primary btn text-end" (click)="save(
-       formCreate,
-       CreateFileAvatar.files,
-       CreateFileRingStone.files,
-       CreateFileBackground.files,
-       CreateFileCallIconDeny.files,
-       CreateFileCallIconAccept.files,
-       CreateFileCallIconDenyJson.files,
-       CreateFileCallIconAcceptJson.files)">Create
-        </button>
-      </td>
-    </tr>
-  </table>
+<div class="bg-light">
+  <button class="btn btn-primary" (click)="save(null)">Add new</button>
 </div>
 
 
@@ -139,67 +129,43 @@
   <table class="table table-striped">
     <thead>
     <tr>
+      <th>ID</th>
       <th>Background</th>
       <th>Avatar</th>
-      <th>Avatar</th>
-      <th>Accept</th>
-      <th>Deny</th>
-      <th>Json upload</th>
+      <th>Call Icon</th>
       <th>Detail item</th>
       <th>Ring Stone</th>
       <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let theme of themes">
-      <td [innerText]="theme.id"></td>
+    <tr *ngFor="let theme of themes, let themeIndex = index">
+      <td class="col-1" [innerText]="theme.id"></td>
       <td class="col-1">
         <div>
           <img *ngIf="isImage(theme.backGround)" class="img-thumbnail" [src]="theme.backGround" alt="Img">
           <video controls *ngIf="isVideo(theme.backGround)" class="img-thumbnail" [src]="theme.backGround"></video>
         </div>
-        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileBackground accept="image/*">
+        <input type="file" (change)="uploadBackGround(updateFileBackground.files, themeIndex)" class="d-none" #updateFileBackground accept="image/*">
         <button class="btn-sm btn-primary btn w-100" (click)="updateFileBackground.click()">Upload File</button>
       </td>
       <td class="col-1">
         <img *ngIf="isImage(theme.avatar)" class="img-thumbnail" [src]="theme.avatar" alt="Img">
         <video controls *ngIf="isVideo(theme.avatar)" class="img-thumbnail" [src]="theme.avatar"></video>
-        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileAvatar accept="image/*">
+        <input type="file" (change)="uploadAvatar(updateFileAvatar.files, themeIndex)" class="d-none" #updateFileAvatar accept="image/*">
         <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileAvatar.click()">Upload File</button>
       </td>
-      <td class="col-1">
-        <img *ngIf="isImage(theme.call_icon.accept)" class="img-thumbnail" [src]="theme.call_icon.accept" alt="Img">
-        <video controls *ngIf="isVideo(theme.call_icon.accept)" class="img-thumbnail"
-               [src]="theme.call_icon.accept"></video>
-        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconAccept
-               accept="image/*, video/*">
-        <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconAccept.click()">Upload File</button>
+      <td class="col-4">
+        <div class="row row-cols-auto">
+          <div class="col-1">{{theme.call_icon.id}}</div>
+          <img class="col-2 img-thumbnail" [src]="theme.call_icon.accept" alt="">
+          <img class="col-2 img-thumbnail" [src]="theme.call_icon.deny" alt="">
+          <div class="col-6">
+            <button (click)="selectIndex = themeIndex ;changeCallIcon.click()" class="btn btn-primary w-100">Change Call Icon</button>
+          </div>
+        </div>
       </td>
       <td class="col-1">
-        <img *ngIf="isImage(theme.call_icon.deny)" class="img-thumbnail" [src]="theme.call_icon.deny" alt="Img">
-        <video controls *ngIf="isVideo(theme.call_icon.deny)" class="img-thumbnail"
-               [src]="theme.call_icon.deny"></video>
-        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconDeny
-               accept="image/*, video/*">
-        <button class="btn-sm btn-primary btn btn w-100" (click)="updateFileCallIconDeny.click()">Upload File</button>
-      </td>
-      <td class="col-2">
-        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconAcceptJson
-               accept="application/json">
-        <input type="text" [(ngModel)]="theme.call_icon.acceptJson" class="form-control" disabled>
-        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileCallIconAcceptJson.click()">Update
-          Accept
-          Call Icon Json
-        </button>
-        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileCallIconDenyJson
-               accept="application/json">
-        <input type="text" [(ngModel)]="theme.call_icon.denyJson" class="form-control" disabled>
-        <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileCallIconDenyJson.click()">Update Deny
-          Call
-          Icon Json
-        </button>
-      </td>
-      <td>
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text">Note</span>
           <input id="update-note" placeholder="note" class="form-control" type="text" [(ngModel)]="theme.note">
@@ -214,19 +180,14 @@
         </div>
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text">Priority</span>
-          <input id="update-priority" placeholder="Input priority" class="form-control" type="number" [(ngModel)]="theme.priority">
+          <input id="update-priority" placeholder="Input priority" class="form-control" type="number"
+                 [(ngModel)]="theme.priority">
         </div>
         <div class="input-group input-group-sm mb-3">
           <span class="input-group-text">Update category</span>
           <select class="form-select" id="update-category" [(ngModel)]="theme.category">
             <option *ngFor="let category of categories" [value]="category.category"
                     [innerText]="category.category"></option>
-          </select>
-        </div>
-        <div class="input-group input-group-sm mb-3">
-          <span class="input-group-text">Call Icon Type</span>
-          <select class="form-select" id="icon-type" [(ngModel)]="theme.call_icon.type">
-            <option *ngFor="let type of types" [value]="type.name" [innerText]="type.name"></option>
           </select>
         </div>
         <div class="row row-cols-auto">
@@ -244,25 +205,17 @@
           </div>
         </div>
       </td>
-      <td>
+      <td class="col-1">
         <button class="btn-sm btn-primary btn btn w-100 my-2"
                 (click)="audioTab.src = theme.ringstone_url; audioTab.play()">Play
         </button>
         <button class="btn-sm btn-primary btn btn w-100 my-2" (click)="updateFileRingStone.click()">Upload File</button>
-        <input type="file" (change)="updateButton.click()" class="d-none" #updateFileRingStone accept="audio/*">
+        <input type="file" (change)="uploadRingStones(updateFileRingStone.files, themeIndex)" class="d-none" #updateFileRingStone accept="audio/*">
       </td>
-      <td>
-        <button #updateButton class="btn-sm btn-primary btn btn w-100 my-2" (click)="save(theme,
-      updateFileAvatar.files,
-       updateFileRingStone.files,
-       updateFileBackground.files,
-       updateFileCallIconDeny.files,
-       updateFileCallIconAccept.files,
-       updateFileCallIconDenyJson.files,
-       updateFileCallIconAcceptJson.files
-      )">Save
+      <td class="col-1">
+        <button #updateButton class="btn-sm btn-primary btn btn w-100 my-2" (click)="save(themeIndex)">Save
         </button>
-        <button class="btn-sm btn-danger btn btn w-100 my-2" (click)="delete(theme.id)">Delete</button>
+        <button class="btn-sm btn-danger btn btn w-100 my-2" (click)="delete(themeIndex)">Delete</button>
       </td>
     </tr>
     </tbody>
