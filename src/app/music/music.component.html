@@ -1,0 +1,60 @@
+<div>
+  <div class="input-group-text">
+    <input #files type="file" class="form-control" multiple accept="video/*">
+    <button class="btn btn-secondary" (click)="upload(files.files)">Upload</button>
+  </div>
+  <div *ngIf="uploadList.length > 0">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Percent</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let upload of uploadList; let id = index">
+        <td>{{upload.name}}</td>
+        <td>{{upload.percent + '%'}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="p-3">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Thumb</th>
+        <th>Audio</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let music of musics ; let i = index">
+        <td>{{i}}</td>
+        <td>
+          <input type="file" #thumb hidden="hidden" (change)="upThumb(i, thumb.files)">
+          <img [src]="music.thumb" style="width: 30px; height: 70px" class="img-thumbnail" alt="">
+          <button class="btn btn-secondary" (click)="thumb.click()" >
+            Change
+            <span *ngIf="music.thumbPercent">{{'(' + music.thumbPercent + '%)'}}</span>
+          </button>
+        </td>
+        <td><audio [src]="music.url" controls></audio></td>
+        <td><input class="form-control" type="text" [(ngModel)]="music.name"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="music.description"></td>
+        <td>
+          <button class="btn btn-warning" (click)="save(i)">Save</button>
+          <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
