@@ -100,9 +100,9 @@ export class ThemeComponent implements OnInit {
     if (index) {
       console.log(this.themes[index])
     }
-    this.http.post(url + "/theme", (index) ? this.themes[index] : this.formCreate).subscribe((payload: any) => {
+    this.http.post(url + "/theme", (index != null) ? this.themes[index] : this.formCreate).subscribe((payload: any) => {
       if (payload.code == 200) {
-        if (index) {
+        if (index != null) {
           this.themes[index] = payload.data
           console.log(this.themes[index])
         } else {
