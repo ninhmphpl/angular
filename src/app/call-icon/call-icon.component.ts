@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {environment, errorAlert, successAlert} from "../../../environment/environments";
+import {deleteAlert, environment, errorAlert, successAlert} from "../../../environment/environments";
 import {HttpClient} from "@angular/common/http";
 import {CallIcon} from "../../model/CallIcon";
 import {uploadFile} from "../../../environment/upload.socket";
@@ -41,12 +41,12 @@ export class CallIconComponent implements OnInit{
   }
 
   save(index : number | null){
-    this.http.post(url + "/callicon", index ? this.callIcons[index] : this.crateForm).subscribe((payload : any)=>{
+    this.http.post(url + "/callicon", (index != null) ? this.callIcons[index] : this.crateForm).subscribe((payload : any)=>{
       if(payload.code == 200){
-        if(index){
+        if(index != null){
           this.callIcons[index] = payload.data
         }else {
-          this.callIcons.push(payload.data)
+          this.callIcons.unshift(payload.data)
         }
         successAlert("OK")
       }else {
@@ -57,14 +57,16 @@ export class CallIconComponent implements OnInit{
     })
   }
   delete(index : number){
-    this.http.delete(url + "/callicon/" + this.callIcons[index].id).subscribe((payload : any)=>{
-      if(payload.code === 200){
-        this.callIcons.splice(index,1)
-      }else {
-        errorAlert("Error code : " + payload.code)
-      }
-    }, (error : any)=>{
-      errorAlert(JSON.stringify(error))
+    deleteAlert(()=>{
+      this.http.delete(url + "/callicon/" + this.callIcons[index].id).subscribe((payload : any)=>{
+        if(payload.code === 200){
+          this.callIcons.splice(index,1)
+        }else {
+          errorAlert("Error code : " + payload.code)
+        }
+      }, (error : any)=>{
+        errorAlert(JSON.stringify(error))
+      })
     })
   }
   upload(files : FileList | null, action : (value : string) => any){
