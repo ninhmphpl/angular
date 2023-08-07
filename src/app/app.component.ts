@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FirebaseAthenService} from "./firebase-athen.service";
+import {FirebaseAuthenticationService} from "./firebase-authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,9 @@ import {FirebaseAthenService} from "./firebase-athen.service";
 })
 export class AppComponent implements OnInit{
   title = 'source';
-  constructor(public authentication : FirebaseAthenService) {
+  constructor(public authentication : FirebaseAuthenticationService) {
   }
 
   ngOnInit(): void {
-    this.authentication.config()
   }
 }

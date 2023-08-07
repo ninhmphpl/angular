@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
+import firebase from "firebase/compat";
+import Auth = firebase.auth.Auth;
 
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseAthenService {
+export class FirebaseAuthenticationService {
   app : any
+  provider : GoogleAuthProvider;
 
   constructor() {
-  }
-  config() {
-
     const firebaseConfig = {
       apiKey: "AIzaSyBk7gs8EjXEiVROAY326uHKdFC6eLLNE8A",
       authDomain: "fir-project-ac36e.firebaseapp.com",
@@ -22,19 +22,16 @@ export class FirebaseAthenService {
       measurementId: "G-LSFP62D2ZG"
     };
     this.app = initializeApp(firebaseConfig);
-  }
-  login(){
-
-    let provider = new GoogleAuthProvider();
-    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-    provider.setCustomParameters({
+    this.provider = new GoogleAuthProvider();
+    this.provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    this.provider.setCustomParameters({
       'login_hint': 'user@example.com'
     });
-
+  }
+  login(){
     let auth = getAuth(this.app)
     auth.languageCode = 'it';
-
-    signInWithPopup(auth, provider)
+    signInWithPopup(auth, this.provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -47,6 +44,11 @@ export class FirebaseAthenService {
         // The signed-in user info.
         const user = result.user;
         console.log(user)
+        auth.currentUser?.getIdToken(true).then((idToken : any)=>{
+          console.log(idToken)
+        }).catch((error : any)=>{
+          console.log(error)
+        })
         // IdP data available using getAdditionalUserInfo(result)
         // ...
       }).catch((error) => {
@@ -62,6 +64,15 @@ export class FirebaseAthenService {
       const credential = GoogleAuthProvider.credentialFromError(error);
       console.log(credential)
     });
+  }
+
+  getToken(){
+    let auth = getAuth(this.app)
+    auth.currentUser?.getIdToken(true).then((idToken : any)=>{
+      console.log(idToken)
+    }).catch((error : any)=>{
+      console.log(error)
+    })
   }
 
 
