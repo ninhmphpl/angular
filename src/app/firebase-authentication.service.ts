@@ -28,14 +28,14 @@ export class FirebaseAuthenticationService {
       'login_hint': 'user@example.com'
     });
   }
-  login(){
+  login(getToken? : (token? : string)=>any){
     let auth = getAuth(this.app)
     auth.languageCode = 'it';
     signInWithPopup(auth, this.provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        if(credential){
+        if(credential && getToken){
           const token = credential.accessToken;
           console.log(token)
         }else {
@@ -45,7 +45,8 @@ export class FirebaseAuthenticationService {
         const user = result.user;
         console.log(user)
         auth.currentUser?.getIdToken(true).then((idToken : any)=>{
-          console.log(idToken)
+          if(getToken) getToken(idToken)
+
         }).catch((error : any)=>{
           console.log(error)
         })
