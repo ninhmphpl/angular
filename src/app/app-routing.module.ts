@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginFirebaseComponent} from "./login-firebase/login-firebase.component";
 
 const routes: Routes = [
-  {path:"",component:LoginFirebaseComponent}
+  {path:"login",component:LoginFirebaseComponent}
 ];
 
 @NgModule({

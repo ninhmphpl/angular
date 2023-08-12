@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import {environment} from "../environment";
-import {HttpClient} from "@angular/common/http";
 import {getMessaging, getToken} from "firebase/messaging";
 import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import {initializeApp} from "firebase/app";
-const url = environment.url
+import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = environment.firebaseConfig
 @Component({
   selector: 'app-login-firebase',
@@ -14,20 +13,21 @@ const firebaseConfig = environment.firebaseConfig
 export class LoginFirebaseComponent {
   token : any;
   app : any
-  provider : GoogleAuthProvider;
-  constructor(private http : HttpClient) {
+  constructor() {
     this.app = initializeApp(firebaseConfig);
-    this.provider = new GoogleAuthProvider();
-    this.provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-    this.provider.setCustomParameters({
-      'login_hint': 'user@example.com'
-    });
+    getAnalytics(this.app);
+
   }
 
   login(){
+    let provider = new GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    provider.setCustomParameters({
+      'login_hint': 'user@example.com'
+    });
     let auth = getAuth(this.app)
     auth.languageCode = 'it';
-    signInWithPopup(auth, this.provider)
+    signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -62,9 +62,9 @@ export class LoginFirebaseComponent {
       console.log(credential)
     });
   }
-  getTokenMessage(getTokenResult? : (token : string)=> any){
+  getTokenMessage(){
     const messaging = getMessaging(this.app);
-    let key = "BKFOKfzqhmw-IGaYENr915z5spLUuyWmcBqFWU6hoWXh6DRyFnQ_QbE8FdZ4J1xTCUL00RsdqK7WjekCgDPjZQA"
+    let key = "BAAbkjHAudoD8nTk3yahIqB10_FCcMh2EpGTQjUX_R3Z2D1A_pBc5APWkGGihniSG9fym6kHaOMysssH_FrpYws"
     getToken(messaging, {vapidKey: key}).then((currentToken) => {
       if (currentToken) {
         console.log(currentToken)
