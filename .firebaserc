@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "prox-data": {
+      "hosting": {
+        "source": [
+          "prox-data"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "prox-data"
+  }
+}

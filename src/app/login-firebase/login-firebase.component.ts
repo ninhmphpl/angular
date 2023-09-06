@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import {environment} from "../environment";
+import {initializeApp} from "firebase/app";
 import {getMessaging, getToken} from "firebase/messaging";
 import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
-import {initializeApp} from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = environment.firebaseConfig
 @Component({
   selector: 'app-login-firebase',
   templateUrl: './login-firebase.component.html',
-  styleUrls: ['./login-firebase.component.scss']
+  styleUrls: ['./login-firebase.component.scss'],
 })
 export class LoginFirebaseComponent {
   token : any;
