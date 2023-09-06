@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {VideoComponent} from "./video/video.component";
 import {MusicComponent} from "./music/music.component";
+import {VideoTypeComponent} from "./video-type/video-type.component";
 
 const routes: Routes = [
   {path:"video",component:VideoComponent},
   {path:"music",component:MusicComponent},
+  {path:"video-type",component:VideoTypeComponent},
   {path:"",component:VideoComponent}
 ];
 @NgModule({

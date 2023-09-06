@@ -7,12 +7,14 @@ import { VideoComponent } from './video/video.component';
 import { MusicComponent } from './music/music.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import { VideoTypeComponent } from './video-type/video-type.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VideoComponent,
-    MusicComponent
+    MusicComponent,
+    VideoTypeComponent
   ],
   imports: [
     BrowserModule,

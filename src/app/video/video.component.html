@@ -45,6 +45,9 @@
         <td><video style="height: 70px; width: 100px;" [src]="video.url" controls></video></td>
         <td><input class="form-control" type="text" [(ngModel)]="video.name"></td>
         <td><input class="form-control" type="text" [(ngModel)]="video.description"></td>
+        <td><select [(ngModel)]="video.videoType.id">
+          <option *ngFor="let t of type ; let it = index" [value]="t.id">{{t.name}}</option>
+        </select></td>
         <td>
           <button class="btn btn-warning" (click)="save(i)">Save</button>
           <button class="btn btn-danger" (click)="delete(i)">Delete</button>

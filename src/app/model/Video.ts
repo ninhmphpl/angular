@@ -1,3 +1,5 @@
+import {Type} from "./Type";
+
 export interface Video{
   id : any;
   name : any;
@@ -5,4 +7,5 @@ export interface Video{
   description : any;
   thumb : any;
   thumbPercent : any;
+  videoType : Type
 }

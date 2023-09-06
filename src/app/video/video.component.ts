@@ -3,6 +3,8 @@ import {Upload} from "../model/Upload";
 import {HttpClient} from "@angular/common/http";
 import {environment, uploadFile} from "../Environment";
 import {Video} from "../model/Video";
+import {Type} from "../model/Type";
+import {TypeService} from "../type.service";
 
 const urlPatrol = environment.hostPatrol
 const urlUpload = environment.hostUpload
@@ -15,20 +17,23 @@ const urlFolderUpload = environment.urlFolder
 export class VideoComponent implements OnInit{
   uploadList : Upload[] = []
   videos: Video[] = []
+  type : Type[] = []
   musicCreate : Video = {
     id : null,
     name : null,
     url : null,
     description : null,
     thumb : null,
-    thumbPercent : null
+    thumbPercent : null,
+    videoType : this.type[0],
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private typeService : TypeService) {
   }
 
   ngOnInit(): void {
     this.get()
+    this.typeService.getType(data => this.type=data)
   }
 
   get() {
