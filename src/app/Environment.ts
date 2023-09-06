@@ -1,6 +1,6 @@
 export const environment = {
   hostUpload : "ws://data3.antliaespacelab.com/upload",
-  hostPatrol : "http://patrolapi.antliaespacelab.com",
+  hostPatrol : "http://208.73.203.106:2345",
   urlFolder : "http://data3.antliaespacelab.com/data/v3?d=/paw"
 }
 export function uploadFile(url: string, urlFolder : string, file: File, getUrlDownload?: (urlDownload: string) => any, getPercent?: (percent: number) => any) {
