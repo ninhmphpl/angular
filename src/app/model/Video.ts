@@ -7,5 +7,5 @@ export interface Video{
   description : any;
   thumb : any;
   thumbPercent : any;
-  videoType : Type
+  videoType : any;
 }

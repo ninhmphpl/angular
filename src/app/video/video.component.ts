@@ -18,14 +18,14 @@ export class VideoComponent implements OnInit{
   uploadList : Upload[] = []
   videos: Video[] = []
   type : Type[] = []
-  musicCreate : Video = {
+  videoCreate : Video = {
     id : null,
     name : null,
     url : null,
     description : null,
     thumb : null,
     thumbPercent : null,
-    videoType : this.type[0],
+    videoType : null,
   }
 
   constructor(private http: HttpClient, private typeService : TypeService) {
@@ -33,7 +33,10 @@ export class VideoComponent implements OnInit{
 
   ngOnInit(): void {
     this.get()
-    this.typeService.getType(data => this.type=data)
+    this.typeService.getType(data =>{
+      this.type=data
+      this.videoCreate.videoType = this.type[0]
+    } )
   }
 
   get() {
@@ -50,7 +53,7 @@ export class VideoComponent implements OnInit{
 
   save(index : number | null) {
     console.log('before: ' + index)
-    let body = (index != null) ? this.videos[index] : this.musicCreate
+    let body = (index != null) ? this.videos[index] : this.videoCreate
     console.log("Body: ")
     console.log(body)
     this.http.post(urlPatrol + "/video", body).subscribe((payload: any) => {
@@ -92,8 +95,8 @@ export class VideoComponent implements OnInit{
         this.uploadList.push({name : files[i].name, percent : 0, url : ""})
         uploadFile(urlUpload, urlFolderUpload, files[i], url =>{
           this.uploadList[i].url = url
-          this.musicCreate.url = url
-          this.musicCreate.name = files[i].name
+          this.videoCreate.url = url
+          this.videoCreate.name = files[i].name
           this.save(null)
           if(--process === 0){
             this.uploadList = []
