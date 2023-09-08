@@ -1,7 +1,18 @@
+import {HttpHeaders} from "@angular/common/http";
+
 export const environment = {
   hostUpload : "ws://data3.antliaespacelab.com/upload",
-  hostPatrol : "http://208.73.203.106:2345",
-  urlFolder : "http://data3.antliaespacelab.com/data/v3?d=/paw"
+  hostPatrol : "http://localhost:2345",
+  urlFolder : "http://data3.antliaespacelab.com/data/v3?d=/paw",
+  keySaveToken : "Paw-Patrol-X-Token",
+}
+export function getHeader(){
+  return {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem(environment.keySaveToken)??""
+    })
+  };
 }
 export function uploadFile(url: string, urlFolder : string, file: File, getUrlDownload?: (urlDownload: string) => any, getPercent?: (percent: number) => any) {
   const chunkSize = 1024 * 7; // Size of each piece of data (1 MB)

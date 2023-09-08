@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Upload} from "../model/Upload";
-import {HttpClient} from "@angular/common/http";
-import {environment, uploadFile} from "../Environment";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {environment, uploadFile, getHeader} from "../Environment";
 import {Video} from "../model/Video";
 import {Type} from "../model/Type";
 import {TypeService} from "../type.service";
@@ -18,6 +18,7 @@ export class VideoComponent implements OnInit{
   uploadList : Upload[] = []
   videos: Video[] = []
   type : Type[] = []
+
 
   constructor(private http: HttpClient, private typeService : TypeService) {
   }
@@ -37,7 +38,7 @@ export class VideoComponent implements OnInit{
         alert(payload.data)
       }
     }, (error: any) => {
-      alert(JSON.stringify(error))
+      alert(JSON.stringify(error.error.detail))
     })
   }
 
@@ -49,7 +50,7 @@ export class VideoComponent implements OnInit{
       let upload = this.uploadList.pop()
       body = {name : upload?.name, url : upload?.url}
     }
-    this.http.post(urlPatrol + "/video", body).subscribe((payload: any) => {
+    this.http.post(urlPatrol + "/video", body, getHeader()).subscribe((payload: any) => {
       if (payload.code == 200) {
         if(index != null){
           this.videos[index] = payload.data
@@ -61,12 +62,13 @@ export class VideoComponent implements OnInit{
       }
       alert("OK")
     }, (error: any) => {
-      alert(JSON.stringify(error))
+      console.log(error)
+      alert(JSON.stringify(error.error.detail))
     })
   }
 
   delete(index: number) {
-    this.http.delete(urlPatrol + "/video/" + this.videos[index].id).subscribe((payload: any) => {
+    this.http.delete(urlPatrol + "/video/" + this.videos[index].id, getHeader()).subscribe((payload: any) => {
       if (payload.code == 200) {
         this.videos.splice(index, 1)
         alert(payload.data)
@@ -74,7 +76,7 @@ export class VideoComponent implements OnInit{
         alert(payload.data)
       }
     }, (error: any) => {
-      alert(JSON.stringify(error))
+      alert(JSON.stringify(error.error.detail))
     })
   }
 
