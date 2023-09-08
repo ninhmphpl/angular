@@ -8,4 +8,6 @@ export interface Video{
   thumb : any;
   thumbPercent : any;
   videoType : any;
+  show : any;
+  top : any;
 }

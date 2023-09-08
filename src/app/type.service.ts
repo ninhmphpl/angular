@@ -9,7 +9,7 @@ const urlPatrol = environment.hostPatrol
 export class TypeService {
   constructor(private http : HttpClient) { }
   public getType(listType : (data : Type[])=> any){
-    let url = urlPatrol + "/video/type"
+    let url = urlPatrol + "/video/type?edit=true"
     this.http.get(url).subscribe((payload : any)=>{
       listType(payload.data)
     }, (error : any)=>{

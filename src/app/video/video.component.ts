@@ -30,7 +30,7 @@ export class VideoComponent implements OnInit{
   }
 
   get() {
-    this.http.get(urlPatrol + "/video").subscribe((payload: any) => {
+    this.http.get(urlPatrol + "/video?edit=true").subscribe((payload: any) => {
       if (payload.code == 200) {
         this.videos = payload.data
       } else {

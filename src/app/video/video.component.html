@@ -24,6 +24,8 @@
       <thead>
       <tr>
         <th>Id</th>
+        <th>Top</th>
+        <th>Show</th>
         <th>Thumb</th>
         <th>Audio</th>
         <th>Name</th>
@@ -34,6 +36,8 @@
       <tbody>
       <tr *ngFor="let video of videos ; let i = index">
         <td>{{i}}</td>
+        <td><input type="number" style="width: 50px" [(ngModel)]="video.top" (change)="save(i)"></td>
+        <td><input type="checkbox" [(ngModel)]="video.show" (change)="save(i)"></td>
         <td>
           <input type="file" #thumb hidden="hidden" (change)="upThumb(i, thumb.files)">
           <img [src]="video.thumb" style="width: 30px; height: 70px" class="img-thumbnail" alt="">
@@ -43,9 +47,9 @@
           </button>
         </td>
         <td><video style="height: 70px; width: 100px;" [src]="video.url" controls></video></td>
-        <td><input class="form-control" type="text" [(ngModel)]="video.name"></td>
-        <td><input class="form-control" type="text" [(ngModel)]="video.description"></td>
-        <td><select [(ngModel)]="video.videoType.id">
+        <td><input class="form-control" type="text" [(ngModel)]="video.name" (change)="save(i)"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="video.description" (change)="save(i)"></td>
+        <td><select [(ngModel)]="video.videoType.id" (change)="save(i)">
           <option *ngFor="let t of type ; let it = index" [value]="t.id">{{t.name}}</option>
         </select></td>
         <td>

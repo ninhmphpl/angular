@@ -24,6 +24,8 @@
       <thead>
       <tr>
         <th>Id</th>
+        <th>Top</th>
+        <th>Show</th>
         <th>Thumb</th>
         <th>Audio</th>
         <th>Name</th>
@@ -34,6 +36,8 @@
       <tbody>
       <tr *ngFor="let music of musics ; let i = index">
         <td>{{i}}</td>
+        <td><input type="number" style="width: 50px" [(ngModel)]="music.top" (change)="save(i)"></td>
+        <td><input type="checkbox" [(ngModel)]="music.show" (change)="save(i)"></td>
         <td>
           <input type="file" #thumb hidden="hidden" (change)="upThumb(i, thumb.files)">
           <img [src]="music.thumb" style="width: 30px; height: 70px" class="img-thumbnail" alt="">
@@ -43,8 +47,8 @@
           </button>
         </td>
         <td><audio [src]="music.url" controls></audio></td>
-        <td><input class="form-control" type="text" [(ngModel)]="music.name"></td>
-        <td><input class="form-control" type="text" [(ngModel)]="music.description"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="music.name" (change)="save(i)"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="music.description" (change)="save(i)"></td>
         <td>
           <button class="btn btn-warning" (click)="save(i)">Save</button>
           <button class="btn btn-danger" (click)="delete(i)">Delete</button>

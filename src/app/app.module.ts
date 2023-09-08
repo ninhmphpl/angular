@@ -8,13 +8,15 @@ import { MusicComponent } from './music/music.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { VideoTypeComponent } from './video-type/video-type.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     VideoComponent,
     MusicComponent,
-    VideoTypeComponent
+    VideoTypeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

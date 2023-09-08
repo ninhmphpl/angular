@@ -5,4 +5,6 @@ export interface Music{
   description : any;
   thumb : any;
   thumbPercent : any;
+  show : any;
+  top : any;
 }

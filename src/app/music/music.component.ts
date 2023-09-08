@@ -25,7 +25,7 @@ export class MusicComponent implements OnInit {
   }
 
   get() {
-    this.http.get(urlPatrol + "/music").subscribe((payload: any) => {
+    this.http.get(urlPatrol + "/music?edit=true").subscribe((payload: any) => {
       if (payload.code == 200) {
         this.musics = payload.data
       } else {

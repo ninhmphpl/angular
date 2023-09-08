@@ -5,6 +5,8 @@
 <table class="table-striped table">
   <thead>
   <tr>
+    <th>Top</th>
+    <th>Show</th>
     <th>Name</th>
     <th>URL</th>
     <th>Value</th>
@@ -14,9 +16,11 @@
   </thead>
   <tbody>
   <tr *ngFor="let type of data; let i = index">
-    <td><input type="text" [(ngModel)]="type.name"></td>
-    <td><input type="text" [(ngModel)]="type.url"></td>
-    <td><input type="number" [(ngModel)]="type.value"></td>
+    <td><input type="number" style="width: 50px" [(ngModel)]="type.top" (change)="save(i)"></td>
+    <td><input type="checkbox" [(ngModel)]="type.show" (change)="save(i)"></td>
+    <td><input type="text" [(ngModel)]="type.name" (change)="save(i)"></td>
+    <td><input type="text" [(ngModel)]="type.url" (change)="save(i)"></td>
+    <td><input type="number" [(ngModel)]="type.value" (change)="save(i)"></td>
     <td>
       <select [(ngModel)]="type.premium">
         <option value=true>True</option>

@@ -4,4 +4,6 @@ export interface Type{
   value : any;
   url : any;
   "premium" : boolean;
+  show : any;
+  top : any;
 }
