@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Upload} from "../model/Upload";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {environment, uploadFile, getHeader} from "../Environment";
+import {environment, getHeader, uploadFile} from "../Environment";
 import {Video} from "../model/Video";
 import {Type} from "../model/Type";
 import {TypeService} from "../type.service";
@@ -9,25 +9,25 @@ import {TypeService} from "../type.service";
 const urlPatrol = environment.hostPatrol
 const urlUpload = environment.hostUpload
 const urlFolderUpload = environment.urlFolder
+
 @Component({
   selector: 'app-video',
   templateUrl: './video.component.html',
   styleUrls: ['./video.component.scss']
 })
-export class VideoComponent implements OnInit{
-  uploadList : Upload[] = []
+export class VideoComponent implements OnInit {
+  uploadList: Upload[] = []
   videos: Video[] = []
-  type : Type[] = []
+  type: Type[] = []
 
-
-  constructor(private http: HttpClient, private typeService : TypeService) {
+  constructor(private http: HttpClient, private typeService: TypeService) {
   }
 
   ngOnInit(): void {
     this.get()
-    this.typeService.getType(data =>{
-      this.type=data
-    } )
+    this.typeService.getType(data => {
+      this.type = data
+    })
   }
 
   get() {
@@ -42,19 +42,19 @@ export class VideoComponent implements OnInit{
     })
   }
 
-  save(index : number | null) {
-    let body : any;
-    if(index != null){
+  save(index: number | null) {
+    let body: any;
+    if (index != null) {
       body = this.videos[index];
-    }else {
+    } else {
       let upload = this.uploadList.pop()
-      body = {name : upload?.name, url : upload?.url}
+      body = {name: upload?.name, url: upload?.url}
     }
     this.http.post(urlPatrol + "/video", body, getHeader()).subscribe((payload: any) => {
       if (payload.code == 200) {
-        if(index != null){
+        if (index != null) {
           this.videos[index] = payload.data
-        }else {
+        } else {
           this.videos.push(payload.data)
         }
       } else {
@@ -85,12 +85,12 @@ export class VideoComponent implements OnInit{
     let process = 0;
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
-        this.uploadList.push({name : files[i].name, percent : 0, url : ""})
-        uploadFile(urlUpload, urlFolderUpload, files[i], url =>{
+        this.uploadList.push({name: files[i].name, percent: 0, url: ""})
+        uploadFile(urlUpload, urlFolderUpload, files[i], url => {
           this.uploadList[i].url = url
           process++
-          if(files.length === process){
-            while(this.uploadList.length > 0){
+          if (files.length === process) {
+            while (this.uploadList.length > 0) {
               this.save(null)
             }
           }
@@ -100,13 +100,14 @@ export class VideoComponent implements OnInit{
       }
     }
   }
-  upThumb(index : number, file : FileList | null){
-    if(file && file.length > 0){
+
+  upThumb(index: number, file: FileList | null) {
+    if (file && file.length > 0) {
       uploadFile(urlUpload, urlFolderUpload, file[0], url => {
         this.videos[index].thumb = url
         this.videos[index].thumbPercent = null
         this.save(index)
-      }, percent =>{
+      }, percent => {
         this.videos[index].thumbPercent = percent
       })
     }

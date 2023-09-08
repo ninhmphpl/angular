@@ -1,18 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Music} from "../model/Music";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {environment, uploadFile} from "../Environment";
+import {environment, getHeader, uploadFile} from "../Environment";
 import {Upload} from "../model/Upload";
 
 const urlPatrol = environment.hostPatrol
 const urlUpload = environment.hostUpload
 const urlFolderUpload = environment.urlFolder
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': localStorage.getItem(environment.keySaveToken)??""
-  })
-};
 @Component({
   selector: 'app-music',
   templateUrl: './music.component.html',
@@ -49,7 +43,7 @@ export class MusicComponent implements OnInit {
       let upload = this.uploadList.pop()
       body = {name : upload?.name, url : upload?.url}
     }
-    this.http.post(urlPatrol + "/music", body,httpOptions).subscribe((payload: any) => {
+    this.http.post(urlPatrol + "/music", body,getHeader()).subscribe((payload: any) => {
       if (payload.code == 200) {
         if (index != null) {
           this.musics[index] = payload.data
@@ -66,7 +60,7 @@ export class MusicComponent implements OnInit {
   }
 
   delete(index: number) {
-    this.http.delete(urlPatrol + "/music/" + this.musics[index].id,httpOptions).subscribe((payload: any) => {
+    this.http.delete(urlPatrol + "/music/" + this.musics[index].id,getHeader()).subscribe((payload: any) => {
       if (payload.code == 200) {
         this.musics.splice(index, 1)
         alert(payload.data)

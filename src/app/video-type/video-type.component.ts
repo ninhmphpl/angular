@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TypeService} from "../type.service";
 import {Type} from "../model/Type";
+import {HttpHeaders} from "@angular/common/http";
+import {environment} from "../Environment";
 
 @Component({
   selector: 'app-video-type',
@@ -9,7 +11,6 @@ import {Type} from "../model/Type";
 })
 export class VideoTypeComponent implements OnInit {
   data: Type[] = []
-
   constructor(public typeService: TypeService) {
   }
   ngOnInit(): void {

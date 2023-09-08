@@ -2,7 +2,7 @@ import {HttpHeaders} from "@angular/common/http";
 
 export const environment = {
   hostUpload : "ws://data3.antliaespacelab.com/upload",
-  hostPatrol : "http://localhost:2345",
+  hostPatrol : "https://pawapi.nowtechai.com",
   urlFolder : "http://data3.antliaespacelab.com/data/v3?d=/paw",
   keySaveToken : "Paw-Patrol-X-Token",
 }
