@@ -14,16 +14,8 @@ const urlFolderUpload = environment.urlFolder
   styleUrls: ['./music.component.scss']
 })
 export class MusicComponent implements OnInit {
-  uploadList : Upload[] = []
+  uploadList: Upload[] = []
   musics: Music[] = []
-  musicCreate : Music = {
-    id : null,
-    name : null,
-    url : null,
-    description : null,
-    thumb : null,
-    thumbPercent : null
-  }
 
   constructor(private http: HttpClient) {
   }
@@ -44,20 +36,21 @@ export class MusicComponent implements OnInit {
     })
   }
 
-  save(index : number | null) {
-    console.log('before: ' + index)
-    let body = (index != null) ? this.musics[index] : this.musicCreate
-    console.log("Body: ")
-    console.log(body)
+  save(index: number | null) {
+    let body
+    if(index != null){
+      body = this.musics[index]
+    }else {
+      let upload = this.uploadList.pop()
+      body = {name : upload?.name, url : upload?.url}
+    }
     this.http.post(urlPatrol + "/music", body).subscribe((payload: any) => {
-      console.log('before: ' + index)
       if (payload.code == 200) {
-        if(index != null){
+        if (index != null) {
           this.musics[index] = payload.data
-        }else {
+        } else {
           this.musics.push(payload.data)
         }
-        console.log(this.musics)
       } else {
         alert(payload.data)
       }
@@ -81,18 +74,18 @@ export class MusicComponent implements OnInit {
   }
 
   upload(files: FileList | null) {
+    this.uploadList = []
     if (files && files.length > 0) {
       let process = 0;
       for (let i = 0; i < files.length; i++) {
-        process++
-        this.uploadList.push({name : files[i].name, percent : 0, url : ""})
-        uploadFile(urlUpload, urlFolderUpload, files[i], url =>{
+        this.uploadList.push({name: files[i].name, percent: 0, url: ""})
+        uploadFile(urlUpload, urlFolderUpload, files[i], url => {
           this.uploadList[i].url = url
-          this.musicCreate.url = url
-          this.musicCreate.name = files[i].name
-          this.save(null)
-          if(--process === 0){
-            this.uploadList = []
+          process++
+          if (process === files.length) {
+            while (this.uploadList.length > 0) {
+              this.save(null)
+            }
           }
         }, percent => {
           this.uploadList[i].percent = percent
@@ -100,13 +93,14 @@ export class MusicComponent implements OnInit {
       }
     }
   }
-  upThumb(index : number, file : FileList | null){
-    if(file && file.length > 0){
+
+  upThumb(index: number, file: FileList | null) {
+    if (file && file.length > 0) {
       uploadFile(urlUpload, urlFolderUpload, file[0], url => {
         this.musics[index].thumb = url
         this.musics[index].thumbPercent = null
         this.save(index)
-      }, percent =>{
+      }, percent => {
         this.musics[index].thumbPercent = percent
       })
     }

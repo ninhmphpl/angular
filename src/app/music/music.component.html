@@ -1,6 +1,6 @@
 <div>
   <div class="input-group-text">
-    <input #files type="file" class="form-control" multiple accept="video/*">
+    <input #files type="file" class="form-control" multiple accept="audio/*">
     <button class="btn btn-secondary" (click)="upload(files.files)">Upload</button>
   </div>
   <div *ngIf="uploadList.length > 0">

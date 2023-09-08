@@ -18,15 +18,6 @@ export class VideoComponent implements OnInit{
   uploadList : Upload[] = []
   videos: Video[] = []
   type : Type[] = []
-  videoCreate : Video = {
-    id : null,
-    name : null,
-    url : null,
-    description : null,
-    thumb : null,
-    thumbPercent : null,
-    videoType : null,
-  }
 
   constructor(private http: HttpClient, private typeService : TypeService) {
   }
@@ -35,7 +26,6 @@ export class VideoComponent implements OnInit{
     this.get()
     this.typeService.getType(data =>{
       this.type=data
-      this.videoCreate.videoType = this.type[0]
     } )
   }
 
@@ -52,19 +42,20 @@ export class VideoComponent implements OnInit{
   }
 
   save(index : number | null) {
-    console.log('before: ' + index)
-    let body = (index != null) ? this.videos[index] : this.videoCreate
-    console.log("Body: ")
-    console.log(body)
+    let body : any;
+    if(index != null){
+      body = this.videos[index];
+    }else {
+      let upload = this.uploadList.pop()
+      body = {name : upload?.name, url : upload?.url}
+    }
     this.http.post(urlPatrol + "/video", body).subscribe((payload: any) => {
-      console.log('before: ' + index)
       if (payload.code == 200) {
         if(index != null){
           this.videos[index] = payload.data
         }else {
           this.videos.push(payload.data)
         }
-        console.log(this.videos)
       } else {
         alert(payload.data)
       }
@@ -88,18 +79,18 @@ export class VideoComponent implements OnInit{
   }
 
   upload(files: FileList | null) {
+    this.uploadList = []
+    let process = 0;
     if (files && files.length > 0) {
-      let process = 0;
       for (let i = 0; i < files.length; i++) {
-        process++
         this.uploadList.push({name : files[i].name, percent : 0, url : ""})
         uploadFile(urlUpload, urlFolderUpload, files[i], url =>{
           this.uploadList[i].url = url
-          this.videoCreate.url = url
-          this.videoCreate.name = files[i].name
-          this.save(null)
-          if(--process === 0){
-            this.uploadList = []
+          process++
+          if(files.length === process){
+            while(this.uploadList.length > 0){
+              this.save(null)
+            }
           }
         }, percent => {
           this.uploadList[i].percent = percent

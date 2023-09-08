@@ -19,7 +19,7 @@ export class VideoTypeComponent implements OnInit {
   }
 
   save(index : number){
-    let type : Type = (index != -1)? this.data[index] : {name : "New Name", premium : false, id : null, value : 0, url : null}
+    let type : any = (index != -1)? this.data[index] : {}
     console.log(type)
     this.typeService.save(type, data =>{
       if(index != -1) this.data[index] = data;
