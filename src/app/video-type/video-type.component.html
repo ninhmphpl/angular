@@ -22,10 +22,8 @@
     <td><input type="text" [(ngModel)]="type.url" (change)="save(i)"></td>
     <td><input type="number" [(ngModel)]="type.value" (change)="save(i)"></td>
     <td>
-      <select [(ngModel)]="type.premium" (change)="save(i)">
-        <option value="true">True</option>
-        <option value="false">False</option>
-      </select>
+      <div>V16<input type="checkbox" [(ngModel)]="type.premiumV16" (change)="save(i)"></div>
+      <div>V17<input type="checkbox" [(ngModel)]="type.premiumV17" (change)="save(i)"></div>
     </td>
     <td><button (click)="save(i)" class="m-2 btn btn-warning">Save</button></td>
     <td><button (click)="delete(i)" class="m-2 btn btn-danger">Delete</button></td>
