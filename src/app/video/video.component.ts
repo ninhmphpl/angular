@@ -5,6 +5,7 @@ import {environment, getHeader, uploadFile} from "../Environment";
 import {Video} from "../model/Video";
 import {Type} from "../model/Type";
 import {TypeService} from "../type.service";
+import {MusicService} from "../music.service";
 
 const urlPatrol = environment.hostPatrol
 const urlUpload = environment.hostUpload
@@ -20,11 +21,12 @@ export class VideoComponent implements OnInit {
   videos: Video[] = []
   type: Type[] = []
 
-  constructor(private http: HttpClient, private typeService: TypeService) {
+  constructor(private http: HttpClient, private typeService: TypeService, public musicService : MusicService) {
   }
 
   ngOnInit(): void {
     this.get()
+    this.musicService.get()
     this.typeService.getType(data => {
       this.type = data
     })
@@ -34,6 +36,9 @@ export class VideoComponent implements OnInit {
     this.http.get(urlPatrol + "/video?edit=true").subscribe((payload: any) => {
       if (payload.code == 200) {
         this.videos = payload.data
+        for (const video of this.videos) {
+          if(video.music == null) video.music = {}
+        }
       } else {
         alert(payload.data)
       }

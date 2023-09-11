@@ -10,4 +10,5 @@ export interface Video{
   videoType : any;
   show : any;
   top : any;
+  music : any;
 }

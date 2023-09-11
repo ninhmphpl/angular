@@ -30,6 +30,8 @@
         <th>Audio</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Type Video</th>
+        <th>Music</th>
         <th>Action</th>
       </tr>
       </thead>
@@ -51,6 +53,9 @@
         <td><input class="form-control" type="text" [(ngModel)]="video.description" (change)="save(i)"></td>
         <td><select [(ngModel)]="video.videoType.id" (change)="save(i)">
           <option *ngFor="let t of type ; let it = index" [value]="t.id">{{t.name}}</option>
+        </select></td>
+        <td><select [(ngModel)]="video.music.id" (change)="save(i)" style="width: 100px">
+          <option *ngFor="let m of musicService.musics ; let it = index" [value]="m.id">{{m.name}}</option>
         </select></td>
         <td>
           <button class="btn btn-warning" (click)="save(i)">Save</button>
