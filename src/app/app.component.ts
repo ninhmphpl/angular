@@ -8,7 +8,7 @@ import {Home, Painting} from "./model";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  domain = "http://localhost:8080";
+  domain = "http://208.73.202.216";
   home! : Home;
   constructor(private http : HttpClient) {
     this.http.get(this.domain + "/pain/domain").subscribe((payload: any)=>{
