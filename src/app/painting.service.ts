@@ -48,4 +48,9 @@ export class PaintingService {
     })
   }
 
+  savePain(pain : Painting){
+    this.http.po
+
+  }
+
 }
