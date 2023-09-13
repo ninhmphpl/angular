@@ -1,0 +1,17 @@
+<table *ngIf="painting.styles" class="table-striped table">
+  <thead>
+  <tr>
+    <th>Image</th>
+    <th>Name & Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let style of painting.styles">
+    <td><app-img-upload [imgWith]="'100px'" [imgHeight]="'150px'" [img]="style.url" (dataEvent)="style.url = $event"></app-img-upload></td>
+    <td>
+      <input type="text" class="w-100" [(ngModel)]="style.name" placeholder="Name">
+      <textarea class="w-100" [(ngModel)]="style.description" placeholder="Description"></textarea>
+    </td>
+  </tr>
+  </tbody>
+</table>

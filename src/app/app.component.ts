@@ -1,64 +1,64 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Home, Painting} from "./model";
+// import {Home, Painting} from "./model";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  domain = "http://208.73.202.216";
-  home! : Home;
-  constructor(private http : HttpClient) {
-    this.http.get(this.domain + "/pain/domain").subscribe((payload: any)=>{
-      this.domain = payload.data.value
-    }, (error : any)=>{
-      alert(JSON.stringify(error))
-    })
-  }
-  addBanner(){
-    this.home.banner.push(new Painting("BANNER"))
-  }
-  addFeature(){
-    this.home.features.push(new Painting("FEATURES"))
-  }
-  addAiRemover(){
-    this.home.aiRemover.push(new Painting("AI_REMOVER"))
-  }
-  ngOnInit(): void {
-    this.get()
-  }
-  get(){
-    this.http.get(this.domain + "/pain/home").subscribe((payload : any)=>{
-      this.home = payload.data
-    }, (error : any)=>{
-      alert(JSON.stringify(error))
-    })
-  }
-  save(){
-    this.http.post(this.domain + "/pain/home", this.home).subscribe((payload : any)=>{
-      this.home = payload.data
-      alert("OK")
-    }, (error : any)=>{
-      alert(JSON.stringify(error))
-    })
-  }
-  setCoverImg(file : any, pain : any){
-    this.uploadFile(file[0], this.domain.replace("http://", "ws://") + "/upload", "", (urlDownload : any)=>{
-      pain.coverImgUrl = urlDownload
-    })
-  }
-  setAfterImg(file : any, pain : any){
-    this.uploadFile(file[0], this.domain.replace("http://", "ws://") + "/upload", "", (urlDownload : any)=>{
-      pain.afterImgUrl = urlDownload
-    })
-  }
-  setBeforeImg(file : any, pain : any){
-    this.uploadFile(file[0], this.domain.replace("http://", "ws://") + "/upload", "", (urlDownload : any)=>{
-      pain.beforeImgUrl = urlDownload
-    })
-  }
+export class AppComponent{
+  // domain = "http://208.73.202.216";
+  // home! : Home;
+  // constructor(private http : HttpClient) {
+  //   this.http.get(this.domain + "/pain/domain").subscribe((payload: any)=>{
+  //     this.domain = payload.data.value
+  //   }, (error : any)=>{
+  //     alert(JSON.stringify(error))
+  //   })
+  // }
+  // addBanner(){
+  //   this.home.banner.push(new Painting("BANNER"))
+  // }
+  // addFeature(){
+  //   this.home.features.push(new Painting("FEATURES"))
+  // }
+  // addAiRemover(){
+  //   this.home.aiRemover.push(new Painting("AI_REMOVER"))
+  // }
+  // ngOnInit(): void {
+  //   this.get()
+  // }
+  // get(){
+  //   this.http.get(this.domain + "/pain/home").subscribe((payload : any)=>{
+  //     this.home = payload.data
+  //   }, (error : any)=>{
+  //     alert(JSON.stringify(error))
+  //   })
+  // }
+  // save(){
+  //   this.http.post(this.domain + "/pain/home", this.home).subscribe((payload : any)=>{
+  //     this.home = payload.data
+  //     alert("OK")
+  //   }, (error : any)=>{
+  //     alert(JSON.stringify(error))
+  //   })
+  // }
+  // setCoverImg(file : any, pain : any){
+  //   this.uploadFile(file[0], this.domain.replace("http://", "ws://") + "/upload", "", (urlDownload : any)=>{
+  //     pain.coverImgUrl = urlDownload
+  //   })
+  // }
+  // setAfterImg(file : any, pain : any){
+  //   this.uploadFile(file[0], this.domain.replace("http://", "ws://") + "/upload", "", (urlDownload : any)=>{
+  //     pain.afterImgUrl = urlDownload
+  //   })
+  // }
+  // setBeforeImg(file : any, pain : any){
+  //   this.uploadFile(file[0], this.domain.replace("http://", "ws://") + "/upload", "", (urlDownload : any)=>{
+  //     pain.beforeImgUrl = urlDownload
+  //   })
+  // }
 
   // afterImgUrl: any
   // beforeImgUrl: any

@@ -1,259 +1,261 @@
-<div>
-  <button class="btn btn-outline-primary" (click)="save()">Save All</button>
-</div>
+<!--<app-style></app-style>-->
+<app-banner></app-banner>
+<!--<div>-->
+<!--  <button class="btn btn-outline-primary" (click)="save()">Save All</button>-->
+<!--</div>-->
 
 
-<div class="container">
-  <table *ngIf="home" class="table table-striped">
-    <thead>
-    <tr>
-      <th>Name</th>
-      <th>Cover</th>
-      <th>Before</th>
-      <th>After</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Style</th>
-      <th>Key</th>
-      <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="bg-light">
-      <td colspan="8">Banner</td>
-      <td><button class="btn btn-primary" (click)="addBanner()">Add</button></td>
-    </tr>
-    <tr *ngFor="let banner of home.banner, let i = index">
-      <td><input style="width:100px" type="text"  [(ngModel)]="banner.name"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + banner.coverImgUrl" alt="" (click)="b1.click()"><input #b1 hidden type="file" (change)="setCoverImg(b1.files, banner)"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + banner.beforeImgUrl" alt="" (click)="b2.click()"><input #b2 hidden type="file" (change)="setBeforeImg(b2.files, banner)"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + banner.afterImgUrl" alt="" (click)="b3.click()"><input #b3  hidden type="file" (change)="setAfterImg(b3.files, banner)"></td>
-      <td>{{banner.type}}</td>
-      <td><textarea [(ngModel)]="banner.description"></textarea></td>
-      <td>
-        <table>
-          <tr>
-            <td><button class="btn btn-primary" (click)="banner.styles.push({name : 'new Style', description : 'new Description'})">
-              Add Style</button></td>
-          </tr>
-          <tr *ngFor="let style of banner.styles, let si = index">
-            <div class="input-group-text">
-              <input class="form-control" type="text" [(ngModel)]="style.name">
-              <input class="form-control" type="text" [(ngModel)]="style.description">
-              <button class="btn btn-danger" (click)="banner.styles.splice(si,1)">Delete</button>
-            </div>
-          </tr>
-        </table>
-      </td>
-      <td>
-        <div class="row row-cols-2">
-          <div class="col input-group" *ngFor="let key of banner.keyWord, let ki = index" >
-            <span [innerText]="key" class="input-group-text"></span>
-            <button class="btn btn-outline-danger btn-sm" (click)="banner.keyWord.splice(ki,1)" >X</button>
-          </div>
-        </div>
-        <div>
-          <div class="input-group">
-            <input class="form-control" type="text" #keyBanner>
-            <button class="btn btn-primary" (click)="banner.keyWord.push(keyBanner.value)">+</button>
-          </div>
-        </div>
-      </td>
-      <td><button class="btn btn-outline-danger" (click)="home.banner.splice(i,1)">Delete</button></td>
-    </tr>
-    <tr class="bg-light">
-      <td colspan="9">Artis</td>
-    </tr>
-    <tr>
+<!--<div class="container">-->
+<!--  <table *ngIf="home" class="table table-striped">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>Name</th>-->
+<!--      <th>Cover</th>-->
+<!--      <th>Before</th>-->
+<!--      <th>After</th>-->
+<!--      <th>Type</th>-->
+<!--      <th>Description</th>-->
+<!--      <th>Style</th>-->
+<!--      <th>Key</th>-->
+<!--      <th>Delete</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr class="bg-light">-->
+<!--      <td colspan="8">Banner</td>-->
+<!--      <td><button class="btn btn-primary" (click)="addBanner()">Add</button></td>-->
+<!--    </tr>-->
+<!--    <tr *ngFor="let banner of home.banner, let i = index">-->
+<!--      <td><input style="width:100px" type="text"  [(ngModel)]="banner.name"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + banner.coverImgUrl" alt="" (click)="b1.click()"><input #b1 hidden type="file" (change)="setCoverImg(b1.files, banner)"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + banner.beforeImgUrl" alt="" (click)="b2.click()"><input #b2 hidden type="file" (change)="setBeforeImg(b2.files, banner)"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + banner.afterImgUrl" alt="" (click)="b3.click()"><input #b3  hidden type="file" (change)="setAfterImg(b3.files, banner)"></td>-->
+<!--      <td>{{banner.type}}</td>-->
+<!--      <td><textarea [(ngModel)]="banner.description"></textarea></td>-->
+<!--      <td>-->
+<!--        <table>-->
+<!--          <tr>-->
+<!--            <td><button class="btn btn-primary" (click)="banner.styles.push({name : 'new Style', description : 'new Description'})">-->
+<!--              Add Style</button></td>-->
+<!--          </tr>-->
+<!--          <tr *ngFor="let style of banner.styles, let si = index">-->
+<!--            <div class="input-group-text">-->
+<!--              <input class="form-control" type="text" [(ngModel)]="style.name">-->
+<!--              <input class="form-control" type="text" [(ngModel)]="style.description">-->
+<!--              <button class="btn btn-danger" (click)="banner.styles.splice(si,1)">Delete</button>-->
+<!--            </div>-->
+<!--          </tr>-->
+<!--        </table>-->
+<!--      </td>-->
+<!--      <td>-->
+<!--        <div class="row row-cols-2">-->
+<!--          <div class="col input-group" *ngFor="let key of banner.keyWord, let ki = index" >-->
+<!--            <span [innerText]="key" class="input-group-text"></span>-->
+<!--            <button class="btn btn-outline-danger btn-sm" (click)="banner.keyWord.splice(ki,1)" >X</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="input-group">-->
+<!--            <input class="form-control" type="text" #keyBanner>-->
+<!--            <button class="btn btn-primary" (click)="banner.keyWord.push(keyBanner.value)">+</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </td>-->
+<!--      <td><button class="btn btn-outline-danger" (click)="home.banner.splice(i,1)">Delete</button></td>-->
+<!--    </tr>-->
+<!--    <tr class="bg-light">-->
+<!--      <td colspan="9">Artis</td>-->
+<!--    </tr>-->
+<!--    <tr>-->
 
-      <td><input style="width:100px" type="text"  [(ngModel)]="home.artis.name"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + home.artis.coverImgUrl" alt="" (click)="c1.click()"><input #c1 hidden type="file" (change)="setCoverImg(c1.files, home.artis)"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + home.artis.beforeImgUrl" alt="" (click)="c2.click()"><input #c2 hidden type="file" (change)="setBeforeImg(c2.files, home.artis)"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + home.artis.afterImgUrl" alt="" (click)="c3.click()"><input #c3  hidden type="file" (change)="setAfterImg(c3.files, home.artis)"></td>
-      <td>{{home.artis.type}}</td>
-      <td><textarea [(ngModel)]="home.artis.description"></textarea></td>
-
-
-      <td>
-        <table>
-          <tr>
-            <td><button class="btn btn-primary" (click)="home.artis.styles.push({name : 'new Style', description : 'new Description'})">
-              Add Style</button></td>
-          </tr>
-          <tr *ngFor="let style of home.artis.styles, let si = index">
-            <div class="input-group-text">
-              <input class="form-control" type="text" [(ngModel)]="style.name" >
-              <input class="form-control" type="text" [(ngModel)]="style.description">
-              <button class="btn btn-danger" (click)="home.artis.styles.splice(si,1)">Delete</button>
-            </div>
-          </tr>
-        </table>
-      </td>
+<!--      <td><input style="width:100px" type="text"  [(ngModel)]="home.artis.name"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + home.artis.coverImgUrl" alt="" (click)="c1.click()"><input #c1 hidden type="file" (change)="setCoverImg(c1.files, home.artis)"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + home.artis.beforeImgUrl" alt="" (click)="c2.click()"><input #c2 hidden type="file" (change)="setBeforeImg(c2.files, home.artis)"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + home.artis.afterImgUrl" alt="" (click)="c3.click()"><input #c3  hidden type="file" (change)="setAfterImg(c3.files, home.artis)"></td>-->
+<!--      <td>{{home.artis.type}}</td>-->
+<!--      <td><textarea [(ngModel)]="home.artis.description"></textarea></td>-->
 
 
-      <td>
-        <div class="row row-cols-2">
-          <div class="col input-group" *ngFor="let key of home.artis.keyWord, let ki = index" >
-            <span [innerText]="key" class="input-group-text"></span>
-            <button class="btn btn-outline-danger btn-sm" (click)="home.artis.keyWord.splice(ki,1)" >X</button>
-          </div>
-        </div>
-        <div>
-          <div class="input-group">
-            <input class="form-control" type="text" #keyArtis>
-            <button class="btn btn-primary" (click)="home.artis.keyWord.push(keyArtis.value)">+</button>
-          </div>
-        </div>
-      </td>
+<!--      <td>-->
+<!--        <table>-->
+<!--          <tr>-->
+<!--            <td><button class="btn btn-primary" (click)="home.artis.styles.push({name : 'new Style', description : 'new Description'})">-->
+<!--              Add Style</button></td>-->
+<!--          </tr>-->
+<!--          <tr *ngFor="let style of home.artis.styles, let si = index">-->
+<!--            <div class="input-group-text">-->
+<!--              <input class="form-control" type="text" [(ngModel)]="style.name" >-->
+<!--              <input class="form-control" type="text" [(ngModel)]="style.description">-->
+<!--              <button class="btn btn-danger" (click)="home.artis.styles.splice(si,1)">Delete</button>-->
+<!--            </div>-->
+<!--          </tr>-->
+<!--        </table>-->
+<!--      </td>-->
 
 
-    </tr>
+<!--      <td>-->
+<!--        <div class="row row-cols-2">-->
+<!--          <div class="col input-group" *ngFor="let key of home.artis.keyWord, let ki = index" >-->
+<!--            <span [innerText]="key" class="input-group-text"></span>-->
+<!--            <button class="btn btn-outline-danger btn-sm" (click)="home.artis.keyWord.splice(ki,1)" >X</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="input-group">-->
+<!--            <input class="form-control" type="text" #keyArtis>-->
+<!--            <button class="btn btn-primary" (click)="home.artis.keyWord.push(keyArtis.value)">+</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </td>-->
 
 
-    <tr class="bg-light">
-      <td colspan="9" >Magic Painting</td>
-    </tr>
-
-    <tr>
-
-      <td><input style="width:100px" type="text"  [(ngModel)]="home.magicPainting.name"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + home.magicPainting.coverImgUrl" alt="" (click)="d1.click()"><input #d1 hidden type="file" (change)="setCoverImg(d1.files, home.magicPainting)"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + home.magicPainting.beforeImgUrl" alt="" (click)="d2.click()"><input #d2 hidden type="file" (change)="setBeforeImg(d2.files, home.magicPainting)"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + home.magicPainting.afterImgUrl" alt="" (click)="d3.click()"><input #d3  hidden type="file" (change)="setAfterImg(d3.files, home.magicPainting)"></td>
-      <td>{{home.magicPainting.type}}</td>
-      <td><textarea [(ngModel)]="home.magicPainting.description"></textarea></td>
+<!--    </tr>-->
 
 
-      <td>
-        <table>
-          <tr>
-            <td><button class="btn btn-primary" (click)="home.magicPainting.styles.push({name : 'new Style', description : 'new Description'})">
-              Add Style</button></td>
-          </tr>
-          <tr *ngFor="let style of home.magicPainting.styles, let si = index">
-            <div class="input-group-text">
-              <input class="form-control" type="text" [(ngModel)]="style.name">
-              <input class="form-control" type="text" [(ngModel)]="style.description">
-              <button class="btn btn-danger" (click)="home.magicPainting.styles.splice(si,1)">Delete</button>
-            </div>
-          </tr>
-        </table>
-      </td>
+<!--    <tr class="bg-light">-->
+<!--      <td colspan="9" >Magic Painting</td>-->
+<!--    </tr>-->
+
+<!--    <tr>-->
+
+<!--      <td><input style="width:100px" type="text"  [(ngModel)]="home.magicPainting.name"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + home.magicPainting.coverImgUrl" alt="" (click)="d1.click()"><input #d1 hidden type="file" (change)="setCoverImg(d1.files, home.magicPainting)"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + home.magicPainting.beforeImgUrl" alt="" (click)="d2.click()"><input #d2 hidden type="file" (change)="setBeforeImg(d2.files, home.magicPainting)"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + home.magicPainting.afterImgUrl" alt="" (click)="d3.click()"><input #d3  hidden type="file" (change)="setAfterImg(d3.files, home.magicPainting)"></td>-->
+<!--      <td>{{home.magicPainting.type}}</td>-->
+<!--      <td><textarea [(ngModel)]="home.magicPainting.description"></textarea></td>-->
 
 
-      <td>
-        <div class="row row-cols-2">
-          <div class="col input-group" *ngFor="let key of home.magicPainting.keyWord, let ki = index" >
-            <span [innerText]="key" class="input-group-text"></span>
-            <button class="btn btn-outline-danger btn-sm" (click)="home.magicPainting.keyWord.splice(ki,1)" >X</button>
-          </div>
-        </div>
-        <div>
-          <div class="input-group">
-            <input class="form-control" type="text" #keyMagicPainting>
-            <button class="btn btn-primary" (click)="home.magicPainting.keyWord.push(keyMagicPainting.value)">+</button>
-          </div>
-        </div>
-      </td>
-
-    </tr>
-
-    <tr class="bg-light">
-      <td colspan="8">Features</td>
-      <td><button class="btn btn-primary" (click)="addFeature()">Add</button></td>
-    </tr>
+<!--      <td>-->
+<!--        <table>-->
+<!--          <tr>-->
+<!--            <td><button class="btn btn-primary" (click)="home.magicPainting.styles.push({name : 'new Style', description : 'new Description'})">-->
+<!--              Add Style</button></td>-->
+<!--          </tr>-->
+<!--          <tr *ngFor="let style of home.magicPainting.styles, let si = index">-->
+<!--            <div class="input-group-text">-->
+<!--              <input class="form-control" type="text" [(ngModel)]="style.name">-->
+<!--              <input class="form-control" type="text" [(ngModel)]="style.description">-->
+<!--              <button class="btn btn-danger" (click)="home.magicPainting.styles.splice(si,1)">Delete</button>-->
+<!--            </div>-->
+<!--          </tr>-->
+<!--        </table>-->
+<!--      </td>-->
 
 
-    <tr *ngFor="let feature of home.features, let i = index">
-      <td><input style="width:100px" type="text"  [(ngModel)]="feature.name"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + feature.coverImgUrl" alt="" (click)="e1.click()"><input #e1 hidden type="file" (change)="setCoverImg(e1.files, feature)"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + feature.beforeImgUrl" alt="" (click)="e2.click()"><input #e2 hidden type="file" (change)="setBeforeImg(e2.files, feature)"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + feature.afterImgUrl" alt="" (click)="e3.click()"><input #e3  hidden type="file" (change)="setAfterImg(e3.files, feature)"></td>
-      <td>{{feature.type}}</td>
-      <td><textarea [(ngModel)]="feature.description"></textarea></td>
+<!--      <td>-->
+<!--        <div class="row row-cols-2">-->
+<!--          <div class="col input-group" *ngFor="let key of home.magicPainting.keyWord, let ki = index" >-->
+<!--            <span [innerText]="key" class="input-group-text"></span>-->
+<!--            <button class="btn btn-outline-danger btn-sm" (click)="home.magicPainting.keyWord.splice(ki,1)" >X</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="input-group">-->
+<!--            <input class="form-control" type="text" #keyMagicPainting>-->
+<!--            <button class="btn btn-primary" (click)="home.magicPainting.keyWord.push(keyMagicPainting.value)">+</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </td>-->
 
-      <td>
-        <table>
-          <tr>
-            <td><button class="btn btn-primary" (click)="feature.styles.push({name : 'new Style', description : 'new Description'})">
-              Add Style</button></td>
-          </tr>
-          <tr *ngFor="let style of feature.styles, let si = index">
-            <div class="input-group-text">
-              <input class="form-control" type="text" [(ngModel)]="style.name">
-              <input class="form-control" type="text" [(ngModel)]="style.description">
-              <button class="btn btn-danger" (click)="feature.styles.splice(si,1)">Delete</button>
-            </div>
-          </tr>
-        </table>
-      </td>
+<!--    </tr>-->
 
-      <td>
-        <div class="row row-cols-2">
-          <div class="col input-group" *ngFor="let key of feature.keyWord, let ki = index" >
-            <span [innerText]="key" class="input-group-text"></span>
-            <button class="btn btn-outline-danger btn-sm" (click)="feature.keyWord.splice(ki,1)" >X</button>
-          </div>
-        </div>
-        <div>
-          <div class="input-group">
-            <input class="form-control" type="text" #keyFeature>
-            <button class="btn btn-primary" (click)="feature.keyWord.push(keyFeature.value)">+</button>
-          </div>
-        </div>
-      </td>
+<!--    <tr class="bg-light">-->
+<!--      <td colspan="8">Features</td>-->
+<!--      <td><button class="btn btn-primary" (click)="addFeature()">Add</button></td>-->
+<!--    </tr>-->
 
-      <td><button class="btn btn-outline-danger" (click)="home.features.splice(i,1)">Delete</button></td>
 
-    </tr>
+<!--    <tr *ngFor="let feature of home.features, let i = index">-->
+<!--      <td><input style="width:100px" type="text"  [(ngModel)]="feature.name"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + feature.coverImgUrl" alt="" (click)="e1.click()"><input #e1 hidden type="file" (change)="setCoverImg(e1.files, feature)"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + feature.beforeImgUrl" alt="" (click)="e2.click()"><input #e2 hidden type="file" (change)="setBeforeImg(e2.files, feature)"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + feature.afterImgUrl" alt="" (click)="e3.click()"><input #e3  hidden type="file" (change)="setAfterImg(e3.files, feature)"></td>-->
+<!--      <td>{{feature.type}}</td>-->
+<!--      <td><textarea [(ngModel)]="feature.description"></textarea></td>-->
 
-    <tr class="bg-light">
-      <td colspan="8">Ai Remover</td>
-      <td><button class="btn btn-primary" (click)="addAiRemover()">Add</button></td>
-    </tr>
+<!--      <td>-->
+<!--        <table>-->
+<!--          <tr>-->
+<!--            <td><button class="btn btn-primary" (click)="feature.styles.push({name : 'new Style', description : 'new Description'})">-->
+<!--              Add Style</button></td>-->
+<!--          </tr>-->
+<!--          <tr *ngFor="let style of feature.styles, let si = index">-->
+<!--            <div class="input-group-text">-->
+<!--              <input class="form-control" type="text" [(ngModel)]="style.name">-->
+<!--              <input class="form-control" type="text" [(ngModel)]="style.description">-->
+<!--              <button class="btn btn-danger" (click)="feature.styles.splice(si,1)">Delete</button>-->
+<!--            </div>-->
+<!--          </tr>-->
+<!--        </table>-->
+<!--      </td>-->
 
-    <tr *ngFor="let aiRemover of home.aiRemover, let i = index">
-      <td><input style="width:100px" type="text"  [(ngModel)]="aiRemover.name"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + aiRemover.coverImgUrl" alt="" (click)="f1.click()"><input #f1 hidden type="file" (change)="setCoverImg(f1.files, aiRemover)"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + aiRemover.beforeImgUrl" alt="" (click)="f2.click()"><input #f2 hidden type="file" (change)="setBeforeImg(f2.files, aiRemover)"></td>
-      <td><img style="width: 50px; height: 100px" [src]="domain + aiRemover.afterImgUrl" alt="" (click)="f3.click()"><input #f3  hidden type="file" (change)="setAfterImg(f3.files, aiRemover)"></td>
-      <td>{{aiRemover.type}}</td>
-      <td><textarea [(ngModel)]="aiRemover.description"></textarea></td>
+<!--      <td>-->
+<!--        <div class="row row-cols-2">-->
+<!--          <div class="col input-group" *ngFor="let key of feature.keyWord, let ki = index" >-->
+<!--            <span [innerText]="key" class="input-group-text"></span>-->
+<!--            <button class="btn btn-outline-danger btn-sm" (click)="feature.keyWord.splice(ki,1)" >X</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="input-group">-->
+<!--            <input class="form-control" type="text" #keyFeature>-->
+<!--            <button class="btn btn-primary" (click)="feature.keyWord.push(keyFeature.value)">+</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </td>-->
 
-      <td>
-        <table>
-          <tr>
-            <td><button class="btn btn-primary" (click)="aiRemover.styles.push({name : 'new Style', description : 'new Description'})">
-              Add Style</button></td>
-          </tr>
-          <tr *ngFor="let style of aiRemover.styles, let si = index">
-            <div class="input-group-text">
-              <input class="form-control" type="text" [(ngModel)]="style.name">
-              <input class="form-control" type="text" [(ngModel)]="style.description">
-              <button class="btn btn-danger" (click)="aiRemover.styles.splice(si,1)">Delete</button>
-            </div>
-          </tr>
-        </table>
-      </td>
+<!--      <td><button class="btn btn-outline-danger" (click)="home.features.splice(i,1)">Delete</button></td>-->
 
-      <td>
-        <div class="row row-cols-2">
-          <div class="col input-group" *ngFor="let key of aiRemover.keyWord, let ki = index" >
-            <span [innerText]="key" class="input-group-text"></span>
-            <button class="btn btn-outline-danger btn-sm" (click)="aiRemover.keyWord.splice(ki,1)" >X</button>
-          </div>
-        </div>
-        <div>
-          <div class="input-group">
-            <input class="form-control" type="text" #keyAiRemove>
-            <button class="btn btn-primary" (click)="aiRemover.keyWord.push(keyAiRemove.value)">+</button>
-          </div>
-        </div>
-      </td>
+<!--    </tr>-->
 
-      <td><button class="btn btn-outline-danger" (click)="home.aiRemover.splice(i,1)">Delete</button></td>
-    </tr>
+<!--    <tr class="bg-light">-->
+<!--      <td colspan="8">Ai Remover</td>-->
+<!--      <td><button class="btn btn-primary" (click)="addAiRemover()">Add</button></td>-->
+<!--    </tr>-->
 
-    </tbody>
-  </table>
-</div>
+<!--    <tr *ngFor="let aiRemover of home.aiRemover, let i = index">-->
+<!--      <td><input style="width:100px" type="text"  [(ngModel)]="aiRemover.name"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + aiRemover.coverImgUrl" alt="" (click)="f1.click()"><input #f1 hidden type="file" (change)="setCoverImg(f1.files, aiRemover)"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + aiRemover.beforeImgUrl" alt="" (click)="f2.click()"><input #f2 hidden type="file" (change)="setBeforeImg(f2.files, aiRemover)"></td>-->
+<!--      <td><img style="width: 50px; height: 100px" [src]="domain + aiRemover.afterImgUrl" alt="" (click)="f3.click()"><input #f3  hidden type="file" (change)="setAfterImg(f3.files, aiRemover)"></td>-->
+<!--      <td>{{aiRemover.type}}</td>-->
+<!--      <td><textarea [(ngModel)]="aiRemover.description"></textarea></td>-->
+
+<!--      <td>-->
+<!--        <table>-->
+<!--          <tr>-->
+<!--            <td><button class="btn btn-primary" (click)="aiRemover.styles.push({name : 'new Style', description : 'new Description'})">-->
+<!--              Add Style</button></td>-->
+<!--          </tr>-->
+<!--          <tr *ngFor="let style of aiRemover.styles, let si = index">-->
+<!--            <div class="input-group-text">-->
+<!--              <input class="form-control" type="text" [(ngModel)]="style.name">-->
+<!--              <input class="form-control" type="text" [(ngModel)]="style.description">-->
+<!--              <button class="btn btn-danger" (click)="aiRemover.styles.splice(si,1)">Delete</button>-->
+<!--            </div>-->
+<!--          </tr>-->
+<!--        </table>-->
+<!--      </td>-->
+
+<!--      <td>-->
+<!--        <div class="row row-cols-2">-->
+<!--          <div class="col input-group" *ngFor="let key of aiRemover.keyWord, let ki = index" >-->
+<!--            <span [innerText]="key" class="input-group-text"></span>-->
+<!--            <button class="btn btn-outline-danger btn-sm" (click)="aiRemover.keyWord.splice(ki,1)" >X</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <div class="input-group">-->
+<!--            <input class="form-control" type="text" #keyAiRemove>-->
+<!--            <button class="btn btn-primary" (click)="aiRemover.keyWord.push(keyAiRemove.value)">+</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </td>-->
+
+<!--      <td><button class="btn btn-outline-danger" (click)="home.aiRemover.splice(i,1)">Delete</button></td>-->
+<!--    </tr>-->
+
+<!--    </tbody>-->
+<!--  </table>-->
+<!--</div>-->
