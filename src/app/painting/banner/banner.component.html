@@ -1,27 +1,101 @@
-<button class="btn btn-outline-primary" (click)="create()">Create new Banner</button>
-<table class="table table-striped" *ngIf="painting.banner">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Cover</th>
-    <th>Before</th>
-    <th>After</th>
-    <th>Gif</th>
-    <th>Description</th>
-    <th>Style</th>
-    <th>Delete</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let banner of painting.banner, let i = index">
-    <td><input class="form-control w-100" type="text" [(ngModel)]="banner.name" (change)="save(i)"></td>
-    <td><app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="banner.coverImgUrl = $event; save(i)" [img]="banner.coverImgUrl"></app-img-upload></td>
-    <td><app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="banner.beforeImgUrl = $event; save(i)" [img]="banner.beforeImgUrl"></app-img-upload></td>
-    <td><app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="banner.afterImgUrl = $event; save(i)" [img]="banner.afterImgUrl"></app-img-upload></td>
-    <td><app-img-upload [imgWith]="'100px'" [imgHeight]="'100px'" (dataEvent)="banner.gifUrl = $event; save(i)" [img]="banner.gifUrl"></app-img-upload></td>
-    <td><textarea class="w-100 form-control" [(ngModel)]="banner.description" (change)="save(i)"></textarea></td>
-    <td><app-style-choice [currentStyle]="banner.styles" (dataEvent)="banner.styles = $event; save(i)"></app-style-choice></td>
-    <td><button class="w-100 btn btn-outline-danger" (click)="delete(i)">Delete</button></td>
-  </tr>
-  </tbody>
-</table>
+<div class="w-100">
+  <div class="w-100 text-end">
+    <button [title]="'Add new ' + type.toLowerCase()" [disabled]="type === 'NONE' || type == ''" class="btn btn-outline-primary" (click)="create()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
+        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z"/>
+      </svg>
+    </button>
+  </div>
+  <table class="table table-dark table-hover w-100" *ngIf="painting.banner">
+    <thead>
+    <tr>
+      <th>Cover</th>
+      <th>Before</th>
+      <th>After</th>
+      <th>Gif</th>
+      <th>Description</th>
+      <th>Style & Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let _pain of pain, let i = index">
+      <td>
+        <app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="_pain.coverImgUrl = $event; save(i)"
+                        [img]="_pain.coverImgUrl"></app-img-upload>
+      </td>
+      <td>
+        <app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="_pain.beforeImgUrl = $event; save(i)"
+                        [img]="_pain.beforeImgUrl"></app-img-upload>
+      </td>
+      <td>
+        <app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="_pain.afterImgUrl = $event; save(i)"
+                        [img]="_pain.afterImgUrl"></app-img-upload>
+      </td>
+      <td>
+        <app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="_pain.gifUrl = $event; save(i)"
+                        [img]="_pain.gifUrl"></app-img-upload>
+      </td>
+      <td>
+        <input class="form-control w-100" type="text" [(ngModel)]="_pain.name" (change)="save(i)" placeholder="Name">
+        <input class="w-100 form-control" type="text" [(ngModel)]="_pain.description" (change)="save(i)"
+               placeholder="Description">
+      <td>
+      <div class="btn-group w-100">
+        <!-- Button trigger modal -->
+        <button type="button" class="w-50 btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="selectionStyle(i)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars" viewBox="0 0 16 16">
+            <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>
+            <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+          </svg>
+          Style
+        </button>
+        <button class="w-50 btn btn-outline-danger" (click)="delete(i)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill"
+               viewBox="0 0 16 16">
+            <path
+              d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+          </svg>
+        </button>
+      </div>
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Style Select</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body overflow-y-scroll" style="height: 300px">
+        <table class="table-striped table ">
+          <thead>
+          <tr>
+            <th>Select</th>
+            <th>Img</th>
+            <th>Name</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let style of styleChoices">
+            <td><input class="form-check-input" type="checkbox" [(ngModel)]="style.choice"></td>
+            <td><app-img-upload [img]="style.style.url" [imgWith]="'30px'" [imgHeight]="'30px'" [enable]="false"></app-img-upload></td>
+            <td [innerText]="style.style.name"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button #close type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="commitStyle(); close.click()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

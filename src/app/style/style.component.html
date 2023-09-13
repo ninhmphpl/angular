@@ -1,4 +1,12 @@
-<table *ngIf="painting.styles" class="table-striped table">
+<h2 class="text-center w-100 text-light">Style</h2>
+<button (click)="create()" class="w-100 btn btn-sm btn-outline-primary pb-2 rounded-pill">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle"
+       viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+  </svg>
+</button>
+<table *ngIf="painting.styles" class="table table-dark table-hover">
   <thead>
   <tr>
     <th>Image</th>
@@ -6,12 +14,67 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let style of painting.styles">
-    <td><app-img-upload [imgWith]="'100px'" [imgHeight]="'150px'" [img]="style.url" (dataEvent)="style.url = $event"></app-img-upload></td>
+  <tr *ngFor="let style of painting.styles, let i = index">
     <td>
-      <input type="text" class="w-100" [(ngModel)]="style.name" placeholder="Name">
-      <textarea class="w-100" [(ngModel)]="style.description" placeholder="Description"></textarea>
+      <app-img-upload [imgWith]="'60px'" [imgHeight]="'60px'" [img]="style.url"
+                      (dataEvent)="style.url = $event; save(i)"></app-img-upload>
+    </td>
+    <td>
+      <input class="w-100 form-control" type="text" [(ngModel)]="style.name" placeholder="Name" (change)="save(i)">
+      <input class="w-100 form-control" type="text" [(ngModel)]="style.description" placeholder="Description"
+             (change)="save(i)">
+      <div class="btn-group w-100">
+        <button class="btn btn-outline-primary" (click)="getKey(i)" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Key
+        </button>
+        <button class="btn btn-outline-danger" (click)="delete(i)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill"
+               viewBox="0 0 16 16">
+            <path
+              d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+          </svg>
+        </button>
+      </div>
     </td>
   </tr>
   </tbody>
 </table>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <div class="input-group">
+      <div class="input-group-text" id="offcanvasBottomLabel">Key list</div>
+      <input class="form-control" type="text" #keyInput (keyup.enter)="saveKey(keyInput.value); keyInput.value = ''">
+      <button class="btn btn-outline-primary" (click)="saveKey(keyInput.value); keyInput.value = ''">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg"
+             viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+                d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+        </svg>
+      </button>
+    </div>
+    <button #closeButton type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body position-relative">
+    <table class="table table-striped overflow-y-scroll">
+      <tbody>
+      <tr *ngFor="let key of keyChoice">
+        <td><input type="checkbox" class="form-check-input" [(ngModel)]="key.choice"></td>
+        <td>{{key.key}}</td>
+        <td>
+          <button class="btn btn-sm btn-outline-danger" (click)="deleteKey(key.key)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill"
+                 viewBox="0 0 16 16">
+              <path
+                d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+            </svg>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <button class="btn-outline-primary btn position-fixed end-0 bottom-0 m-3" (click)="setKey(); closeButton.click() ">
+      Save
+    </button>
+  </div>
+</div>

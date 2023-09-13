@@ -9,7 +9,6 @@ import { StyleComponent } from './style/style.component';
 import { PaintingComponent } from './painting/painting.component';
 import { ImgUploadComponent } from './img-upload/img-upload.component';
 import { BannerComponent } from './painting/banner/banner.component';
-import { StyleChoiceComponent } from './style/style-choice/style-choice.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,6 @@ import { StyleChoiceComponent } from './style/style-choice/style-choice.componen
     PaintingComponent,
     ImgUploadComponent,
     BannerComponent,
-    StyleChoiceComponent
   ],
   imports: [
     BrowserModule,

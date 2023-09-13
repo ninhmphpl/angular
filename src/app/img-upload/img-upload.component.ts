@@ -10,8 +10,10 @@ export class ImgUploadComponent {
   @Output() dataEvent = new EventEmitter<string>();
   @Input() img: string = "";
   @Input() imgWith: string = "100px";
+  @Input() enable : boolean = true;
   @Input() imgHeight: string = "100px";
   url = environment.url;
+  imgDefault = "https://w0.peakpx.com/wallpaper/301/490/HD-wallpaper-joker-heath-ledger-illustration-joker-joker-face-joker-animation.jpg"
   sendData(event : any) {
     this.uploadFile(event.target.files[0], urlSocket + "/upload", "", url =>{
       this.dataEvent.emit(url);
