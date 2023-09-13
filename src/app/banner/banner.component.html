@@ -18,7 +18,7 @@
     <td><app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="banner.afterImgUrl = $event" [img]="banner.afterImgUrl"></app-img-upload></td>
     <td><app-img-upload [imgWith]="'100px'" [imgHeight]="'100px'" (dataEvent)="banner.gifUrl = $event" [img]="banner.gifUrl"></app-img-upload></td>
     <td><textarea class="w-100" [(ngModel)]="banner.description"></textarea></td>
-    <td></td>
+    <td><app-style-choice [currentStyle]="banner.styles" (dataEvent)="banner.styles = $event"></app-style-choice></td>
   </tr>
   </tbody>
 
