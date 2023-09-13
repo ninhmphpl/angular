@@ -1,0 +1,4 @@
+<div [style]="{width : imgWith, height : imgHeight}">
+  <img class="img-thumbnail w-100 h-100" [src]="url + img" alt="" (click)="input.click()">
+  <input hidden="hidden"  #input type="file" (change)="sendData($event)">
+</div>
