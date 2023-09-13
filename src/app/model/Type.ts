@@ -8,4 +8,6 @@ export interface Type{
   "premiumV17" : boolean;
   show : any;
   top : any;
+  banner : any;
+  isNew : any;
 }

@@ -9,6 +9,8 @@
     <th>Show</th>
     <th>Name</th>
     <th>URL</th>
+    <th>Banner</th>
+    <th>New</th>
     <th>Value</th>
     <th>Premium</th>
     <th colspan="2">Action</th>
@@ -19,7 +21,9 @@
     <td><input type="number" style="width: 50px" [(ngModel)]="type.top" (change)="save(i)"></td>
     <td><input type="checkbox" [(ngModel)]="type.show" (change)="save(i)"></td>
     <td><input type="text" [(ngModel)]="type.name" (change)="save(i)"></td>
-    <td><input type="text" [(ngModel)]="type.url" (change)="save(i)"></td>
+    <td><app-img-upload [imgHeight]="'100px'" [imgWith]="'100px'" [img]="type.url" (dataEvent)="type.url = $event; save(i)"></app-img-upload></td>
+    <td><app-img-upload [imgHeight]="'50px'" [imgWith]="'100px'" [img]="type.banner" (dataEvent)="type.banner = $event; save(i)"></app-img-upload></td>
+    <td><input type="checkbox" [(ngModel)]="type.isNew" (change)="save(i)"></td>
     <td><input type="number" [(ngModel)]="type.value" (change)="save(i)"></td>
     <td>
       <div>V16<input type="checkbox" [(ngModel)]="type.premiumV16" (change)="save(i)"></div>
