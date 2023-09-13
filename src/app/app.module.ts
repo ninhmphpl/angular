@@ -8,7 +8,7 @@ import {FormsModule} from "@angular/forms";
 import { StyleComponent } from './style/style.component';
 import { PaintingComponent } from './painting/painting.component';
 import { ImgUploadComponent } from './img-upload/img-upload.component';
-import { BannerComponent } from './banner/banner.component';
+import { BannerComponent } from './painting/banner/banner.component';
 import { StyleChoiceComponent } from './style/style-choice/style-choice.component';
 
 @NgModule({

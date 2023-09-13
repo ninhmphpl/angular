@@ -11,11 +11,11 @@ export class StyleChoiceComponent {
   @Output() dataEvent = new EventEmitter<Style[]>();
   @Input() currentStyle : Style[] = []
   styleChoice : StyleChoice[] = []
-  styles : Style[];
+  styles : Style[] = [];
   constructor(public pain : PaintingService) {
-    this.styles = pain.styles
   }
   get(): void {
+    this.styles = this.pain.styles
     this.styleChoice = []
     for(let i = 0 ; i < this.styles.length ; i ++){
       this.styleChoice.push(new StyleChoice(false, this.styles[i]))
@@ -26,6 +26,14 @@ export class StyleChoiceComponent {
         }
       }
     }
+  }
+  set(){
+    let a : Style[] = []
+    this.styleChoice.forEach(value => {
+      if(value.choice) a.push(value.style)
+    })
+    this.dataEvent.emit(a)
+    this.styleChoice = []
   }
 
 

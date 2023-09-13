@@ -23,7 +23,7 @@
           <tbody>
           <tr *ngFor="let style of styleChoice">
             <td><input type="checkbox" [(ngModel)]="style.choice"></td>
-            <td><img class="img-thumbnail" style="width: 30px; height: 30px" [src]="style.style.url" alt=""></td>
+            <td><app-img-upload></app-img-upload></td>
             <td [innerText]="style.style.name"></td>
           </tr>
           </tbody>
@@ -31,8 +31,8 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button #close type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="set(); close.click()">Save changes</button>
       </div>
     </div>
   </div>
