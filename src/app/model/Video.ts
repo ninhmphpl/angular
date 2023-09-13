@@ -11,4 +11,5 @@ export interface Video{
   show : any;
   top : any;
   music : any;
+  like : any;
 }

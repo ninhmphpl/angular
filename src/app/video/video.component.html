@@ -25,6 +25,7 @@
       <tr>
         <th>Id</th>
         <th>Top</th>
+        <th>Like</th>
         <th>Show</th>
         <th>Thumb</th>
         <th>Audio</th>
@@ -39,6 +40,7 @@
       <tr *ngFor="let video of videos ; let i = index">
         <td>{{i}}</td>
         <td><input type="number" style="width: 50px" [(ngModel)]="video.top" (change)="save(i)"></td>
+        <td><input type="number" style="width: 50px" [(ngModel)]="video.like" (change)="save(i)"></td>
         <td><input type="checkbox" [(ngModel)]="video.show" (change)="save(i)"></td>
         <td>
           <input type="file" #thumb hidden="hidden" (change)="upThumb(i, thumb.files)">
