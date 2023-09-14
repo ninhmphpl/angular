@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {environment} from "../../enviroments/environment";
-const urlSocket = environment.url.replace("http://", "ws://")
+
 @Component({
   selector: 'app-img-upload',
   templateUrl: './img-upload.component.html',
@@ -13,9 +13,12 @@ export class ImgUploadComponent {
   @Input() enable : boolean = true;
   @Input() imgHeight: string = "100px";
   url = environment.url;
+  urlSocket = environment.url
+    .replace("http://", "ws://")
+    .replace("https://","ws://")
   imgDefault = "https://w0.peakpx.com/wallpaper/301/490/HD-wallpaper-joker-heath-ledger-illustration-joker-joker-face-joker-animation.jpg"
   sendData(event : any) {
-    this.uploadFile(event.target.files[0], urlSocket + "/upload", "", url =>{
+    this.uploadFile(event.target.files[0], this.urlSocket + "/upload", "", url =>{
       this.dataEvent.emit(url);
     })
   }
