@@ -1,0 +1,52 @@
+<div>
+  <h3 class="w-100 text-center">Template</h3>
+  <div class="w-100 text-end">
+    <button class="btn-outline-primary btn pb-2" (click)="create()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus"
+           viewBox="0 0 16 16">
+        <path
+          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
+      </svg>
+    </button>
+  </div>
+
+  <table *ngIf="avatar.template" class="table table-hover">
+    <thead>
+    <tr>
+      <th class="text-light">Prompt</th>
+      <th class="text-light">Input</th>
+      <th class="text-light">Output</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let template of avatar.template, let i = index">
+      <td>
+        <input class="form-control w-100" type="text" [(ngModel)]="template.prompt" (change)="save(i)"
+               placeholder="Prompt">
+        <input class="form-control w-100" type="text" [(ngModel)]="template.descriptionPrompt" (change)="save(i)"
+               placeholder="Description Prompt">
+      </td>
+      <td>
+        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="template.input"
+                        (dataEvent)="template.input = $event; save(i)"></app-img-upload>
+      </td>
+      <td>
+        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="template.output"
+                        (dataEvent)="template.output = $event; save(i)"></app-img-upload>
+      </td>
+      <td>
+        <button class="btn btn-outline-danger" (click)="delete(i)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill"
+               viewBox="0 0 16 16">
+            <path
+              d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+          </svg>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
