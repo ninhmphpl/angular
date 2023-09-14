@@ -14,8 +14,7 @@ export class ImgUploadComponent {
   @Input() imgHeight: string = "100px";
   url = environment.url;
   urlSocket = environment.url
-    .replace("http://", "ws://")
-    .replace("https://","ws://")
+    .replace("http","ws")
   imgDefault = "https://w0.peakpx.com/wallpaper/301/490/HD-wallpaper-joker-heath-ledger-illustration-joker-joker-face-joker-animation.jpg"
   sendData(event : any) {
     this.uploadFile(event.target.files[0], this.urlSocket + "/upload", "", url =>{
