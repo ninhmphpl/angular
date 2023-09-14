@@ -21,7 +21,7 @@ export class CategoryComponent{
     this.avatar.saveCategory(this.avatar.category[i], template => this.avatar.category[i] = template)
   }
   delete(i : number){
-    this.avatar.deleteTemplate(this.avatar.category[i].id, () => this.avatar.category.splice(i, 1))
+    this.avatar.deleteCategory(this.avatar.category[i].id, () => this.avatar.category.splice(i, 1))
   }
   getTemplateChoice(i : number){
     this.categorySelection = i;

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {AvatarServiceService} from "./avatar-service.service";
 
 @Component({
@@ -13,5 +13,4 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.avatarService.get()
   }
-
 }
