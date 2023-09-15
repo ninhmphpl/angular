@@ -14,6 +14,7 @@ export class ImgUploadComponent {
   @Input() imgHeight: string = "100px";
   url = environment.url;
   urlSocket = environment.url.replace("http", "ws") + "/upload"
+  urlDefault = "./assets/Default_a_striking_and_original_Tshirt_design_that_captures_th_0_364ab9d3-56bb-4f28-ba15-6e3793ef3e41_1.png"
   sendData(event: any) {
     this.uploadFile(event.target.files[0], this.urlSocket, "", url => {
       this.dataEvent.emit(url);

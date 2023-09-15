@@ -1,6 +1,6 @@
 <div [style]="{width : imgWith, height : imgHeight}">
-  <img *ngIf="type === 'img'" class="img-thumbnail w-100 h-100" [src]="img" alt="" (click)="input.click()">
-  <video *ngIf="type === 'video'" class="img-thumbnail w-100 h-100" [src]="img" (click)="input.click()" controls></video>
+  <img *ngIf="type === 'img'" class="img-thumbnail w-100 h-100" [src]="(img != null && img != '')?img : urlDefault" alt="" (click)="input.click()">
+  <video *ngIf="type === 'video'" class="img-thumbnail w-100 h-100" [src]="(img != null && img != '')?img : urlDefault" (click)="input.click()" controls></video>
   <div  *ngIf="type === 'audio'" class="input-group w-100 h-100">
     <audio class="img-thumbnail w-75 h-100" [src]="img" controls>
     </audio>
