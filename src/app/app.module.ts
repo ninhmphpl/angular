@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import { CategoryComponent } from './category/category.component';
 import { StickerComponent } from './sticker/sticker.component';
 import { CallIconComponent } from './call-icon/call-icon.component';
+import {ImgUploadComponent} from "./img-upload/img-upload.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CallIconComponent } from './call-icon/call-icon.component';
     ThemeComponent,
     CategoryComponent,
     StickerComponent,
-    CallIconComponent
+    CallIconComponent,
+    ImgUploadComponent
   ],
     imports: [
         BrowserModule,

@@ -71,12 +71,12 @@ export class CallIconComponent implements OnInit{
   }
   upload(files : FileList | null, action : (value : string) => any){
     if(files && files.length > 0)
-    uploadFile(files[0], urlUploadFile, "theme_color_file", (urlDownload: any)=>{
+    uploadFile(files[0], urlUploadFile, "", (urlDownload: any)=>{
       action(urlDownload)
     })
   }
   uploadAccept(files : FileList | null,index : number){
-    this.upload(files, url=>{
+    this.upload(files, url =>{
       this.callIcons[index].accept = url
       this.save(index)
     })

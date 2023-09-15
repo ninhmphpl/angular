@@ -23,9 +23,9 @@
     <tr *ngFor="let icon of callIcons, let indexIcon = index">
       <td class="d-none">
         <input #updateAccept type="file" (change)="uploadAccept(updateAccept.files, indexIcon)">
-        <input #updateDeny type="file" (change)="uploadAccept(updateDeny.files, indexIcon)">
-        <input #updateAcceptJson type="file" (change)="uploadAccept(updateAcceptJson.files, indexIcon)">
-        <input #updateDenyJson type="file" (change)="uploadAccept(updateDenyJson.files, indexIcon)">
+        <input #updateDeny type="file" (change)="uploadDeny(updateDeny.files, indexIcon)">
+        <input #updateAcceptJson type="file" (change)="uploadAcceptJson(updateAcceptJson.files, indexIcon)">
+        <input #updateDenyJson type="file" (change)="uploadDenyJson(updateDenyJson.files, indexIcon)">
       </td>
       <td>{{icon.id}}</td>
       <td class="col-1">
