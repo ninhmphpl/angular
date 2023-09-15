@@ -1,4 +1,6 @@
 <div [style]="{width : imgWith, height : imgHeight}">
-  <img class="img-thumbnail w-100 h-100" [src]="url + img" alt="" (click)="input.click()">
+  <img *ngIf="type === 'img'" class="img-thumbnail w-100 h-100" [src]="img" alt="" (click)="input.click()">
+  <video *ngIf="type === 'video'" class="img-thumbnail w-100 h-100" [src]="img" (click)="input.click()" controls></video>
+  <audio *ngIf="type === 'audio'" class="img-thumbnail w-100 h-100" [src]="img" (click)="input.click()" controls></audio>
   <input hidden="hidden"  #input type="file" (change)="sendData($event)">
 </div>

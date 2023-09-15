@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment, getHeader} from "./Environment";
 import {Type} from "./model/Type";
-const urlPatrol = environment.hostPatrol
+const urlPatrol = environment.url
 @Injectable({
   providedIn: 'root'
 })

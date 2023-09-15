@@ -4,9 +4,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment, getHeader, uploadFile} from "../Environment";
 import {Upload} from "../model/Upload";
 
-const urlPatrol = environment.hostPatrol
-const urlUpload = environment.hostUpload
-const urlFolderUpload = environment.urlFolder
+const urlPatrol = environment.url
 @Component({
   selector: 'app-music',
   templateUrl: './music.component.html',
@@ -35,24 +33,9 @@ export class MusicComponent implements OnInit {
     })
   }
 
-  save(index: number | null) {
-    let body
-    if(index != null){
-      body = this.musics[index]
-    }else {
-      let upload = this.uploadList.pop()
-      body = {name : upload?.name, url : upload?.url}
-    }
-    this.http.post(urlPatrol + "/music", body,getHeader()).subscribe((payload: any) => {
-      if (payload.code == 200) {
-        if (index != null) {
-          this.musics[index] = payload.data
-        } else {
-          this.musics.push(payload.data)
-        }
-      } else {
-        alert(payload.data)
-      }
+  save(music : Music, action : (music : Music)=> any) {
+    this.http.post(urlPatrol + "/music", music,getHeader()).subscribe((payload: any) => {
+      action(payload.data)
       alert("OK")
     }, (error: any) => {
       alert(JSON.stringify(error.error.detail))
@@ -71,39 +54,13 @@ export class MusicComponent implements OnInit {
       alert(JSON.stringify(error.error.detail))
     })
   }
-
-  upload(files: FileList | null) {
-    this.uploadList = []
-    if (files && files.length > 0) {
-      let process = 0;
-      for (let i = 0; i < files.length; i++) {
-        this.uploadList.push({name: files[i].name, percent: 0, url: ""})
-        uploadFile(urlUpload, urlFolderUpload, files[i], url => {
-          this.uploadList[i].url = url
-          process++
-          if (process === files.length) {
-            while (this.uploadList.length > 0) {
-              this.save(null)
-            }
-          }
-        }, percent => {
-          this.uploadList[i].percent = percent
-        })
-      }
-    }
+  create() {
+    this.save(new Music(), music => this.musics.unshift(music))
+  }
+  saveMusic(i : number){
+    this.save(this.musics[i], music => this.musics[i] = music)
   }
 
-  upThumb(index: number, file: FileList | null) {
-    if (file && file.length > 0) {
-      uploadFile(urlUpload, urlFolderUpload, file[0], url => {
-        this.musics[index].thumb = url
-        this.musics[index].thumbPercent = null
-        this.save(index)
-      }, percent => {
-        this.musics[index].thumbPercent = percent
-      })
-    }
-  }
 
 
 }

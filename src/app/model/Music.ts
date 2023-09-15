@@ -1,4 +1,4 @@
-export interface Music{
+export class Music{
   id : any;
   name : any;
   url : any;

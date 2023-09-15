@@ -10,7 +10,6 @@ import {FormsModule} from "@angular/forms";
 import { VideoTypeComponent } from './video-type/video-type.component';
 import { LoginComponent } from './login/login.component';
 import {ImgUploadComponent} from "./upload/img-upload/img-upload.component";
-import { VideoUploadComponent } from './upload/video-upload/video-upload.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { VideoUploadComponent } from './upload/video-upload/video-upload.compone
     VideoTypeComponent,
     LoginComponent,
     ImgUploadComponent,
-    VideoUploadComponent
   ],
   imports: [
     BrowserModule,

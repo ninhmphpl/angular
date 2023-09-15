@@ -1,4 +1,4 @@
-export interface Type{
+export class Type{
   id : any;
   name : any;
   value : any;

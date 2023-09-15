@@ -6,10 +6,9 @@ import {Video} from "../model/Video";
 import {Type} from "../model/Type";
 import {TypeService} from "../type.service";
 import {MusicService} from "../music.service";
+import {Music} from "../model/Music";
 
-const urlPatrol = environment.hostPatrol
-const urlUpload = environment.hostUpload
-const urlFolderUpload = environment.urlFolder
+const urlPatrol = environment.url
 
 @Component({
   selector: 'app-video',
@@ -37,7 +36,8 @@ export class VideoComponent implements OnInit {
       if (payload.code == 200) {
         this.videos = payload.data
         for (const video of this.videos) {
-          if(video.music == null) video.music = {}
+          if(video.music == null) video.music = new Music()
+          if(video.videoType == null) video.videoType = new Type()
         }
       } else {
         alert(payload.data)
@@ -47,24 +47,19 @@ export class VideoComponent implements OnInit {
     })
   }
 
-  save(index: number | null) {
-    let body: any;
-    if (index != null) {
-      body = this.videos[index];
-    } else {
-      let upload = this.uploadList.pop()
-      body = {name: upload?.name, url: upload?.url}
-    }
-    this.http.post(urlPatrol + "/video", body, getHeader()).subscribe((payload: any) => {
-      if (payload.code == 200) {
-        if (index != null) {
-          this.videos[index] = payload.data
-        } else {
-          this.videos.push(payload.data)
-        }
-      } else {
-        alert(payload.data)
-      }
+  create(){
+    this.save(new Video(), video => this.videos.unshift(video))
+  }
+  saveVideo(i : number){
+    this.save(this.videos[i], video => this.videos[i] = video)
+  }
+
+  save(video : Video, action : (video : Video)=> any) {
+    console.log(video)
+    this.http.post(urlPatrol + "/video", video, getHeader()).subscribe((payload: any) => {
+      if(payload.data.videoType === null) payload.data.videoType = new Type()
+      if(payload.data.music === null)payload.data.music = new Music()
+      action(payload.data)
       alert("OK")
     }, (error: any) => {
       console.log(error)
@@ -83,39 +78,6 @@ export class VideoComponent implements OnInit {
     }, (error: any) => {
       alert(JSON.stringify(error.error.detail))
     })
-  }
-
-  upload(files: FileList | null) {
-    this.uploadList = []
-    let process = 0;
-    if (files && files.length > 0) {
-      for (let i = 0; i < files.length; i++) {
-        this.uploadList.push({name: files[i].name, percent: 0, url: ""})
-        uploadFile(urlUpload, urlFolderUpload, files[i], url => {
-          this.uploadList[i].url = url
-          process++
-          if (files.length === process) {
-            while (this.uploadList.length > 0) {
-              this.save(null)
-            }
-          }
-        }, percent => {
-          this.uploadList[i].percent = percent
-        })
-      }
-    }
-  }
-
-  upThumb(index: number, file: FileList | null) {
-    if (file && file.length > 0) {
-      uploadFile(urlUpload, urlFolderUpload, file[0], url => {
-        this.videos[index].thumb = url
-        this.videos[index].thumbPercent = null
-        this.save(index)
-      }, percent => {
-        this.videos[index].thumbPercent = percent
-      })
-    }
   }
 
 }

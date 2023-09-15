@@ -1,4 +1,4 @@
-export interface Upload {
+export class Upload {
   name : any
   percent : any
   url : any

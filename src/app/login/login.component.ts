@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {environment} from "../Environment";
 
-const urlPatrol = environment.hostPatrol
+const url = environment.url
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,8 +22,7 @@ export class LoginComponent implements OnInit{
   }
 
   submit() {
-    let url = urlPatrol + "/system/login"
-    this.http.post(url, {email : this.email, password : this.password}).subscribe((payload : any)=>{
+    this.http.post(url + "/system/login", {email : this.email, password : this.password}).subscribe((payload : any)=>{
       if(payload.code === 200) localStorage.setItem(environment.keySaveToken, payload.data)
       console.log("Login Success")
       this.router.navigate(["/video"])

@@ -1,7 +1,11 @@
 <div>
   <div class="input-group-text">
-    <input #files type="file" class="form-control" multiple accept="video/*">
-    <button class="btn btn-secondary" (click)="upload(files.files)">Upload</button>
+    <button class="btn btn-secondary" (click)="create()">Add
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
+        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+        <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
+      </svg>
+    </button>
   </div>
   <div *ngIf="uploadList.length > 0">
     <table class="table table-striped">
@@ -39,23 +43,21 @@
       <tbody>
       <tr *ngFor="let video of videos ; let i = index">
         <td>{{i}}</td>
-        <td><input type="number" style="width: 50px" [(ngModel)]="video.top" (change)="save(i)"></td>
-        <td><input type="number" style="width: 50px" [(ngModel)]="video.like" (change)="save(i)"></td>
-        <td><input type="checkbox" [(ngModel)]="video.show" (change)="save(i)"></td>
-        <td>
-          <app-img-upload [img]="video.thumb" [imgWith]="'100px'" [imgHeight]="'150px'" (dataEvent)="video.thumb = $event; save(i)"></app-img-upload>
-        </td>
-        <td><app-video-upload [src]="video.url" (dataEvent)="video.url = $event; save(i)"></app-video-upload></td>
-        <td><input class="form-control" type="text" [(ngModel)]="video.name" (change)="save(i)"></td>
-        <td><input class="form-control" type="text" [(ngModel)]="video.description" (change)="save(i)"></td>
-        <td><select [(ngModel)]="video.videoType.id" (change)="save(i)">
+        <td><input type="number" style="width: 50px" [(ngModel)]="video.top" (change)="saveVideo(i)"></td>
+        <td><input type="number" style="width: 50px" [(ngModel)]="video.like" (change)="saveVideo(i)"></td>
+        <td><input type="checkbox" [(ngModel)]="video.show" (change)="saveVideo(i)"></td>
+        <td><app-img-upload [type]="'img'" [imgWith]="'100px'" [imgHeight]="'150px'" [img]="video.thumb" (dataEvent)="video.thumb = $event; saveVideo(i)"></app-img-upload></td>
+        <td><app-img-upload [type]="'video'" [imgWith]="'100px'" [imgHeight]="'150px'" [img]="video.url" (dataEvent)="video.url = $event; saveVideo(i)"></app-img-upload></td>
+        <td><input class="form-control" type="text" [(ngModel)]="video.name" (change)="saveVideo(i)"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="video.description" (change)="saveVideo(i)"></td>
+        <td><select [(ngModel)]="video.videoType.id" (change)="saveVideo(i)">
           <option *ngFor="let t of type ; let it = index" [value]="t.id">{{t.name}}</option>
         </select></td>
-        <td><select [(ngModel)]="video.music.id" (change)="save(i)" style="width: 100px">
+        <td><select [(ngModel)]="video.music.id" (change)="saveVideo(i)" style="width: 100px">
           <option *ngFor="let m of musicService.musics ; let it = index" [value]="m.id">{{m.name}}</option>
         </select></td>
         <td>
-          <button class="btn btn-warning" (click)="save(i)">Save</button>
+          <button class="btn btn-warning" (click)="saveVideo(i)">Save</button>
           <button class="btn btn-danger" (click)="delete(i)">Delete</button>
         </td>
       </tr>
