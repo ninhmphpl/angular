@@ -8,7 +8,7 @@ import {uploadFile} from "../../../environment/upload.socket";
 import {CallIconService} from "../call-icon.service";
 
 const url = environment.url
-const urlUploadFile = environment.urlUploadFileSocket + '/upload2'
+const urlUploadFile = environment.url.replace("http", "ws") + '/upload'
 
 @Component({
   selector: 'app-theme',
@@ -70,7 +70,7 @@ export class ThemeComponent implements OnInit {
 
   uploadAvatar(files: FileList | null, index: number) {
     if (files && files.length > 0) {
-      uploadFile(files[0], urlUploadFile, "theme_color_file", (urlDownload: any) => {
+      uploadFile(files[0], urlUploadFile, "", (urlDownload: any) => {
         this.themes[index].avatar = urlDownload;
         this.save(index)
       })
@@ -79,7 +79,7 @@ export class ThemeComponent implements OnInit {
 
   uploadBackGround(files: FileList | null, index: number) {
     if (files && files.length > 0) {
-      uploadFile(files[0], urlUploadFile, "theme_color_file", (urlDownload: any) => {
+      uploadFile(files[0], urlUploadFile, "", (urlDownload: any) => {
         this.themes[index].backGround = urlDownload;
         this.save(index)
       })
@@ -88,7 +88,7 @@ export class ThemeComponent implements OnInit {
 
   uploadRingStones(files: FileList | null, index: number) {
     if (files && files.length > 0) {
-      uploadFile(files[0], urlUploadFile, "theme_color_file", (urlDownload: any) => {
+      uploadFile(files[0], urlUploadFile, "", (urlDownload: any) => {
         this.themes[index].ringstone_url = urlDownload;
         this.save(index)
       })

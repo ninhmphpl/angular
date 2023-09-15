@@ -6,7 +6,7 @@ import {uploadFile} from "../../../environment/upload.socket";
 import {TypeService} from "../type.service";
 import {Type} from "../../model/Type";
 const url = environment.url
-const urlUploadFile = environment.urlUploadFileSocket + '/upload2'
+const urlUploadFile = environment.url.replace("http", "ws") + '/upload'
 @Component({
   selector: 'app-call-icon',
   templateUrl: './call-icon.component.html',
