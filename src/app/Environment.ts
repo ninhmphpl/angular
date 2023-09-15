@@ -1,7 +1,7 @@
 import {HttpHeaders} from "@angular/common/http";
 
 export const environment = {
-  url : "http://localhost:8081",
+  url : "https://halloweenapi.nowtechai.com",
   keySaveToken : "Paw-Patrol-X-Token",
 }
 export function getHeader(){

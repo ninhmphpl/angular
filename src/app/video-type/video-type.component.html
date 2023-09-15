@@ -1,36 +1,71 @@
-<div>
-  <button (click)="save(-1)" class="m-2 btn btn-warning">Add new</button>
+<div class="btn-primary bg-opacity-10 z-1">
+  <div class="text-end">
+    <button (click)="save(-1)" class="m-2 btn btn-outline-warning">Add new
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus"
+           viewBox="0 0 16 16">
+        <path
+          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
+      </svg>
+    </button>
+  </div>
+
+  <table class="text-light w-100">
+    <thead>
+    <tr>
+      <th>Top</th>
+      <th>Show / New</th>
+      <th>Name</th>
+      <th>URL</th>
+      <th>Banner</th>
+      <th>Value</th>
+      <th>Premium</th>
+      <th colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let type of data; let i = index">
+      <td><input class="form-control w-100" type="number" style="width: 50px" [(ngModel)]="type.top" (change)="save(i)">
+      </td>
+      <td>
+        <div>
+          <div>Show <input class="form-check-input w-100" type="checkbox" [(ngModel)]="type.show" (change)="save(i)">
+          </div>
+          <div>New <input class="form-check-input w-100" type="checkbox" [(ngModel)]="type.isNew" (change)="save(i)">
+          </div>
+        </div>
+      </td>
+      <td><input class="form-control w-100" type="text" [(ngModel)]="type.name" (change)="save(i)" placeholder="Name"></td>
+      <td>
+        <app-img-upload [imgHeight]="'100px'" [imgWith]="'100px'" [img]="type.url"
+                        (dataEvent)="type.url = $event; save(i)"></app-img-upload>
+      </td>
+      <td>
+        <app-img-upload [imgHeight]="'50px'" [imgWith]="'100px'" [img]="type.banner"
+                        (dataEvent)="type.banner = $event; save(i)"></app-img-upload>
+      </td>
+      <td><input class="form-control w-100" type="number" [(ngModel)]="type.value" (change)="save(i)" placeholder="Value"></td>
+      <td>
+        <div>V16<input class="form-check-input w-100" type="checkbox" [(ngModel)]="type.premiumV16" (change)="save(i)">
+        </div>
+        <div>V17<input class="form-check-input w-100" type="checkbox" [(ngModel)]="type.premiumV17" (change)="save(i)">
+        </div>
+      </td>
+      <td>
+        <button (click)="delete(i)" class="m-2 btn btn-outline-danger">
+          Delete
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+               viewBox="0 0 16 16">
+            <path
+              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+            <path
+              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+          </svg>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
-<table class="table-striped table">
-  <thead>
-  <tr>
-    <th>Top</th>
-    <th>Show</th>
-    <th>Name</th>
-    <th>URL</th>
-    <th>Banner</th>
-    <th>New</th>
-    <th>Value</th>
-    <th>Premium</th>
-    <th colspan="2">Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let type of data; let i = index">
-    <td><input type="number" style="width: 50px" [(ngModel)]="type.top" (change)="save(i)"></td>
-    <td><input type="checkbox" [(ngModel)]="type.show" (change)="save(i)"></td>
-    <td><input type="text" [(ngModel)]="type.name" (change)="save(i)"></td>
-    <td><app-img-upload [imgHeight]="'100px'" [imgWith]="'100px'" [img]="type.url" (dataEvent)="type.url = $event; save(i)"></app-img-upload></td>
-    <td><app-img-upload [imgHeight]="'50px'" [imgWith]="'100px'" [img]="type.banner" (dataEvent)="type.banner = $event; save(i)"></app-img-upload></td>
-    <td><input type="checkbox" [(ngModel)]="type.isNew" (change)="save(i)"></td>
-    <td><input type="number" [(ngModel)]="type.value" (change)="save(i)"></td>
-    <td>
-      <div>V16<input type="checkbox" [(ngModel)]="type.premiumV16" (change)="save(i)"></div>
-      <div>V17<input type="checkbox" [(ngModel)]="type.premiumV17" (change)="save(i)"></div>
-    </td>
-    <td><button (click)="save(i)" class="m-2 btn btn-warning">Save</button></td>
-    <td><button (click)="delete(i)" class="m-2 btn btn-danger">Delete</button></td>
-  </tr>
-  </tbody>
-</table>

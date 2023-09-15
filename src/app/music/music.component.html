@@ -1,6 +1,6 @@
-<div>
-  <div class="input-group-text">
-    <button class="btn btn-secondary" (click)="create()">Add new
+<div class="btn-primary bg-opacity-10 z-1">
+  <div class="text-end">
+    <button class="btn btn-outline-warning" (click)="create()">Add new
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
         <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
@@ -24,7 +24,7 @@
     </table>
   </div>
   <div class="p-3">
-    <table class="table table-striped">
+    <table class="text-light w-100">
       <thead>
       <tr>
         <th>Id</th>
@@ -40,18 +40,27 @@
       <tbody>
       <tr *ngFor="let music of musics ; let i = index">
         <td>{{i}}</td>
-        <td><input type="number" style="width: 50px" [(ngModel)]="music.top" (change)="saveMusic(i)"></td>
-        <td><input type="checkbox" [(ngModel)]="music.show" (change)="saveMusic(i)"></td>
+        <td><input class="form-control" type="number" style="width: 50px" [(ngModel)]="music.top" (change)="saveMusic(i)" placeholder="Top"></td>
+        <td><input class="form-check-input" type="checkbox" [(ngModel)]="music.show" (change)="saveMusic(i)"></td>
         <td>
           <app-img-upload [imgHeight]="'100px'" [imgWith]="'100px'" (dataEvent)="music.thumb = $event; saveMusic(i)" [img]="music.thumb"></app-img-upload>
         </td>
         <td>
-          <app-img-upload [type]="'audio'" [imgHeight]="'50px'" [imgWith]="'300px'" (dataEvent)="music.thumb = $event; saveMusic(i)" [img]="music.thumb"></app-img-upload>
+          <app-img-upload [type]="'audio'" [imgHeight]="'50px'" [imgWith]="'300px'" (dataEvent)="music.url = $event; saveMusic(i)" [img]="music.url"></app-img-upload>
         </td>
-        <td><input class="form-control" type="text" [(ngModel)]="music.name" (change)="saveMusic(i)"></td>
-        <td><input class="form-control" type="text" [(ngModel)]="music.description" (change)="saveMusic(i)"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="music.name" (change)="saveMusic(i)" placeholder="Name"></td>
+        <td><input class="form-control" type="text" [(ngModel)]="music.description" (change)="saveMusic(i)" placeholder="Description"></td>
         <td>
-          <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+          <button class="btn btn-outline-danger" (click)="delete(i)">
+            Delete
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+                 viewBox="0 0 16 16">
+              <path
+                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+              <path
+                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+            </svg>
+          </button>
         </td>
       </tr>
       </tbody>

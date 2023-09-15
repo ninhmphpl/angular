@@ -18,7 +18,7 @@ const urlPatrol = environment.url
 export class VideoComponent implements OnInit {
   uploadList: Upload[] = []
   videos: Video[] = []
-  type: Type[] = []
+  types: Type[] = []
 
   constructor(private http: HttpClient, private typeService: TypeService, public musicService : MusicService) {
   }
@@ -27,7 +27,7 @@ export class VideoComponent implements OnInit {
     this.get()
     this.musicService.get()
     this.typeService.getType(data => {
-      this.type = data
+      this.types = data
     })
   }
 
@@ -36,8 +36,8 @@ export class VideoComponent implements OnInit {
       if (payload.code == 200) {
         this.videos = payload.data
         for (const video of this.videos) {
-          if(video.music == null) video.music = new Music()
-          if(video.videoType == null) video.videoType = new Type()
+          // if(video.music == null) video.music = new Music()
+          // if(video.videoType == null) video.videoType = new Type()
         }
       } else {
         alert(payload.data)
@@ -57,8 +57,8 @@ export class VideoComponent implements OnInit {
   save(video : Video, action : (video : Video)=> any) {
     console.log(video)
     this.http.post(urlPatrol + "/video", video, getHeader()).subscribe((payload: any) => {
-      if(payload.data.videoType === null) payload.data.videoType = new Type()
-      if(payload.data.music === null)payload.data.music = new Music()
+      // if(payload.data.videoType === null) payload.data.videoType = new Type()
+      // if(payload.data.music === null)payload.data.music = new Music()
       action(payload.data)
       alert("OK")
     }, (error: any) => {

@@ -1,12 +1,19 @@
-<h1>Patrol</h1>
-<div>
-  <a routerLink="/video" class="btn btn-primary">Video</a>
-  <a routerLink="/video-type" class="btn btn-primary">Video Type</a>
-  <a routerLink="/music" class="btn btn-primary">Music</a>
-  <a routerLink="/login" class="btn btn-primary">Login</a>
-
+<img class="position-fixed w-100 h-100 z-0" src="./assets/DreamShaper_v7_halloween_1.jpg" alt="">
+<div class="position-fixed z-3 end-0 bottom-0 text-light p-1">By G-Coder</div>
+<div class="position-relative">
+  <div class="">
+    <h5 class="h-100 text-light p-2 px-5">Halloween Version 1.0</h5>
+    <div class="px-3">
+      <a routerLink="/video" class="btn btn-outline-warning">Video</a>
+      <a routerLink="/video-type" class="btn btn-outline-warning">Video Type</a>
+      <a routerLink="/music" class="btn btn-outline-warning">Music</a>
+      <a routerLink="/login" class="btn btn-outline-warning">Login</a>
+    </div>
+    <router-outlet class="bg-opacity-10"></router-outlet>
+  </div>
 </div>
-<router-outlet></router-outlet>
+
+
 
 
 

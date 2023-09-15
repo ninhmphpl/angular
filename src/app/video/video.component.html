@@ -1,69 +1,88 @@
-<div>
-  <div class="input-group-text">
-    <button class="btn btn-secondary" (click)="create()">Add
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus" viewBox="0 0 16 16">
-        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-        <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
+<div class=>
+  <div class="text-end">
+    <button class="btn btn-outline-warning" (click)="create()">Add New
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus"
+           viewBox="0 0 16 16">
+        <path
+          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
       </svg>
     </button>
   </div>
-  <div *ngIf="uploadList.length > 0">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Percent</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let upload of uploadList; let id = index">
-        <td>{{upload.name}}</td>
-        <td>{{upload.percent + '%'}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="p-3">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>Id</th>
-        <th>Top</th>
-        <th>Like</th>
-        <th>Show</th>
-        <th>Thumb</th>
-        <th>Audio</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Type Video</th>
-        <th>Music</th>
-        <th>Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let video of videos ; let i = index">
-        <td>{{i}}</td>
-        <td><input type="number" style="width: 50px" [(ngModel)]="video.top" (change)="saveVideo(i)"></td>
-        <td><input type="number" style="width: 50px" [(ngModel)]="video.like" (change)="saveVideo(i)"></td>
-        <td><input type="checkbox" [(ngModel)]="video.show" (change)="saveVideo(i)"></td>
-        <td><app-img-upload [type]="'img'" [imgWith]="'100px'" [imgHeight]="'150px'" [img]="video.thumb" (dataEvent)="video.thumb = $event; saveVideo(i)"></app-img-upload></td>
-        <td><app-img-upload [type]="'video'" [imgWith]="'100px'" [imgHeight]="'150px'" [img]="video.url" (dataEvent)="video.url = $event; saveVideo(i)"></app-img-upload></td>
-        <td><input class="form-control" type="text" [(ngModel)]="video.name" (change)="saveVideo(i)"></td>
-        <td><input class="form-control" type="text" [(ngModel)]="video.description" (change)="saveVideo(i)"></td>
-        <td><select [(ngModel)]="video.videoType.id" (change)="saveVideo(i)">
-          <option *ngFor="let t of type ; let it = index" [value]="t.id">{{t.name}}</option>
-        </select></td>
-        <td><select [(ngModel)]="video.music.id" (change)="saveVideo(i)" style="width: 100px">
-          <option *ngFor="let m of musicService.musics ; let it = index" [value]="m.id">{{m.name}}</option>
-        </select></td>
-        <td>
-          <button class="btn btn-warning" (click)="saveVideo(i)">Save</button>
-          <button class="btn btn-danger" (click)="delete(i)">Delete</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="text-light w-100">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Top, Like, Show</th>
+      <th>Thumb</th>
+      <th>Video</th>
+      <th>Name & Description</th>
+      <th>Type Video | Music</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let video of videos ; let i = index">
+      <td>{{i}}</td>
+      <td>
+        <div class="input-group">
+          <span class="input-group-text w-50">Top</span>
+          <input class="form-control w-50" type="number" style="width: 50px" [(ngModel)]="video.top"
+                 (change)="saveVideo(i)">
+        </div>
+        <div class="input-group">
+          <span class="input-group-text w-50">Like</span>
+          <input class="form-control w-50" type="number" style="width: 50px" [(ngModel)]="video.like"
+                 (change)="saveVideo(i)">
+        </div>
+        <div class="w-100 px-3">
+          Show <input class="form-check-input mx-2" type="checkbox" [(ngModel)]="video.show" (change)="saveVideo(i)">
+        </div>
+      </td>
+      <td>
+        <app-img-upload [type]="'img'" [imgWith]="'100px'" [imgHeight]="'150px'" [img]="video.thumb"
+                        (dataEvent)="video.thumb = $event; saveVideo(i)"></app-img-upload>
+      </td>
+      <td>
+        <app-img-upload [type]="'video'" [imgWith]="'100px'" [imgHeight]="'150px'" [img]="video.url"
+                        (dataEvent)="video.url = $event; saveVideo(i)"></app-img-upload>
+      </td>
+      <td>
+        <input class="form-control w-100" type="text" [(ngModel)]="video.name" (change)="saveVideo(i)"
+               placeholder="Name">
+        <input class="form-control" type="text" [(ngModel)]="video.description" (change)="saveVideo(i)"
+               placeholder="Description">
+      </td>
+      <td>
+        <div class="btn-group w-100">
+          <app-select class="w-50"
+                      [name]="(video.videoType)?video.videoType.name : 'VideoType'"
+                      [property]="'name'"
+                      [listOption]="types"
+                      (dataEvent)="video.videoType = $event; saveVideo(i)"></app-select>
+          <app-select class="w-50" [name]="(video.music)?video.music.name : 'Music'"
+                      [property]="'name'"
+                      [listOption]="musicService.musics"
+                      (dataEvent)="video.music = $event; saveVideo(i)"></app-select>
+        </div>
+
+      </td>
+      <td>
+        <button class="btn btn-outline-danger" (click)="delete(i)">
+          Delete
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
+               viewBox="0 0 16 16">
+            <path
+              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+            <path
+              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+          </svg>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
 

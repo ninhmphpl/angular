@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+th,td{
+  padding: 15px;
+}
+tr{
+  text-align-all: start;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.4) !important;
+}
+table{
+  background-color: rgba(0,0,0,0.44) !important;
+}
+input, span{
+  color: aliceblue !important;
+  background-color: rgba(0, 0, 0, 0.15) !important;
+}
+input::placeholder{
+  color: #e34c04 !important;
+}

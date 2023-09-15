@@ -1,0 +1,8 @@
+<!-- Example single danger button -->
+<div class="btn-group w-100">
+  <button type="button" class="w-100 btn btn-outline-primary dropdown-toggle" [innerText]="name" data-bs-toggle="dropdown" aria-expanded="false">
+  </button>
+  <ul class="dropdown-menu">
+    <li *ngFor="let element of listOption"><a class="dropdown-item"  [innerText]="element[property]" (click)="dataEvent.emit(element)" ></a></li>
+  </ul>
+</div>
