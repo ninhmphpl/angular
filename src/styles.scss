@@ -11,8 +11,27 @@ table{
 }
 input, span{
   color: aliceblue !important;
+  border: #4b4be1 solid 1px !important;
   background-color: rgba(0, 0, 0, 0.15) !important;
 }
 input::placeholder{
   color: #e34c04 !important;
+}
+.btn-outline-primary{
+  color: hotpink !important;
+  border: solid 1px hotpink !important;
+}
+
+.btn-outline-primary:hover{
+  color: #4b4be1 !important;
+  border: solid 1px #4b4be1 !important;
+  background-color: hotpink !important;;
+}
+.btn-outline-warning{
+  color: #4b4be1 !important;
+  border: solid 1px #4b4be1 !important;
+  background-color: rgba(75, 75, 225, 0.3) !important;
+}
+.btn-outline-warning:hover{
+  box-shadow: 0 0 2px 2px deeppink !important;
 }

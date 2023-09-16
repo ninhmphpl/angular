@@ -1,14 +1,14 @@
 <body class="text-center" style="background-color: rgba(230,230,250,0)">
-<div class="mx-auto" style="width: 600px">
+<div class="mx-auto p-3" style="width: 600px; background-color: rgba(37,58,197,0.27); border-radius: 20px">
   <img class="mb-4" src="https://proxglobal.com/wp-content/uploads/2022/10/LOGO-PROX-GLOBAL-2.png" alt="" height="57">
   <h1 class="h3 mb-3 fw-norma text-light">Please sign in</h1>
 
   <div class="form-floating">
-    <input type="email" class="form-control" id="floatingInput" placeholder="Username" [(ngModel)]="email">
+    <input type="email" class="form-control" style="background-color: rgba(240,248,255,0.22)!important;" id="floatingInput" placeholder="Username" [(ngModel)]="email">
     <label for="floatingInput">Username</label>
   </div>
   <div class="form-floating my-2">
-    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="password">
+    <input type="password" class="form-control" style="background-color: rgba(240,248,255,0.22)!important;" id="floatingPassword" placeholder="Password" [(ngModel)]="password">
     <label for="floatingPassword">Password</label>
   </div>
   <button class="w-100 btn btn-lg btn-danger" (click)="submit()">Sign in</button>
