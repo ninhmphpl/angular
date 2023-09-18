@@ -36,7 +36,7 @@ export class MusicComponent implements OnInit {
   save(music : Music, action : (music : Music)=> any) {
     this.http.post(urlPatrol + "/music", music,getHeader()).subscribe((payload: any) => {
       action(payload.data)
-      alert("OK")
+      // alert("OK")
     }, (error: any) => {
       alert(JSON.stringify(error.error.detail))
     })

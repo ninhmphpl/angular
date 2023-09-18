@@ -1,7 +1,7 @@
 import {HttpHeaders} from "@angular/common/http";
 
 export const environment = {
-  url : "http://animeapi.nowtechai.com",
+  url : "https://animeapi.nowtechai.com",
   keySaveToken : "Paw-Patrol-X-Token",
 }
 export function getHeader(){

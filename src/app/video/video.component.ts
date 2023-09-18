@@ -60,7 +60,7 @@ export class VideoComponent implements OnInit {
       // if(payload.data.videoType === null) payload.data.videoType = new Type()
       // if(payload.data.music === null)payload.data.music = new Music()
       action(payload.data)
-      alert("OK")
+      // alert("OK")
     }, (error: any) => {
       console.log(error)
       alert(JSON.stringify(error.error.detail))

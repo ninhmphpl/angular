@@ -25,7 +25,7 @@ export class VideoTypeComponent implements OnInit {
     this.typeService.save(type, data =>{
       if(index != -1) this.data[index] = data;
       else this.data.unshift(data)
-      alert("Done")
+      // alert("Done")
     })
   }
   delete(index : number){
