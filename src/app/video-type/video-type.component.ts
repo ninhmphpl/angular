@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TypeService} from "../type.service";
 import {Type} from "../model/Type";
-import {HttpHeaders} from "@angular/common/http";
-import {environment} from "../Environment";
 
 @Component({
   selector: 'app-video-type',

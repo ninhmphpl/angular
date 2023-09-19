@@ -12,12 +12,12 @@ export class ImgUploadComponent {
   @Input() type : string = 'img'
   @Input() imgWith: string = "100px";
   @Input() imgHeight: string = "100px";
-  url = environment.url;
-  urlSocket = environment.url.replace("http", "ws") + "/upload"
+  url = environment.urlUpload;
+  urlSocket = environment.urlUpload.replace("http", "ws") + "/upload"
   urlDefault = "./assets/card-default.jpg"
   sendData(event: any) {
     this.uploadFile(event.target.files[0], this.urlSocket, "", url => {
-      this.dataEvent.emit(url);
+      this.dataEvent.emit(this.url + "/" + url.split("/").pop());
     })
   }
 
