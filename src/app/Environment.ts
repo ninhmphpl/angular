@@ -2,8 +2,6 @@ import {HttpHeaders} from "@angular/common/http";
 
 export const environment = {
   url : "http://143.42.238.158:8081",
-  urlUpload : "ws://143.42.238.158:8000",
-  domainFile : "https://data.nowtechai.com",
   keySaveToken : "Paw-Patrol-X-Token",
 }
 export function getHeader(){

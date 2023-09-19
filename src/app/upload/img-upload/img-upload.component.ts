@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {environment} from "../../Environment";
 
 @Component({
   selector: 'app-img-upload',
@@ -9,18 +8,22 @@ import {environment} from "../../Environment";
 export class ImgUploadComponent {
   @Output() dataEvent = new EventEmitter<string>();
   @Input() img: string = "";
-  @Input() type : string = 'img'
+  @Input() type : string = 'img';
   @Input() imgWith: string = "100px";
   @Input() imgHeight: string = "100px";
-  url = environment.urlUpload;
-  urlSocket = environment.urlUpload.replace("http", "ws") + "/upload"
-  urlDefault = "./assets/card-default.jpg"
+  @Input() path : string = '';
+  url = "https://data.nowtechai.com"
+  urlSocket = "ws://143.42.238.158:8000/upload"
+  urlDefault = ""
+  percent : number = 0;
   sendData(event: any) {
-    this.uploadFile(event.target.files[0], this.urlSocket, "", url => {
-      this.dataEvent.emit(this.url + "/" + url.split("/").pop());
+    this.uploadFile(event.target.files[0], this.urlSocket, this.path, url => {
+      this.dataEvent.emit(this.url + url);
+    }, data => {
+      this.percent = data
+      if(this.percent === 100) this.percent = 0
     })
   }
-
   uploadFile(file: File, url: string, path: string, action: (url: string) => any, percentAction?: (data: number) => any) {
     const chunkSize = 1024 * 7; // Size of each piece of data (1 MB)
     const totalChunks = Math.ceil(file.size / chunkSize); // data total
@@ -62,6 +65,4 @@ export class ImgUploadComponent {
       }
     };
   }
-
-
 }
