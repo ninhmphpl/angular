@@ -1,1 +1,2 @@
-<app-upload-file></app-upload-file>
+<app-img-upload [img]="title" (dataEvent)="title = $event"></app-img-upload>
+<div>{{title}}</div>

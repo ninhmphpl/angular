@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UploadFileComponent } from './upload-file/upload-file.component';
+import {ImgUploadComponent} from "./img-upload/img-upload.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    UploadFileComponent
+    ImgUploadComponent
   ],
   imports: [
     BrowserModule,
