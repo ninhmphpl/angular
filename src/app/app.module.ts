@@ -10,6 +10,7 @@ import { CategoryComponent } from './category/category.component';
 import { StickerComponent } from './sticker/sticker.component';
 import { CallIconComponent } from './call-icon/call-icon.component';
 import {ImgUploadComponent} from "./img-upload/img-upload.component";
+import { SourceImgComponent } from './source-img/source-img.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {ImgUploadComponent} from "./img-upload/img-upload.component";
     CategoryComponent,
     StickerComponent,
     CallIconComponent,
-    ImgUploadComponent
+    ImgUploadComponent,
+    SourceImgComponent
   ],
     imports: [
         BrowserModule,

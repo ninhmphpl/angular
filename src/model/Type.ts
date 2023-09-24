@@ -1,3 +1,6 @@
-export interface Type{
-  name : any;
+export class Type{
+  constructor(name: string) {
+    this.name = name;
+  }
+  name! : string;
 }

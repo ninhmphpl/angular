@@ -1,35 +1,14 @@
 <div class="border bg-light">
-  <table>
-    <tr>
-      <td>Image</td>
-      <td><input type="file" #createFile></td>
-    </tr>
-    <tr>
-      <td>Category</td>
-      <td><input type="text" #createCategory></td>
-    </tr>
-    <tr>
-      <td>Priority</td>
-      <td><input type="text" #createPriority></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td><button class="btn btn-primary" (click)="save({category : createCategory.value, priority : createPriority.value}, createFile.files)">Create</button></td>
-    </tr>
-  </table>
+  <button (click)="create()" >Add New</button>
 </div>
-
-
 <table>
-  <tr *ngFor="let category of categories; let categoryIndex = index">
+  <tr *ngFor="let category of themeService.categories; let i = index">
     <td>{{category.id}}</td>
     <td>
-      <img style="height: 40px; width: 40px" [src]="category.img">
-      <input type="file" #imgFile>
+      <app-img-upload [src]="category.img" (dataEvent)="category.img = $event"></app-img-upload>
     </td>
-    <td><input type="text" [(ngModel)]="category.category" placeholder="Category Name"></td>
-    <td><input type="text" [(ngModel)]="category.priority" placeholder="Priority"></td>
-    <td><button class="btn btn-primary" (click)="save(category, imgFile.files)">Save</button></td>
-    <td><button class="btn btn-danger" (click)="delete(category.id)">Delete</button></td>
+    <td><input type="text" [(ngModel)]="category.category" placeholder="Category Name" (change)="save(i)"></td>
+    <td><input type="text" [(ngModel)]="category.priority" placeholder="Priority" (change)="save(i)"></td>
+    <td><button class="btn btn-danger" (click)="delete(i)">Delete</button></td>
   </tr>
 </table>

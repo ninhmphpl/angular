@@ -1,8 +1,8 @@
-export interface CallIcon{
-  id : any;
-  accept : any;
-  deny : any;
-  acceptJson : any;
-  denyJson : any;
-  type : any;
+export class CallIcon{
+  id !: number;
+  accept !: string;
+  deny !: string;
+  acceptJson !: string;
+  denyJson !: string;
+  type !: string;
 }

@@ -1,7 +1,7 @@
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 
 export const environment = {
-  url : "http://theme.tolimanspaceni.com"
+  url : "http://localhost:8000"
 }
 
 export function successAlert(string : string){

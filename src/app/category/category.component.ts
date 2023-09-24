@@ -2,46 +2,30 @@ import {Component, OnInit} from '@angular/core';
 import {environment, errorAlert, successAlert} from "../../../environment/environments";
 import {HttpClient} from "@angular/common/http";
 import {Category} from "../../model/Category";
-const url = environment.url
+import {ThemeService} from "../theme.service";
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit{
-  categories : Category[] = []
-  constructor(private http : HttpClient) {
+  constructor(public themeService : ThemeService) {
   }
   ngOnInit(): void {
-    this.getList()
   }
-  getList(){
-    this.http.get(url + "/category").subscribe((payload : any)=>{
-      this.categories = payload.data;
-    }, (error : any) => {
-      console.log(error)
+  create(){
+    this.themeService.saveCategory(new Category(), category => {
+      this.themeService.categories.unshift(category)
     })
   }
-  save(category : any, file : any){
-    let formData = new FormData()
-    formData.append("category", JSON.stringify(category))
-    formData.append("file", (file && file.length > 0)?file[0]:null)
-    this.http.post(url + "/category", formData).subscribe((payload : any)=>{
-      if(payload.code == 200){
-        this.getList()
-        successAlert("Ok")
-      }else {
-        errorAlert(JSON.stringify(payload))
-      }
-    }, (error : any)=>{
-      console.log(error)
+  save(i : number){
+    this.themeService.saveCategory(this.themeService.categories[i], category => {
+      this.themeService.categories[i] = category
     })
   }
-  delete(id : any){
-    this.http.delete(url + "/category/" + id).subscribe((payload : any)=>{
-      if(payload.code == 200) this.getList()
-    }, (error : any)=>{
-      console.log(error)
+  delete(i : number){
+    this.themeService.deleteCategory(this.themeService.categories[i], () => {
+      this.themeService.categories.splice(i, 1)
     })
   }
 }

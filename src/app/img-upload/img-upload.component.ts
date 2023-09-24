@@ -8,9 +8,10 @@ import {environment} from "../../../environment/environments";
 })
 export class ImgUploadComponent {
   @Output() dataEvent = new EventEmitter<string>();
-  @Input() img: string = "";
+  @Input() src: string = "";
   @Input() imgWith: string = "100px";
   @Input() imgHeight: string = "100px";
+  @Input() type = 'img'
   url = environment.url;
   urlSocket = environment.url.replace("http", "ws") + "/upload"
   urlDefault = ""
