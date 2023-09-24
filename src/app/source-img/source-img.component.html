@@ -1,0 +1,27 @@
+<div class="p-3 m-2">
+  <div class="btn-group">
+    <button [class.active]="choice == 'background'" class="btn btn-outline-primary"
+            (click)="source = theme.sourceBackground; choice = 'background'">Background
+    </button>
+    <button [class.active]="choice == 'callIcon'" class="btn btn-outline-primary"
+            (click)="source = theme.sourceCallIcon; choice = 'callIcon'">Call Icon
+    </button>
+    <button [class.active]="choice == 'avatar'" class="btn btn-outline-primary"
+            (click)="source = theme.sourceAvatar; choice = 'avatar'">Avatar
+    </button>
+    <button [class.active]="choice == 'sticker'" class="btn btn-outline-primary"
+            (click)="source = theme.sourceSticker; choice = 'sticker'">Sticker
+    </button>
+  </div>
+  <div *ngIf="source.length > 0" class="row row-cols-auto border mt-2 rounded-4 overflow-y-scroll"
+       style="height: 400px">
+    <div class="col" *ngFor="let s of source, let i = index">
+      <img *ngIf="theme.isImage(s.url)" class="img-thumbnail m-1" style="width: 100px"
+           (click)="choiceImg(s.url)" [src]="s.url" alt="">
+      <video *ngIf="theme.isVideo(s.url)" class="img-thumbnail m-1" style="width: 100px"
+             (click)="choiceImg(s.url)" [src]="s.url" controls></video>
+    </div>
+  </div>
+</div>
+
+
