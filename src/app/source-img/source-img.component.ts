@@ -3,7 +3,7 @@ import {environment} from "../../../environment/environments";
 import {Source} from "../../model/Source";
 import {HttpClient} from "@angular/common/http";
 import {ThemeService} from "../theme.service";
-const url = environment.url
+
 @Component({
   selector: 'app-source-img',
   templateUrl: './source-img.component.html',
@@ -18,6 +18,19 @@ export class SourceImgComponent{
   choiceImg(img : string){
     this.dataEvent.emit(img)
     this.source = []
+  }
+  create(url : string){
+    let source = new Source();
+    source.url = url
+    source.type = this.choice
+    this.theme.saveSource(source, source1 => {
+      this.source.push(source1)
+    })
+  }
+  delete(i : number){
+    this.theme.deleteSource(this.source[i], () => {
+      this.source.splice(i, 1)
+    })
   }
 
 }

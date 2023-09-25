@@ -59,8 +59,8 @@
         <input placeholder="name" class="w-100 border-0 text-light rounded-4" style="background: rgba(0,0,0,0.29);"
                type="text" [(ngModel)]="theme.name" (change)="save(i)">
       </div>
-      <img class="w-25 position-absolute bottom-0 start-0 m-3" [src]="theme.call_icon.accept" alt="">
-      <img class="w-25 position-absolute bottom-0 end-0 m-3" [src]="theme.call_icon.deny" alt="">
+      <img class="w-25 position-absolute bottom-0 start-0 m-3" [src]="theme.call_icon.accept" alt="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" (click)="themeSelection = i">
+      <img class="w-25 position-absolute bottom-0 end-0 m-3" [src]="theme.call_icon.deny" alt="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" (click)="themeSelection = i">
     </div>
     <div class=" position-relative" style="width: 150px">
       <app-img-upload [imgWith]="'100%'" [imgHeight]="'40px'" [type]="'audio'" [src]="theme.ringstone_url"
@@ -104,7 +104,7 @@
 
 
 <!-- BACK GROUND -->
-<div class="offcanvas offcanvas-bottom h-100" tabindex="-1" id="offBackgournd"
+<div class="offcanvas offcanvas-bottom h-100 d-none" tabindex="-1" id="offBackgournd"
      aria-labelledby="offcanvasBottomLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasBottomLabel">Source</h5>
@@ -119,3 +119,15 @@
   </div>
 </div>
 <!-- BACK GROUND -->
+
+<!-- CALL ICON -->
+<div class="offcanvas offcanvas-end w-50" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <app-call-icon (eventData)="themeService.themes[themeSelection].call_icon = $event; save(themeSelection)"></app-call-icon>
+  </div>
+</div>
+<!-- CALL ICON -->

@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 
 export const environment = {
-  url : "http://localhost:8000"
+  url : "http://45.79.16.25:8090"
 }
 
 export function successAlert(string : string){

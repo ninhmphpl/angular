@@ -5,10 +5,14 @@
   <tr *ngFor="let category of themeService.categories; let i = index">
     <td>{{category.id}}</td>
     <td>
-      <app-img-upload [src]="category.img" (dataEvent)="category.img = $event"></app-img-upload>
+      <app-img-upload [src]="category.img" (dataEvent)="category.img = $event; save(i)"></app-img-upload>
     </td>
-    <td><input type="text" [(ngModel)]="category.category" placeholder="Category Name" (change)="save(i)"></td>
-    <td><input type="text" [(ngModel)]="category.priority" placeholder="Priority" (change)="save(i)"></td>
-    <td><button class="btn btn-danger" (click)="delete(i)">Delete</button></td>
+    <td>
+      <div class="input-group">
+        <input class="form-control" type="text" [(ngModel)]="category.category" placeholder="Category Name" (change)="save(i)">
+        <input class="form-control" type="text" [(ngModel)]="category.priority" placeholder="Priority" (change)="save(i)">
+        <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+      </div>
+    </td>
   </tr>
 </table>

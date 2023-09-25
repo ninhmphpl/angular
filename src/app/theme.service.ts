@@ -143,6 +143,18 @@ export class ThemeService {
       console.log(error.error)
     })
   }
+  saveSource(source : Source, action: (source: Source) => any){
+    this.http.post(url + "/theme/source", source).subscribe((payload : any)=>{
+      if(payload.code == 200){
+        action(payload.data)
+        successAlert("Ok")
+      }else {
+        errorAlert(JSON.stringify(payload))
+      }
+    }, (error : any)=>{
+      console.log(error.error)
+    })
+  }
 
   deleteTheme(theme: Theme, action : ()=> any) {
     this.http.delete(url + "/theme/" + theme.id).subscribe((data: any) => {
@@ -165,6 +177,13 @@ export class ThemeService {
   }
   deleteCategory(category : Category, action: () => any){
     this.http.delete(url + "/category/" + category.id).subscribe((payload : any)=>{
+      if(payload.code == 200) action()
+    }, (error : any)=>{
+      console.log(error)
+    })
+  }
+  deleteSource(category : Source, action: () => any){
+    this.http.delete(url + "/theme/source?url=" + category.url).subscribe((payload : any)=>{
       if(payload.code == 200) action()
     }, (error : any)=>{
       console.log(error)
