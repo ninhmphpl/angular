@@ -1,7 +1,8 @@
 export class Template{
-  id : any
-  descriptionPrompt : any
-  prompt : any
-  output : any
-  input : any
+  id! : string
+  descriptionPrompt! : string
+  prompt! : string
+  output! : string
+  input! : string
+  trending! : boolean
 }
