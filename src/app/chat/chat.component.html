@@ -23,15 +23,15 @@
 
     <div class="card">
       <div class="row g-0">
-        <div class="col-12 col-lg-5 col-xl-3 border-right bg-light px-0">
+        <div class="col-12 col-lg-5 col-xl-3 border-right bg-light px-0 overflow-y-scroll" style="height: 100vh;">
 
-          <div class="px-4 d-none d-md-block">
-            <div class="d-flex align-items-center">
-              <div class="flex-grow-1">
-                <input type="text" class="form-control my-3" placeholder="Search...">
-              </div>
-            </div>
-          </div>
+<!--          <div class="px-4 d-none d-md-block">-->
+<!--            <div class="d-flex align-items-center">-->
+<!--              <div class="flex-grow-1">-->
+<!--                <input type="text" class="form-control my-3" placeholder="Search...">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
           <a [style.background-color]="(u.id === user)?'rgba(101,101,225,0.13)':'rgba(101,101,225,0.0)'" *ngFor="let u of listMessage, let i = index" (click)="changeSession(i)" href="#" class="list-group-item list-group-item-action border-0 px-3 rounded-3">
 <!--            <div class="badge bg-success">5</div>-->
@@ -71,7 +71,7 @@
                 <div *ngIf="m.role === 'admin'"  class="chat-message-right pb-4">
                   <div>
                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1 m-2" alt="Chris Wood" width="40" height="40">
-                    <div class="text-muted small text-nowrap mt-2">{{m.createAt | date: 'hh:mm a'}}</div>
+                    <div class="text-muted small text-nowrap mt-2">{{m.createAt | date: 'dd/MM hh:mm a'}}</div>
                   </div>
                   <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
 <!--                    <div class="font-weight-bold mb-1 text-dark text-truncate" style="width: 150px">{{m.name}}</div>-->
@@ -82,7 +82,7 @@
                 <div *ngIf="m.role === 'user'" class="chat-message-left pb-4">
                   <div>
                     <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="rounded-circle mr-1 m-2" alt="Sharon Lessman" width="40" height="40">
-                    <div class="text-muted small text-nowrap mt-2" [innerText]="m.createAt | date: 'hh:mm a'"></div>
+                    <div class="text-muted small text-nowrap mt-2" [innerText]="m.createAt | date: 'dd/MM hh:mm a'"></div>
                   </div>
                   <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
 <!--                    <div class="font-weight-bold mb-1 text-truncate"  style="width: 150px">{{m.name}}</div>-->
