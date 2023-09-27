@@ -5,4 +5,5 @@ export class Template{
   output! : string
   input! : string
   trending! : boolean
+  top! : number
 }
