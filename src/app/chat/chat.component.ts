@@ -25,6 +25,7 @@ export class ChatComponent implements OnInit, AfterViewChecked{
     })
   }
 
+
   ngOnInit(): void {
     this.getMessage()
     this.connect((id, message1) =>{
@@ -70,12 +71,23 @@ export class ChatComponent implements OnInit, AfterViewChecked{
     this.user = this.listMessage[i].id
     this.message = this.listMessage[i].message
   }
+  seenMakeNew(){
+    for(let i = 0 ; i < this.listMessage.length ; i ++){
+      let seen = 0
+      for(let j = this.listMessage[i].message.length -1 ; j >= 0 ; j--){
+        if(this.listMessage[i].message[j].role === "admin") break
+        else seen++
+      }
+      this.listMessage[i].seen = seen
+    }
+  }
   scrollToBottom() {
     const div = this.scrollableDiv.nativeElement;
     div.scrollTop = div.scrollHeight;
   }
 
   ngAfterViewChecked(): void {
+    this.seenMakeNew()
     this.scrollToBottom()
   }
 
@@ -100,8 +112,10 @@ class ListMessage {
   constructor(id: string, message: Message[]) {
     this.id = id;
     this.message = message;
+    this.seen = 0
   }
 
   id!: string;
+  seen! : number;
   message!: Message[]
 }

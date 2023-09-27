@@ -1,21 +1,3 @@
-<!--<div class="w-100">-->
-<!--  <div *ngFor="let m of message">-->
-<!--    <div *ngIf="m.role === 'user'" class="row">-->
-<!--      <div class="col-2 text-start" [innerText]="m.name"></div>-->
-<!--      <div class="col-10 text-end bg-light rounded-4 p-3" [innerText]="m.content"></div>-->
-<!--    </div>-->
-<!--    <div *ngIf="m.role === 'admin'" class="row">-->
-<!--      <div class="col-10 text-start bg-light rounded-4 p-3" [innerText]="m.content"></div>-->
-<!--      <div class="col-2 text-end">-->
-<!--        <div class="w-100">-->
-<!--          -->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
 <main class="content">
   <div class="container p-0">
 
@@ -34,7 +16,7 @@
 <!--          </div>-->
 
           <a [style.background-color]="(u.id === user)?'rgba(101,101,225,0.13)':'rgba(101,101,225,0.0)'" *ngFor="let u of listMessage, let i = index" (click)="changeSession(i)" href="#" class="list-group-item list-group-item-action border-0 px-3 rounded-3">
-<!--            <div class="badge bg-success">5</div>-->
+            <div *ngIf="u !== null && u.seen > 0" class="badge bg-success">{{u.seen}}</div>
             <div class="d-flex align-items-start">
               <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="rounded-circle mr-1 m-2" alt="Vanessa Tucker" width="40" height="40">
               <div class="flex-grow-1 ml-3 text-truncate">
