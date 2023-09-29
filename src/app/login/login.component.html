@@ -1,1 +1,5 @@
+
+<select [(ngModel)]="loginInfo.projectId">
+  <option *ngFor="let l of projectList" [value]="l.projectId" [innerText]="l.projectName"></option>
+</select>
 <button (click)="login()">login</button>
