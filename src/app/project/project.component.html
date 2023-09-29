@@ -1,0 +1,18 @@
+<table>
+  <tr *ngFor="let p of projectList">
+    <td>{{p.projectId}}</td>
+    <td>{{p.projectName}}</td>
+    <td>{{p.direction}}</td>
+    <td>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          User
+        </button>
+        <ul class="dropdown-menu">
+          <li *ngFor="let u of p.users"><a class="dropdown-item" href="#">{{u.email}} - {{u.role}}</a></li>
+        </ul>
+      </div>
+    </td>
+    <td>{{p.secretKey}}</td>
+  </tr>
+</table>
