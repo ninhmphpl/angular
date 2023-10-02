@@ -46,7 +46,7 @@
       <img *ngIf="themeService.isImage(theme.backGround)" class="img-thumbnail w-100 h-100"
            [src]="theme.backGround" data-bs-toggle="offcanvas" data-bs-target="#offBackgournd"
            aria-controls="offcanvasBottom" alt=""
-           (click)="themeSelection = i; themePropertySelection = 'background'">
+           (click)="themeSelection = i; themePropertySelection = 'background'; choiceImg.click()">
       <video *ngIf="themeService.isVideo(theme.backGround)" class="img-thumbnail w-100 h-100"
              [src]="theme.backGround" data-bs-toggle="offcanvas"
              data-bs-target="#offBackgournd" aria-controls="offcanvasBottom"
@@ -55,7 +55,7 @@
            style="top : 25%">
         <img [src]="theme.avatar" data-bs-toggle="offcanvas" class="rounded-circle w-100"
              data-bs-target="#offBackgournd" aria-controls="offcanvasBottom" alt=""
-             (click)="themeSelection = i; themePropertySelection = 'avatar'">
+             (click)="themeSelection = i; themePropertySelection = 'avatar'; choiceImg.click()">
         <input placeholder="name" class="w-100 border-0 text-light rounded-4" style="background: rgba(0,0,0,0.29);"
                type="text" [(ngModel)]="theme.name" (change)="save(i)">
       </div>
@@ -103,22 +103,31 @@
 </div>
 
 
-<!-- BACK GROUND -->
-<div class="offcanvas offcanvas-bottom h-100 d-none" tabindex="-1" id="offBackgournd"
-     aria-labelledby="offcanvasBottomLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasBottomLabel">Source</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
-            #closeBackgroundChoice></button>
-  </div>
-  <div class="offcanvas-body small">
-    <app-source-img *ngIf="themePropertySelection=='background'" [source]="themeService.sourceBackground"
-                    (dataEvent)="themeService.themes[themeSelection].backGround = $event; save(themeSelection); closeBackgroundChoice.click();"></app-source-img>
-    <app-source-img *ngIf="themePropertySelection=='avatar'" [source]="themeService.sourceAvatar"
-                    (dataEvent)="themeService.themes[themeSelection].avatar = $event; save(themeSelection); closeBackgroundChoice.click();"></app-source-img>
+<!-- Button trigger modal -->
+<button #choiceImg type="button" class="d-none btn btn-primary" data-bs-toggle="modal" data-bs-target="#choiceImg">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="choiceImg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeBackgroundChoice></button>
+      </div>
+      <div class="modal-body">
+        <app-source-img *ngIf="themePropertySelection=='background'" [source]="themeService.sourceBackground"
+                        (dataEvent)="themeService.themes[themeSelection].backGround = $event; save(themeSelection); closeBackgroundChoice.click();"></app-source-img>
+        <app-source-img *ngIf="themePropertySelection=='avatar'" [source]="themeService.sourceAvatar"
+                        (dataEvent)="themeService.themes[themeSelection].avatar = $event; save(themeSelection); closeBackgroundChoice.click();"></app-source-img>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
-<!-- BACK GROUND -->
 
 <!-- CALL ICON -->
 <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
