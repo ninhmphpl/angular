@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {environment} from "../../Environment";
 
 @Component({
   selector: 'app-img-upload',
@@ -11,14 +12,13 @@ export class ImgUploadComponent {
   @Input() type : string = 'img';
   @Input() imgWith: string = "100px";
   @Input() imgHeight: string = "100px";
-  @Input() path : string = '';
-  url = "https://data.nowtechai.com"
-  urlSocket = "ws://143.42.238.158:8000/upload"
+  urlSocket = environment.url.replace("http", "ws") + "/upload"
   urlDefault = ""
   percent : number = 0;
   sendData(event: any) {
-    this.uploadFile(event.target.files[0], this.urlSocket, this.path, url => {
-      this.dataEvent.emit(this.url + url);
+    this.uploadFile(event.target.files[0], this.urlSocket, "", url => {
+      console.log(url)
+      this.dataEvent.emit(url);
     }, data => {
       this.percent = data
       if(this.percent === 100) this.percent = 0
