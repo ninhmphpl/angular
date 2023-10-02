@@ -1,8 +1,8 @@
 import {HttpHeaders} from "@angular/common/http";
 
 export const environment = {
-  url : "http://208.73.203.106:8083",
-  // url : "https://pawapi.nowtechai.com",
+  // url : "http://208.73.203.106:8083",
+  url : "https://pawapi.nowtechai.com",
   keySaveToken : "Paw-Patrol-X-Token",
 }
 export function getHeader(){
