@@ -11,7 +11,9 @@
     <input type="password" class="form-control" style="background-color: rgba(240,248,255,0.22)!important;" id="floatingPassword" placeholder="Password" [(ngModel)]="password">
     <label for="floatingPassword">Password</label>
   </div>
-  <button class="w-100 btn btn-lg btn-danger" (click)="submit()">Sign in</button>
+  <button class="w-100 btn btn-lg btn-danger my-2" (click)="loginBase()">Sign in</button>
+  <button class="w-100 btn btn-lg btn-danger" (click)="loginEmailGoogle()">Login email</button>
+
   <div class="mt-5 mb-3 text-light">© 2023–202?</div>
 </div>
 </body>

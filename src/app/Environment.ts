@@ -2,8 +2,20 @@ import {HttpHeaders} from "@angular/common/http";
 
 export const environment = {
   // url : "http://208.73.203.106:8083",
-  url : "https://pawapi.nowtechai.com",
+  // url : "https://pawapi.nowtechai.com",
+  url : "https://animeapi.nowtechai.com",
+  // url : "http://173.214.170.75:8083", // anime
+  // url : "http://localhost:8082",
   keySaveToken : "Paw-Patrol-X-Token",
+  firebase: {
+    apiKey: "AIzaSyBk7gs8EjXEiVROAY326uHKdFC6eLLNE8A",
+    authDomain: "fir-project-ac36e.firebaseapp.com",
+    projectId: "fir-project-ac36e",
+    storageBucket: "fir-project-ac36e.appspot.com",
+    messagingSenderId: "625100437167",
+    appId: "1:625100437167:web:046a24919959220837c65a",
+    measurementId: "G-LSFP62D2ZG"
+  }
 }
 export function getHeader(){
   return {

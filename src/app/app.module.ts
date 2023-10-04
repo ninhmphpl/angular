@@ -11,6 +11,9 @@ import { VideoTypeComponent } from './video-type/video-type.component';
 import { LoginComponent } from './login/login.component';
 import {ImgUploadComponent} from "./upload/img-upload/img-upload.component";
 import { SelectComponent } from './select/select.component';
+import {getAuth, provideAuth} from "@angular/fire/auth";
+import {environment} from "./Environment";
+import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { SelectComponent } from './select/select.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
   ],
   providers: [],
   bootstrap: [AppComponent]
