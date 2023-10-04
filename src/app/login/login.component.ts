@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {environment} from "../Environment";
 import {Auth, GoogleAuthProvider, signInWithPopup} from "@angular/fire/auth";
+import {User} from "./User";
 
 const url = environment.url
 @Component({
@@ -11,14 +12,45 @@ const url = environment.url
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
+  crateUser : User = new User();
   email = "";
   password = "";
+  users : User[] = []
 
   constructor(private http: HttpClient, private auth: Auth, private router : Router) {
   }
 
   ngOnInit(): void {
-    localStorage.removeItem(environment.keySaveToken)
+    // localStorage.removeItem(environment.keySaveToken)
+  }
+
+  getListUser(){
+    this.http.get(environment.url + "/security/user-list",this.getHeader()).subscribe((value : any) => {
+      if(value.code == 200) this.users = value.data
+    }, error => {
+      alert(error.error.detail)
+    })
+  }
+  addUser(){
+    this.http.post(environment.url + `/security/save-user`,this.crateUser,this.getHeader()).subscribe((value : any) => {
+      if(value.code == 200) this.users.push(value.data)
+    }, error => {
+      alert(error.error.detail)
+    })
+  }
+  saveUser(i : number){
+    this.http.post(environment.url + `/security/save-user`,this.users[i],this.getHeader()).subscribe((value : any) => {
+      if(value.code == 200) this.users[i] = value.data
+    }, error => {
+      alert(error.error.detail)
+    })
+  }
+  deleteUser(i : number){
+    this.http.post(environment.url + `/security/delete-user?email=${this.users[i].email}`,{},this.getHeader()).subscribe((value : any) => {
+      if(value.code == 200) this.users.splice(i, 1)
+    }, error => {
+      alert(error.error.detail)
+    })
   }
 
   loginBase() {
@@ -59,6 +91,15 @@ export class LoginComponent implements OnInit{
       const credential = GoogleAuthProvider.credentialFromError(error);
       console.log(credential)
     });
+  }
+
+  getHeader(){
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem(environment.keySaveToken)??""
+      })
+    };
   }
 
 }
