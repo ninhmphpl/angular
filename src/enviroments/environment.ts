@@ -1,6 +1,6 @@
 export const environment={
-  // url :"https://painapi.nowtechai.com"
-  url :"http://localhost:8080",
+  url :"https://painapi.nowtechai.com",
+  // url :"http://localhost:8080",
   // url :"https://painapi.nowtechai.com"
   keySaveToken : "Paw-Patrol-X-Token",
   firebase: {

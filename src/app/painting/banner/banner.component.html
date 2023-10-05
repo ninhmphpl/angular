@@ -1,5 +1,6 @@
 <div class="w-100">
-  <div class="w-100 text-end">
+  <div class="w-100 row justify-content-between">
+    <div class="col-4"></div>
     <div style="width: 400px" class="input-group">
       <input class="form-control w-75" type="text" placeholder="Search" [(ngModel)]="search">
       <button class="btn btn-outline-primary w-25" [title]="'Add new ' + type.toLowerCase()" [disabled]="type === 'NONE' || type == ''"  (click)="create()">
