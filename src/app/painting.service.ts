@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Style} from "./model/style";
 import {Painting} from "./model/painting";
 import {environment} from "../enviroments/environment";
+import {LoginService} from "./login/login.service";
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class PaintingService {
   aiRemove: Painting[] = []
   key: string[] = []
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private login : LoginService) {
   }
 
   get(painting ? : (pain : PaintingService)=> any) {
@@ -57,7 +58,7 @@ export class PaintingService {
   }
 
   savePain(pain: Painting, getPain: (pain: Painting) => any) {
-    this.http.post(this.url + "/pain", pain).subscribe((payload: any) => {
+    this.http.post(this.url + "/pain", pain, this.login.getHeader()).subscribe((payload: any) => {
       getPain(payload.data)
     }, error => {
       alert(error.error.detail)
@@ -66,7 +67,7 @@ export class PaintingService {
 
   deletePain(id: string, result: () => any) {
     if(confirm("Delete ?")){
-      this.http.delete(this.url + "/pain/" + id).subscribe((payload: any) => {
+      this.http.delete(this.url + "/pain/" + id, this.login.getHeader()).subscribe((payload: any) => {
         result()
       }, error => {
         alert(error.error.detail)
@@ -75,7 +76,7 @@ export class PaintingService {
   }
 
   saveStyle(style: Style, getStyle: (style: Style) => any) {
-    this.http.post(this.url + "/style", style).subscribe((payload: any) => {
+    this.http.post(this.url + "/style", style, this.login.getHeader()).subscribe((payload: any) => {
       getStyle(payload.data)
     }, error => {
       alert(error.error.detail)
@@ -84,7 +85,7 @@ export class PaintingService {
 
   deleteStyle(style: Style, result: () => any) {
     if(confirm("Delete ?")){
-      this.http.delete(this.url + "/style/" + style.id).subscribe((payload: any) => {
+      this.http.delete(this.url + "/style/" + style.id, this.login.getHeader()).subscribe((payload: any) => {
         result()
       }, error => {
         alert(error.error.detail)
@@ -93,7 +94,7 @@ export class PaintingService {
   }
 
   saveKey(key: string, action : ()=> any) {
-    this.http.post(this.url + "/key", {name: key}).subscribe((payload: any) => {
+    this.http.post(this.url + "/key", {name: key}, this.login.getHeader()).subscribe((payload: any) => {
       if (this.key.indexOf(payload.data.name) == -1) this.key.push(payload.data.name)
       this.key.sort((a, b) => a.localeCompare(b))
       action()
@@ -104,14 +105,13 @@ export class PaintingService {
 
   deleteKey(key: string, action : ()=> any) {
     if(confirm("Delete ?")){
-      this.http.delete(this.url + "/key/" + key).subscribe((payload: any) => {
+      this.http.delete(this.url + "/key/" + key, this.login.getHeader()).subscribe((payload: any) => {
         this.key.splice(this.key.indexOf(key), 1)
         action()
       }, error => {
         alert(error.error.detail)
       })
     }
-
   }
 
 }

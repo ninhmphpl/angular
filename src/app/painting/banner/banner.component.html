@@ -1,10 +1,13 @@
 <div class="w-100">
   <div class="w-100 text-end">
-    <button [title]="'Add new ' + type.toLowerCase()" [disabled]="type === 'NONE' || type == ''" class="btn btn-outline-primary" (click)="create()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
-        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z"/>
-      </svg>
-    </button>
+    <div style="width: 400px" class="input-group">
+      <input class="form-control w-75" type="text" placeholder="Search" [(ngModel)]="search">
+      <button class="btn btn-outline-primary w-25" [title]="'Add new ' + type.toLowerCase()" [disabled]="type === 'NONE' || type == ''"  (click)="create()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus-fill" viewBox="0 0 16 16">
+          <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0z"/>
+        </svg>
+      </button>
+    </div>
   </div>
   <table class="table table-dark table-hover w-100" *ngIf="painting.banner">
     <thead>
@@ -19,27 +22,27 @@
     </thead>
     <tbody>
     <tr *ngFor="let _pain of pain, let i = index">
-      <td>
+      <td *ngIf="_pain.name.indexOf(search) != -1">
         <app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="_pain.coverImgUrl = $event; save(i)"
                         [img]="_pain.coverImgUrl"></app-img-upload>
       </td>
-      <td>
+      <td *ngIf="_pain.name.indexOf(search) != -1">
         <app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="_pain.beforeImgUrl = $event; save(i)"
                         [img]="_pain.beforeImgUrl"></app-img-upload>
       </td>
-      <td>
+      <td *ngIf="_pain.name.indexOf(search) != -1">
         <app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="_pain.afterImgUrl = $event; save(i)"
                         [img]="_pain.afterImgUrl"></app-img-upload>
       </td>
-      <td>
+      <td *ngIf="_pain.name.indexOf(search) != -1">
         <app-img-upload [imgWith]="'70px'" [imgHeight]="'100px'" (dataEvent)="_pain.gifUrl = $event; save(i)"
                         [img]="_pain.gifUrl"></app-img-upload>
       </td>
-      <td>
+      <td *ngIf="_pain.name.indexOf(search) != -1">
         <input class="form-control w-100" type="text" [(ngModel)]="_pain.name" (change)="save(i)" placeholder="Name">
         <input class="w-100 form-control" type="text" [(ngModel)]="_pain.description" (change)="save(i)"
                placeholder="Description">
-      <td>
+      <td *ngIf="_pain.name.indexOf(search) != -1">
       <div class="btn-group w-100">
         <!-- Button trigger modal -->
         <button type="button" class="w-50 btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -72,6 +75,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Style Select</h1>
+        <input type="text" class="form-control mx-2 w-25" [(ngModel)]="searchStyle" placeholder="Search Style">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body overflow-y-scroll" style="height: 300px">
@@ -85,9 +89,9 @@
           </thead>
           <tbody>
           <tr *ngFor="let style of styleChoices">
-            <td><input class="form-check-input" type="checkbox" [(ngModel)]="style.choice"></td>
-            <td><app-img-upload [img]="style.style.url" [imgWith]="'30px'" [imgHeight]="'30px'" [enable]="false"></app-img-upload></td>
-            <td [innerText]="style.style.name"></td>
+            <td *ngIf="style.style.name.indexOf(searchStyle) != -1"><input class="form-check-input" type="checkbox" [(ngModel)]="style.choice"></td>
+            <td *ngIf="style.style.name.indexOf(searchStyle) != -1"><app-img-upload [img]="style.style.url" [imgWith]="'30px'" [imgHeight]="'30px'" [enable]="false"></app-img-upload></td>
+            <td  *ngIf="style.style.name.indexOf(searchStyle) != -1" [innerText]="style.style.name"></td>
           </tr>
           </tbody>
         </table>

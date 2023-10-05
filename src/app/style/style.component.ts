@@ -8,7 +8,8 @@ import {Style} from "../model/style";
   styleUrls: ['./style.component.scss']
 })
 export class StyleComponent implements OnInit{
-
+  search = ''
+  searchKey = ''
   styleSelection : number = 0;
   keyChoice : {choice : boolean, key : string}[] = []
   constructor(public painting : PaintingService) {

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PaintingService} from "../../painting.service";
 import {Painting} from "../../model/painting";
 import {get, set, StyleChoice} from "../../model/StyleChoice";
+import {LoginService} from "../../login/login.service";
 
 @Component({
   selector: 'app-banner',
@@ -11,6 +12,8 @@ import {get, set, StyleChoice} from "../../model/StyleChoice";
 export class BannerComponent{
   @Input() pain : Painting[] = []
   @Input() type : string = ""
+  search = ''
+  searchStyle = ''
   constructor(public painting : PaintingService) {
   }
   paintingIndexSelection : number = 0
