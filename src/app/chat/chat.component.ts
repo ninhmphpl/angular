@@ -1,11 +1,14 @@
 import {AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {environments} from "../environments";
 
+const urlSocket = environments.url.replace("http", "ws")
+const urlHost = environments.url
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
-})
+  })
 export class ChatComponent implements OnInit, AfterViewChecked{
   @ViewChild('scrollableDiv') scrollableDiv!: ElementRef;
   user: string = ""
@@ -17,9 +20,17 @@ export class ChatComponent implements OnInit, AfterViewChecked{
   constructor(private http: HttpClient) {
   }
   getMessage() {
-    this.http.get("http://192.53.115.249:9999/gpt-service/message").subscribe((value: any) => {
+    this.http.get( urlHost + "/gpt-service/message").subscribe((value: any) => {
       this.listMessage = value
       if(this.listMessage.length > 0) this.changeSession(0)
+    }, error => {
+      console.log(error.error)
+    })
+  }
+  deleteMessage(i : number){
+    this.http.delete(urlHost + "/gpt-service/message/" + this.listMessage[i].id).subscribe((value: any) => {
+      console.log(value)
+      this.listMessage.splice(i,1)
     }, error => {
       console.log(error.error)
     })
@@ -51,7 +62,8 @@ export class ChatComponent implements OnInit, AfterViewChecked{
   }
 
   connect(action: (id : string ,message: Message) => any) {
-    this.sockets = new WebSocket(`ws:192.53.115.249:9999/message?id=admin`);
+    let url =
+    this.sockets = new WebSocket(urlSocket + '/message?id=admin');
     this.sockets.onopen = ev => {
       console.log("Connected")
     }
@@ -64,7 +76,9 @@ export class ChatComponent implements OnInit, AfterViewChecked{
     }
   }
   send(message: string) {
-    if (this.sockets != null) this.sockets.send(this.user + "&&" + message)
+    message = this.user + "&&" + message
+    console.log(message)
+    if (this.sockets != null) this.sockets.send(message)
   }
 
   changeSession(i : number){
