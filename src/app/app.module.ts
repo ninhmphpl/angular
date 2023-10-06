@@ -11,22 +11,31 @@ import { StickerComponent } from './sticker/sticker.component';
 import { CallIconComponent } from './call-icon/call-icon.component';
 import {ImgUploadComponent} from "./img-upload/img-upload.component";
 import { SourceImgComponent } from './source-img/source-img.component';
+import {LoginComponent} from "./login/login.component";
+import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
+import {getAuth, provideAuth} from "@angular/fire/auth";
+import {environment} from "../../environment/environments";
+import { SelectCategoryComponent } from './select-category/select-category.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ThemeComponent,
-    CategoryComponent,
-    StickerComponent,
-    CallIconComponent,
-    ImgUploadComponent,
-    SourceImgComponent
-  ],
+    declarations: [
+        AppComponent,
+        ThemeComponent,
+        CategoryComponent,
+        StickerComponent,
+        CallIconComponent,
+        ImgUploadComponent,
+        SourceImgComponent,
+        LoginComponent,
+        SelectCategoryComponent
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAuth(() => getAuth()),
     ],
   providers: [],
   bootstrap: [AppComponent]

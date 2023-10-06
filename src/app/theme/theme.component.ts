@@ -10,6 +10,7 @@ import {SourceImgComponent} from "../source-img/source-img.component";
 })
 export class ThemeComponent implements OnInit {
   @ViewChild(SourceImgComponent) source! : SourceImgComponent;
+  category : string = "All"
   themeSelection = 0;
   themePropertySelection = ''
   constructor(public themeService : ThemeService) {
@@ -23,7 +24,7 @@ export class ThemeComponent implements OnInit {
     theme.call_icon = this.themeService.callIcons[0]
     this.themeService.saveTheme(theme, theme =>{
       console.log(theme)
-      this.themeService.themes.push(theme)
+      this.themeService.themes.unshift(theme)
     } )
   }
   save(i: number) {

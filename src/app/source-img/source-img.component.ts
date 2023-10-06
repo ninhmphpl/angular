@@ -19,12 +19,17 @@ export class SourceImgComponent{
     this.dataEvent.emit(img)
     this.source = []
   }
+  save(i : number){
+    this.theme.saveSource(this.source[i], source1 => {
+      this.source[i] = source1
+    })
+  }
   create(url : string){
     let source = new Source();
     source.url = url
     source.type = this.choice
     this.theme.saveSource(source, source1 => {
-      this.source.push(source1)
+      this.source.unshift(source1)
     })
   }
   delete(i : number){

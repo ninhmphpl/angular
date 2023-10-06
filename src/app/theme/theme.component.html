@@ -1,5 +1,30 @@
 <div class="p-3 row row-cols-auto rounded-4" style="background-color: rgba(0,0,0,0.0)">
-  <div class="col mb-2" *ngFor="let theme of themeService.themes, let i = index">
+
+  <div>
+    <select [(ngModel)]="category">
+      <option value="All">All</option>
+      <option *ngFor="let c of themeService.categories" [value]="c.category" [innerText]="c.category"></option>
+    </select>
+  </div>
+
+  <div (mouseover)="createForm.hidden = false"
+       (mouseout)="createForm.hidden = true"
+       (click)="create()"
+       class="position-relative p-0" style="width: 150px;height: 250px">
+    <img src="/assets/create.jpg" class="img-thumbnail w-100 h-100 m-0" alt="">
+    <div #createForm class="w-100 h-100 position-absolute position-relative top-0 start-0 text-light "
+         style="background-color: rgba(0,0,0,0.24)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-bookmark-plus position-absolute top-50 start-50 text-light translate-middle"
+           viewBox="0 0 16 16">
+        <path
+          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="col mb-2" *ngFor="let theme of themeService.themes, let i = index" [hidden]="!((category=='All' || theme.category == category))">
     <div class=" position-relative" style="width: 150px;height: 250px">
       <div class="position-absolute top-0 end-0">
         <div class="btn-group ">
@@ -83,23 +108,6 @@
     </div>
   </div>
 
-  <div (mouseover)="createForm.hidden = false"
-       (mouseout)="createForm.hidden = true"
-       (click)="create()"
-       class="position-relative p-0" style="width: 150px;height: 250px">
-    <img src="/assets/create.jpg" class="img-thumbnail w-100 h-100 m-0" alt="">
-    <div #createForm class="w-100 h-100 position-absolute position-relative top-0 start-0 text-light "
-         style="background-color: rgba(0,0,0,0.24)">
-      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-bookmark-plus position-absolute top-50 start-50 text-light translate-middle"
-           viewBox="0 0 16 16">
-        <path
-          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-        <path
-          d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
-      </svg>
-    </div>
-
-  </div>
 </div>
 
 

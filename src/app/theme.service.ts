@@ -6,6 +6,7 @@ import {Theme} from "../model/Theme";
 import {Category} from "../model/Category";
 import {CallIcon} from "../model/CallIcon";
 import {Type} from "../model/Type";
+import {LoginService} from "./login/login.service";
 
 const url = environment.url
 
@@ -23,7 +24,7 @@ export class ThemeService {
   categories: Category[] = []
   callIcons: CallIcon[] = []
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private loginService : LoginService) {
   }
 
   get() {
@@ -100,7 +101,7 @@ export class ThemeService {
   }
 
   saveTheme(theme: Theme, action: (theme: Theme) => any) {
-    this.http.post(url + "/theme", theme).subscribe((payload: any) => {
+    this.http.post(url + "/theme", theme, this.loginService.getHeader()).subscribe((payload: any) => {
       if (payload.code == 200) {
         action(payload.data)
         successAlert("OK")
@@ -111,7 +112,7 @@ export class ThemeService {
   }
 
   saveCallIcon(callIcon: CallIcon, action: (callIcon: CallIcon) => any) {
-    this.http.post(url + "/callicon", callIcon).subscribe((payload: any) => {
+    this.http.post(url + "/callicon", callIcon, this.loginService.getHeader()).subscribe((payload: any) => {
       if (payload.code == 200) {
         action(payload.data)
         successAlert("OK")
@@ -123,7 +124,7 @@ export class ThemeService {
     })
   }
   saveType(type: Type, action : (type: Type) => any) {
-    this.http.post(environment.url + "/type", type).subscribe((payload: any) => {
+    this.http.post(environment.url + "/type", type, this.loginService.getHeader()).subscribe((payload: any) => {
       if (payload.code == 200) action(payload.data)
       else errorAlert("save type error code : " + payload.code)
     }, (error: any) => {
@@ -132,7 +133,7 @@ export class ThemeService {
   }
 
   saveCategory(category : Category, action: (category: Category) => any){
-    this.http.post(url + "/category", category).subscribe((payload : any)=>{
+    this.http.post(url + "/category", category, this.loginService.getHeader()).subscribe((payload : any)=>{
       if(payload.code == 200){
         action(payload.data)
         successAlert("Ok")
@@ -144,7 +145,8 @@ export class ThemeService {
     })
   }
   saveSource(source : Source, action: (source: Source) => any){
-    this.http.post(url + "/theme/source", source).subscribe((payload : any)=>{
+    console.log(source)
+    this.http.post(url + "/theme/source", source, this.loginService.getHeader()).subscribe((payload : any)=>{
       if(payload.code == 200){
         action(payload.data)
         successAlert("Ok")
@@ -157,7 +159,7 @@ export class ThemeService {
   }
 
   deleteTheme(theme: Theme, action : ()=> any) {
-    this.http.delete(url + "/theme/" + theme.id).subscribe((data: any) => {
+    this.http.delete(url + "/theme/" + theme.id, this.loginService.getHeader()).subscribe((data: any) => {
       if (data.code == 200) {
         action()
         successAlert("Ok")
@@ -167,7 +169,7 @@ export class ThemeService {
     })
   }
   deleteCallIcon(callIcon : CallIcon, action : ()=> any){
-      this.http.delete(url + "/callicon/" + callIcon.id).subscribe((payload : any)=>{
+      this.http.delete(url + "/callicon/" + callIcon.id, this.loginService.getHeader()).subscribe((payload : any)=>{
         if(payload.code === 200){
           action()
         }
@@ -176,14 +178,14 @@ export class ThemeService {
       })
   }
   deleteCategory(category : Category, action: () => any){
-    this.http.delete(url + "/category/" + category.id).subscribe((payload : any)=>{
+    this.http.delete(url + "/category/" + category.id, this.loginService.getHeader()).subscribe((payload : any)=>{
       if(payload.code == 200) action()
     }, (error : any)=>{
       console.log(error)
     })
   }
   deleteSource(category : Source, action: () => any){
-    this.http.delete(url + "/theme/source?url=" + category.url).subscribe((payload : any)=>{
+    this.http.delete(url + "/theme/source?url=" + category.url, this.loginService.getHeader()).subscribe((payload : any)=>{
       if(payload.code == 200) action()
     }, (error : any)=>{
       console.log(error)

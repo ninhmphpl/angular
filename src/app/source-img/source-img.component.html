@@ -15,6 +15,7 @@
   </div>
   <div *ngIf="source.length > 0" class="row row-cols-auto border mt-2 rounded-4 overflow-y-scroll"
        style="height: 400px">
+    <app-img-upload [imgWith]="'100px'" [imgHeight]="'150px'" [src]="'assets/create.jpg'" (dataEvent)="create($event)"></app-img-upload>
     <div class="col position-relative" *ngFor="let s of source, let i = index">
       <button class="btn btn-danger position-absolute end-0 top-0" (click)="delete(i)">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -22,12 +23,13 @@
           <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
         </svg>
       </button>
-      <img *ngIf="theme.isImage(s.url)" class="img-thumbnail m-1" style="width: 100px"
+      <img *ngIf="theme.isImage(s.url)" class="img-thumbnail m-1" style="width: 100px; height: 100px"
            (click)="choiceImg(s.url)" [src]="s.url" alt="">
-      <video *ngIf="theme.isVideo(s.url)" class="img-thumbnail m-1" style="width: 100px"
+      <video *ngIf="theme.isVideo(s.url)" class="img-thumbnail m-1" style="width: 100px; height: 100px"
              (click)="choiceImg(s.url)" [src]="s.url" controls></video>
+      <input type="text" class="form-control" style="width: 100px" [(ngModel)]="s.name" (change)="save(i)">
+      <app-select-category style="width: 100px" [categoryMain]="s.category" (dataEvent)="s.category = $event; save(i)"></app-select-category>
     </div>
-    <app-img-upload [imgWith]="'100px'" [imgHeight]="'150px'" [src]="'assets/create.jpg'" (dataEvent)="create($event)"></app-img-upload>
   </div>
 </div>
 

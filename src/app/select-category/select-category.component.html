@@ -1,0 +1,8 @@
+<div class="dropdown w-100">
+  <a class="btn btn-secondary dropdown-toggle w-100" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    {{(categoryMain)?categoryMain.category:'Category'}}
+  </a>
+  <ul class="dropdown-menu">
+    <li *ngFor="let c of themeService.categories; let i = index" (click)="select(i)"><a class="dropdown-item">{{c.category}}</a></li>
+  </ul>
+</div>
