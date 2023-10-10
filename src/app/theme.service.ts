@@ -79,25 +79,25 @@ export class ThemeService {
     this.http.get(url + "/theme/source?type=background").subscribe((value: any) => {
       console.log(value)
       this.sourceBackground = value.data
-    }, error => alert(error.error))
+    }, error => alert(error.error.detail))
   }
 
   getSourceCallIcon() {
     this.http.get(url + "/theme/source?type=callIcon").subscribe((value: any) => {
       this.sourceCallIcon = value.data
-    }, error => alert(error.error))
+    }, error => alert(error.error.detail))
   }
 
   getSourceSticker() {
     this.http.get(url + "/theme/source?type=sticker").subscribe((value: any) => {
       this.sourceSticker = value.data
-    }, error => alert(error.error))
+    }, error => alert(error.error.detail))
   }
 
   getSourceAvatar() {
     this.http.get(url + "/theme/source?type=avatar").subscribe((value: any) => {
       this.sourceAvatar = value.data
-    }, error => alert(error.error))
+    }, error => alert(error.error.detail))
   }
 
   saveTheme(theme: Theme, action: (theme: Theme) => any) {
@@ -141,7 +141,7 @@ export class ThemeService {
         errorAlert(JSON.stringify(payload))
       }
     }, (error : any)=>{
-      console.log(error.error)
+      console.log(error.error.detail)
     })
   }
   saveSource(source : Source, action: (source: Source) => any){
@@ -154,7 +154,7 @@ export class ThemeService {
         errorAlert(JSON.stringify(payload))
       }
     }, (error : any)=>{
-      console.log(error.error)
+      alert(error.error.detail)
     })
   }
 
@@ -165,7 +165,7 @@ export class ThemeService {
         successAlert("Ok")
       }
     }, (error: any) => {
-      errorAlert(error.error)
+      errorAlert(error.error.detail)
     })
   }
   deleteCallIcon(callIcon : CallIcon, action : ()=> any){
@@ -174,7 +174,7 @@ export class ThemeService {
           action()
         }
       }, (error : any)=>{
-        errorAlert(JSON.stringify(error.error))
+        errorAlert(JSON.stringify(error.error.detail))
       })
   }
   deleteCategory(category : Category, action: () => any){

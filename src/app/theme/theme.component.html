@@ -99,11 +99,7 @@
 
       <div class="input-group input-group-sm w-100">
         <span class="input-group-text w-50">Category</span>
-        <select class="form-select w-50" [(ngModel)]="theme.category" (change)="save(i)">
-          <option *ngFor="let category of themeService.categories" [value]="category.category"
-                  [innerText]="category.category">
-          </option>
-        </select>
+        <span class="input-group-text w-50">{{theme.category}}</span>
       </div>
     </div>
   </div>
@@ -121,14 +117,12 @@
   <div class="modal-dialog modal-fullscreen">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Source</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeBackgroundChoice></button>
       </div>
       <div class="modal-body">
-        <app-source-img *ngIf="themePropertySelection=='background'" [source]="themeService.sourceBackground"
-                        (dataEvent)="themeService.themes[themeSelection].backGround = $event; save(themeSelection); closeBackgroundChoice.click();"></app-source-img>
-        <app-source-img *ngIf="themePropertySelection=='avatar'" [source]="themeService.sourceAvatar"
-                        (dataEvent)="themeService.themes[themeSelection].avatar = $event; save(themeSelection); closeBackgroundChoice.click();"></app-source-img>
+        <app-select-source *ngIf="themePropertySelection=='background'" (dataEvent)="themeService.themes[themeSelection].backGround = $event; save(themeSelection); closeBackgroundChoice.click();"></app-select-source>
+        <app-select-source *ngIf="themePropertySelection=='avatar'" (dataEvent)="themeService.themes[themeSelection].avatar = $event; save(themeSelection); closeBackgroundChoice.click();"></app-select-source>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

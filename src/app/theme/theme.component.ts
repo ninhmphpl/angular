@@ -16,6 +16,8 @@ export class ThemeComponent implements OnInit {
   constructor(public themeService : ThemeService) {
   }
   ngOnInit(): void {
+    this.themeService.getTheme()
+    this.themeService.getCategory()
   }
   create(){
     let theme = new Theme();
