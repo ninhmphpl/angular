@@ -1,0 +1,32 @@
+<div class="w-100 row row-cols-auto">
+  <button (click)="fileInfoService.back()">Back</button>
+  <span>{{fileInfoService.backList[fileInfoService.backList.length-1]}} ></span>
+</div>
+<table class="w-100 border">
+  <tr>
+    <th><input class="mx-2" type="checkbox" [(ngModel)]="fileInfoService.selectAll" (click)="fileInfoService.selectAllAction()">File name</th>
+    <th>Type</th>
+    <th>Date</th>
+    <th>Size</th>
+    <th>Path</th>
+  </tr>
+  <tr [ngClass]="c.select?'bg-light':''" *ngFor="let c of fileInfoService.fileInfos; let i = index"
+      (dblclick)="fileInfoService.open(i)"
+      (click)="menuTag.hidden=true; c.select = !c.select"
+      (contextmenu)="fileInfoService.menu($event, menuTag); c.select = true">
+    <td class="col-4 px-2 text-truncate"><input class="mx-2" type="checkbox" [(ngModel)]="c.select">{{c.fileName}}</td>
+    <td class="col-1 px-2 text-truncate">{{c.type}}</td>
+    <td class="col-1 px-2 text-truncate">{{c.lastModified | date : "dd/MM-hh:mm"}}</td>
+    <td class="col-2 px-2 text-truncate">{{c.size | filesize}}</td>
+    <td class="col-3 px-2 text-truncate">{{c.path}}</td>
+  </tr>
+</table>
+
+<!--  Menu right mouse-->
+<div #menuTag class="position-fixed z-2 border bg-light px-2" style="width: 150px" [hidden]="true">
+  <div class="">Copy</div>
+  <div class="">Cut</div>
+  <div class="">Delete</div>
+  <div class="">Pate</div>
+</div>
+<!--  Thanh path -->
