@@ -4,12 +4,14 @@ import {ThemeComponent} from "./theme/theme.component";
 import {CallIconComponent} from "./call-icon/call-icon.component";
 import {CategoryComponent} from "./category/category.component";
 import {SourceImgComponent} from "./source-img/source-img.component";
+import {BackgroundComponent} from "./background/background.component";
 
 const routes: Routes = [
   {path:"theme",component:ThemeComponent},
   {path:"call-icon",component:CallIconComponent},
   {path:"source",component:SourceImgComponent},
   {path:"category",component:CategoryComponent},
+  {path:"background",component:BackgroundComponent},
 ];
 
 @NgModule({

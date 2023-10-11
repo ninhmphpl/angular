@@ -1,4 +1,4 @@
-<div class="p-3 m-2 w-100 h-100">
+<div class="p-3 m-2">
   <div class="btn-group">
     <button [class.active]="choice == 'background'" class="btn btn-outline-primary"
             (click)="source = theme.sourceBackground; choice = 'background'">Background
@@ -13,8 +13,7 @@
             (click)="source = theme.sourceSticker; choice = 'sticker'">Sticker
     </button>
   </div>
-  <div *ngIf="source.length > 0" class="row row-cols-auto border mt-2 rounded-4 overflow-y-scroll"
-       style="height: 400px">
+  <div *ngIf="source.length > 0" class="row row-cols-auto border mt-2 rounded-4">
     <app-img-upload [imgWith]="'100px'" [imgHeight]="'150px'" [src]="'assets/create.jpg'" (dataEvent)="create($event)"></app-img-upload>
     <div class="col position-relative" *ngFor="let s of source, let i = index">
       <button class="btn btn-danger position-absolute end-0 top-0" (click)="delete(i)">
@@ -25,7 +24,7 @@
       </button>
       <app-img-upload [imgWith]="'100px'" [imgHeight]="'100px'" [src]="(s.url)?s.url:'assets/create.jpg'" (dataEvent)="s.url = $event ; save(i)"></app-img-upload>
       <app-img-upload [imgWith]="'100px'" [imgHeight]="'100px'" [src]="(s.thumb)?s.thumb:'assets/create.jpg'" (dataEvent)="s.thumb = $event ; save(i)"></app-img-upload>
-      <input type="text" class="form-control" style="width: 100px" [(ngModel)]="s.name" (change)="save(i)">
+      <input type="text" class="form-control" style="width: 100px" [(ngModel)]="s.name" (change)="save(i)" placeholder="Name">
       <app-select-category style="width: 100px" [categoryMain]="s.category" (dataEvent)="s.category = $event; save(i)"></app-select-category>
     </div>
   </div>

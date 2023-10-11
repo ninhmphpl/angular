@@ -16,7 +16,8 @@ import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getAuth, provideAuth} from "@angular/fire/auth";
 import {environment} from "../../environment/environments";
 import { SelectCategoryComponent } from './select-category/select-category.component';
-import { SelectSourceComponent } from './select-source/select-source.component';
+import { SelectSourceComponent } from './source-img/select-source/select-source.component';
+import { BackgroundComponent } from './background/background.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { SelectSourceComponent } from './select-source/select-source.component';
         SourceImgComponent,
         LoginComponent,
         SelectCategoryComponent,
-        SelectSourceComponent
+        SelectSourceComponent,
+        BackgroundComponent
     ],
     imports: [
         BrowserModule,

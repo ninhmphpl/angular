@@ -1,0 +1,13 @@
+<div>
+  <select class="form-select" [(ngModel)]="select" (change)="get()">
+    <option value="top" >Top</option>
+    <option *ngFor="let c of theme.categories" [value]="c.category" [innerText]="c.category"></option>
+  </select>
+
+  <div class="row row-cols-auto">
+    <img style="width: 70px; height: 70px" *ngFor="let m of background" [src]="m"  alt="">
+  </div>
+</div>
+
+
+

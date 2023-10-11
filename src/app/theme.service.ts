@@ -100,6 +100,14 @@ export class ThemeService {
     }, error => alert(error.error.detail))
   }
 
+  getBackground(option : string, background : (background : string[])=> any){
+    this.http.get(url + `/categorybackground/${option}?page=0&limit=100`).subscribe((value : any) => {
+      background(value.data)
+    },error => {
+      alert(error.error.data)
+    })
+  }
+
   saveTheme(theme: Theme, action: (theme: Theme) => any) {
     this.http.post(url + "/theme", theme, this.loginService.getHeader()).subscribe((payload: any) => {
       if (payload.code == 200) {

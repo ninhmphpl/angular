@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ThemeService} from "../theme.service";
-import {Source} from "../../model/Source";
+import {ThemeService} from "../../theme.service";
+import {Source} from "../../../model/Source";
 
 @Component({
   selector: 'app-select-source',

@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 
 export const environment = {
-  url : "http://localhost:8090",
+  url : "http://45.79.16.25:8082",
   // url : "http://45.79.16.25:8090",
   keySaveToken : "Paw-Patrol-X-Token",
   firebase: {
