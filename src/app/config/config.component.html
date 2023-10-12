@@ -1,0 +1,25 @@
+<div *ngIf="loginService.userInfo" class="border">
+  <div>
+    <button (click)="configService.save()">Save</button>
+    <button (click)="configService.apply()">Apply Config</button>
+  </div>
+  <table>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>Firebase Server</td>
+      <td><input type="file" (change)="configService.configServer($event)"></td>
+    </tr>
+    <tr>
+      <td>Firebase Client</td>
+      <td><input type="file" (change)="configService.configClient($event)"></td>
+    </tr>
+    <tr *ngFor="let c of configService.config">
+      <td [title]="c.description">{{c.key}}</td>
+      <td><input type="text" [(ngModel)]="c.value"></td>
+    </tr>
+  </table>
+</div>
+

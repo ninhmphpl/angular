@@ -1,2 +1,17 @@
-<router-outlet></router-outlet>
-<app-file-info></app-file-info>
+<app-login></app-login>
+<div *ngIf="login.userInfo" class="row">
+  <div class="col-3">
+    <button (click)="choice = 'file'" class="w-100">File Manager</button>
+    <button (click)="choice = 'config'" class="w-100">Config</button>
+    <button (click)="choice = 'history'" class="w-100">User History</button>
+    <button (click)="choice = 'Request'" class="w-100">Request Counter</button>
+  </div>
+  <div class="col-9">
+    <app-file-info *ngIf="choice === 'file'"></app-file-info>
+    <app-config *ngIf="choice === 'config'"></app-config>
+    <app-user-history *ngIf="choice === 'history'"></app-user-history>
+    <app-request *ngIf="choice === 'Request'"></app-request>
+  </div>
+
+</div>
+

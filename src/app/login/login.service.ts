@@ -10,12 +10,13 @@ import {environment} from "../../environment/environments";
   providedIn: 'root'
 })
 export class LoginService {
-  constructor(private router : Router, private http : HttpClient) { }
-  getUser(user : (user : User)=> any, errorAction : (error : any)=> any){
+  userInfo : User | null = null;
+  constructor(private http : HttpClient) { }
+  getUser(){
     this.http.get(environment.url + "/security/user-info", this.getHeader()).subscribe((value:any) => {
-      user(value.data)
+      this.userInfo = value.data
     }, error => {
-      errorAction(error)
+      this.userInfo = null
     })
   }
 
@@ -42,7 +43,7 @@ export class LoginService {
   }
 
   loginBase(email : string, password : string, action : ()=> any) {
-    this.http.post(environment.url + "/security/login", {email : email, password : password}).subscribe((payload : any)=>{
+    this.http.post(environment.url + "/public/login", {email : email, password : password}).subscribe((payload : any)=>{
       if(payload.code === 200) localStorage.setItem(environment.keySaveToken, payload.data)
       console.log("Login Success")
       action()
@@ -53,8 +54,8 @@ export class LoginService {
   }
 
   loginEmailGoogle(action : ()=> any) {
-    this.http.get(environment.url + "/public/firebase-client").subscribe(value => {
-      const app = initializeApp(environment.firebaseConfig);
+    this.http.get(environment.url + "/public/firebase-client").subscribe((value : any) => {
+      const app = initializeApp(value);
       let auth = getAuth(app)
       const provider = new GoogleAuthProvider();
       // provider.addScope('https://www.googleapis.com/auth/cloud-platform.read-only');
@@ -64,19 +65,16 @@ export class LoginService {
       signInWithPopup(auth, provider)
         .then((result) => {
           auth.currentUser?.getIdToken(/* forceRefresh */ true).then((idToken) => {
-            console.log(idToken)
-            this.http.post(environment.url + "/security/login-email",{tokenId : idToken}).subscribe((value : any) => {
+            this.http.post(environment.url + "/public/login-email",{tokenId : idToken}).subscribe((value : any) => {
               localStorage.setItem(environment.keySaveToken, value.data)
               action()
             }, error => {
-              console.log(error)
               alert(error.error.detail)
             })
           }).catch((error) => {
             console.log(error)
           });
           const user = result.user;
-          console.log(user)
         }).catch((error) => {
         console.log(error)
         const credential = GoogleAuthProvider.credentialFromError(error);
@@ -89,7 +87,15 @@ export class LoginService {
   getHeader(){
     return {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem(environment.keySaveToken)??""
+      })
+    };
+  }
+  getHeaderFormData(){
+    return {
+      headers: new HttpHeaders({
+        // 'Content-Type': 'multipart/form-data',
         'Authorization': localStorage.getItem(environment.keySaveToken)??""
       })
     };

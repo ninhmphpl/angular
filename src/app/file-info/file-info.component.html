@@ -1,4 +1,4 @@
-<div class="w-100 row row-cols-auto">
+<div *ngIf="loginService.userInfo" class="w-100 row row-cols-auto">
   <button (click)="fileInfoService.back()">Back</button>
   <span>{{fileInfoService.backList[fileInfoService.backList.length-1]}} ></span>
 </div>

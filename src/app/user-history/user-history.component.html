@@ -1,0 +1,19 @@
+<div class="row">
+  <button class="col" (click)="previous()">Previous</button>
+  <button class="col" (click)="next()">Next</button>
+  <div class="col">{{userHistory.page + "/" + userHistory.totalPages}}</div>
+</div>
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Time</th>
+    <th>Method</th>
+    <th>Uri</th>
+  </tr>
+  <tr *ngFor="let u of userHistory.history">
+    <td class="px-2">{{u.email}}</td>
+    <td class="px-2">{{u.time | date : 'dd/MM-HH:mm'}}</td>
+    <td class="px-2">{{u.method}}</td>
+    <td class="px-2">{{u.uri}}</td>
+  </tr>
+</table>

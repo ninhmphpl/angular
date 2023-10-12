@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FileInfoService} from "./file-info.service";
+import {LoginComponent} from "../login/login.component";
+import {LoginService} from "../login/login.service";
 
 @Component({
   selector: 'app-file-info',
@@ -7,7 +9,7 @@ import {FileInfoService} from "./file-info.service";
   styleUrls: ['./file-info.component.scss']
 })
 export class FileInfoComponent implements OnInit{
-  constructor(public fileInfoService : FileInfoService) {
+  constructor(public loginService : LoginService, public fileInfoService : FileInfoService) {
   }
   ngOnInit(): void {
     this.fileInfoService.get("/")

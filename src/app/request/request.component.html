@@ -1,0 +1,18 @@
+<div class="row">
+  <button class="col" (click)="previous()">Previous</button>
+  <button class="col" (click)="next()">Next</button>
+  <div class="col">{{request.page + "/" + request.totalPages}}</div>
+</div>
+<table>
+  <tr>
+    <th>Time</th>
+    <th>Uri</th>
+    <th>Count</th>
+  </tr>
+  <tr *ngFor="let u of request.request">
+    <td class="px-2">{{u.time}}</td>
+    <td class="px-2">{{u.uri}}</td>
+    <td class="px-2">{{u.count}}</td>
+  </tr>
+</table>
+

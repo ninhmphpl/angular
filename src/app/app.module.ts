@@ -8,6 +8,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { FileInfoComponent } from './file-info/file-info.component';
 import { FileSizePipe } from './pipe/file-size.pipe';
+import { ConfigComponent } from './config/config.component';
+import {LoginService} from "./login/login.service";
+import { UserHistoryComponent } from './user-history/user-history.component';
+import { UserManagerComponent } from './user-manager/user-manager.component';
+import { RequestComponent } from './request/request.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +20,10 @@ import { FileSizePipe } from './pipe/file-size.pipe';
     LoginComponent,
     FileInfoComponent,
     FileSizePipe,
+    ConfigComponent,
+    UserHistoryComponent,
+    UserManagerComponent,
+    RequestComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,4 +34,6 @@ import { FileSizePipe } from './pipe/file-size.pipe';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

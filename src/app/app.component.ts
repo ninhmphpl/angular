@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {loadEsmModule} from "@angular-devkit/build-angular/src/utils/load-esm";
+import {LoginService} from "./login/login.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'source';
+  choice : string = "config"
+  constructor(public login : LoginService) {
+  }
 }

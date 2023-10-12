@@ -8,13 +8,13 @@ import {environment} from "../../environment/environments";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
-  userInfo : User | null = null;
+
   createUser : User = new User();
   email = "";
   password = "";
   users : User[] = []
 
-  constructor(private loginService : LoginService) {
+  constructor(public loginService : LoginService) {
   }
 
   ngOnInit(): void {
@@ -22,11 +22,7 @@ export class LoginComponent implements OnInit{
     this.getUserInfo()
   }
   getUserInfo(){
-    this.loginService.getUser(user => {
-      this.userInfo = user
-    }, error => {
-      this.userInfo = null
-    })
+    this.loginService.getUser()
   }
 
   getListUser(){
@@ -61,7 +57,7 @@ export class LoginComponent implements OnInit{
   }
 
   logout(){
-    this.userInfo = null;
+    this.loginService.userInfo = null
     localStorage.removeItem(environment.keySaveToken)
   }
 
