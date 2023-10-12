@@ -1,11 +1,15 @@
+<div>
+  <select [(ngModel)]="option" (change)="selection()">
+    <option value="all">All</option>
+    <option value="trending">Trending</option>
+    <option value="top">Top</option>
+  </select>
+  <button (click)="previous()"><</button>
+  <button (click)="next()">></button>
+</div>
 <div class="p-3 row row-cols-auto rounded-4" style="background-color: rgba(0,0,0,0.0)">
 
-  <div>
-    <select [(ngModel)]="category">
-      <option value="All">All</option>
-      <option *ngFor="let c of themeService.categories" [value]="c.category" [innerText]="c.category"></option>
-    </select>
-  </div>
+
 
   <div (mouseover)="createForm.hidden = false"
        (mouseout)="createForm.hidden = true"
@@ -24,7 +28,7 @@
     </div>
   </div>
 
-  <div class="col mb-2" *ngFor="let theme of themeService.themes, let i = index" [hidden]="!((category=='All' || theme.category == category))">
+  <div class="col mb-2" *ngFor="let theme of themeService.themes, let i = index">
     <div class=" position-relative" style="width: 150px;height: 250px">
       <div class="position-absolute top-0 end-0">
         <div class="btn-group ">

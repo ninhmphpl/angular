@@ -10,15 +10,34 @@ import {SourceImgComponent} from "../source-img/source-img.component";
 })
 export class ThemeComponent implements OnInit {
   @ViewChild(SourceImgComponent) source! : SourceImgComponent;
+  page : number = 0;
+  option : string = 'all'
   category : string = "All"
   themeSelection = 0;
   themePropertySelection = ''
   constructor(public themeService : ThemeService) {
   }
   ngOnInit(): void {
-    this.themeService.getTheme()
+    this.themeService.getTheme(this.page, this.option)
     this.themeService.getCategory()
   }
+  next(){
+    if(this.themeService.themes.length > 0){
+      this.page ++
+      this.themeService.getTheme(this.page, this.option)
+    }
+  }
+  previous(){
+    if(this.page > 0){
+      this.page --
+      this.themeService.getTheme(this.page, this.option)
+    }
+  }
+  selection(){
+    this.page = 0
+    this.themeService.getTheme(this.page, this.option)
+  }
+
   create(){
     let theme = new Theme();
     theme.backGround = this.themeService.sourceBackground[0].url

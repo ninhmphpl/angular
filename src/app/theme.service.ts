@@ -29,7 +29,6 @@ export class ThemeService {
 
   get() {
     this.getCategory()
-    this.getTheme()
     this.getSourceBackGround()
     this.getSourceAvatar()
     this.getSourceSticker()
@@ -46,8 +45,8 @@ export class ThemeService {
     })
   }
 
-  getTheme() {
-    this.http.get(url + "/theme/all").subscribe((data: any) => {
+  getTheme(page : number, option : string) {
+    this.http.get(url + "/theme/" + option + "?page=" + page + "&limit=20").subscribe((data: any) => {
       if (data.code == 200) this.themes = data.data
       else errorAlert("Error code: " + data.code)
     }, (error: any) => {

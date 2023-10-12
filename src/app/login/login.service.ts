@@ -41,7 +41,7 @@ export class LoginService {
   }
 
   loginBase(email : string, password : string, action : ()=> any) {
-    this.http.post(url + "/security/login", {email : email, password : password}).subscribe((payload : any)=>{
+    this.http.post(url + "/public/login", {email : email, password : password}).subscribe((payload : any)=>{
       if(payload.code === 200) localStorage.setItem(environment.keySaveToken, payload.data)
       console.log("Login Success")
       action()
@@ -61,7 +61,7 @@ export class LoginService {
     signInWithPopup(this.auth, provider)
       .then((result) => {
         this.auth.currentUser?.getIdToken(/* forceRefresh */ true).then((idToken) => {
-          this.http.post(url + "/security/login-email",{tokenId : idToken}).subscribe((value : any) => {
+          this.http.post(url + "/public/login-email",{tokenId : idToken}).subscribe((value : any) => {
             localStorage.setItem(environment.keySaveToken, value.data)
             action()
           }, error => {
