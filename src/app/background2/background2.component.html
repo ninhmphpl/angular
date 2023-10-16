@@ -1,0 +1,10 @@
+<button (click)="add()">+</button>
+<button (click)="previous()"><</button>
+<button (click)="next()">></button>
+<div class="row-cols-auto row">
+  <div class="col" *ngFor="let b of background2; let i = index">
+      <app-select-background [source]="b.source" (dataEvent)="b.source = $event; save(i)"></app-select-background>
+      <div><input type="checkbox" [(ngModel)]="b.lock"> Lock</div>
+      <div><input type="checkbox" [(ngModel)]="b.top"> top</div>
+  </div>
+</div>

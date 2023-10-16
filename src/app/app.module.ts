@@ -18,6 +18,8 @@ import {environment} from "../../environment/environments";
 import { SelectCategoryComponent } from './select-category/select-category.component';
 import { SelectSourceComponent } from './source-img/select-source/select-source.component';
 import { BackgroundComponent } from './background/background.component';
+import { Background2Component } from './background2/background2.component';
+import { SelectBackgroundComponent } from './background2/select-background/select-background.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +33,9 @@ import { BackgroundComponent } from './background/background.component';
         LoginComponent,
         SelectCategoryComponent,
         SelectSourceComponent,
-        BackgroundComponent
+        BackgroundComponent,
+        Background2Component,
+        SelectBackgroundComponent
     ],
     imports: [
         BrowserModule,

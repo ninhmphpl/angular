@@ -1,0 +1,31 @@
+<div>
+  <img style="width: 100px; height: 100px" class="img-thumbnail" [src]="(source)?source.url:''" alt="" (click)="show = true; modalBackground2.click()">
+</div>
+
+<!-- Button trigger modal -->
+<button #modalBackground2 type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#modalBackground2"></button>
+
+<!-- Modal -->
+<div *ngIf="show"  class="modal fade" id="modalBackground2" tabindex="-1" aria-labelledby="modalBackground2Label" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalBackground2Label">Choice background</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="show=false"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row row-cols-auto">
+          <div class="col" *ngFor="let a of theme.sourceBackground; let i = index">
+            <img class="img-thumbnail" [src]="a.url" alt="" style="width: 100px; height: 100px;" (click)="select(i)">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer d-none">
+        <button (click)="show=false" #closeModel type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
