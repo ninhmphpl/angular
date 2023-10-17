@@ -21,7 +21,7 @@ export class Background2Component implements OnInit{
     this.theme.getBackground2(this.page,this.category, background => this.background2 = background)
   }
   next(){
-    if(this.background2.length === 0) return
+    if(this.background2.length !== this.theme.limitDefault) return
     this.page ++
     this.get()
   }
@@ -39,13 +39,15 @@ export class Background2Component implements OnInit{
 
   save(i : number){
     this.theme.saveBackground2(this.background2[i], background => {
-      this.background2[i] = background
+      this.get()
     })
   }
 
   delete(i : number){
-    this.theme.deleteBackground2(this.background2[i], () => {
-      this.background2.splice(i, 1)
-    })
+    if(confirm("Delete ?")){
+      this.theme.deleteBackground2(this.background2[i], () => {
+        this.get()
+      })
+    }
   }
 }

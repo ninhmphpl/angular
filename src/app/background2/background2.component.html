@@ -1,10 +1,23 @@
-<button (click)="add()">+</button>
-<button (click)="previous()"><</button>
-<button (click)="next()">></button>
-<div class="row-cols-auto row">
-  <div class="col" *ngFor="let b of background2; let i = index">
-      <app-select-background [source]="b.source" (dataEvent)="b.source = $event; save(i)"></app-select-background>
-      <div><input type="checkbox" [(ngModel)]="b.lock"> Lock</div>
-      <div><input type="checkbox" [(ngModel)]="b.top"> top</div>
+<div class="w-100" style="min-height: 100vh">
+  <div class="btn btn-group">
+    <button class="btn btn-outline-primary" (click)="add()">+</button>
+    <button class="btn btn-outline-primary" (click)="previous()"><</button>
+    <button class="btn btn-outline-primary" (click)="next()">></button>
   </div>
+
+  <div class="row-cols-auto row">
+    <div class="col text-light" *ngFor="let b of background2; let i = index">
+      <app-select-background [source]="b.source" (dataEvent)="b.source = $event; save(i)"></app-select-background>
+      <div><input class="form-control" style="width: 100px" type="number" [(ngModel)]="b.priority" (change)="save(i)" placeholder="Priority"></div>
+      <app-select-call-icon [callIcon]="b.callIcon" (dataEvent)="b.callIcon = $event; save(i)"></app-select-call-icon>
+      <div><input class="form-check-input" type="checkbox" [(ngModel)]="b.lock" (change)="save(i)"> Lock</div>
+      <div><input class="form-check-input" type="checkbox" [(ngModel)]="b.top" (change)="save(i)"> top</div>
+      <button class="btn btn-outline-danger" (click)="delete(i)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+        </svg>
+      </button> Delete
+    </div>
+  </div>
+
 </div>

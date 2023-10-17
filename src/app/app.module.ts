@@ -20,6 +20,7 @@ import { SelectSourceComponent } from './source-img/select-source/select-source.
 import { BackgroundComponent } from './background/background.component';
 import { Background2Component } from './background2/background2.component';
 import { SelectBackgroundComponent } from './background2/select-background/select-background.component';
+import { SelectCallIconComponent } from './call-icon/select-call-icon/select-call-icon.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { SelectBackgroundComponent } from './background2/select-background/selec
         SelectSourceComponent,
         BackgroundComponent,
         Background2Component,
-        SelectBackgroundComponent
+        SelectBackgroundComponent,
+        SelectCallIconComponent
     ],
     imports: [
         BrowserModule,

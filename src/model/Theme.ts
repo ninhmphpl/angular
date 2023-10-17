@@ -13,4 +13,5 @@ export class Theme {
   top! : boolean;
   lock! : boolean;
   priority! : number;
+  trending! : boolean;
 }

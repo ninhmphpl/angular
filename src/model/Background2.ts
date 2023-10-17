@@ -1,4 +1,5 @@
 import {Source} from "./Source";
+import {CallIcon} from "./CallIcon";
 
 export class Background2{
   id ! : string
@@ -6,4 +7,5 @@ export class Background2{
   priority : number = 0;
   lock : boolean = false;
   top : boolean = false;
+  callIcon! : CallIcon;
 }

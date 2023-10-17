@@ -16,7 +16,7 @@
       <div class="modal-body">
         <div class="row row-cols-auto">
           <div class="col" *ngFor="let a of theme.sourceBackground; let i = index">
-            <img class="img-thumbnail" [src]="a.url" alt="" style="width: 100px; height: 100px;" (click)="select(i)">
+            <img class="img-thumbnail" [src]="a.url" alt="" style="width: 100px; height: 100px;" (click)="select(i); closeModel.click()">
           </div>
         </div>
       </div>

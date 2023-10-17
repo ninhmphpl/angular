@@ -1,0 +1,31 @@
+<div>
+  <img style="width: 40px; height: 40px" class="img-thumbnail" [src]="(callIcon)?callIcon.accept:''" alt="" (click)="show = true; modalCallIcon.click()"> Call Icon
+</div>
+
+<!-- Button trigger modal -->
+<button #modalCallIcon type="button" class="d-none" data-bs-toggle="modal" data-bs-target="#modalCallIcon"></button>
+
+<!-- Modal -->
+<div *ngIf="show" class="modal fade" id="modalCallIcon" tabindex="-1" aria-labelledby="modalCallIconLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="modalCallIconLabel">Choice background</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="show=false"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row row-cols-auto">
+          <div class="col" *ngFor="let a of theme.callIcons; let i = index">
+            <img class="img-thumbnail" [src]="a.accept" alt="" style="width: 100px; height: 100px;" (click)="select(i); closeModel.click()">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer d-none">
+        <button (click)="show=false" #closeModel type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
