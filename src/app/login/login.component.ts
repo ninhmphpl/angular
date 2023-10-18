@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit{
   }
 
   loginBase() {
-    this.http.post(url + "/security/login", {email : this.email, password : this.password}).subscribe((payload : any)=>{
+    this.http.post(url + "/public/login", {email : this.email, password : this.password}).subscribe((payload : any)=>{
       if(payload.code === 200) localStorage.setItem(environment.keySaveToken, payload.data)
       console.log("Login Success")
       this.router.navigate(["/video"])
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit{
     signInWithPopup(this.auth, provider)
       .then((result) => {
         this.auth.currentUser?.getIdToken(/* forceRefresh */ true).then((idToken) => {
-          this.http.post(environment.url + "/security/login-email",{tokenId : idToken}).subscribe((value : any) => {
+          this.http.post(environment.url + "/public/login-email",{tokenId : idToken}).subscribe((value : any) => {
             localStorage.setItem(environment.keySaveToken, value.data)
             this.router.navigate(["/video"])
           }, error => {
