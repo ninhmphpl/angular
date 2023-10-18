@@ -77,26 +77,26 @@ export class ThemeService {
   }
 
   getSourceBackGround() {
-    this.http.get(url + "/theme/source?type=background").subscribe((value: any) => {
+    this.http.get(url + "/theme/source?type=background&edit=true").subscribe((value: any) => {
       console.log(value)
       this.sourceBackground = value.data
     }, error => alert(error.error.detail))
   }
 
   getSourceCallIcon() {
-    this.http.get(url + "/theme/source?type=callIcon").subscribe((value: any) => {
+    this.http.get(url + "/theme/source?type=callIcon&edit=true").subscribe((value: any) => {
       this.sourceCallIcon = value.data
     }, error => alert(error.error.detail))
   }
 
   getSourceSticker() {
-    this.http.get(url + "/theme/source?type=sticker").subscribe((value: any) => {
+    this.http.get(url + "/theme/source?type=sticker&edit=true").subscribe((value: any) => {
       this.sourceSticker = value.data
     }, error => alert(error.error.detail))
   }
 
   getSourceAvatar() {
-    this.http.get(url + "/theme/source?type=avatar").subscribe((value: any) => {
+    this.http.get(url + "/theme/source?type=avatar&edit=true").subscribe((value: any) => {
       this.sourceAvatar = value.data
     }, error => alert(error.error.detail))
   }
