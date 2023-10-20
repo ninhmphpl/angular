@@ -8,7 +8,7 @@ import {Source} from "../../../model/Source";
   styleUrls: ['./select-source.component.scss']
 })
 export class SelectSourceComponent implements OnInit{
-  @Output() dataEvent = new EventEmitter<string>();
+  @Output() dataEvent = new EventEmitter<Source>();
   source : Source[] = []
   constructor(public themeService : ThemeService) {
   }
@@ -28,7 +28,7 @@ export class SelectSourceComponent implements OnInit{
     this.choiceSource("background")
   }
   select(i : number){
-    this.dataEvent.emit(this.source[i].url)
+    this.dataEvent.emit(this.source[i])
   }
 
 

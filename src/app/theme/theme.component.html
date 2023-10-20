@@ -6,6 +6,7 @@
   </select>
   <button (click)="previous()"><</button>
   <button (click)="next()">></button>
+  <input type="text" [(ngModel)]="themeService.limitDefault" (change)="get()">
 </div>
 <div class="p-3 row row-cols-auto rounded-4" style="background-color: rgba(0,0,0,0.0)">
 
@@ -61,20 +62,24 @@
                 </svg>
               </button>
             </li>
+            <li class="dropdown-item w-100 text-light">
+              <div (click)="themeSelection = i; themePropertySelection = 'avatar'; choiceImg.click()"> Upload Avatar</div>
+            </li>
+            <li class="dropdown-item w-100 text-light">
+              <div (click)="themeSelection = i; themePropertySelection = 'background'; choiceImg.click()"> Upload Background</div>
+            </li>
           </ul>
         </div>
       </div>
-      <img *ngIf="themeService.isImage(theme.backGround)" class="img-thumbnail w-100 h-100"
-           [src]="theme.backGround" data-bs-toggle="offcanvas" data-bs-target="#offBackgournd"
-           aria-controls="offcanvasBottom" alt=""
+      <img *ngIf="theme.source==null || themeService.isImage(theme.backGround)" class="img-thumbnail w-100 h-100"
+           [src]="(theme.source)?theme.source.url:'/assets/img.jpg'"
            (click)="themeSelection = i; themePropertySelection = 'background'; choiceImg.click()">
       <video *ngIf="themeService.isVideo(theme.backGround)" class="img-thumbnail w-100 h-100"
-             [src]="theme.backGround" data-bs-toggle="offcanvas"
-             data-bs-target="#offBackgournd" aria-controls="offcanvasBottom"
-             (click)="themeSelection = i; themePropertySelection = 'background'" controls></video>
+             [src]="(theme.source)?theme.source.url:'/assets/img.jpg'"
+             (click)="themeSelection = i; themePropertySelection = 'background'; choiceImg.click()" controls></video>
       <div class="w-25 position-absolute start-50 mx-auto translate-middle"
            style="top : 25%">
-        <img [src]="theme.avatar" data-bs-toggle="offcanvas" class="rounded-circle w-100"
+        <img [src]="(theme.sourceAvatar)?theme.sourceAvatar.url:'/assets/img.jpg'" data-bs-toggle="offcanvas" class="rounded-circle w-100"
              data-bs-target="#offBackgournd" aria-controls="offcanvasBottom" alt=""
              (click)="themeSelection = i; themePropertySelection = 'avatar'; choiceImg.click()">
         <input placeholder="name" class="w-100 border-0 text-light rounded-4" style="background: rgba(0,0,0,0.29);"
@@ -91,11 +96,6 @@
         <span class="input-group-text w-50">Priority</span>
         <input placeholder="Input priority" class="form-control w-50" type="number" [(ngModel)]="theme.priority"
                (change)="save(i)">
-      </div>
-
-      <div class="input-group input-group-sm w-100">
-        <span class="input-group-text w-50">Category</span>
-        <span class="input-group-text w-50">{{theme.category}}</span>
       </div>
     </div>
   </div>
@@ -117,8 +117,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" #closeBackgroundChoice></button>
       </div>
       <div class="modal-body">
-        <app-select-source *ngIf="themePropertySelection=='background'" (dataEvent)="themeService.themes[themeSelection].backGround = $event; save(themeSelection); closeBackgroundChoice.click();"></app-select-source>
-        <app-select-source *ngIf="themePropertySelection=='avatar'" (dataEvent)="themeService.themes[themeSelection].avatar = $event; save(themeSelection); closeBackgroundChoice.click();"></app-select-source>
+        <app-select-source *ngIf="themePropertySelection=='background'" (dataEvent)="themeService.themes[themeSelection].source = $event; save(themeSelection); closeBackgroundChoice.click();"></app-select-source>
+        <app-select-source *ngIf="themePropertySelection=='avatar'" (dataEvent)="themeService.themes[themeSelection].sourceAvatar = $event; save(themeSelection); closeBackgroundChoice.click();"></app-select-source>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -3,6 +3,8 @@
     <button class="btn btn-outline-primary" (click)="add()">+</button>
     <button class="btn btn-outline-primary" (click)="previous()"><</button>
     <button class="btn btn-outline-primary" (click)="next()">></button>
+    <input type="number" [(ngModel)]="theme.limitDefault" (change)="get()">
+    <span>{{page}}</span>
   </div>
 
   <div class="row-cols-auto row">

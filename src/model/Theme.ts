@@ -1,4 +1,5 @@
 import {CallIcon} from "./CallIcon";
+import {Source} from "./Source";
 
 export class Theme {
   id! : string;
@@ -14,4 +15,6 @@ export class Theme {
   lock! : boolean;
   priority! : number;
   trending! : boolean;
+  source! : Source;
+  sourceAvatar! : Source;
 }

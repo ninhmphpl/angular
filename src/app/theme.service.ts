@@ -48,7 +48,7 @@ export class ThemeService {
   }
 
   getTheme(page: number, option: string) {
-    this.http.get(url + "/theme/" + option + "?page=" + page + "&limit=20").subscribe((data: any) => {
+    this.http.get(url + "/theme/" + option + "?edit=true&page=" + page + "&limit=" + this.limitDefault).subscribe((data: any) => {
       if (data.code == 200) this.themes = data.data
       else errorAlert("Error code: " + data.code)
     }, (error: any) => {

@@ -11,7 +11,7 @@ export class Background2Component implements OnInit{
   background2 : Background2[] = []
   category : string = 'all'
   page : number = 0;
-  constructor(private theme : ThemeService) {
+  constructor(public theme : ThemeService) {
   }
 
   ngOnInit(): void {

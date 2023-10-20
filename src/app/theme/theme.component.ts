@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Theme} from "../../model/Theme";
 import {ThemeService} from "../theme.service";
 import {SourceImgComponent} from "../source-img/source-img.component";
+import {get} from "@angular/fire/database";
 
 @Component({
   selector: 'app-theme',
@@ -18,8 +19,11 @@ export class ThemeComponent implements OnInit {
   constructor(public themeService : ThemeService) {
   }
   ngOnInit(): void {
-    this.themeService.getTheme(this.page, this.option)
+    this.get()
     this.themeService.getCategory()
+  }
+  get(){
+    this.themeService.getTheme(this.page, this.option)
   }
   next(){
     if(this.themeService.themes.length > 0){

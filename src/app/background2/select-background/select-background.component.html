@@ -1,5 +1,6 @@
 <div>
-  <img style="width: 100px; height: 100px" class="img-thumbnail" [src]="(source)?source.url:''" alt="" (click)="show = true; modalBackground2.click()">
+  <img *ngIf="!source || theme.isImage(source.url)" style="width: 100px; height: 100px" class="img-thumbnail" [src]="(source)?source.url:'/assets/img.jpg'" alt="" (click)="show = true; modalBackground2.click()">
+  <video *ngIf="source && theme.isVideo(source.url)" style="width: 100px; height: 100px" class="img-thumbnail" [src]="(source)?source.url:'/assets/img.jpg'" (click)="show = true; modalBackground2.click()" controls></video>
 </div>
 
 <!-- Button trigger modal -->
@@ -16,7 +17,8 @@
       <div class="modal-body">
         <div class="row row-cols-auto">
           <div class="col" *ngFor="let a of theme.sourceBackground; let i = index">
-            <img class="img-thumbnail" [src]="a.url" alt="" style="width: 100px; height: 100px;" (click)="select(i); closeModel.click()">
+            <img *ngIf="theme.isImage(a.url)" class="img-thumbnail" [src]="a.url" alt="" style="width: 100px; height: 100px;" (click)="select(i); closeModel.click()">
+            <video *ngIf="theme.isVideo(a.url)" class="img-thumbnail" [src]="a.url" style="width: 100px; height: 100px;" (click)="select(i); closeModel.click()" controls></video>
           </div>
         </div>
       </div>
