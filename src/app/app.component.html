@@ -1,8 +1,8 @@
-<!--<img class="position-fixed w-100 h-100 z-0" src="./assets/pikachu2.jpg" alt="pikachu">-->
 
 <!--<video #background class="background" autoplay src="https://rr5-&#45;&#45;sn-npoe7ns7.googlevideo.com/videoplayback?expire=1694728285&ei=_SsDZcm2FpPDx_APiLOm2A4&ip=156.146.62.222&id=o-AJbTmk8EWjsCESTjE6lAzF01DbwihwCejYfPzkhRf2xC&itag=313&source=youtube&requiressl=yes&spc=UWF9f_PEVIUnOKsg7Ij2RIzeJGsqoyc&vprv=1&svpuc=1&mime=video%2Fwebm&gir=yes&clen=7651091991&dur=7200.033&lmt=1640688389335430&keepalive=yes&fexp=24007246&c=ANDROID&txp=6316224&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&sig=AOq0QJ8wRQIhANk-426YVGcZQ1FmXH4mXE79KE3de_zFaxAq-pEf3j-dAiA8rojg45LhdsZoYfF8SvGCyNwRKjRrILPmU6JFmBQVUg%3D%3D&redirect_counter=1&cm2rm=sn-1gies7s&req_id=31f231e2b9f6a3ee&cms_redirect=yes&mh=Of&mip=183.80.235.34&mm=34&mn=sn-npoe7ns7&ms=ltu&mt=1694707263&mv=m&mvi=5&pl=23&lsparams=mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRQIgGIeSPDarOHAby1iHzsUIr3ih2XSalkgo1H2kJOE79z8CIQD9ScgXQwnc4AiAP_U77NORsMK91Wtu9GxyiJ63hsvHAA%3D%3D"></video>-->
 <iframe class="h-100 w-100  position-fixed top-0 start-0 bottom-0 end-0" src="https://www.youtube.com/embed/hBY-Dan4wsY?autoplay=1" title="Nostalgic Pokémon Music + Cozy Winter Ambiece (ASMR)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<div class="row z-1" style="height: 100vh; width: 100vw" >
+<app-login></app-login>
+<div *ngIf="login.userInfo" class="row z-1" style="height: 100vh; width: 100vw" >
   <div class="col-8 z-1 h-100 bg-dark bg-opacity-50 text-light overflow-y-scroll">
     <app-template></app-template>
   </div>

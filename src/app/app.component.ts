@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AvatarServiceService} from "./avatar-service.service";
+import {LoginService} from "./login/login.service";
 
 declare var YT: any;
 @Component({
@@ -10,7 +11,7 @@ declare var YT: any;
 export class AppComponent implements OnInit{
   @ViewChild('youtubeIframe') youtubeIframe!: ElementRef;
   private player: any; // Đối tượng player của YouTube
-  constructor(private avatarService : AvatarServiceService) {
+  constructor(private avatarService : AvatarServiceService, public login : LoginService) {
   }
 
   ngOnInit(): void {

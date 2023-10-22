@@ -8,13 +8,15 @@ import { TemplateComponent } from './template/template.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ImgUploadComponent} from "./upload/img-upload/img-upload.component";
 import {FormsModule} from "@angular/forms";
+import {LoginComponent} from "./login/login.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryComponent,
     TemplateComponent,
-    ImgUploadComponent
+    ImgUploadComponent,
+    LoginComponent
 
   ],
   imports: [

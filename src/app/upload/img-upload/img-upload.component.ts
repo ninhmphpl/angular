@@ -8,18 +8,22 @@ import {environment} from "../../environment";
 })
 export class ImgUploadComponent {
   @Output() dataEvent = new EventEmitter<string>();
-  @Input() img: string = "";
+  @Input() img!: string;
+  @Input() type : string = 'img';
   @Input() imgWith: string = "100px";
   @Input() imgHeight: string = "100px";
-  url = environment.url;
+  @Input() path : string = '';
   urlSocket = environment.url.replace("http", "ws") + "/upload"
-  urlDefault = "./assets/pikachu.jpg"
+  urlDefault = "https://th.bing.com/th/id/OIP.VH7cg73Iesjoi9lvFyirCgHaHa?pid=ImgDet&rs=1"
+  percent : number = 0;
   sendData(event: any) {
-    this.uploadFile(event.target.files[0], this.urlSocket, "", url => {
+    this.uploadFile(event.target.files[0], this.urlSocket, this.path, url => {
       this.dataEvent.emit(url);
+    }, data => {
+      this.percent = data
+      if(this.percent === 100) this.percent = 0
     })
   }
-
   uploadFile(file: File, url: string, path: string, action: (url: string) => any, percentAction?: (data: number) => any) {
     const chunkSize = 1024 * 7; // Size of each piece of data (1 MB)
     const totalChunks = Math.ceil(file.size / chunkSize); // data total
@@ -61,6 +65,4 @@ export class ImgUploadComponent {
       }
     };
   }
-
-
 }

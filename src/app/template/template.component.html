@@ -18,6 +18,8 @@
       <th class="text-light">Prompt</th>
       <th class="text-light">Input</th>
       <th class="text-light">Output</th>
+      <th class="text-light">Output Male</th>
+      <th class="text-light">Output Female</th>
     </tr>
     </thead>
     <tbody>
@@ -35,6 +37,14 @@
       <td>
         <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="template.output"
                         (dataEvent)="template.output = $event; save(i)"></app-img-upload>
+      </td>
+      <td>
+        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="template.outputMale"
+                        (dataEvent)="template.outputMale = $event; save(i)"></app-img-upload>
+      </td>
+      <td>
+        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="template.outputFemale"
+                        (dataEvent)="template.outputFemale = $event; save(i)"></app-img-upload>
       </td>
       <td>
         <div class="input-group" style="width: 100px">
