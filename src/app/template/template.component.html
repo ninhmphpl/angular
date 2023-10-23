@@ -31,19 +31,19 @@
                placeholder="Description Prompt">
       </td>
       <td>
-        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="template.input"
+        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="(template.input) ? (url + template.input) : ''"
                         (dataEvent)="template.input = $event; save(i)"></app-img-upload>
       </td>
       <td>
-        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="template.output"
+        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="(template.output) ? (url + template.output) : ''"
                         (dataEvent)="template.output = $event; save(i)"></app-img-upload>
       </td>
       <td>
-        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="template.outputMale"
+        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="(template.outputMale) ? (url + template.outputMale) : ''"
                         (dataEvent)="template.outputMale = $event; save(i)"></app-img-upload>
       </td>
       <td>
-        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="template.outputFemale"
+        <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="(template.outputFemale) ? (url + template.outputFemale) : ''"
                         (dataEvent)="template.outputFemale = $event; save(i)"></app-img-upload>
       </td>
       <td>

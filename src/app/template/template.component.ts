@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AvatarServiceService} from "../avatar-service.service";
 import {Template} from "../model/Template";
+import {environment} from "../environment";
 
 @Component({
   selector: 'app-template',
@@ -10,8 +11,7 @@ import {Template} from "../model/Template";
 export class TemplateComponent {
   constructor(public avatar : AvatarServiceService) {
   }
-  ngOnInit(): void {
-  }
+  url = environment.url
   create(){
     this.avatar.saveTemplate(new Template(), template => this.avatar.template.unshift(template))
   }
