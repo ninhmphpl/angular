@@ -5,6 +5,6 @@
 <div class="row row-cols-auto">
   <div class="col m-0" *ngFor="let s of source; let i = index">
     <img *ngIf="themeService.isImage(s.url)" style="width: 70px; height: 70px" alt="" [src]="s.url" class="img-thumbnail m-0" (click)="select(i)">
-    <video *ngIf="themeService.isVideo(s.url)" style="width: 70px; height: 70px" [src]="s.url" class="img-thumbnail m-0" (click)="select(i)" controls></video>
+    <video *ngIf="themeService.isVideo(s.url)" style="width: 70px; height: 70px" [src]="s.url" class="img-thumbnail m-0" (click)="select(i)"></video>
   </div>
 </div>
