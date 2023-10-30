@@ -1,0 +1,28 @@
+<table>
+  <tr>
+    <td>
+      <button (click)="api.createVideoStyle()">Create VideoStyle</button>
+      <button (click)="previous()"><</button>
+      <span>{{api.videoStylePage + 1 + "/" + api.videoStylePageTotal}}</span>
+      <button (click)="next()">></button>
+    </td>
+  </tr>
+  <tr>
+    <td>Title</td>
+    <td>Key</td>
+    <td>Sort</td>
+  </tr>
+  <tr *ngFor="let videoStyle of api.videoStyles, let i = index">
+    <td><input type="text" [(ngModel)]="videoStyle.title" (change)="api.updateVideoStyle(i)"></td>
+    <td>
+      <select [(ngModel)]="videoStyle.key" (change)="api.updateVideoStyle(i)">
+        <option value="AIYEARBOOK">AIYEARBOOK</option>
+        <option value="TEXTTOART">TEXTTOART</option>
+        <option value="IMAGETOART">IMAGETOART</option>
+        <option value="AISTORY">AISTORY</option>
+      </select>
+    </td>
+    <td><input type="number" [(ngModel)]="videoStyle.sort" (change)="api.updateVideoStyle(i)"></td>
+    <td><button (click)="api.deleteVideoStyle(i)">Delete</button></td>
+  </tr>
+</table>

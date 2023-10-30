@@ -1,0 +1,8 @@
+<div>
+  <select [value]="banner? banner.title : 'none'" [(ngModel)]="index" (change)="select()">
+    <option *ngFor="let banner of api.banners, let i = index" [value]="i">{{banner.title}}</option>
+  </select>
+  <button (click)="previous()"><</button>
+  <span>{{api.bannerPage + 1 + "/" + api.bannerPageTotal}}</span>
+  <button (click)="next()">></button>
+</div>

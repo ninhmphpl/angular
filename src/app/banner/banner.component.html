@@ -1,0 +1,32 @@
+<table>
+  <tr>
+    <td colspan="4">
+      <button (click)="api.createBanner()">Create Banner</button>
+      <button (click)="previous()"><</button>
+      <span>{{api.bannerPage + 1 + "/" + api.bannerPageTotal}}</span>
+      <button (click)="next()">></button>
+    </td>
+  </tr>
+  <tr>
+    <td>Url</td>
+    <td>Title</td>
+    <td>Sort</td>
+    <td>Key</td>
+  </tr>
+  <tr *ngFor="let banner of api.banners, let i = index">
+    <td><app-img-upload [img]="banner.url" (dataEvent)="banner.url = $event; api.updateBanner(i)"></app-img-upload></td>
+    <td><input type="text" [(ngModel)]="banner.title" (change)="api.updateBanner(i)"></td>
+    <td><input type="number" [(ngModel)]="banner.sort" (change)="api.updateBanner(i)"></td>
+    <td>
+      <select [(ngModel)]="banner.key" (change)="api.updateBanner(i)">
+        <option value="AIYEARBOOK">AIYEARBOOK</option>
+        <option value="TEXTTOART">TEXTTOART</option>
+        <option value="IMAGETOART">IMAGETOART</option>
+        <option value="AISTORY">AISTORY</option>
+      </select>
+    </td>
+    <td>
+      <button (click)="api.deleteBanner(i)">Delete</button>
+    </td>
+  </tr>
+</table>
