@@ -4,7 +4,7 @@ export const environment = {
   // url : "http://208.73.203.106:8083",
   // url : "https://pawapi.nowtechai.com",
   // url : "https://halloweenapi.nowtechai.com",
-  url : "https://animeapi.nowtechai.com",
+  url : "http://noelapi.nowtechai.com",
   // url : "http://173.214.170.75:8083", // anime
   // url : "http://localhost:3000",
   keySaveToken : "Paw-Patrol-X-Token",
