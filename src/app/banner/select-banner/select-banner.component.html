@@ -1,5 +1,5 @@
 <div>
-  <label for="banner-select">{{banner.title}}</label>
+  <label for="banner-select">{{(banner)? banner.title : 'None'}}</label>
     <select id="banner-select" class="border-0" style="width: 20px" [(ngModel)]="banner" (change)="select()">
     <option *ngFor="let banner of api.banners, let i = index" [ngValue]="banner">{{banner?.title}}</option>
   </select>
