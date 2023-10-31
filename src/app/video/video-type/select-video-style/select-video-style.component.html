@@ -1,9 +1,9 @@
 <div>
-  <select [(ngModel)]="index" (change)="select()">
-    <option *ngFor="let videoStyle of api.videoStyles, let i = index" [value]="i">{{i + videoStyle.title}}</option>
+  <span>{{(videoStyle)?videoStyle.title:'None'}}</span>
+  <select class="border-0" style="width: 20px" [(ngModel)]="videoStyle" (change)="select()">
+    <option *ngFor="let videoStyle of api.videoStyles, let i = index" [ngValue]="videoStyle">{{videoStyle?.title}}</option>
   </select>
   <button (click)="previous()"><</button>
   <span>{{api.videoStylePage + 1 + "/" + api.videoStylePageTotal}}</span>
   <button (click)="next()">></button>
-  {{videoStyle | json}}
 </div>

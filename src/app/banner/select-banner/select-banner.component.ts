@@ -20,6 +20,6 @@ export class SelectBannerComponent {
     this.api.getBanner(this.api.bannerPage++)
   }
   select(){
-    this.dataEvent.emit(this.api.banners[this.index])
+    this.dataEvent.emit(this.banner)
   }
 }

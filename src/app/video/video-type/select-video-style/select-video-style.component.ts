@@ -22,7 +22,7 @@ export class SelectVideoStyleComponent{
     this.api.getBanner(this.api.videoStylePage++)
   }
   select(){
-    this.dataEvent.emit(this.api.videoStyles[this.index])
+    this.dataEvent.emit(this.videoStyle)
   }
 
 }
