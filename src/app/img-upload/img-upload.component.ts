@@ -10,8 +10,8 @@ export class ImgUploadComponent {
   @Output() dataEvent = new EventEmitter<string>();
   @Input() img!: string;
   @Input() type : string = 'img';
-  @Input() imgWith: string = "100px";
-  @Input() imgHeight: string = "100px";
+  @Input() imgWith: string = "50px";
+  @Input() imgHeight: string = "50px";
   @Input() path : string = '';
   urlSocket = environment.url.replace("http", "ws") + "/upload"
   urlDefault = "https://th.bing.com/th/id/OIP.VH7cg73Iesjoi9lvFyirCgHaHa?pid=ImgDet&rs=1"

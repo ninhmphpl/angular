@@ -2,16 +2,16 @@
   <tbody>
   <tr>
     <td colspan="2">
-      <button (click)="api.createStyle()">New Category</button>
+      <button (click)="api.createCategory()">New Category</button>
     </td>
   </tr>
   <tr>
     <td>Name</td>
     <td>Delete</td>
   </tr>
-  <tr *ngFor="let style of api.styles, let i = index">
-    <td><input type="text" [(ngModel)]="style.name" (change)="api.updateStyle(i)"></td>
-    <td><button (click)="api.deleteStyle(i)">Delete</button></td>
+  <tr *ngFor="let style of api.categories, let i = index">
+    <td><input type="text" [(ngModel)]="style.name" (change)="api.updateCategory(i)"></td>
+    <td><button (click)="api.deleteCategory(i)">Delete</button></td>
   </tr>
   </tbody>
 </table>

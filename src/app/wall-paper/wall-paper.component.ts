@@ -10,6 +10,6 @@ export class WallPaperComponent  implements OnInit{
   constructor(public api : ApiService) {
   }
   ngOnInit(): void {
-    this.api.getStyle()
+    this.api.getWallPaper()
   }
 }

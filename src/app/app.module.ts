@@ -9,6 +9,12 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { CategoryComponent } from './category/category.component';
 import { WallPaperComponent } from './wall-paper/wall-paper.component';
+import { ThemeComponent } from './theme/theme.component';
+import { SelectIconComponent } from './select-icon/select-icon.component';
+import { IconComponent } from './icon/icon.component';
+import { App2Component } from './app2/app2.component';
+import { WidgetComponent } from './widget/widget.component';
+import { WidgetTypeComponent } from './widget-type/widget-type.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +22,13 @@ import { WallPaperComponent } from './wall-paper/wall-paper.component';
     ImgUploadComponent,
     LoginComponent,
     CategoryComponent,
-    WallPaperComponent
+    WallPaperComponent,
+    ThemeComponent,
+    SelectIconComponent,
+    IconComponent,
+    App2Component,
+    WidgetComponent,
+    WidgetTypeComponent,
   ],
   imports: [
     BrowserModule,

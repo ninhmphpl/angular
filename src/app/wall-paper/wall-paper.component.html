@@ -1,5 +1,37 @@
 <table>
   <tbody>
-
+  <tr>
+    <td colspan="4">
+      <select [(ngModel)]="api.optionSelect" (change)="api.getWallPaper()">
+        <option *ngFor="let option of api.option" [value]="option">{{option}}</option>
+      </select>
+      <button (click)="api.createWallPaper()">New Wall Paper</button>
+      <button (click)="api.previousWallPaper()"><</button>
+      {{api.wallPaperPage + 1 + "/" + api.wallPaperPageTotal}}
+      <button (click)="api.nextWallPaper()">></button>
+    </td>
+  </tr>
+  <tr>
+    <td>Url</td>
+    <td>Thumb</td>
+    <td>Name</td>
+    <td>Category</td>
+  </tr>
+  <tr *ngFor="let wall of api.wallPapers, let i = index">
+    <td>
+      <app-img-upload [img]="wall.url" (dataEvent)="wall.url = $event; api.updateWallPaper(i)"></app-img-upload>
+    </td>
+    <td>
+      <app-img-upload [img]="wall.thumb" (dataEvent)="wall.thumb = $event; api.updateWallPaper(i)"></app-img-upload>
+    </td>
+    <td><input type="text" [(ngModel)]="wall.name" (change)="api.updateWallPaper(i)"></td>
+    <td>
+      <span>{{(wall.category) ? wall.category.name : "none"}}</span>
+      <select class="border-0" style="width: 20px" [(ngModel)]="wall.category" (change)="api.updateWallPaper(i)">
+        <option *ngFor="let category of api.categories" [ngValue]="category">{{category?.name}}</option>
+      </select>
+    </td>
+    <td><button (click)="api.deleteWallPaper(i)">Delete</button></td>
+  </tr>
   </tbody>
 </table>

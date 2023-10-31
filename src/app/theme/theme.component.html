@@ -1,0 +1,33 @@
+<table>
+  <tbody>
+  <tr>
+    <td colspan="4">
+      <select [(ngModel)]="api.themeOptionSelect" (change)="api.getTheme()">
+        <option *ngFor="let option of api.themeOption" [value]="option">{{option}}</option>
+      </select>
+      <button (click)="api.createTheme()">New Wall Paper</button>
+      <button (click)="api.previousTheme()"><</button>
+      {{api.themePage + 1 + "/" + api.themePageTotal}}
+      <button (click)="api.nextTheme()">></button>
+    </td>
+  </tr>
+  <tr>
+  </tr>
+  <tr *ngFor="let theme of api.themes, let i = index">
+    <td><input type="text" [(ngModel)]="theme.name" (change)="api.updateTheme(i)"></td>
+    <td>
+      <span>{{(theme.wallPaper) ? theme.wallPaper.name : "none"}}</span>
+      <select class="border-0" style="width: 20px" [(ngModel)]="theme.wallPaper" (change)="api.updateTheme(i)">
+        <option *ngFor="let wallPaper of api.wallPapers" [ngValue]="wallPaper">{{wallPaper?.name}}</option>
+      </select>
+      <button (click)="api.previousWallPaper()"><</button>
+      <select [(ngModel)]="api.optionSelect" (change)="api.getWallPaper()">
+        <option *ngFor="let option of api.option" [value]="option">{{option}}</option>
+      </select>
+      <button (click)="api.nextWallPaper()">></button>
+      {{api.wallPaperPage + 1 + "/" + api.wallPaperPageTotal}}
+    </td>
+    <td><button (click)="api.deleteTheme(i)">Delete</button></td>
+  </tr>
+  </tbody>
+</table>

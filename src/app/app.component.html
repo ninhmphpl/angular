@@ -1,8 +1,13 @@
 <app-login></app-login>
 <div *ngIf="login.userInfo">
   <div>
+    <a class="p-3" routerLink="/wall-paper">Wall Paper</a>
+    <a class="p-3" routerLink="/category">Category</a>
+    <a class="p-3" routerLink="/theme">Theme</a>
+    <a class="p-3" routerLink="/icon">Icon</a>
+    <a class="p-3" routerLink="/app">App</a>
+    <a class="p-3" routerLink="/widget">Widget</a>
   </div>
   <router-outlet></router-outlet>
-</div><!--<app-banner></app-banner>-->
-<app-category></app-category>
+</div>
 
