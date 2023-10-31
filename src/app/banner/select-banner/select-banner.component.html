@@ -1,9 +1,0 @@
-<div>
-  <label for="banner-select">{{banner.title}}</label>
-    <select id="banner-select" class="border-0" style="width: 20px" [(ngModel)]="banner" (change)="select()">
-    <option *ngFor="let banner of api.banners, let i = index" [ngValue]="banner">{{banner?.title}}</option>
-  </select>
-  <button (click)="previous()"><</button>
-  <span>{{api.bannerPage + 1 + "/" + api.bannerPageTotal}}</span>
-  <button (click)="next()">></button>
-</div>
