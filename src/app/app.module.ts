@@ -15,6 +15,9 @@ import { IconComponent } from './icon/icon.component';
 import { App2Component } from './app2/app2.component';
 import { WidgetComponent } from './widget/widget.component';
 import { WidgetTypeComponent } from './widget-type/widget-type.component';
+import { SelectWidgetComponent } from './select-widget/select-widget.component';
+import { TemplateComponent } from './template/template.component';
+import { StyleComponent } from './style/style.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import { WidgetTypeComponent } from './widget-type/widget-type.component';
     App2Component,
     WidgetComponent,
     WidgetTypeComponent,
+    SelectWidgetComponent,
+    TemplateComponent,
+    StyleComponent,
   ],
   imports: [
     BrowserModule,

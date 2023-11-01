@@ -5,9 +5,9 @@ export class WidgetType {
 
   name!: string;
 
-  source!: Map<string, string>;
+  source: any;
+  sourceConvert: string[][] = []
 }
-
 
 
 

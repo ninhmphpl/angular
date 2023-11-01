@@ -1,8 +1,12 @@
-<table>
-  <tbody>
-  <tr></tr>
-  <tr>
+<button (click)="iconSelect.hidden = false; init()">Icon</button>
 
-  </tr>
-  </tbody>
-</table>
+<div [hidden]="true" #iconSelect style="position: fixed; height: 100%;top:0;right: 0; width: 100px" class="bg-light">
+  <div class="w-100 h-100 overflow-y-scroll">
+    <div *ngFor="let dataIcon of data; let i = index">
+      <input [(ngModel)]="dataIcon.check" type="checkbox">
+      <img style="width: 50px; height: 50px" [src]="dataIcon.icon.url" alt="">
+    </div>
+    <button class="position-absolute bottom-0 start-0" (click)="iconSelect.hidden = true">Close</button>
+    <button class="position-absolute bottom-0 start-50" (click)="iconSelect.hidden = true; save()">Save</button>
+  </div>
+</div>

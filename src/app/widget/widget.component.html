@@ -9,6 +9,12 @@
     </td>
   </tr>
   <tr>
+    <td>Thumb</td>
+    <td>Name</td>
+    <td>Size</td>
+    <td>Widget Type</td>
+    <td></td>
+    <td>Delete</td>
   </tr>
   <tr *ngFor="let widget of api.widgets, let i = index">
     <td><app-img-upload [img]="widget.url" (dataEvent)="widget.url = $event; api.updateWidget(i)"></app-img-upload></td>
@@ -21,18 +27,17 @@
         <option value="size4">size4</option>
       </select>
     </td>
-<!--    <td>-->
-<!--      <span>{{(widget.) ? widget.wallPaper.name : "none"}}</span>-->
-<!--      <select class="border-0" style="width: 20px" [(ngModel)]="widget.wallPaper" (change)="api.updateWidget(i)">-->
-<!--        <option *ngFor="let wallPaper of api.wallPapers" [ngValue]="wallPaper">{{wallPaper?.name}}</option>-->
-<!--      </select>-->
-<!--      <button (click)="api.previousWallPaper()"><</button>-->
-<!--      <select [(ngModel)]="api.optionSelect" (change)="api.getWallPaper()">-->
-<!--        <option *ngFor="let option of api.option" [value]="option">{{option}}</option>-->
-<!--      </select>-->
-<!--      <button (click)="api.nextWallPaper()">></button>-->
-<!--      {{api.wallPaperPage + 1 + "/" + api.wallPaperPageTotal}}-->
-<!--    </td>-->
+    <td>
+      <span>{{(widget.type) ? widget.type.name : "none"}}</span>
+    </td>
+    <td>
+      <select class="border-0" style="width: 20px" [(ngModel)]="widget.type" (change)="api.updateWidget(i)">
+        <option *ngFor="let widgetType of api.widgetTypes" [ngValue]="widgetType">{{widgetType?.name}}</option>
+      </select>
+      <button (click)="api.previousWidgetType()"><</button>
+      {{api.widgetTypePage + 1 + "/" + api.widgetTypePageTotal}}
+      <button (click)="api.nextWidgetType()">></button>
+    </td>
     <td><button (click)="api.deleteWidget(i)">Delete</button></td>
   </tr>
   </tbody>

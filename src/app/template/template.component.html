@@ -1,0 +1,38 @@
+<table>
+  <tbody>
+  <tr>
+    <td colspan="4">
+      <button (click)="api.createTemplate()">New Wall Paper</button>
+      <button (click)="api.previousTemplate()"><</button>
+      {{api.templatePage + 1 + "/" + api.templatePageTotal}}
+      <button (click)="api.nextTemplate()">></button>
+      Category : <select [(ngModel)]="api.templateCategorySelection" (change)="api.getTemplate()">
+        <option value="all">all</option>
+        <option *ngFor="let category of this.api.categories" [value]="category.id">{{category.name}}</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+  </tr>
+  <tr *ngFor="let template of api.templates, let i = index">
+    <td>
+      <app-img-upload [img]="template.url" (dataEvent)="template.url = $event; api.updateTemplate(i)"></app-img-upload>
+    </td>
+    <td><input type="text" [(ngModel)]="template.name" (change)="api.updateTemplate(i)"></td>
+    <td>
+      <span>{{(template.style) ? template.style.name : "none"}}</span>
+      <select class="border-0" style="width: 20px" [(ngModel)]="template.style" (change)="api.updateTemplate(i)">
+        <option *ngFor="let style of api.styles" [ngValue]="style">{{style?.name}}</option>
+      </select>
+    </td>
+    <td>
+      <span>{{(template.category) ? template.category.name : "none"}}</span>
+      <select class="border-0" style="width: 20px" [(ngModel)]="template.category" (change)="api.updateTemplate(i)">
+        <option *ngFor="let category of api.categories" [ngValue]="category">{{category?.name}}</option>
+      </select>
+    </td>
+
+    <td><button (click)="api.deleteTemplate(i)">Delete</button></td>
+  </tr>
+  </tbody>
+</table>

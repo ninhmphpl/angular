@@ -2,6 +2,9 @@
   <tbody>
   <tr>
     <td colspan="2">
+      <select [(ngModel)]="api.categoryOptionSelect" (change)="api.getCategory()">
+        <option *ngFor="let category of api.categoryOption" [value]="category">{{category}}</option>
+      </select>
       <button (click)="api.createCategory()">New Category</button>
     </td>
   </tr>

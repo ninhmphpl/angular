@@ -11,5 +11,6 @@ export class WidgetComponent implements OnInit{
   }
   ngOnInit(): void {
     this.api.getWidget()
+    this.api.getWidgetType()
   }
 }

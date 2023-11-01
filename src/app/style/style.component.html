@@ -1,0 +1,19 @@
+<table>
+  <tbody>
+  <tr>
+    <td colspan="4"><button (click)="api.createStyle()">Add Style</button></td>
+  </tr>
+  <tr>
+    <td>Url</td>
+    <td>name</td>
+    <td>Prompt</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let style of api.styles, let i = index">
+    <td><app-img-upload [img]="style.url" (dataEvent)="style.url = $event; api.updateStyle(i)"></app-img-upload></td>
+    <td><input type="text" [(ngModel)]="style.name" (change)="api.updateStyle(i)"></td>
+    <td><input type="text" [(ngModel)]="style.prompt" (change)="api.updateStyle(i)"></td>
+    <td><button (click)="api.updateStyle(i)">Delete</button></td>
+  </tr>
+  </tbody>
+</table>

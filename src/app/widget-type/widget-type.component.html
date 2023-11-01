@@ -2,29 +2,28 @@
   <tbody>
   <tr>
     <td colspan="4">
-      <button (click)="api.createTheme()">New Wall Paper</button>
-      <button (click)="api.previousTheme()"><</button>
-      {{api.themePage + 1 + "/" + api.themePageTotal}}
-      <button (click)="api.nextTheme()">></button>
+      <button (click)="api.createWidgetType()">New Widget Type</button>
+      <button (click)="api.previousWidgetType()"><</button>
+      {{api.widgetTypePage + 1 + "/" + api.widgetTypePageTotal}}
+      <button (click)="api.nextWidgetType()">></button>
     </td>
   </tr>
   <tr>
   </tr>
-  <tr *ngFor="let theme of api.themes, let i = index">
-    <td><input type="text" [(ngModel)]="theme.name" (change)="api.updateTheme(i)"></td>
+  <tr *ngFor="let widgetType of api.widgetTypes, let i = index">
+    <td><input type="text" [(ngModel)]="widgetType.name" (change)="api.updateWidgetType(i)"></td>
     <td>
-      <span>{{(theme.wallPaper) ? theme.wallPaper.name : "none"}}</span>
-      <select class="border-0" style="width: 20px" [(ngModel)]="theme.wallPaper" (change)="api.updateTheme(i)">
-        <option *ngFor="let wallPaper of api.wallPapers" [ngValue]="wallPaper">{{wallPaper?.name}}</option>
-      </select>
-      <button (click)="api.previousWallPaper()"><</button>
-      <select [(ngModel)]="api.optionSelect" (change)="api.getWallPaper()">
-        <option *ngFor="let option of api.option" [value]="option">{{option}}</option>
-      </select>
-      <button (click)="api.nextWallPaper()">></button>
-      {{api.wallPaperPage + 1 + "/" + api.wallPaperPageTotal}}
+      <table>
+        <tr>
+          <td colspan="2" (click)="widgetType.sourceConvert.push(['new', '']); api.updateWidgetType(i)"><button>Add Source</button></td>
+        </tr>
+        <tr *ngFor="let source of widgetType.sourceConvert">
+          <td><input type="text" [(ngModel)]="source[0]" placeholder="key" (change)="api.updateWidgetType(i)"></td>
+          <td><app-img-upload [img]="source[1]" (dataEvent)="source[1] = $event; api.updateWidgetType(i)"></app-img-upload></td>
+        </tr>
+      </table>
     </td>
-    <td><button (click)="api.deleteTheme(i)">Delete</button></td>
+    <td><button (click)="api.deleteWidgetType(i)">Delete</button></td>
   </tr>
   </tbody>
 </table>

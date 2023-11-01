@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../api.service";
+import {WidgetType} from "../model/WidgetType";
 
 @Component({
   selector: 'app-widget-type',
@@ -11,5 +12,8 @@ export class WidgetTypeComponent implements OnInit{
   }
   ngOnInit(): void {
     this.api.getWidgetType()
+  }
+  getObjectKeys(obj: any) {
+    return Object.keys(obj).map(key => ({ key, value: obj[key] }));
   }
 }
