@@ -1,4 +1,4 @@
-<table>
+<table class="table table-bordered">
   <tbody>
   <tr>
     <td colspan="4">
@@ -9,6 +9,9 @@
     </td>
   </tr>
   <tr>
+    <td>Name</td>
+    <td>Source</td>
+    <td>Delete</td>
   </tr>
   <tr *ngFor="let widgetType of api.widgetTypes, let i = index">
     <td><input type="text" [(ngModel)]="widgetType.name" (change)="api.updateWidgetType(i)"></td>
@@ -17,9 +20,15 @@
         <tr>
           <td colspan="2" (click)="widgetType.sourceConvert.push(['new', '']); api.updateWidgetType(i)"><button>Add Source</button></td>
         </tr>
-        <tr *ngFor="let source of widgetType.sourceConvert">
-          <td><input type="text" [(ngModel)]="source[0]" placeholder="key" (change)="api.updateWidgetType(i)"></td>
+        <tr>
+          <td>Url</td>
+          <td>Key</td>
+          <td>Delete Source</td>
+        </tr>
+        <tr *ngFor="let source of widgetType.sourceConvert let j = index">
           <td><app-img-upload [img]="source[1]" (dataEvent)="source[1] = $event; api.updateWidgetType(i)"></app-img-upload></td>
+          <td><input type="text" [(ngModel)]="source[0]" placeholder="key" (change)="api.updateWidgetType(i)"></td>
+          <td><button (click)="widgetType.sourceConvert.splice(j,1); api.updateWidgetType(i)">Delete Source</button></td>
         </tr>
       </table>
     </td>
