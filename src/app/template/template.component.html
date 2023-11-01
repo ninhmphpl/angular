@@ -2,7 +2,7 @@
   <tbody>
   <tr>
     <td colspan="4">
-      <button (click)="api.createTemplate()">New Wall Paper</button>
+      <button (click)="api.createTemplate()">New Template</button>
       <button (click)="api.previousTemplate()"><</button>
       {{api.templatePage + 1 + "/" + api.templatePageTotal}}
       <button (click)="api.nextTemplate()">></button>
@@ -13,6 +13,11 @@
     </td>
   </tr>
   <tr>
+    <td>Url</td>
+    <td>Name</td>
+    <td>Style</td>
+    <td>Category</td>
+    <td>Delete</td>
   </tr>
   <tr *ngFor="let template of api.templates, let i = index">
     <td>
