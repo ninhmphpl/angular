@@ -1,43 +1,35 @@
 <table>
-  <tbody>
   <tr>
-    <td colspan="4">
-      <button (click)="api.createTemplate()">New Template</button>
+    <td colspan="5">
+      <button (click)="api.createTemplate()">Create Template</button>
       <button (click)="api.previousTemplate()"><</button>
-      {{api.templatePage + 1 + "/" + api.templatePageTotal}}
+      <span>{{api.templatePage + 1 + "/" + api.templatePageTotal}}</span>
       <button (click)="api.nextTemplate()">></button>
-      Category : <select [(ngModel)]="api.templateCategorySelection" (change)="api.getTemplate()">
-        <option value="all">all</option>
-        <option *ngFor="let category of this.api.categories" [value]="category.id">{{category.name}}</option>
-      </select>
     </td>
   </tr>
   <tr>
     <td>Url</td>
     <td>Name</td>
-    <td>Style</td>
-    <td>Category</td>
+    <td>Prompt</td>
+    <td>Gender</td>
     <td>Delete</td>
   </tr>
-  <tr *ngFor="let template of api.templates, let i = index">
+  <tr *ngFor="let template of api.templates let i = index">
     <td>
       <app-img-upload [img]="template.url" (dataEvent)="template.url = $event; api.updateTemplate(i)"></app-img-upload>
     </td>
-    <td><input type="text" [(ngModel)]="template.name" (change)="api.updateTemplate(i)"></td>
     <td>
-      <span>{{(template.style) ? template.style.name : "none"}}</span>
-      <select class="border-0" style="width: 20px" [(ngModel)]="template.style" (change)="api.updateTemplate(i)">
-        <option *ngFor="let style of api.styles" [ngValue]="style">{{style?.name}}</option>
-      </select>
+      <input type="text" [(ngModel)]="template.name" (change)="api.updateTemplate(i)">
     </td>
     <td>
-      <span>{{(template.category) ? template.category.name : "none"}}</span>
-      <select class="border-0" style="width: 20px" [(ngModel)]="template.category" (change)="api.updateTemplate(i)">
-        <option *ngFor="let category of api.categories" [ngValue]="category">{{category?.name}}</option>
+      <input type="text" [(ngModel)]="template.avatarFilePrompt" (change)="api.updateTemplate(i)">
+    </td>
+    <td>
+      <select [(ngModel)]="template.gender" (change)="api.updateTemplate(i)">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
       </select>
     </td>
-
     <td><button (click)="api.deleteTemplate(i)">Delete</button></td>
   </tr>
-  </tbody>
 </table>

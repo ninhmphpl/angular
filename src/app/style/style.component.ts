@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../api.service";
+import {style} from "@angular/animations";
 
 @Component({
   selector: 'app-style',
@@ -7,9 +8,11 @@ import {ApiService} from "../api.service";
   styleUrls: ['./style.component.scss']
 })
 export class StyleComponent implements OnInit{
-  constructor(public api : ApiService) {
+  constructor(public api: ApiService) {
   }
   ngOnInit(): void {
-    this.api.getStyle()
+    this.api.getStyleHome()
   }
+
+  protected readonly style = style;
 }
