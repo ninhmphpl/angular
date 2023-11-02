@@ -11,12 +11,14 @@
   <table class="w-100 table-hover table">
     <tbody>
     <tr *ngFor="let category of avatar.category, let i = index">
-      <td><input type="text" class="form-control" [(ngModel)]="category.name" (change)="save(i)" placeholder="Name"></td>
+      <td>
+        <span class="text-light">Name</span>
+        <input type="text" class="form-control" [(ngModel)]="category.name" (change)="save(i)" placeholder="Name">
+        <span class="text-light">Priority</span>
+        <input type="number" class="form-control" [(ngModel)]="category.priority" (change)="save(i)" placeholder="Priority">
+      </td>
       <td>
         <div class="btn-group w-100">
-          <button  class="btn btn-outline-primary" type="button" (click)="getTemplateChoice(i)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightTemplate" aria-controls="offcanvasRightTemplate">
-            Template
-          </button>
           <button class="btn btn-outline-primary" type="button" (click)="getCategorySuggestion(i)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightSuggest" aria-controls="offcanvasRightSuggest">
             Suggest
           </button>

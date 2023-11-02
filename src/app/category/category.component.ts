@@ -26,7 +26,7 @@ export class CategoryComponent{
   getTemplateChoice(i : number){
     this.categorySelection = i;
     this.templateChoice = []
-    for(let t1 of this.avatar.template){
+    for(let t1 of this.avatar.categorySelect.templates){
       let choice = new TemplateChoice(false, t1)
       for(let t2 of this.avatar.category[i].templates){
         if(t1.id === t2.id){

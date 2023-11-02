@@ -1,5 +1,11 @@
 <div>
   <h3 class="w-100 text-center">Template</h3>
+
+  <div>
+    <select [(ngModel)]="avatar.categorySelect">
+      <option *ngFor="let category of avatar.category" [ngValue]="category">{{category?.name}}</option>
+    </select>
+  </div>
   <div class="w-100 text-end">
     <button class="btn-outline-primary btn pb-2" (click)="create()">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-plus"
@@ -12,7 +18,7 @@
     </button>
   </div>
 
-  <table *ngIf="avatar.template" class="table table-hover">
+  <table *ngIf="avatar.categorySelect" class="table table-hover">
     <thead>
     <tr>
       <th class="text-light">Prompt</th>
@@ -23,12 +29,28 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let template of avatar.template, let i = index">
+    <tr *ngFor="let template of avatar.categorySelect.templates, let i = index">
       <td>
+        <span class="text-light">Name</span>
         <input class="form-control w-100" type="text" [(ngModel)]="template.prompt" (change)="save(i)"
                placeholder="Prompt">
+        <span class="text-light">Prompt</span>
         <input class="form-control w-100" type="text" [(ngModel)]="template.descriptionPrompt" (change)="save(i)"
                placeholder="Description Prompt">
+        <span class="text-light">Prompt Male</span>
+        <input class="form-control w-100" type="text" [(ngModel)]="template.promptMale" (change)="save(i)"
+               placeholder="Prompt Male">
+        <span class="text-light">Prompt Female</span>
+        <input class="form-control w-100" type="text" [(ngModel)]="template.promptFemale" (change)="save(i)"
+               placeholder="Prompt Female">
+        <span class="text-light">View</span>
+        <input class="form-control w-100" type="number" [(ngModel)]="template.view" (change)="save(i)"
+               placeholder="View">
+        <span class="text-light">Top</span>
+        <input class="form-control w-100" type="number" [(ngModel)]="template.top" (change)="save(i)" >
+        <div class="text-light">
+          Trending <input class="form-check-input" type="checkbox" [(ngModel)]="template.trending" (change)="save(i)">
+        </div>
       </td>
       <td>
         <app-img-upload [imgHeight]="'150px'" [imgWith]="'100px'" [img]="(template.input) ? (url + template.input) : ''"
@@ -47,13 +69,6 @@
                         (dataEvent)="template.outputFemale = $event; save(i)"></app-img-upload>
       </td>
       <td>
-        <div class="input-group" style="width: 100px">
-          <span class="input-group-text w-50">Top</span>
-          <input class="form-control w-50" type="number" [(ngModel)]="template.top" (change)="save(i)" >
-        </div>
-        <div class="text-light">
-          Trending <input class="form-check-input" type="checkbox" [(ngModel)]="template.trending" (change)="save(i)">
-        </div>
         <button class="btn btn-outline-danger" (click)="delete(i)">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill"
                viewBox="0 0 16 16">

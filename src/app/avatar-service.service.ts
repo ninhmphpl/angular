@@ -10,24 +10,26 @@ import {LoginService} from "./login/login.service";
 })
 export class AvatarServiceService {
   url = environment.url
+  categorySelect! : Category
   category : Category[] = []
-  template : Template[] = []
   constructor(private http : HttpClient, private login : LoginService) { }
 
   get(){
     this.getCategory()
-    this.getTemplate()
   }
   getCategory(){
     this.http.get(this.url + "/category").subscribe((payload : any)=>{
-      if(payload.code === 200) this.category = payload.data
+      if(payload.code === 200){
+        this.category = payload.data
+        if(this.category.length > 0) this.categorySelect = this.category[0]
+      }
     }, error => {
       alert(error.error.detail)
     })
   }
   getTemplate(){
     this.http.get(this.url + "/template").subscribe((payload : any)=>{
-      if(payload.code === 200) this.template = payload.data
+      if(payload.code === 200) this.categorySelect = payload.data
     }, error => {
       alert(error.error.detail)
     })
@@ -40,7 +42,7 @@ export class AvatarServiceService {
     })
   }
   saveTemplate(template : Template, getTemplate :(template : Template) => any){
-    this.http.post(this.url + "/template", template, this.login.getHeader()).subscribe((payload : any)=>{
+    this.http.post(this.url + "/template/update-category/" + this.categorySelect.id, template, this.login.getHeader()).subscribe((payload : any)=>{
       if(payload.code === 200) getTemplate(payload.data)
     }, error => {
       alert(error.error.detail)

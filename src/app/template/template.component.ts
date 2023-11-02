@@ -13,13 +13,13 @@ export class TemplateComponent {
   }
   url = environment.url
   create(){
-    this.avatar.saveTemplate(new Template(), template => this.avatar.template.unshift(template))
+    this.avatar.saveTemplate(new Template(), template => this.avatar.categorySelect.templates.unshift(template))
   }
   save(i : number){
-    this.avatar.saveTemplate(this.avatar.template[i], template => this.avatar.template[i] = template)
+    this.avatar.saveTemplate(this.avatar.categorySelect.templates[i], template => this.avatar.categorySelect.templates[i] = template)
   }
   delete(i : number){
-    this.avatar.deleteTemplate(this.avatar.template[i].id, () => this.avatar.template.splice(i, 1))
+    this.avatar.deleteTemplate(this.avatar.categorySelect.templates[i].id, () => this.avatar.categorySelect.templates.splice(i, 1))
   }
 
 
