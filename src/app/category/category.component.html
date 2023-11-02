@@ -1,20 +1,17 @@
 <table>
-  <tbody>
   <tr>
-    <td colspan="2">
-      <select [(ngModel)]="api.categoryOptionSelect" (change)="api.getCategory()">
-        <option *ngFor="let category of api.categoryOption" [value]="category">{{category}}</option>
-      </select>
-      <button (click)="api.createCategory()">New Category</button>
+    <td><button (click)="api.createCategory()">Create Category</button></td>
+  </tr>
+  <tr *ngFor="let category of api.categories let i = index">
+    <td>
+      <input type="text" [(ngModel)]="category.name" (change)="api.updateCategory(i)">
     </td>
-  </tr>
-  <tr>
-    <td>Name</td>
-    <td>Delete</td>
-  </tr>
-  <tr *ngFor="let style of api.categories, let i = index">
-    <td><input type="text" [(ngModel)]="style.name" (change)="api.updateCategory(i)"></td>
+    <td>
+      <select [(ngModel)]="category.type" (change)="api.updateCategory(i)">
+        <option value="theme">theme</option>
+        <option value="template">template</option>
+      </select>
+    </td>
     <td><button (click)="api.deleteCategory(i)">Delete</button></td>
   </tr>
-  </tbody>
 </table>

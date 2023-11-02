@@ -7,9 +7,11 @@ import {ApiService} from "../api.service";
   styleUrls: ['./theme.component.scss']
 })
 export class ThemeComponent implements OnInit{
-  constructor(public api : ApiService) {
+  constructor(public api: ApiService) {
   }
+
   ngOnInit(): void {
     this.api.getTheme()
+    this.api.getCategory()
   }
 }

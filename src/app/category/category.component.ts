@@ -7,8 +7,9 @@ import {ApiService} from "../api.service";
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit{
-  constructor(public api : ApiService) {
+  constructor(public api: ApiService) {
   }
+
   ngOnInit(): void {
     this.api.getCategory()
   }

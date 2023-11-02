@@ -1,4 +1,4 @@
 export const environment = {
-  url : "http://wallapi.nowtechai.com",
+  url : "http://themeios.tolimanspaceni.com",
   keySaveToken : "TOKEN-WALL-PAPER"
 }
