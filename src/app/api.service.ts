@@ -62,8 +62,8 @@ export class ApiService {
   //--------------------------------- Category ---------------------------------------------
   categories: Category[] = []
 
-  getCategory() {
-    this.http.get(url + "/now/category").subscribe((value: any) => {
+  getCategory(type?: string) {
+    this.http.get(url + "/now/category" + ((type != null) ? ("?type=" + type) : "")).subscribe((value: any) => {
       this.categories = value.data
     }, error => alert(error.error.detail))
   }
@@ -89,14 +89,15 @@ export class ApiService {
 
   //--------------------------------- Style ---------------------------------------------
   styles: Style[] = []
-  styleSuggests : StyleOption[] = []
-  styleTricks : StyleOption[] = []
+  styleSuggests: StyleOption[] = []
+  styleTricks: StyleOption[] = []
 
   getStyle() {
     this.http.get(url + "/now/style").subscribe((value: any) => {
       this.styles = value.data
     }, error => alert(error.error.detail))
   }
+
   getStyleHome() {
     this.http.get(url + "/now/style/home").subscribe((value: any) => {
       this.styles = value.style
@@ -122,6 +123,7 @@ export class ApiService {
       this.styles.splice(index, 1)
     }, error => alert(error.error.detail))
   }
+
   //--------------------------------- StyleOption ---------------------------------------------
   createStyleOptionTricks() {
     let a = new StyleOption();
@@ -150,6 +152,7 @@ export class ApiService {
       this.styleSuggests.unshift(value.data)
     }, error => alert(error.error.detail))
   }
+
   updateStyleOptionSuggest(index: number) {
     this.http.post(url + "/now/style/option", this.styleSuggests[index], this.login.getHeader()).subscribe((value: any) => {
       this.styleSuggests[index] = value.data
@@ -166,6 +169,7 @@ export class ApiService {
   templates: Template[] = []
   templatePage = 0;
   templatePageTotal = 0;
+  templateCategory!:Category
 
   nextTemplate() {
     if (this.templatePage < this.templatePageTotal) {
@@ -182,7 +186,7 @@ export class ApiService {
   }
 
   getTemplate() {
-    this.http.get(url + "/now/template?page=" + this.templatePage).subscribe((value: any) => {
+    this.http.get(url + "/now/template?page=" + this.templatePage + ((this.templateCategory)?("&category_id=" + this.templateCategory.id):"")).subscribe((value: any) => {
       this.templates = value.data.content
       this.templatePage = value.data.number
       this.templatePageTotal = value.data.totalPages

@@ -34,6 +34,7 @@ export class Template {
   avatarFilePrompt!: string;
   gender!: string;
   createAt!: number;
+  category!: Category
 
 
 }

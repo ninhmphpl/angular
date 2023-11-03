@@ -12,6 +12,6 @@ export class ThemeComponent implements OnInit{
 
   ngOnInit(): void {
     this.api.getTheme()
-    this.api.getCategory()
+    this.api.getCategory("theme")
   }
 }
