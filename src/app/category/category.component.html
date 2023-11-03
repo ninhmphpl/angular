@@ -4,5 +4,6 @@
   </tr>
   <tr *ngFor="let category of api.categories let i = index">
     <td><input type="text" [(ngModel)]="category.name" (change)="api.saveCategory(i)"></td>
+    <td><button (click)="api.deleteCategory(i)">Delete</button></td>
   </tr>
 </table>
