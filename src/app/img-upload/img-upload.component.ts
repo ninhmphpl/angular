@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {environment} from "../../enviroments/environment";
+import {environment} from "../environment";
 
 @Component({
   selector: 'app-img-upload',

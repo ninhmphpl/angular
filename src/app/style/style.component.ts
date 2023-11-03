@@ -12,36 +12,37 @@ export class StyleComponent implements OnInit{
   searchKey = ''
   styleSelection : number = 0;
   keyChoice : {choice : boolean, key : string}[] = []
-  constructor(public painting : PaintingService) {
+  constructor(public api : PaintingService) {
   }
   ngOnInit(): void {
-    this.painting.get()
+    this.api.get()
+    this.api.getCategory()
   }
   save(i : number){
-    this.painting.saveStyle(this.painting.styles[i],style => this.painting.styles[i] = style)
+    this.api.saveStyle(this.api.styles[i], style => this.api.styles[i] = style)
   }
   create(){
-    this.painting.saveStyle(new Style(),style => this.painting.styles.unshift(style))
+    this.api.saveStyle(new Style(), style => this.api.styles.unshift(style))
   }
   delete(i : number){
-    this.painting.deleteStyle(this.painting.styles[i], () => this.painting.styles.splice(i, 1))
+    this.api.deleteStyle(this.api.styles[i], () => this.api.styles.splice(i, 1))
   }
 
   saveKey(key : string){
-    this.painting.saveKey(key, ()=>{
+    this.api.saveKey(key, ()=>{
       this.getKey(this.styleSelection)
     })
   }
   deleteKey(key: string){
-    this.painting.deleteKey(key, ()=>{
+    this.api.deleteKey(key, ()=>{
       this.getKey(this.styleSelection)
     })
   }
   getKey(i : number){
     this.styleSelection = i;
     this.keyChoice = []
-    for(let key of this.painting.key){
-      if(this.painting.styles[i].keys.indexOf(key)!= -1){
+    for(let key of this.api.key){
+      if(this.api.styles[i].keys.indexOf(key)!= -1){
         this.keyChoice.push({choice : true, key : key})
       }else {
         this.keyChoice.push({choice : false, key : key})
@@ -52,9 +53,10 @@ export class StyleComponent implements OnInit{
   setKey(){
     let result : string[] = []
     this.keyChoice.forEach(value =>{if (value.choice) result.push(value.key)} )
-    this.painting.styles[this.styleSelection].keys = result
-    console.log(this.painting.styles[this.styleSelection].keys)
+    this.api.styles[this.styleSelection].keys = result
+    console.log(this.api.styles[this.styleSelection].keys)
     this.save(this.styleSelection)
   }
 
+  protected readonly screenY = screenY;
 }

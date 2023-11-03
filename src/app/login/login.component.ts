@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Auth, GoogleAuthProvider, signInWithPopup} from "@angular/fire/auth";
 import {User} from "./User";
-import {environment} from "../../enviroments/environment";
+import {environment} from "../environment";
 import {LoginService} from "./login.service";
 
 const url = environment.url

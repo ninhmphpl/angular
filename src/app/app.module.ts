@@ -10,9 +10,10 @@ import { PaintingComponent } from './painting/painting.component';
 import { ImgUploadComponent } from './img-upload/img-upload.component';
 import { BannerComponent } from './painting/banner/banner.component';
 import {LoginComponent} from "./login/login.component";
-import {environment} from "../enviroments/environment";
+import {environment} from "./environment";
 import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getAuth, provideAuth} from "@angular/fire/auth";
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
     PaintingComponent,
     ImgUploadComponent,
     BannerComponent,
-    LoginComponent
+    LoginComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {environment} from "../../enviroments/environment";
+import {environment} from "../environment";
 import {User} from "./User";
 import {Router} from "@angular/router";
 import {Auth, GoogleAuthProvider, signInWithPopup} from "@angular/fire/auth";

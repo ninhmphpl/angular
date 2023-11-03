@@ -1,9 +1,9 @@
 <app-login></app-login>
-<div class="row row-cols-auto bg-dark p-2" style="height: 100vh; width: 100vw">
-  <div class="col w-75 h-100 overflow-y-scroll">
-    <app-painting></app-painting>
+<div>
+  <div>
+    <a class="p-2" routerLink="/painting">Painting</a>
+    <a class="p-2" routerLink="/style">Style</a>
+    <a class="p-2" routerLink="/category">Category</a>
   </div>
-  <div class="col w-25 h-100 overflow-y-scroll">
-    <app-style></app-style>
-  </div>
+  <router-outlet></router-outlet>
 </div>

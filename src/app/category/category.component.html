@@ -1,0 +1,8 @@
+<table>
+  <tr>
+    <td><button (click)="api.createCategory()">Create Category</button></td>
+  </tr>
+  <tr *ngFor="let category of api.categories let i = index">
+    <td><input type="text" [(ngModel)]="category.name" (change)="api.saveCategory(i)"></td>
+  </tr>
+</table>
