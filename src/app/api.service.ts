@@ -55,6 +55,7 @@ export class ApiService {
   wallPapers: WallPaper[] = []
   wallPaperPage = 0
   wallPaperPageTotal = 0
+  wallPaperCategorySelect !: Category
   option = ['banner', 'feature', 'gif', 'aiGent']
   optionSelect = 'banner'
 
@@ -71,7 +72,7 @@ export class ApiService {
   }
 
   getWallPaper() {
-    this.http.get(url + "/wall-paper/" + this.optionSelect + "?page=" + this.wallPaperPage).subscribe((value: any) => {
+    this.http.get(url + "/wall-paper/" + this.optionSelect + "?page=" + this.wallPaperPage + ((this.wallPaperCategorySelect)?("&category_id=" + this.wallPaperCategorySelect.id):"")).subscribe((value: any) => {
       this.wallPapers = value.data.content
       this.wallPaperPage = value.data.number
       this.wallPaperPageTotal = value.data.totalPages

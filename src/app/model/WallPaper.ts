@@ -5,6 +5,7 @@ export class WallPaper{
   createAt!: number
   url!: string
   name!: string
+  detail!:string
   thumb!: string
   category!: Category
 }
