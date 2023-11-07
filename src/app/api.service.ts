@@ -154,13 +154,13 @@ export class ApiService {
   }
 
   updateAiPosterOptionSuggest(index: number) {
-    this.http.post(url + "/now/aiPoster/option", this.aiPosterSuggests[index], this.login.getHeader()).subscribe((value: any) => {
+    this.http.post(url + "/now/ai-poster/option", this.aiPosterSuggests[index], this.login.getHeader()).subscribe((value: any) => {
       this.aiPosterSuggests[index] = value.data
     }, error => alert(error.error.detail))
   }
 
   deleteAiPosterOptionSuggest(index: number) {
-    this.http.delete(url + "/now/aiPoster/option/" + this.aiPosterSuggests[index].id, this.login.getHeader()).subscribe((value: any) => {
+    this.http.delete(url + "/now/ai-poster/option/" + this.aiPosterSuggests[index].id, this.login.getHeader()).subscribe((value: any) => {
       this.aiPosterSuggests.splice(index, 1)
     }, error => alert(error.error.detail))
   }
