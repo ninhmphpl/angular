@@ -3,16 +3,16 @@ import {ApiService} from "../api.service";
 
 @Component({
   selector: 'app-template',
-  templateUrl: './template.component.html',
-  styleUrls: ['./template.component.scss']
+  templateUrl: './ai-profile.component.html',
+  styleUrls: ['./ai-profile.component.scss']
 })
-export class TemplateComponent implements OnInit {
+export class AiProfileComponent implements OnInit {
   constructor(public api: ApiService) {
   }
 
   ngOnInit(): void {
-    this.api.getTemplate()
-    this.api.getCategory("template")
+    this.api.getAiProfile()
+    this.api.getCategory("ai-profile")
   }
 
 }

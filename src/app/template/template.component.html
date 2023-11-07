@@ -13,15 +13,22 @@
   </tr>
   <tr>
     <td>Url</td>
+    <td>Thumb</td>
+    <td>Object</td>
     <td>Name</td>
     <td>Prompt</td>
     <td>Category</td>
-    <td>Gender</td>
     <td>Delete</td>
   </tr>
   <tr *ngFor="let template of api.templates let i = index">
     <td>
       <app-img-upload [img]="template.url" (dataEvent)="template.url = $event; api.updateTemplate(i)"></app-img-upload>
+    </td>
+    <td>
+      <app-img-upload [img]="template.thumb" (dataEvent)="template.thumb = $event; api.updateTemplate(i)"></app-img-upload>
+    </td>
+    <td>
+      <app-img-upload [img]="template.object" (dataEvent)="template.object = $event; api.updateTemplate(i)"></app-img-upload>
     </td>
     <td>
       <input type="text" [(ngModel)]="template.name" (change)="api.updateTemplate(i)">
@@ -33,12 +40,6 @@
       <span>{{(template.category)?template.category.name : "None"}}</span>
       <select style="width: 18px" [(ngModel)]="template.category" (change)="api.updateTemplate(i)">
         <option *ngFor="let category of api.categories" [ngValue]="category">{{category.name}}</option>
-      </select>
-    </td>
-    <td>
-      <select [(ngModel)]="template.gender" (change)="api.updateTemplate(i)">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
       </select>
     </td>
     <td><button (click)="api.deleteTemplate(i)">Delete</button></td>
