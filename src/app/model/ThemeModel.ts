@@ -13,7 +13,7 @@ export class Category {
 
 }
 
-export class Style {
+export class AiPoster {
   id!: string;
   name!: string;
   prompt!: string;
@@ -22,28 +22,38 @@ export class Style {
 
 }
 export class StyleHome{
-  style! : Style[]
-  suggest! : StyleOption[]
-  tricks! : StyleOption[]
+  style! : AiPoster[]
+  suggest! : AiPosterOption[]
+  tricks! : AiPosterOption[]
 }
 
-export class Template {
+export class AiProfile {
   id!: string;
   name!: string;
   url!: string;
+  thumb!: string;
+  object!: string;
   avatarFilePrompt!: string;
   gender!: string;
   createAt!: number;
   category!: Category
-
-
+}
+export class Template {
+  id!: string;
+  name!: string;
+  url!: string;
+  thumb!: string;
+  object!: string;
+  avatarFilePrompt!: string;
+  createAt!: number;
+  category!: Category
 }
 
 export class Home {
-  male!: Template[];
-  female!: Template[];
+  male!: AiProfile[];
+  female!: AiProfile[];
 }
-export class StyleOption {
+export class AiPosterOption {
   id!: string;
   name!: string;
   type!: string;

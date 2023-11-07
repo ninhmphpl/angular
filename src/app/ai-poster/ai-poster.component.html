@@ -1,0 +1,45 @@
+<table>
+  <tr>
+    <td><button (click)="api.createAiPoster()">Create AiPoster</button></td>
+  </tr>
+  <tr>
+    <td>Url</td>
+    <td>Name</td>
+    <td>Prompt</td>
+  </tr>
+  <tr *ngFor="let aiPoster of api.aiPosters let i = index">
+    <td>
+      <app-img-upload [img]="aiPoster.url" (dataEvent)="aiPoster.url = $event ; api.updateAiPoster(i)"></app-img-upload>
+    </td>
+    <td>
+      <input type="text" [(ngModel)]="aiPoster.name" (change)="api.updateAiPoster(i)">
+    </td>
+    <td>
+      <input type="text" [(ngModel)]="aiPoster.prompt" (change)="api.updateAiPoster(i)">
+    </td>
+    <td><button (click)="api.deleteAiPoster(i)">Delete</button></td>
+  </tr>
+
+  <tr>
+    <td><button (click)="api.createAiPosterOptionTricks()">Create Tricks</button></td>
+  </tr>
+  <tr>
+  </tr>
+  <tr *ngFor="let trick of api.aiPosterTricks let i = index">
+    <td>
+      <input type="text" [(ngModel)]="trick.name" (change)="api.updateAiPosterOptionTricks(i)">
+    </td>
+    <td><button (click)="api.deleteAiPosterOptionTricks(i)">Delete</button></td>
+  </tr>
+  <tr>
+    <td><button (click)="api.createAiPosterOptionSuggests()">Create Suggests</button></td>
+  </tr>
+  <tr>
+  </tr>
+  <tr *ngFor="let suggest of api.aiPosterSuggests let i = index">
+    <td>
+      <input type="text" [(ngModel)]="suggest.name" (change)="api.updateAiPosterOptionSuggest(i)">
+    </td>
+    <td><button (click)="api.deleteAiPosterOptionSuggest(i)">Delete</button></td>
+  </tr>
+</table>

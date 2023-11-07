@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "./environment";
 import {LoginService} from "./login/login.service";
-import {Category, Style, Theme, Template, StyleOption} from "./model/ThemeModel";
+import {Category, AiPoster, Theme, AiProfile, AiPosterOption, Template} from "./model/ThemeModel";
 
 const url = environment.url
 
@@ -87,83 +87,130 @@ export class ApiService {
     }, error => alert(error.error.detail))
   }
 
-  //--------------------------------- Style ---------------------------------------------
-  styles: Style[] = []
-  styleSuggests: StyleOption[] = []
-  styleTricks: StyleOption[] = []
+  //--------------------------------- Ai Poster ---------------------------------------------
+  aiPosters: AiPoster[] = []
+  aiPosterSuggests: AiPosterOption[] = []
+  aiPosterTricks: AiPosterOption[] = []
 
-  getStyle() {
-    this.http.get(url + "/now/style").subscribe((value: any) => {
-      this.styles = value.data
+  getAiPoster() {
+    this.http.get(url + "/now/ai-poster").subscribe((value: any) => {
+      this.aiPosters = value.data
     }, error => alert(error.error.detail))
   }
 
-  getStyleHome() {
-    this.http.get(url + "/now/style/home").subscribe((value: any) => {
-      this.styles = value.style
-      this.styleSuggests = value.suggest
-      this.styleTricks = value.tricks
+  getAiPosterHome() {
+    this.http.get(url + "/now/ai-poster/home").subscribe((value: any) => {
+      this.aiPosters = value.aiPoster
+      this.aiPosterSuggests = value.suggest
+      this.aiPosterTricks = value.tricks
     }, error => alert(error.error.detail))
   }
 
-  createStyle() {
-    this.http.post(url + "/now/style", new Style(), this.login.getHeader()).subscribe((value: any) => {
-      this.styles.unshift(value.data)
+  createAiPoster() {
+    this.http.post(url + "/now/ai-poster", new AiPoster(), this.login.getHeader()).subscribe((value: any) => {
+      this.aiPosters.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
-  updateStyle(index: number) {
-    this.http.post(url + "/now/style", this.styles[index], this.login.getHeader()).subscribe((value: any) => {
-      this.styles[index] = value.data
+  updateAiPoster(index: number) {
+    this.http.post(url + "/now/ai-poster", this.aiPosters[index], this.login.getHeader()).subscribe((value: any) => {
+      this.aiPosters[index] = value.data
     }, error => alert(error.error.detail))
   }
 
-  deleteStyle(index: number) {
-    this.http.delete(url + "/now/style/" + this.styles[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.styles.splice(index, 1)
+  deleteAiPoster(index: number) {
+    this.http.delete(url + "/now/ai-poster/" + this.aiPosters[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.aiPosters.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 
-  //--------------------------------- StyleOption ---------------------------------------------
-  createStyleOptionTricks() {
-    let a = new StyleOption();
+  //--------------------------------- Ai Poster Option ---------------------------------------------
+  createAiPosterOptionTricks() {
+    let a = new AiPosterOption();
     a.type = "trick"
-    this.http.post(url + "/now/style/option", a, this.login.getHeader()).subscribe((value: any) => {
-      this.styleTricks.unshift(value.data)
+    this.http.post(url + "/now/ai-poster/option", a, this.login.getHeader()).subscribe((value: any) => {
+      this.aiPosterTricks.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
-  updateStyleOptionTricks(index: number) {
-    this.http.post(url + "/now/style/option", this.styleTricks[index], this.login.getHeader()).subscribe((value: any) => {
-      this.styleTricks[index] = value.data
+  updateAiPosterOptionTricks(index: number) {
+    this.http.post(url + "/now/ai-poster/option", this.aiPosterTricks[index], this.login.getHeader()).subscribe((value: any) => {
+      this.aiPosterTricks[index] = value.data
     }, error => alert(error.error.detail))
   }
 
-  deleteStyleOptionTricks(index: number) {
-    this.http.delete(url + "/now/style/option/" + this.styleSuggests[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.styleTricks.splice(index, 1)
+  deleteAiPosterOptionTricks(index: number) {
+    this.http.delete(url + "/now/ai-poster/option/" + this.aiPosterSuggests[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.aiPosterTricks.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 
-  createStyleOptionSuggests() {
-    let a = new StyleOption();
+  createAiPosterOptionSuggests() {
+    let a = new AiPosterOption();
     a.type = "suggestion"
-    this.http.post(url + "/now/style/option", a, this.login.getHeader()).subscribe((value: any) => {
-      this.styleSuggests.unshift(value.data)
+    this.http.post(url + "/now/ai-poster/option", a, this.login.getHeader()).subscribe((value: any) => {
+      this.aiPosterSuggests.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
-  updateStyleOptionSuggest(index: number) {
-    this.http.post(url + "/now/style/option", this.styleSuggests[index], this.login.getHeader()).subscribe((value: any) => {
-      this.styleSuggests[index] = value.data
+  updateAiPosterOptionSuggest(index: number) {
+    this.http.post(url + "/now/aiPoster/option", this.aiPosterSuggests[index], this.login.getHeader()).subscribe((value: any) => {
+      this.aiPosterSuggests[index] = value.data
     }, error => alert(error.error.detail))
   }
 
-  deleteStyleOptionSuggest(index: number) {
-    this.http.delete(url + "/now/style/option/" + this.styleSuggests[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.styleSuggests.splice(index, 1)
+  deleteAiPosterOptionSuggest(index: number) {
+    this.http.delete(url + "/now/aiPoster/option/" + this.aiPosterSuggests[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.aiPosterSuggests.splice(index, 1)
     }, error => alert(error.error.detail))
   }
+
+  //--------------------------------- AiProfile ---------------------------------------------
+  aiProfiles: AiProfile[] = []
+  aiProfilePage = 0;
+  aiProfilePageTotal = 0;
+  aiProfileCategory!:Category
+
+  nextAiProfile() {
+    if (this.aiProfilePage < this.aiProfilePageTotal) {
+      this.aiProfilePage++
+      this.getAiProfile()
+    }
+  }
+
+  previousAiProfile() {
+    if (this.aiProfilePage > 0) {
+      this.aiProfilePage--
+      this.getAiProfile()
+    }
+  }
+
+  getAiProfile() {
+    this.http.get(url + "/now/ai-profile?page=" + this.aiProfilePage + ((this.aiProfileCategory)?("&category_id=" + this.aiProfileCategory.id):"")).subscribe((value: any) => {
+      this.aiProfiles = value.data.content
+      this.aiProfilePage = value.data.number
+      this.aiProfilePageTotal = value.data.totalPages
+    }, error => alert(error.error.detail))
+  }
+
+  createAiProfile() {
+    this.http.post(url + "/now/ai-profile", new AiProfile(), this.login.getHeader()).subscribe((value: any) => {
+      this.aiProfiles.unshift(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  updateAiProfile(index: number) {
+    this.http.post(url + "/now/ai-profile", this.aiProfiles[index], this.login.getHeader()).subscribe((value: any) => {
+      this.aiProfiles[index] = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  deleteAiProfile(index: number) {
+    this.http.delete(url + "/now/ai-profile/" + this.aiProfiles[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.aiProfiles.splice(index, 1)
+    }, error => alert(error.error.detail))
+  }
+
 
   //--------------------------------- Template ---------------------------------------------
   templates: Template[] = []

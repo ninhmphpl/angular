@@ -4,14 +4,14 @@ import {style} from "@angular/animations";
 
 @Component({
   selector: 'app-style',
-  templateUrl: './style.component.html',
-  styleUrls: ['./style.component.scss']
+  templateUrl: './ai-poster.component.html',
+  styleUrls: ['./ai-poster.component.scss']
 })
-export class StyleComponent implements OnInit{
+export class AiPosterComponent implements OnInit{
   constructor(public api: ApiService) {
   }
   ngOnInit(): void {
-    this.api.getStyleHome()
+    this.api.getAiPosterHome()
   }
 
   protected readonly style = style;

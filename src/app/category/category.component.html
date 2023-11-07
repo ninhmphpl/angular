@@ -8,8 +8,9 @@
     </td>
     <td>
       <select [(ngModel)]="category.type" (change)="api.updateCategory(i)">
-        <option value="theme">theme</option>
-        <option value="template">template</option>
+        <option value="theme">Theme</option>
+        <option value="template">Template</option>
+        <option value="ai-profile">Ai Profile</option>
       </select>
     </td>
     <td><button (click)="api.deleteCategory(i)">Delete</button></td>

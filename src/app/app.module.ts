@@ -9,7 +9,8 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { CategoryComponent } from './category/category.component';
 import { ThemeComponent } from './theme/theme.component';
-import { StyleComponent } from './style/style.component';
+import { AiPosterComponent } from './ai-poster/ai-poster.component';
+import { AiProfileComponent } from './ai-profile/ai-profile.component';
 import { TemplateComponent } from './template/template.component';
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TemplateComponent } from './template/template.component';
     LoginComponent,
     CategoryComponent,
     ThemeComponent,
-    StyleComponent,
+    AiPosterComponent,
+    AiProfileComponent,
     TemplateComponent,
   ],
   imports: [
