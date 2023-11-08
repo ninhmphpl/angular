@@ -6,6 +6,7 @@ export class CallIcon {
 }
 
 export class Category {
+  url!:string
   id!: string;
   name!: string;
   type!: string;

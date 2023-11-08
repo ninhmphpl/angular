@@ -2,7 +2,15 @@
   <tr>
     <td><button (click)="api.createCategory()">Create Category</button></td>
   </tr>
+  <tr>
+    <td>Url</td>
+    <td>Name</td>
+    <td>Type</td>
+  </tr>
   <tr *ngFor="let category of api.categories let i = index">
+    <td>
+      <app-img-upload [img]="category.url" (dataEvent)="category.url = $event; api.updateCategory(i)"></app-img-upload>
+    </td>
     <td>
       <input type="text" [(ngModel)]="category.name" (change)="api.updateCategory(i)">
     </td>
