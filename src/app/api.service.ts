@@ -367,8 +367,9 @@ export class ApiService {
 
   //--------------------------------- Style ---------------------------------------------
   styles: Style[] = []
+  styleCategorySelect! : Category
   getStyle() {
-    this.http.get(url + "/template/style").subscribe((value: any) => {
+    this.http.get(url + "/template/style" + ((this.styleCategorySelect)?("?category_id=" + this.styleCategorySelect.id):"")).subscribe((value: any) => {
       this.styles = value.data
     }, error => alert(error.error.detail))
   }

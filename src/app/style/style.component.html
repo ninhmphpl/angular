@@ -1,12 +1,21 @@
 <table>
   <tbody>
   <tr>
-    <td colspan="4"><button (click)="api.createStyle()">Add Style</button></td>
+    <td colspan="4">
+      <button (click)="api.createStyle()">Add Style</button>
+      Category : <select [(ngModel)]="api.styleCategorySelect" (change)="api.getStyle()">
+      <option [ngValue]="undefined">All</option>
+      <option *ngFor="let category of api.categories" [ngValue]="category">{{category.name}}</option>
+    </select>
+    </td>
+
+
   </tr>
   <tr>
     <td>Url</td>
     <td>name</td>
     <td>Prompt</td>
+    <td>Category</td>
     <td>Delete</td>
   </tr>
   <tr *ngFor="let style of api.styles, let i = index">

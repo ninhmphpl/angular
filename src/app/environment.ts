@@ -1,4 +1,4 @@
 export const environment = {
-  url : "http://localhost",
+  url : "http://wallapi.nowtechai.com",
   keySaveToken : "TOKEN-WALL-PAPER"
 }
