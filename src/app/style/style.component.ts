@@ -11,5 +11,7 @@ export class StyleComponent implements OnInit{
   }
   ngOnInit(): void {
     this.api.getStyle()
+    this.api.categoryOptionSelect = this.api.categoryOption[2]
+    this.api.getCategory()
   }
 }

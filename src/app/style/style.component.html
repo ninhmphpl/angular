@@ -13,6 +13,12 @@
     <td><app-img-upload [img]="style.url" (dataEvent)="style.url = $event; api.updateStyle(i)"></app-img-upload></td>
     <td><input type="text" [(ngModel)]="style.name" (change)="api.updateStyle(i)"></td>
     <td><input type="text" [(ngModel)]="style.prompt" (change)="api.updateStyle(i)"></td>
+    <td>
+      <span>{{(style.category) ? style.category.name : "none"}}</span>
+      <select class="border-0" style="width: 20px" [(ngModel)]="style.category" (change)="api.updateStyle(i)">
+        <option *ngFor="let category of api.categories" [ngValue]="category">{{category?.name}}</option>
+      </select>
+    </td>
     <td><button (click)="api.updateStyle(i)">Delete</button></td>
   </tr>
   </tbody>

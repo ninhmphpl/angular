@@ -20,7 +20,7 @@ const url = environment.url
 export class ApiService {
   //--------------------------------- Style ---------------------------------------------
   categories: Category[] = []
-  categoryOption = ['wall','template']
+  categoryOption = ['wall','template', 'style']
   categoryOptionSelect = 'wall'
 
   constructor(private http: HttpClient, private login: LoginService) {
