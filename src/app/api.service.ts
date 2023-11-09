@@ -45,7 +45,7 @@ export class ApiService {
   }
 
   deleteCategory(index: number) {
-    this.http.delete(url + "/wall-paper/category" + this.categories[index].id, this.login.getHeader()).subscribe((value: any) => {
+    this.http.delete(url + "/wall-paper/category/" + this.categories[index].id, this.login.getHeader()).subscribe((value: any) => {
       this.categories[index] = value.data
       this.categories.splice(index, 1)
     }, error => alert(error.error.detail))

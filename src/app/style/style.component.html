@@ -28,7 +28,7 @@
         <option *ngFor="let category of api.categories" [ngValue]="category">{{category?.name}}</option>
       </select>
     </td>
-    <td><button (click)="api.updateStyle(i)">Delete</button></td>
+    <td><button (click)="api.deleteStyle(i)">Delete</button></td>
   </tr>
   </tbody>
 </table>
