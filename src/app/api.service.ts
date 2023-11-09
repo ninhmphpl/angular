@@ -140,7 +140,7 @@ export class ApiService {
   }
 
   deleteAiPosterOptionTricks(index: number) {
-    this.http.delete(url + "/now/ai-poster/option/" + this.aiPosterSuggests[index].id, this.login.getHeader()).subscribe((value: any) => {
+    this.http.delete(url + "/now/ai-poster/option/" + this.aiPosterTricks[index].id, this.login.getHeader()).subscribe((value: any) => {
       this.aiPosterTricks.splice(index, 1)
     }, error => alert(error.error.detail))
   }
