@@ -1,159 +1,102 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "./environment";
 import {LoginService} from "./login/login.service";
-import {Banner} from "./model/Banner";
-import {Style} from "./model/Style";
-import {Video} from "./model/Video";
-import {VideoStyle} from "./model/VideoStyle";
-import {Intro} from "./model/Intro";
-const url = environment.url
+import {Animation, Category, WallPaper} from "./model/Model";
+import {environment} from "./environment";
+
+
+export const url = environment.url
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  //--------------------------------- Banner ---------------------------------------------
-  banners : Banner[] = []
-  bannerPage : number = 0
-  bannerPageTotal : number = 0
-  constructor(private http : HttpClient, private login : LoginService) { }
-  getBanner(page : number){
-    this.http.get(url + "/art-ai/now/banner?page=" + page).subscribe((value : any) => {
-      this.bannerPage = value.data.number
-      this.banners = value.data.content
-      this.bannerPageTotal = value.data.totalPages
-    })
-  }
-  createBanner(){
-    this.http.post(url + "/art-ai/now/banner", new Banner(), this.login.getHeader()).subscribe((value : any) => {
-      this.banners.unshift(value.data)
-    })
-  }
-  updateBanner(index : number){
-    this.http.post(url + "/art-ai/now/banner", this.banners[index], this.login.getHeader()).subscribe((value : any) => {
-      this.banners[index] = value.data
-    })
-  }
-  deleteBanner(index : number){
-    this.http.delete(url + "/art-ai/now/banner/" + this.banners[index].id, this.login.getHeader()).subscribe((value : any) => {
-      this.banners[index] = value.data
-      this.banners.splice(index, 1)
-    })
+
+  constructor(private http: HttpClient, private login: LoginService) {
   }
 
-  //--------------------------------- Style ---------------------------------------------
+  //--------------------------------- Animation ---------------------------------------------
+  animations: Animation[] = []
 
-  styles : Style[] = []
-  stylePage : number = 0
-  stylePageTotal : number = 0
-  getStyle(page : number){
-    this.http.get(url + "/art-ai/now/style?page=" + page).subscribe((value : any) => {
-      this.stylePage = value.data.number
-      this.styles = value.data.content
-      this.stylePageTotal = value.data.totalPages
-    })
-  }
-  createStyle(){
-    this.http.post(url + "/art-ai/now/style", new Style(), this.login.getHeader()).subscribe((value : any) => {
-      this.styles.unshift(value.data)
-    })
-  }
-  updateStyle(index : number){
-    this.http.post(url + "/art-ai/now/style", this.styles[index], this.login.getHeader()).subscribe((value : any) => {
-      this.styles[index] = value.data
-    })
-  }
-  deleteStyle(index : number){
-    this.http.delete(url + "/art-ai/now/style/" + this.styles[index].id, this.login.getHeader()).subscribe((value : any) => {
-      this.styles[index] = value.data
-      this.styles.splice(index, 1)
-    })
+  getAnimation() {
+    this.http.get(url + "/battery/animation").subscribe((value: any) => {
+      this.animations = value.data
+    }, error => alert(error.error.detail))
   }
 
-  //--------------------------------- Video ------------------------------------
-
-  videos : Video[] = []
-  videoPage : number = 0
-  videoPageTotal : number = 0
-  getVideo(page : number){
-    this.http.get(url + "/art-ai/now/video?page=" + page).subscribe((value : any) => {
-      this.videoPage = value.data.number
-      this.videos = value.data.content
-      this.videoPageTotal = value.data.totalPages
-    })
-  }
-  createVideo(){
-    this.http.post(url + "/art-ai/now/video", new Video(), this.login.getHeader()).subscribe((value : any) => {
-      this.videos.unshift(value.data)
-    })
-  }
-  updateVideo(index : number){
-    this.http.post(url + "/art-ai/now/video", this.videos[index], this.login.getHeader()).subscribe((value : any) => {
-      this.videos[index] = value.data
-    })
-  }
-  deleteVideo(index : number){
-    this.http.delete(url + "/art-ai/now/video/" + this.videos[index].id, this.login.getHeader()).subscribe((value : any) => {
-      this.videos[index] = value.data
-      this.videos.splice(index, 1)
-    })
+  createAnimation() {
+    this.http.post(url + "/battery/animation", new Animation(), this.login.getHeader()).subscribe((value: any) => {
+      this.animations.unshift(value.data)
+    }, error => alert(error.error.detail))
   }
 
-  //--------------------------------- Video Type ------------------------------------
-
-  videoStyles : VideoStyle[] = []
-  videoStylePage : number = 0
-  videoStylePageTotal : number = 0
-  getVideoStyle(page : number){
-    this.http.get(url + "/art-ai/now/style-video?page=" + page).subscribe((value : any) => {
-      this.videoStylePage = value.data.number
-      this.videoStyles = value.data.content
-      this.videoStylePageTotal = value.data.totalPages
-    })
-  }
-  createVideoStyle(){
-    this.http.post(url + "/art-ai/now/style-video", new VideoStyle(), this.login.getHeader()).subscribe((value : any) => {
-      this.videoStyles.unshift(value.data)
-    })
-  }
-  updateVideoStyle(index : number){
-    this.http.post(url + "/art-ai/now/style-video", this.videoStyles[index], this.login.getHeader()).subscribe((value : any) => {
-      this.videoStyles[index] = value.data
-    })
-  }
-  deleteVideoStyle(index : number){
-    this.http.delete(url + "/art-ai/now/style-video/" + this.videoStyles[index].id, this.login.getHeader()).subscribe((value : any) => {
-      this.videoStyles[index] = value.data
-      this.videoStyles.splice(index, 1)
-    })
+  updateAnimation(index: number) {
+    this.http.post(url + "/battery/animation", this.animations[index], this.login.getHeader()).subscribe((value: any) => {
+      this.animations[index] = value.data
+    }, error => alert(error.error.detail))
   }
 
-  //--------------------------------- Video Type ------------------------------------
+  deleteAnimation(index: number) {
+    this.http.delete(url + "/battery/animation/" + this.animations[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.animations[index] = value.data
+      this.animations.splice(index, 1)
+    }, error => alert(error.error.detail))
+  }
 
-  intros : Intro[] = []
-  introPage : number = 0
-  introPageTotal : number = 0
-  getIntro(page : number){
-    this.http.get(url + "/art-ai/now/intro?page=" + page).subscribe((value : any) => {
-      this.introPage = value.data.number
-      this.intros = value.data.content
-      this.introPageTotal = value.data.totalPages
-    })
+  //--------------------------------- Category ---------------------------------------------
+  categories: Category[] = []
+  categorySelect : string = ''
+  getCategory() {
+    let type = (this.categorySelect.length > 0)? "?type=" + this.categorySelect : ""
+    this.http.get(url + "/battery/category" + type).subscribe((value: any) => {
+      this.categories = value.data
+    }, error => alert(error.error.detail))
   }
-  createIntro(){
-    this.http.post(url + "/art-ai/now/intro", new Intro(), this.login.getHeader()).subscribe((value : any) => {
-      this.intros.unshift(value.data)
-    })
+
+  createCategory() {
+    this.http.post(url + "/battery/category", new Category(), this.login.getHeader()).subscribe((value: any) => {
+      this.categories.unshift(value.data)
+    }, error => alert(error.error.detail))
   }
-  updateIntro(index : number){
-    this.http.post(url + "/art-ai/now/intro", this.intros[index], this.login.getHeader()).subscribe((value : any) => {
-      this.intros[index] = value.data
-    })
+
+  updateCategory(index: number) {
+    this.http.post(url + "/battery/category", this.categories[index], this.login.getHeader()).subscribe((value: any) => {
+      this.categories[index] = value.data
+    }, error => alert(error.error.detail))
   }
-  deleteIntro(index : number){
-    this.http.delete(url + "/art-ai/now/intro/" + this.intros[index].id, this.login.getHeader()).subscribe((value : any) => {
-      this.intros[index] = value.data
-      this.intros.splice(index, 1)
-    })
+
+  deleteCategory(index: number) {
+    this.http.delete(url + "/battery/category/" + this.categories[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.categories[index] = value.data
+      this.categories.splice(index, 1)
+    }, error => alert(error.error.detail))
+  }
+
+  //--------------------------------- WallPaper ---------------------------------------------
+  wallPapers: WallPaper[] = []
+
+  getWallPaper() {
+    this.http.get(url + "/battery/wallPaper").subscribe((value: any) => {
+      this.wallPapers = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  createWallPaper() {
+    this.http.post(url + "/battery/wallPaper", new WallPaper(), this.login.getHeader()).subscribe((value: any) => {
+      this.wallPapers.unshift(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  updateWallPaper(index: number) {
+    this.http.post(url + "/battery/wallPaper", this.wallPapers[index], this.login.getHeader()).subscribe((value: any) => {
+      this.wallPapers[index] = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  deleteWallPaper(index: number) {
+    this.http.delete(url + "/battery/wallPaper/" + this.wallPapers[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.wallPapers[index] = value.data
+      this.wallPapers.splice(index, 1)
+    }, error => alert(error.error.detail))
   }
 }
