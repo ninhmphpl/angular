@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <td colspan="5">
+      <button (click)="api.createTrending()">Create Trending</button>
+    </td>
+
+  </tr>
+  <tr>
+    <td>Video</td>
+    <td>Thumb</td>
+    <td>Name</td>
+    <td>Description</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let trending of api.trendings let i = index">
+    <td><app-img-upload [imgWith]="'100px'" [imgHeight]="'150px'" [type]="'video'" [img]="trending.url" (dataEvent)="trending.url = $event; api.updateTrending(i)"></app-img-upload></td>
+    <td><app-img-upload [img]="trending.thumb" (dataEvent)="trending.thumb = $event; api.updateTrending(i)"></app-img-upload></td>
+    <td><input type="text" [(ngModel)]="trending.name" (change)="api.updateTrending(i)"></td>
+    <td><input type="text" [(ngModel)]="trending.description" (change)="api.updateTrending(i)"></td>
+    <td><button (click)="api.deleteTrending(i)">Delete</button></td>
+  </tr>
+</table>

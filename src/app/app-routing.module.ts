@@ -1,13 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CategoryComponent} from "./category/category.component";
-import {WallPaperComponent} from "./wall-paper/wall-paper.component";
-import {AnimationComponent} from "./animation/animation.component";
+import {TrendingComponent} from "./trending/trending.component";
+import {TredingTypeComponent} from "./treding-type/treding-type.component";
+import {MusicComponent} from "./music/music.component";
+import {Style} from "./model/Model";
+import {StyleComponent} from "./style/style.component";
 
 const routes: Routes = [
-  {path:"category",component:CategoryComponent},
-  {path:"wallpaper",component:WallPaperComponent},
-  {path:"animation",component:AnimationComponent},
+  {path:"trending",component:TrendingComponent},
+  {path:"trendingType",component:TredingTypeComponent},
+  {path:"music",component:MusicComponent},
+  {path:"style",component:StyleComponent},
 ];
 
 

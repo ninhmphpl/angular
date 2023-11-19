@@ -1,0 +1,9 @@
+<table>
+  <tr>
+    <td><button (click)="create()">Create Image</button></td>
+  </tr>
+  <tr *ngFor="let image of images let i = index">
+    <td><app-img-upload [img]="image.url" (dataEvent)="image.url = $event; update(i)"></app-img-upload></td>
+    <td><button (click)="delete(i)">Delete</button></td>
+  </tr>
+</table>

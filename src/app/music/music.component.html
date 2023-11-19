@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <td colspan="5">
+      <button (click)="api.createMusic()">Create Music</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Thumb</td>
+    <td>Audio</td>
+    <td>Name</td>
+    <td>Description</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let music of api.musics let i = index">
+    <td><app-img-upload [img]="music.thumb" (dataEvent)="music.thumb = $event; api.updateMusic(i)"></app-img-upload></td>
+    <td><app-img-upload [imgWith]="'200px'" [type]="'audio'" [img]="music.url" (dataEvent)="music.url = $event; api.updateMusic(i)"></app-img-upload></td>
+    <td><input type="text" [(ngModel)]="music.name" (change)="api.updateMusic(i)"></td>
+    <td><input type="text" [(ngModel)]="music.description" (change)="api.updateMusic(i)"></td>
+    <td><button (click)="api.deleteMusic(i)">Delete</button></td>
+  </tr>
+</table>

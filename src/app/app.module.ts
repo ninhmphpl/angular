@@ -7,18 +7,24 @@ import {ImgUploadComponent} from "./img-upload/img-upload.component";
 import {LoginComponent} from "./login/login.component";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { CategoryComponent } from './category/category.component';
-import { AnimationComponent } from './animation/animation.component';
-import { WallPaperComponent } from './wall-paper/wall-paper.component';
+import { TrendingComponent } from './trending/trending.component';
+import { TredingTypeComponent } from './treding-type/treding-type.component';
+import { MusicComponent } from './music/music.component';
+import { StyleComponent } from './style/style.component';
+import { StyleTextComponent } from './style-text/style-text.component';
+import { StyleImageComponent } from './style-image/style-image.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ImgUploadComponent,
     LoginComponent,
-    CategoryComponent,
-    AnimationComponent,
-    WallPaperComponent
+    TrendingComponent,
+    TredingTypeComponent,
+    MusicComponent,
+    StyleComponent,
+    StyleTextComponent,
+    StyleImageComponent
   ],
   imports: [
     BrowserModule,

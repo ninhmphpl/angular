@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginService} from "./login/login.service";
-import {Animation, Category, WallPaper} from "./model/Model";
 import {environment} from "./environment";
+import {Image, Music, Style, Trending, TrendingType} from "./model/Model";
 
 
 export const url = environment.url
@@ -15,88 +15,146 @@ export class ApiService {
   constructor(private http: HttpClient, private login: LoginService) {
   }
 
-  //--------------------------------- Animation ---------------------------------------------
-  animations: Animation[] = []
+  //--------------------------------- Trending ---------------------------------------------
+  trendings: Trending[] = []
 
-  getAnimation() {
-    this.http.get(url + "/battery/animation").subscribe((value: any) => {
-      this.animations = value.data
+  getTrending() {
+    this.http.get(url + "/now/v1/trending").subscribe((value: any) => {
+      this.trendings = value.data
     }, error => alert(error.error.detail))
   }
 
-  createAnimation() {
-    this.http.post(url + "/battery/animation", new Animation(), this.login.getHeader()).subscribe((value: any) => {
-      this.animations.unshift(value.data)
+  createTrending() {
+    this.http.post(url + "/now/v1/trending", new Trending(), this.login.getHeader()).subscribe((value: any) => {
+      this.trendings.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
-  updateAnimation(index: number) {
-    this.http.post(url + "/battery/animation", this.animations[index], this.login.getHeader()).subscribe((value: any) => {
-      this.animations[index] = value.data
+  updateTrending(index: number) {
+    this.http.post(url + "/now/v1/trending", this.trendings[index], this.login.getHeader()).subscribe((value: any) => {
+      this.trendings[index] = value.data
     }, error => alert(error.error.detail))
   }
 
-  deleteAnimation(index: number) {
-    this.http.delete(url + "/battery/animation/" + this.animations[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.animations[index] = value.data
-      this.animations.splice(index, 1)
+  deleteTrending(index: number) {
+    this.http.delete(url + "/now/v1/trending/" + this.trendings[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.trendings[index] = value.data
+      this.trendings.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 
-  //--------------------------------- Category ---------------------------------------------
-  categories: Category[] = []
-  categorySelect : string = ''
-  getCategory() {
-    let type = (this.categorySelect.length > 0)? "?type=" + this.categorySelect : ""
-    this.http.get(url + "/battery/category" + type).subscribe((value: any) => {
-      this.categories = value.data
+  //--------------------------------- TrendingType ---------------------------------------------
+  trendingTypes: TrendingType[] = []
+
+  getTrendingType() {
+    this.http.get(url + "/now/v1/trendingType").subscribe((value: any) => {
+      this.trendingTypes = value.data
     }, error => alert(error.error.detail))
   }
 
-  createCategory() {
-    this.http.post(url + "/battery/category", new Category(), this.login.getHeader()).subscribe((value: any) => {
-      this.categories.unshift(value.data)
+  createTrendingType() {
+    this.http.post(url + "/now/v1/trendingType", new TrendingType(), this.login.getHeader()).subscribe((value: any) => {
+      this.trendingTypes.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
-  updateCategory(index: number) {
-    this.http.post(url + "/battery/category", this.categories[index], this.login.getHeader()).subscribe((value: any) => {
-      this.categories[index] = value.data
+  updateTrendingType(index: number) {
+    this.http.post(url + "/now/v1/trendingType", this.trendingTypes[index], this.login.getHeader()).subscribe((value: any) => {
+      this.trendingTypes[index] = value.data
     }, error => alert(error.error.detail))
   }
 
-  deleteCategory(index: number) {
-    this.http.delete(url + "/battery/category/" + this.categories[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.categories[index] = value.data
-      this.categories.splice(index, 1)
+  deleteTrendingType(index: number) {
+    this.http.delete(url + "/now/v1/trendingType/" + this.trendingTypes[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.trendingTypes[index] = value.data
+      this.trendingTypes.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 
-  //--------------------------------- WallPaper ---------------------------------------------
-  wallPapers: WallPaper[] = []
 
-  getWallPaper() {
-    this.http.get(url + "/battery/wallPaper").subscribe((value: any) => {
-      this.wallPapers = value.data
+  //--------------------------------- Music ---------------------------------------------
+  musics: Music[] = []
+
+  getMusic() {
+    this.http.get(url + "/now/v1/music").subscribe((value: any) => {
+      this.musics = value.data
     }, error => alert(error.error.detail))
   }
 
-  createWallPaper() {
-    this.http.post(url + "/battery/wallPaper", new WallPaper(), this.login.getHeader()).subscribe((value: any) => {
-      this.wallPapers.unshift(value.data)
+  createMusic() {
+    this.http.post(url + "/now/v1/music", new Music(), this.login.getHeader()).subscribe((value: any) => {
+      this.musics.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
-  updateWallPaper(index: number) {
-    this.http.post(url + "/battery/wallPaper", this.wallPapers[index], this.login.getHeader()).subscribe((value: any) => {
-      this.wallPapers[index] = value.data
+  updateMusic(index: number) {
+    this.http.post(url + "/now/v1/music", this.musics[index], this.login.getHeader()).subscribe((value: any) => {
+      this.musics[index] = value.data
     }, error => alert(error.error.detail))
   }
 
-  deleteWallPaper(index: number) {
-    this.http.delete(url + "/battery/wallPaper/" + this.wallPapers[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.wallPapers[index] = value.data
-      this.wallPapers.splice(index, 1)
+  deleteMusic(index: number) {
+    this.http.delete(url + "/now/v1/music/" + this.musics[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.musics[index] = value.data
+      this.musics.splice(index, 1)
     }, error => alert(error.error.detail))
   }
+
+
+  //--------------------------------- Style ---------------------------------------------
+  styles: Style[] = []
+
+  getStyle() {
+    this.http.get(url + "/now/v1/style").subscribe((value: any) => {
+      this.styles = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  createStyle() {
+    this.http.post(url + "/now/v1/style", new Style(), this.login.getHeader()).subscribe((value: any) => {
+      this.styles.unshift(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  updateStyle(index: number) {
+    this.http.post(url + "/now/v1/style", this.styles[index], this.login.getHeader()).subscribe((value: any) => {
+      this.styles[index] = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  deleteStyle(index: number) {
+    this.http.delete(url + "/now/v1/style/" + this.styles[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.styles[index] = value.data
+      this.styles.splice(index, 1)
+    }, error => alert(error.error.detail))
+  }
+
+  //--------------------------------- Image ---------------------------------------------
+  images: Image[] = []
+
+  getImage() {
+    this.http.get(url + "/now/v1/image").subscribe((value: any) => {
+      this.images = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  createImage(action: (image: Image) => any) {
+    this.http.post(url + "/now/v1/image", new Image(), this.login.getHeader()).subscribe((value: any) => {
+      this.images.unshift(value.data)
+      action(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  updateImage(image: Image, action: (image: Image) => any) {
+    this.http.post(url + "/now/v1/image", image, this.login.getHeader()).subscribe((value: any) => {
+      action(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  deleteImage(id: string, action: () => any) {
+    this.http.delete(url + "/now/v1/image/" + id, this.login.getHeader()).subscribe((value: any) => {
+      action()
+    }, error => alert(error.error.detail))
+  }
+
 }

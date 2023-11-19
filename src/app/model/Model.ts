@@ -1,25 +1,69 @@
-export class Animation {
+export class Image {
   id!: string;
-  creatAt!: number;
-  name!: string;
-  thumb!: string;
-  image!: string;
-  category!: Category;
+
+  url!: string;
 }
 
-export class Category {
+export class Music {
   id!: string;
-  creatAt!: number;
-  name!: string;
+
+  name!: string ;
+
+  url!: string ;
+
+  description!: string ;
+
+  thumb!: string ;
+
+  show!: boolean;
+
+  top!: number;
+}
+
+export class Style {
+  id!: string;
+
+  text!: string[];
+
+  images!: Image[];
   type!: string;
 }
 
-export class WallPaper {
+export class Trending {
   id!: string;
-  creatAt!: number;
+
+  name!: string ;
+
+  url!: string ;
+
+  description!: string ;
+
+  thumb!: string ;
+
+  show!: boolean;
+
+  trendingType!: TrendingType;
+
+  top!: number;
+}
+
+export class TrendingType {
+  id!: string;
+
   name!: string;
-  image!: string;
-  thumb!: string;
-  category!: Category;
+
+  value!: number;
+
+  url!: string;
+
+  show!: boolean;
+
+  musics!: Music[];
+
+  premium!: boolean;
+
+  top!: number;
+
+  banner!: string;
 }
 

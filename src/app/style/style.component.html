@@ -1,0 +1,33 @@
+<table>
+  <tr>
+    <td colspan="4">
+      <button (click)="api.createStyle()">Create Style</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Type</td>
+    <td>Images</td>
+    <td>Texts</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let style of api.styles let i = index">
+    <td>
+      <select [(ngModel)]="style.type" (change)="api.updateStyle(i)">
+        <option value="monthly">Monthly</option>
+        <option value="message">Message</option>
+        <option value="disco">Disco</option>
+        <option value="bucket">Bucket</option>
+      </select>
+    </td>
+    <td>
+      <app-style-image [images]="style.images" (dataEvent)="style.images = $event; api.updateStyle(i)"></app-style-image>
+    </td>
+    <td>
+      <app-style-text [text]="style.text" (dataEvent)="style.text = $event; api.updateStyle(i)"></app-style-text>
+    </td>
+    <td>
+      <button (click)="api.deleteStyle(i)">Delete</button>
+    </td>
+  </tr>
+</table>
+
