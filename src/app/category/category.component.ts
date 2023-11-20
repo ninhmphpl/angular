@@ -11,7 +11,7 @@ export class CategoryComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.api.categorySelect = ''
+    this.api.categoryType = ''
     this.api.getCategory()
   }
 }

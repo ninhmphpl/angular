@@ -11,7 +11,7 @@ export class WallPaperComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.api.categorySelect = "wall"
+    this.api.categoryType = "wall"
     this.api.getCategory()
     this.api.getWallPaper()
   }

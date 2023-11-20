@@ -2,7 +2,7 @@
     <tr>
         <td>
             <button (click)="api.createCategory()">Create Category</button>
-            <select [(ngModel)]="api.categorySelect" (change)="api.getCategory()">
+            <select [(ngModel)]="api.categoryType" (change)="api.getCategory()">
                 <option value=''>All</option>
                 <option value='wall'>Wall Paper</option>
                 <option value='animation'>Animation</option>

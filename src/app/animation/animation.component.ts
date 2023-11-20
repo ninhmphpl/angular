@@ -11,7 +11,7 @@ export class AnimationComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.api.categorySelect = "animation"
+    this.api.categoryType = "animation"
     this.api.getCategory()
     this.api.getAnimation()
   }

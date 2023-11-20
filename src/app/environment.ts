@@ -1,4 +1,4 @@
 export const environment = {
-  url : "http://localhost",
+  url : "http://battery.procyoni.com",
   keySaveToken : "TOKEN-AI-ART"
 }

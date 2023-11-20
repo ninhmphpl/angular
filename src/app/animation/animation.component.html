@@ -1,27 +1,39 @@
 <table>
-    <tr>
-        <td colspan="5">
-            <button (click)="api.createAnimation()">Create Animation</button>
-        </td>
-    </tr>
-    <tr>
-        <td>Image</td>
-        <td>Thumb</td>
-        <td>Name</td>
-        <td>Category</td>
-        <td>Delete</td>
-    </tr>
-    <tr *ngFor="let animation of api.animations let i = index">
-        <td><app-img-upload [img]="animation.image" (dataEvent)="animation.image = $event; api.updateAnimation(i)"></app-img-upload></td>
-        <td><app-img-upload [img]="animation.thumb" (dataEvent)="animation.thumb = $event; api.updateAnimation(i)"></app-img-upload></td>
-        <td><input type="text" [(ngModel)]="animation.name" placeholder="Animation" (change)="api.updateAnimation(i)"></td>
-        <td>
-            <span>{{animation.category?.name}}</span>
-            <select style="width: 18px" [(ngModel)]="animation.category" (change)="api.updateAnimation(i)">
-                <option [ngValue]="undefined">None</option>
-                <option *ngFor="let category of api.categories" [ngValue]="category">{{category.name}}</option>
-            </select>
-        </td>
-        <td><button (click)="api.deleteAnimation(i)">Delete</button></td>
-    </tr>
+  <tr>
+    <td colspan="5">
+      <button (click)="api.createAnimation()">Create Animation</button>
+      Category : <select [(ngModel)]="api.categorySelect" (change)="api.getAnimation()">
+        <option [ngValue]="undefined">All</option>
+        <option *ngFor="let category of api.categories" [ngValue]="category">{{category.name}}</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>Image</td>
+    <td>Thumb</td>
+    <td>Name</td>
+    <td>Category</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let animation of api.animations let i = index">
+    <td>
+      <app-img-upload [img]="animation.image"
+                      (dataEvent)="animation.image = $event; api.updateAnimation(i)"></app-img-upload>
+    </td>
+    <td>
+      <app-img-upload [img]="animation.thumb"
+                      (dataEvent)="animation.thumb = $event; api.updateAnimation(i)"></app-img-upload>
+    </td>
+    <td><input type="text" [(ngModel)]="animation.name" placeholder="Animation" (change)="api.updateAnimation(i)"></td>
+    <td>
+      <span>{{(animation.category) ? animation.category.name : "none"}}</span>
+      <select style="width: 18px" [(ngModel)]="animation.category" (change)="api.updateAnimation(i)">
+        <option [ngValue]="undefined">None</option>
+        <option *ngFor="let category of api.categories" [ngValue]="category">{{category.name}}</option>
+      </select>
+    </td>
+    <td>
+      <button (click)="api.deleteAnimation(i)">Delete</button>
+    </td>
+  </tr>
 </table>

@@ -19,7 +19,8 @@ export class ApiService {
   animations: Animation[] = []
 
   getAnimation() {
-    this.http.get(url + "/battery/animation").subscribe((value: any) => {
+    let category = (this.categorySelect) ? "?category_id=" + this.categorySelect.id : ""
+    this.http.get(url + "/battery/animation" + category).subscribe((value: any) => {
       this.animations = value.data
     }, error => alert(error.error.detail))
   }
@@ -45,9 +46,11 @@ export class ApiService {
 
   //--------------------------------- Category ---------------------------------------------
   categories: Category[] = []
-  categorySelect : string = ''
+  categorySelect!: Category
+  categoryType: string = ''
+
   getCategory() {
-    let type = (this.categorySelect.length > 0)? "?type=" + this.categorySelect : ""
+    let type = (this.categoryType.length > 0) ? "?type=" + this.categoryType : ""
     this.http.get(url + "/battery/category" + type).subscribe((value: any) => {
       this.categories = value.data
     }, error => alert(error.error.detail))
@@ -76,7 +79,8 @@ export class ApiService {
   wallPapers: WallPaper[] = []
 
   getWallPaper() {
-    this.http.get(url + "/battery/wallPaper").subscribe((value: any) => {
+    let category = (this.categorySelect) ? "?category_id=" + this.categorySelect.id : ""
+    this.http.get(url + "/battery/wallPaper" + category).subscribe((value: any) => {
       this.wallPapers = value.data
     }, error => alert(error.error.detail))
   }
