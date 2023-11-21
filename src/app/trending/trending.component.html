@@ -2,6 +2,12 @@
   <tr>
     <td colspan="5">
       <button (click)="api.createTrending()">Create Trending</button>
+      <select [(ngModel)]="api.group" (change)="api.getTrending()">
+        <option [ngValue]="undefined">All</option>
+        <option value="trending">Trending</option>
+        <option value="end2023">End 2023</option>
+        <option value="start2024">Start 2024</option>
+      </select>
     </td>
 
   </tr>
@@ -10,6 +16,9 @@
     <td>Thumb</td>
     <td>Name</td>
     <td>Description</td>
+    <td>Top</td>
+    <td>Show</td>
+    <td>Group</td>
     <td>Delete</td>
   </tr>
   <tr *ngFor="let trending of api.trendings let i = index">
@@ -17,6 +26,15 @@
     <td><app-img-upload [img]="trending.thumb" (dataEvent)="trending.thumb = $event; api.updateTrending(i)"></app-img-upload></td>
     <td><input type="text" [(ngModel)]="trending.name" (change)="api.updateTrending(i)"></td>
     <td><input type="text" [(ngModel)]="trending.description" (change)="api.updateTrending(i)"></td>
+    <td><input type="number" [(ngModel)]="trending.top" (change)="api.updateTrending(i)"></td>
+    <td><input type="checkbox" [(ngModel)]="trending.show" (change)="api.updateTrending(i)"></td>
+    <td>
+      <select [(ngModel)]="trending.group" (change)="api.updateTrending(i)">
+        <option value="trending">Trending</option>
+        <option value="end2023">End 2023</option>
+        <option value="start2024">Start 2024</option>
+      </select>
+    </td>
     <td><button (click)="api.deleteTrending(i)">Delete</button></td>
   </tr>
 </table>

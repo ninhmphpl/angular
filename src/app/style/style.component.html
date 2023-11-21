@@ -2,6 +2,14 @@
   <tr>
     <td colspan="4">
       <button (click)="api.createStyle()">Create Style</button>
+      <select [(ngModel)]="api.styleType" (change)="api.getStyle()">
+        <option [ngValue]="undefined">All</option>
+        <option value="monthly">Monthly</option>
+        <option value="message">Message</option>
+        <option value="disco">Disco</option>
+        <option value="bucket">Bucket</option>
+        <option value="will-end-2023">Will end 2023</option>
+      </select>
     </td>
   </tr>
   <tr>
@@ -17,6 +25,7 @@
         <option value="message">Message</option>
         <option value="disco">Disco</option>
         <option value="bucket">Bucket</option>
+        <option value="will-end-2023">Will end 2023</option>
       </select>
     </td>
     <td>

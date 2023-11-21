@@ -17,9 +17,11 @@ export class ApiService {
 
   //--------------------------------- Trending ---------------------------------------------
   trendings: Trending[] = []
+  group! : string;
 
   getTrending() {
-    this.http.get(url + "/now/v1/trending").subscribe((value: any) => {
+    let group = (this.group) ? "&group=" + this.group : ""
+    this.http.get(url + "/now/v1/trending?edit=true" + group).subscribe((value: any) => {
       this.trendings = value.data
     }, error => alert(error.error.detail))
   }
@@ -103,9 +105,11 @@ export class ApiService {
 
   //--------------------------------- Style ---------------------------------------------
   styles: Style[] = []
+  styleType! : string;
 
   getStyle() {
-    this.http.get(url + "/now/v1/style").subscribe((value: any) => {
+    let type = (this.styleType)?"?type=" + this.styleType : ""
+    this.http.get(url + "/now/v1/style" + type).subscribe((value: any) => {
       this.styles = value.data
     }, error => alert(error.error.detail))
   }
@@ -133,8 +137,15 @@ export class ApiService {
   images: Image[] = []
 
   getImage() {
-    this.http.get(url + "/now/v1/image").subscribe((value: any) => {
+    this.http.get(url + "/now/v1/image?type=sticker").subscribe((value: any) => {
       this.images = value.data
+    }, error => alert(error.error.detail))
+  }
+  createImageSticker() {
+    let image = new Image()
+    image.type = 'sticker'
+    this.http.post(url + "/now/v1/image", image, this.login.getHeader()).subscribe((value: any) => {
+      this.images.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
@@ -150,10 +161,20 @@ export class ApiService {
       action(value.data)
     }, error => alert(error.error.detail))
   }
+  updateImageSticker(i : number){
+    this.http.post(url + "/now/v1/image", this.images[i], this.login.getHeader()).subscribe((value: any) => {
+      this.images[i] = value.data
+    }, error => alert(error.error.detail))
+  }
 
   deleteImage(id: string, action: () => any) {
     this.http.delete(url + "/now/v1/image/" + id, this.login.getHeader()).subscribe((value: any) => {
       action()
+    }, error => alert(error.error.detail))
+  }
+  deleteImageSticker(i: number) {
+    this.http.delete(url + "/now/v1/image/" + this.images[i].id, this.login.getHeader()).subscribe((value: any) => {
+      this.images.splice(i, 1)
     }, error => alert(error.error.detail))
   }
 

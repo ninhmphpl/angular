@@ -2,6 +2,7 @@ export class Image {
   id!: string;
 
   url!: string;
+  type!:string;
 }
 
 export class Music {
@@ -45,6 +46,7 @@ export class Trending {
   trendingType!: TrendingType;
 
   top!: number;
+  group!:string;
 }
 
 export class TrendingType {

@@ -13,6 +13,7 @@ import { MusicComponent } from './music/music.component';
 import { StyleComponent } from './style/style.component';
 import { StyleTextComponent } from './style-text/style-text.component';
 import { StyleImageComponent } from './style-image/style-image.component';
+import { StickerComponent } from './sticker/sticker.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { StyleImageComponent } from './style-image/style-image.component';
     MusicComponent,
     StyleComponent,
     StyleTextComponent,
-    StyleImageComponent
+    StyleImageComponent,
+    StickerComponent
   ],
   imports: [
     BrowserModule,
