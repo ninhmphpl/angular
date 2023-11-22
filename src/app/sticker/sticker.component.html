@@ -2,6 +2,7 @@
   <tr>
     <td colspan="2">
       <button (click)="api.createImageSticker()">Create Sticker</button>
+      <app-upload-multiple [buttonName]="'Create Sticker Multiple'" (dataEvent)="api.createImageSticker($event)"></app-upload-multiple>
     </td>
   </tr>
   <tr>

@@ -11,33 +11,31 @@ export class StyleImageComponent {
   constructor(public api: ApiService) {
   }
 
-  @Output() dataEvent = new EventEmitter<Image[]>();
+  @Output() dataEvent = new EventEmitter<undefined>();
   @Input() images!: Image[];
 
   create() {
     if (this.images == null) {
       this.images = []
     }
-    this.api.createImage(image => {
+    this.api.createImage(null, image => {
       this.images.push(image)
-      this.dataEvent.emit(this.images)
+      this.dataEvent.emit()
     })
   }
 
   update(i: number) {
     this.api.updateImage(this.images[i], image => {
       this.images[i] = image
-      this.dataEvent.emit(this.images)
+      this.dataEvent.emit()
     })
   }
 
   delete(i: number) {
-    this.images.splice(i, 1)
-    this.dataEvent.emit(this.images)
-    for (let i = 0; i < this.images.length; i++) {
-      this.api.deleteImage(this.images[i].id, () => this.dataEvent.emit(this.images))
-    }
+    this.api.deleteImage(this.images[i].id, () => {
+      this.images.splice(i,1)
+      this.dataEvent.emit()
+    })
   }
-
 
 }

@@ -14,6 +14,7 @@ import { StyleComponent } from './style/style.component';
 import { StyleTextComponent } from './style-text/style-text.component';
 import { StyleImageComponent } from './style-image/style-image.component';
 import { StickerComponent } from './sticker/sticker.component';
+import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { StickerComponent } from './sticker/sticker.component';
     StyleComponent,
     StyleTextComponent,
     StyleImageComponent,
-    StickerComponent
+    StickerComponent,
+    UploadMultipleComponent
   ],
   imports: [
     BrowserModule,

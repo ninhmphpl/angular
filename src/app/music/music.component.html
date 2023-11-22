@@ -2,6 +2,8 @@
   <tr>
     <td colspan="5">
       <button (click)="api.createMusic()">Create Music</button>
+      <app-upload-multiple [buttonName]="'Create Music Multiple'" (dataEvent)="api.createMusic($event)"></app-upload-multiple>
+
     </td>
   </tr>
   <tr>

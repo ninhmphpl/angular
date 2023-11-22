@@ -29,7 +29,7 @@
       </select>
     </td>
     <td>
-      <app-style-image [images]="style.images" (dataEvent)="style.images = $event; api.updateStyle(i)"></app-style-image>
+      <app-style-image [images]="style.images" (dataEvent)="api.updateStyle(i)"></app-style-image>
     </td>
     <td>
       <app-style-text [text]="style.text" (dataEvent)="style.text = $event; api.updateStyle(i)"></app-style-text>

@@ -2,6 +2,7 @@
   <tr>
     <td colspan="5">
       <button (click)="api.createTrending()">Create Trending</button>
+      <app-upload-multiple [buttonName]="'Create Trending Multiple'" (dataEvent)="api.createTrendingByUrl($event)"></app-upload-multiple>
       <select [(ngModel)]="api.group" (change)="api.getTrending()">
         <option [ngValue]="undefined">All</option>
         <option value="trending">Trending</option>
