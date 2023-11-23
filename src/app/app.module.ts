@@ -13,6 +13,7 @@ import {LoginService} from "./login/login.service";
 import { UserHistoryComponent } from './user-history/user-history.component';
 import { UserManagerComponent } from './user-manager/user-manager.component';
 import { RequestComponent } from './request/request.component';
+import { BackupComponent } from './backup/backup.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { RequestComponent } from './request/request.component';
     UserHistoryComponent,
     UserManagerComponent,
     RequestComponent,
+    BackupComponent,
   ],
   imports: [
     BrowserModule,

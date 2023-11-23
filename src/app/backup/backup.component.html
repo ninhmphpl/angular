@@ -1,0 +1,13 @@
+<div>
+  File :
+  <select [(ngModel)]="api.fileBackupSelect">
+    <option *ngFor="let file of api.listFileBackup" [value]="file.fileName">{{file.fileName}}</option>
+  </select>
+  Type :
+  <select [(ngModel)]="api.typeBackupSelect">
+    <option *ngFor="let type of api.listTypeBackup" [value]="type">{{type}}</option>
+  </select>
+
+  <button (click)="api.restoreBackup()">Restore</button>
+
+</div>
