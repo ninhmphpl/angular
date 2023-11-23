@@ -1,4 +1,4 @@
 export const environment = {
-  url : "http://localhost",
+  url : "",
   keySaveToken : "TOKEN_SERVER"
 }

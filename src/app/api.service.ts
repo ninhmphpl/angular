@@ -19,17 +19,17 @@ export class ApiService {
   getListFileBackup() {
     this.http.get(environment.url + "/setting/backup/list-file-backup", this.loginService.getHeader()).subscribe(
       (value: any) => this.listFileBackup = value,
-      error => console.log(error.error.detail))
+      error => alert(error.error.detail))
   }
   getListTypeBackup(){
     this.http.get(environment.url + "/setting/backup/type-list",  this.loginService.getHeader()).subscribe(
       (value: any) => this.listTypeBackup = value,
-      error => console.log(error.error.detail))
+      error => alert(error.error.detail))
   }
   restoreBackup(){
     this.http.get(environment.url + "/setting/backup/restore?file=" + this.fileBackupSelect + "&type=" + this.typeBackupSelect,  this.loginService.getHeader()).subscribe(
-      ()=> console.log("done"),
-      error => console.log(error.error.detail))
+      ()=> alert("done"),
+      error => alert(error.error.detail))
   }
 
 
