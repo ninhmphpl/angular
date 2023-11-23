@@ -1,27 +1,31 @@
 <table>
-    <tr>
-        <td>
-            <button (click)="api.createCategory()">Create Category</button>
-            <select [(ngModel)]="api.categoryType" (change)="api.getCategory()">
-                <option value=''>All</option>
-                <option value='wall'>Wall Paper</option>
-                <option value='animation'>Animation</option>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td>Name</td>
-        <td>Category</td>
-        <td>Delete</td>
-    </tr>
-    <tr *ngFor="let category of api.categories let i = index">
-        <td><input type="text" [(ngModel)]="category.name" placeholder="Category" (change)="api.updateCategory(i)"></td>
-        <td>
-            <select [(ngModel)]="category.type" (change)="api.updateCategory(i)">
-                <option value="wall">Wall Paper</option>
-                <option value="animation">Animation</option>
-            </select>
-        </td>
-        <td><button (click)="api.deleteCategory(i)">Delete</button></td>
-    </tr>
+  <tr>
+    <td colspan="4">
+      <button (click)="api.createCategory()">Create Category</button>
+      <select [(ngModel)]="api.categoryType" (change)="api.getCategory()">
+        <option value=''>All</option>
+        <option value='wall'>Wall Paper</option>
+        <option value='animation'>Animation</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>Url</td>
+    <td>Name</td>
+    <td>Category</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let category of api.categories let i = index">
+    <td><app-img-upload [img]="category.url" (dataEvent)="category.url = $event; api.updateCategory(i)"></app-img-upload></td>
+    <td><input type="text" [(ngModel)]="category.name" placeholder="Category" (change)="api.updateCategory(i)"></td>
+    <td>
+      <select [(ngModel)]="category.type" (change)="api.updateCategory(i)">
+        <option value="wall">Wall Paper</option>
+        <option value="animation">Animation</option>
+      </select>
+    </td>
+    <td>
+      <button (click)="api.deleteCategory(i)">Delete</button>
+    </td>
+  </tr>
 </table>

@@ -12,6 +12,7 @@ export class Category {
   creatAt!: number;
   name!: string;
   type!: string;
+  url! : string;
 }
 
 export class WallPaper {
