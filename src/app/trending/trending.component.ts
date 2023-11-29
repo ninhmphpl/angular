@@ -12,6 +12,7 @@ export class TrendingComponent implements OnInit{
   ngOnInit(): void {
     this.api.getTrending()
     this.api.getTrendingType()
+    this.api.getMusic()
   }
 
 }

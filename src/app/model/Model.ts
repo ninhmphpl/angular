@@ -46,7 +46,12 @@ export class Trending {
   trendingType!: TrendingType;
 
   top!: number;
+
   group!:string;
+
+  like!:string;
+
+  music!:Music;
 }
 
 export class TrendingType {
