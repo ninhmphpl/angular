@@ -2,19 +2,19 @@ export class Image {
   id!: string;
 
   url!: string;
-  type!:string;
+  type!: string;
 }
 
 export class Music {
   id!: string;
 
-  name!: string ;
+  name!: string;
 
-  url!: string ;
+  url!: string;
 
-  description!: string ;
+  description!: string;
 
-  thumb!: string ;
+  thumb!: string;
 
   show!: boolean;
 
@@ -33,13 +33,13 @@ export class Style {
 export class Trending {
   id!: string;
 
-  name!: string ;
+  name!: string;
 
-  url!: string ;
+  url!: string;
 
-  description!: string ;
+  description!: string;
 
-  thumb!: string ;
+  thumb!: string;
 
   show!: boolean;
 
@@ -47,11 +47,11 @@ export class Trending {
 
   top!: number;
 
-  group!:string;
+  group!: string;
 
-  like!:string;
+  like!: string;
 
-  music!:Music;
+  music!: Music;
 }
 
 export class TrendingType {
@@ -72,5 +72,11 @@ export class TrendingType {
   top!: number;
 
   banner!: string;
+}
+
+export class FormIcon {
+  id !: string;
+  image: string[] = [];
+  name!: string;
 }
 

@@ -10,11 +10,11 @@ import {HttpClientModule} from "@angular/common/http";
 import { TrendingComponent } from './trending/trending.component';
 import { TredingTypeComponent } from './treding-type/treding-type.component';
 import { MusicComponent } from './music/music.component';
-import { StyleComponent } from './style/style.component';
 import { StyleTextComponent } from './style-text/style-text.component';
 import { StyleImageComponent } from './style-image/style-image.component';
-import { StickerComponent } from './sticker/sticker.component';
 import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
+import { UploadFtpComponent } from './upload-ftp/upload-ftp.component';
+import { FormIconComponent } from './form-icon/form-icon.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +24,11 @@ import { UploadMultipleComponent } from './upload-multiple/upload-multiple.compo
     TrendingComponent,
     TredingTypeComponent,
     MusicComponent,
-    StyleComponent,
     StyleTextComponent,
     StyleImageComponent,
-    StickerComponent,
-    UploadMultipleComponent
+    UploadMultipleComponent,
+    UploadFtpComponent,
+    FormIconComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginService} from "./login/login.service";
 import {environment} from "./environment";
-import {Image, Music, Style, Trending, TrendingType} from "./model/Model";
+import {FormIcon, Image, Music, Style, Trending, TrendingType} from "./model/Model";
 
 
 export const urlHost = environment.url
@@ -193,6 +193,35 @@ export class ApiService {
   deleteImageSticker(i: number) {
     this.http.delete(urlHost + "/now/v1/image/" + this.images[i].id, this.login.getHeader()).subscribe((value: any) => {
       this.images.splice(i, 1)
+    }, error => alert(error.error.detail))
+  }
+
+  //--------------------------------- FormIcon ---------------------------------------------
+  formIcons: FormIcon[] = []
+
+  getFormIcon() {
+    this.http.get(urlHost + "/now/v1/formIcon").subscribe((value: any) => {
+      this.formIcons = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  createFormIcon() {
+    let formIcon = new FormIcon();
+    this.http.post(urlHost + "/now/v1/formIcon", formIcon, this.login.getHeader()).subscribe((value: any) => {
+      this.formIcons.unshift(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  updateFormIcon(index: number) {
+    this.http.post(urlHost + "/now/v1/formIcon", this.formIcons[index], this.login.getHeader()).subscribe((value: any) => {
+      this.formIcons[index] = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  deleteFormIcon(index: number) {
+    this.http.delete(urlHost + "/now/v1/formIcon/" + this.formIcons[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.formIcons[index] = value.data
+      this.formIcons.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 

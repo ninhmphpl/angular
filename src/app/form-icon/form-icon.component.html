@@ -1,0 +1,26 @@
+<table>
+  <tr>
+    <td colspan="5">
+      <button (click)="api.createFormIcon()">Create FormIcon</button>
+    </td>
+  </tr>
+  <tr>
+
+  </tr>
+  <tr *ngFor="let formIcon of api.formIcons let i = index">
+    <td><input type="text" [(ngModel)]="formIcon.name" (change)="api.updateFormIcon(i)"></td>
+    <td>
+      <app-upload-multiple
+        (uploadDone)="formIcon.image.push.apply(formIcon.image, $event);api.updateFormIcon(i) "></app-upload-multiple>
+      <div class="row row-cols-auto">
+        <div *ngFor="let img of formIcon.image let j = index">
+          <img [src]="img" alt="" style="width: 50px; height: 50px;">
+          <button (click)="formIcon.image.splice(j,1); api.updateFormIcon(i)">Delete</button>
+        </div>
+      </div>
+    </td>
+    <td>
+      <button (click)="api.deleteFormIcon(i)">Delete</button>
+    </td>
+  </tr>
+</table>

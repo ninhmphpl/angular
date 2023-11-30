@@ -10,7 +10,7 @@ import {uploadFile} from "../img-upload/img-upload.component";
 })
 export class UploadMultipleComponent {
   @Output() dataEvent = new EventEmitter<string>();
-  @Output() uploadDone = new EventEmitter<undefined>();
+  @Output() uploadDone = new EventEmitter<string[]>();
   @Input() path : string = '';
   @Input() buttonName : string = 'button';
   urlSocket = environment.url.replace("http", "ws") + "/upload"
@@ -18,15 +18,20 @@ export class UploadMultipleComponent {
   numberUpload = 0
   numberUploadDone = 0
   sendData(fileList: FileList | null) {
+    this.numberUploadDone = 0
     if (!fileList) return
     this.numberUpload = fileList.length
+    let listUrl : string[] = []
     for (let i = 0 ; i < fileList.length ; i ++){
       let file = fileList.item(i);
       if(file){
         uploadFile(file, this.urlSocket, this.path, url => {
           this.numberUploadDone ++
           this.dataEvent.emit(url)
-          if(this.numberUpload == this.numberUploadDone) this.uploadDone.emit();
+          listUrl.push(url)
+          if(this.numberUpload <= this.numberUploadDone){
+            this.uploadDone.emit(listUrl);
+          }
         }, data => {
           this.percent = data
           if(this.percent === 100) this.percent = 0
