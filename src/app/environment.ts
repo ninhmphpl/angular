@@ -1,4 +1,4 @@
 export const environment = {
-  url : "http://taptap.procyoni.com",
+  url : "http://localhost",
   keySaveToken : "TOKEN-AI-ART"
 }

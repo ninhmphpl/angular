@@ -8,14 +8,22 @@
 
   </tr>
   <tr *ngFor="let formIcon of api.formIcons let i = index">
-    <td><input type="text" [(ngModel)]="formIcon.name" (change)="api.updateFormIcon(i)"></td>
+    <td><input type="text" [(ngModel)]="formIcon.name" (change)="api.updateFormIcon(i)" placeholder="Name groups"></td>
     <td>
       <app-upload-multiple
-        (uploadDone)="formIcon.image.push.apply(formIcon.image, $event);api.updateFormIcon(i) "></app-upload-multiple>
+        (uploadDone)="api.updateFormIconAddAlphabet($event, i)" [buttonName]="'Add item'"></app-upload-multiple>
       <div class="row row-cols-auto">
-        <div *ngFor="let img of formIcon.image let j = index">
-          <img [src]="img" alt="" style="width: 50px; height: 50px;">
-          <button (click)="formIcon.image.splice(j,1); api.updateFormIcon(i)">Delete</button>
+        <div *ngFor="let alphabet of formIcon.alphabets let j = index">
+          <img [src]="alphabet.url" alt="" style="width: 50px; height: 50px;">
+          <div>
+            <input style="width: 50px; font-size: small" type="text" [(ngModel)]="alphabet.name"
+                   (change)="api.updateFormIcon(i)" placeholder="Name">
+          </div>
+          <div>
+            <button style="width: 50px; font-size: small" (click)="api.updateFormIconDeleteAlphabet(alphabet.id, i)">
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </td>

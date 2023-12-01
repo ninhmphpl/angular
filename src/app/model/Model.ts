@@ -76,7 +76,17 @@ export class TrendingType {
 
 export class FormIcon {
   id !: string;
-  image: string[] = [];
+  alphabets! : Alphabet[];
   name!: string;
+}
+
+export class Question {
+  id!: number;
+  question!: string;
+}
+export class Alphabet{
+  id !: number;
+  name! : string;
+  url! : string;
 }
 

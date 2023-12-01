@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginService} from "./login/login.service";
 import {environment} from "./environment";
-import {FormIcon, Image, Music, Style, Trending, TrendingType} from "./model/Model";
+import {FormIcon, Image, Music, Question, Style, Trending, TrendingType} from "./model/Model";
 
 
 export const urlHost = environment.url
@@ -217,11 +217,50 @@ export class ApiService {
       this.formIcons[index] = value.data
     }, error => alert(error.error.detail))
   }
+  updateFormIconAddAlphabet(urls : string[], index : number) {
+    this.http.post(urlHost + "/now/v1/formIcon-addAlphabet/" + this.formIcons[index].id, urls, this.login.getHeader()).subscribe((value: any) => {
+      this.formIcons[index] = value.data
+    }, error => alert(error.error.detail))
+  }
+  updateFormIconDeleteAlphabet(idAlphabet : number, index : number) {
+    this.http.post(urlHost + "/now/v1/formIcon-deleteAlphabet/" + this.formIcons[index].id, idAlphabet, this.login.getHeader()).subscribe((value: any) => {
+      this.formIcons[index] = value.data
+    }, error => alert(error.error.detail))
+  }
 
   deleteFormIcon(index: number) {
     this.http.delete(urlHost + "/now/v1/formIcon/" + this.formIcons[index].id, this.login.getHeader()).subscribe((value: any) => {
       this.formIcons[index] = value.data
       this.formIcons.splice(index, 1)
+    }, error => alert(error.error.detail))
+  }
+
+  //--------------------------------- Question ---------------------------------------------
+  questions: Question[] = []
+
+  getQuestion() {
+    this.http.get(urlHost + "/now/v1/question").subscribe((value: any) => {
+      this.questions = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  createQuestion() {
+    let question = new Question();
+    this.http.post(urlHost + "/now/v1/question", question, this.login.getHeader()).subscribe((value: any) => {
+      this.questions.unshift(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  updateQuestion(index: number) {
+    this.http.post(urlHost + "/now/v1/question", this.questions[index], this.login.getHeader()).subscribe((value: any) => {
+      this.questions[index] = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  deleteQuestion(index: number) {
+    this.http.delete(urlHost + "/now/v1/question/" + this.questions[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.questions[index] = value.data
+      this.questions.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 

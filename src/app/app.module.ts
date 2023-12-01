@@ -15,6 +15,7 @@ import { StyleImageComponent } from './style-image/style-image.component';
 import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
 import { UploadFtpComponent } from './upload-ftp/upload-ftp.component';
 import { FormIconComponent } from './form-icon/form-icon.component';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormIconComponent } from './form-icon/form-icon.component';
     StyleImageComponent,
     UploadMultipleComponent,
     UploadFtpComponent,
-    FormIconComponent
+    FormIconComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
