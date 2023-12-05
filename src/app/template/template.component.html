@@ -16,6 +16,7 @@
     <td>Thumb</td>
     <td>Object</td>
     <td>Name</td>
+    <td>Priority</td>
     <td>Prompt</td>
     <td>Category</td>
     <td>Delete</td>
@@ -32,6 +33,9 @@
     </td>
     <td>
       <input type="text" [(ngModel)]="template.name" (change)="api.updateTemplate(i)">
+    </td>
+    <td>
+      <input style="width: 50px" type="number" [(ngModel)]="template.priority" (change)="api.updateTemplate(i)">
     </td>
     <td>
       <input type="text" [(ngModel)]="template.avatarFilePrompt" (change)="api.updateTemplate(i)">

@@ -10,6 +10,7 @@ export class Category {
   id!: string;
   name!: string;
   type!: string;
+  priority!:number;
   createAt!: number;
 
 }
@@ -47,6 +48,7 @@ export class Template {
   object!: string;
   avatarFilePrompt!: string;
   createAt!: number;
+  priority!:number;
   category!: Category
 }
 
@@ -68,5 +70,6 @@ export class Theme {
   type!: string;
   callIcon!: CallIcon;
   category!: Category;
+  priority!:number;
   createAt!: number;
 }
