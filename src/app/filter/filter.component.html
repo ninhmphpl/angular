@@ -1,0 +1,38 @@
+<table class="table table-bordered">
+  <tbody>
+  <tr>
+    <td colspan="5">
+      <button class="btn btn-sm btn-outline-primary" (click)="api.filterCreate()">Create filter</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Result Image</td>
+    <td>Suggest Image</td>
+    <td>Name</td>
+    <td>Type</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let element of api.filters, let i = index">
+    <td>
+      <app-img-upload [img]="element.resultImage"
+                      (dataEvent)="element.resultImage = $event; api.filterUpdate(i)"></app-img-upload>
+    </td>
+    <td>
+      <app-upload-multiple [buttonName]="'Add Image Suggest'"
+                           (dataEvent)="addImageSuggest(i, $event)"
+                           (uploadDone)="api.filterUpdate(i)"></app-upload-multiple>
+      <div>
+        <div *ngFor="let img of element.suggestImage, let j = index">
+          <img [src]="img" alt="img" style="width: 50px; height: 50px">
+          <button class="btn btn-sm btn-outline-primary" (click)="element.suggestImage.splice(j, 1); api.filterUpdate(i)">X</button>
+        </div>
+      </div>
+    </td>
+    <td><input type="text" class="form-control" [(ngModel)]="element.name" (change)="api.filterUpdate(i)"></td>
+    <td><input type="text" class="form-control" [(ngModel)]="element.type" (change)="api.filterUpdate(i)"></td>
+    <td>
+      <button class="btn btn-sm btn-outline-primary" (click)="api.filterDelete(i)">delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

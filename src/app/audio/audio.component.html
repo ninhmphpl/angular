@@ -1,0 +1,21 @@
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td><button class="btn btn-sm btn-outline-primary" (click)="api.audioCreate()">Create audio</button></td>
+    </tr>
+    <tr>
+      <td>Audio</td>
+      <td>Thumb</td>
+      <td>Name</td>
+      <td>Author</td>
+    </tr>
+    <tr *ngFor="let element of api.audios, let i = index">
+      <td><app-img-upload [imgWith]="'200px'" [type]="'audio'" [img]="element.audio" (dataEvent)="element.audio = $event; api.audioUpdate(i)"></app-img-upload></td>
+      <td><app-img-upload [img]="element.thumb" (dataEvent)="element.thumb = $event; api.audioUpdate(i)"></app-img-upload></td>
+      <td><input class="form-control" type="text" [(ngModel)]="element.name" (change)="api.audioUpdate(i)"></td>
+      <td><input class="form-control" type="text" [(ngModel)]="element.author" (change)="api.audioUpdate(i)"></td>
+      <td><button class="btn btn-sm btn-outline-primary" (click)="api.audioDelete(i)">delete</button></td>
+    </tr>
+  </tbody>
+
+</table>

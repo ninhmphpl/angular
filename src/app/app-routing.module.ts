@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ThemeComponent} from "./theme/theme.component";
-import {CategoryComponent} from "./category/category.component";
-import {AiPosterComponent} from "./ai-poster/ai-poster.component";
-import {AiProfileComponent} from "./ai-profile/ai-profile.component";
-import {TemplateComponent} from "./template/template.component";
+import {ModelComponent} from "./model/model.component";
+import {FilterComponent} from "./filter/filter.component";
+import {TypeComponent} from "./type/type.component";
+import {AudioComponent} from "./audio/audio.component";
+import {SessionComponent} from "./session/session.component";
 
 const routes: Routes = [
-  {path:"theme",component:ThemeComponent},
-  {path:"category",component:CategoryComponent},
-  {path:"ai-poster",component:AiPosterComponent},
-  {path:"ai-profile",component:AiProfileComponent},
-  {path:"template",component:TemplateComponent},
+  {path:"model",component:ModelComponent},
+  {path:"filter",component:FilterComponent},
+  {path:"type",component:TypeComponent},
+  {path:"session",component:SessionComponent},
+  {path:"audio",component:AudioComponent},
 ];
 
 @NgModule({

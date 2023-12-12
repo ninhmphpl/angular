@@ -1,0 +1,59 @@
+<table class="table table-bordered">
+  <tbody>
+  <tr>
+    <td colspan="9">
+      <button class="btn btn-sm btn-outline-primary" (click)="api.modelCreate()">Create model</button>
+    </td>
+  </tr>
+  <tr>
+    <td class="col-1">Video</td>
+    <td class="col-1">Thumb</td>
+    <td class="col-2">Name</td>
+    <td class="col-2">Description</td>
+    <td class="col-1">Like</td>
+    <td class="col-1">Priority</td>
+    <td class="col-1">Filter</td>
+    <td class="col-1">Type</td>
+    <td class="col-1">Session</td>
+    <td class="col-1">Delete</td>
+  </tr>
+  <tr *ngFor="let element of api.models, let i = index">
+    <td>
+      <app-img-upload [type]="'video'" [img]="element.videoUrl"
+                      (dataEvent)="element.videoUrl = $event; api.modelUpdate(i)"></app-img-upload>
+    </td>
+    <td >
+      <app-img-upload [img]="element.thumb" (dataEvent)="element.thumb = $event; api.modelUpdate(i)"></app-img-upload>
+    </td>
+    <td ><input class="form-control" type="text" [(ngModel)]="element.name" (change)="api.modelUpdate(i)"></td>
+    <td ><input class="form-control" type="text" [(ngModel)]="element.description" (change)="api.modelUpdate(i)"></td>
+    <td ><input class="form-control" type="number" [(ngModel)]="element.like" (change)="api.modelUpdate(i)"></td>
+    <td ><input class="form-control" type="number" [(ngModel)]="element.priority" (change)="api.modelUpdate(i)"></td>
+    <td >
+      <label for="filter">{{(element.filter) ? element.filter.name : "none"}}</label>
+      <select id="filter" style="width: 18px; border: none" [(ngModel)]="element.filter" (change)="api.modelUpdate(i)">
+        <option [ngValue]="undefined">none</option>
+        <option *ngFor="let filter of api.filters" [ngValue]="filter">{{filter.name}}</option>
+      </select>
+    </td>
+    <td >
+      <label for="type"> {{(element.type) ? element.type.name : "none"}}</label>
+      <select id="type" style="width: 18px; border: none" [(ngModel)]="element.type" (change)="api.modelUpdate(i)">
+        <option [ngValue]="undefined">none</option>
+        <option *ngFor="let type of api.types" [ngValue]="type">{{type.name}}</option>
+      </select>
+    </td>
+    <td >
+      <label for="session"> {{(element.session) ? element.session.name : "none"}}</label>
+      <select id="session" style="width: 18px; border: none" [(ngModel)]="element.session" (change)="api.modelUpdate(i)">
+        <option [ngValue]="undefined">none</option>
+        <option *ngFor="let session of api.sessions" [ngValue]="session">{{session.name}}</option>
+      </select>
+    </td>
+    <td >
+      <button class="btn btn-sm btn-outline-primary" (click)="api.modelDelete(i)">delete</button>
+    </td>
+  </tr>
+  </tbody>
+
+</table>

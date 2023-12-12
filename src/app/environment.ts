@@ -1,5 +1,4 @@
 export const environment = {
-  // url : "http://localhost:9000",
-  url : "http://themeios.tolimanspaceni.com",
+  url : "http://localhost:8080",
   keySaveToken : "TOKEN-WALL-PAPER"
 }

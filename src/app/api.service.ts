@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "./environment";
 import {LoginService} from "./login/login.service";
-import {Category, AiPoster, Theme, AiProfile, AiPosterOption, Template} from "./model/ThemeModel";
+import {Audio, Filter, Model, Session, Type} from "./model/Color";
 
 const url = environment.url
 
@@ -13,248 +13,78 @@ export class ApiService {
   constructor(private http: HttpClient, private login: LoginService) {
   }
 
-  //--------------------------------- Theme ---------------------------------------------
-  themes: Theme[] = []
-  themePage = 0;
-  themePageTotal = 0;
-
-  nextTheme() {
-    if (this.themePage < this.themePageTotal) {
-      this.themePage++
-      this.getTheme()
-    }
+  // crud model
+  models: Model[] = []
+  modelGet() {
+    this.http.get(url + "/prox/edit/model").subscribe((value: any) => this.models = value.data, error => alert(error.error.detail))
+  }
+  modelCreate() {
+    this.http.post(url + "/prox/edit/model", new Model()).subscribe((value: any) => this.models.unshift(value.data), error => alert(error.error.detail))
+  }
+  modelUpdate(i : number) {
+    this.http.post(url + "/prox/edit/model", this.models[i]).subscribe((value: any) => this.models[i] = value.data, error => alert(error.error.detail))
+  }
+  modelDelete(i : number) {
+    this.http.delete(url + "/prox/edit/model/" + this.models[i].id).subscribe((value: any) => this.models.splice(i,1), error => alert(error.error.detail))
+  }
+  // crud type
+  types: Type[] = []
+  typeGet() {
+    this.http.get(url + "/prox/edit/type").subscribe((value: any) => this.types = value.data, error => alert(error.error.detail))
+  }
+  typeCreate() {
+    this.http.post(url + "/prox/edit/type", new Type()).subscribe((value: any) => this.types.unshift(value.data), error => alert(error.error.detail))
+  }
+  typeUpdate(i : number) {
+    this.http.post(url + "/prox/edit/type", this.types[i]).subscribe((value: any) => this.types[i] = value.data, error => alert(error.error.detail))
+  }
+  typeDelete(i : number) {
+    this.http.delete(url + "/prox/edit/type/" + this.types[i].id).subscribe((value: any) => this.types.splice(i,1), error => alert(error.error.detail))
+  }
+  // crud filter
+  filters: Filter[] = []
+  filterGet() {
+    this.http.get(url + "/prox/edit/filter").subscribe((value: any) => this.filters = value.data, error => alert(error.error.detail))
+  }
+  filterCreate() {
+    this.http.post(url + "/prox/edit/filter", new Filter()).subscribe((value: any) => this.filters.unshift(value.data), error => alert(error.error.detail))
+  }
+  filterUpdate(i : number) {
+    this.http.post(url + "/prox/edit/filter", this.filters[i]).subscribe((value: any) => this.filters[i] = value.data, error => alert(error.error.detail))
+  }
+  filterDelete(i : number) {
+    this.http.delete(url + "/prox/edit/filter/" + this.filters[i].id).subscribe((value: any) => this.filters.splice(i,1), error => alert(error.error.detail))
   }
 
-  previousTheme() {
-    if (this.themePage > 0) {
-      this.themePage--
-      this.getTheme()
-    }
+  // crud audio
+  audios: Audio[] = []
+  audioGet() {
+    this.http.get(url + "/prox/edit/audio").subscribe((value: any) => this.audios = value.data, error => alert(error.error.detail))
+  }
+  audioCreate() {
+    this.http.post(url + "/prox/edit/audio", new Audio()).subscribe((value: any) => this.audios.unshift(value.data), error => alert(error.error.detail))
+  }
+  audioUpdate(i : number) {
+    this.http.post(url + "/prox/edit/audio", this.audios[i]).subscribe((value: any) => this.audios[i] = value.data, error => alert(error.error.detail))
+  }
+  audioDelete(i : number) {
+    this.http.delete(url + "/prox/edit/audio/" + this.audios[i].id).subscribe((value: any) => this.audios.splice(i,1), error => alert(error.error.detail))
   }
 
-  getTheme() {
-    this.http.get(url + "/now/theme?page=" + this.themePage).subscribe((value: any) => {
-      this.themes = value.data.content
-      this.themePage = value.data.number
-      this.themePageTotal = value.data.totalPages
-    }, error => alert(error.error.detail))
+  // crud session
+  sessions: Session[] = []
+  sessionGet() {
+    this.http.get(url + "/prox/edit/session").subscribe((value: any) => this.sessions = value.data, error => alert(error.error.detail))
   }
-
-  createTheme() {
-    this.http.post(url + "/now/theme", new Theme(), this.login.getHeader()).subscribe((value: any) => {
-      this.themes.unshift(value.data)
-    }, error => alert(error.error.detail))
+  sessionCreate() {
+    this.http.post(url + "/prox/edit/session", new Session()).subscribe((value: any) => this.sessions.unshift(value.data), error => alert(error.error.detail))
   }
-
-  updateTheme(index: number) {
-    this.http.post(url + "/now/theme", this.themes[index], this.login.getHeader()).subscribe((value: any) => {
-      this.themes[index] = value.data
-    }, error => alert(error.error.detail))
+  sessionUpdate(i : number) {
+    this.http.post(url + "/prox/edit/session", this.sessions[i]).subscribe((value: any) => this.sessions[i] = value.data, error => alert(error.error.detail))
   }
-
-  deleteTheme(index: number) {
-    this.http.delete(url + "/now/theme/" + this.themes[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.themes[index] = value.data
-      this.themes.splice(index, 1)
-    }, error => alert(error.error.detail))
-  }
-
-  //--------------------------------- Category ---------------------------------------------
-  categories: Category[] = []
-
-  getCategory(type?: string) {
-    this.http.get(url + "/now/category" + ((type != null) ? ("?type=" + type) : "")).subscribe((value: any) => {
-      this.categories = value.data
-    }, error => alert(error.error.detail))
-  }
-
-  createCategory() {
-    this.http.post(url + "/now/category", new Category(), this.login.getHeader()).subscribe((value: any) => {
-      this.categories.unshift(value.data)
-    }, error => alert(error.error.detail))
-  }
-
-  updateCategory(index: number) {
-    this.http.post(url + "/now/category", this.categories[index], this.login.getHeader()).subscribe((value: any) => {
-      this.categories[index] = value.data
-    }, error => alert(error.error.detail))
-  }
-
-  deleteCategory(index: number) {
-    this.http.delete(url + "/now/category/" + this.categories[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.categories[index] = value.data
-      this.categories.splice(index, 1)
-    }, error => alert(error.error.detail))
-  }
-
-  //--------------------------------- Ai Poster ---------------------------------------------
-  aiPosters: AiPoster[] = []
-  aiPosterSuggests: AiPosterOption[] = []
-  aiPosterTricks: AiPosterOption[] = []
-
-  getAiPoster() {
-    this.http.get(url + "/now/ai-poster").subscribe((value: any) => {
-      this.aiPosters = value.data
-    }, error => alert(error.error.detail))
-  }
-
-  getAiPosterHome() {
-    this.http.get(url + "/now/ai-poster/home").subscribe((value: any) => {
-      this.aiPosters = value.aiPoster
-      this.aiPosterSuggests = value.suggest
-      this.aiPosterTricks = value.tricks
-    }, error => alert(error.error.detail))
-  }
-
-  createAiPoster() {
-    this.http.post(url + "/now/ai-poster", new AiPoster(), this.login.getHeader()).subscribe((value: any) => {
-      this.aiPosters.unshift(value.data)
-    }, error => alert(error.error.detail))
-  }
-
-  updateAiPoster(index: number) {
-    this.http.post(url + "/now/ai-poster", this.aiPosters[index], this.login.getHeader()).subscribe((value: any) => {
-      this.aiPosters[index] = value.data
-    }, error => alert(error.error.detail))
-  }
-
-  deleteAiPoster(index: number) {
-    this.http.delete(url + "/now/ai-poster/" + this.aiPosters[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.aiPosters.splice(index, 1)
-    }, error => alert(error.error.detail))
-  }
-
-  //--------------------------------- Ai Poster Option ---------------------------------------------
-  createAiPosterOptionTricks() {
-    let a = new AiPosterOption();
-    a.type = "trick"
-    this.http.post(url + "/now/ai-poster/option", a, this.login.getHeader()).subscribe((value: any) => {
-      this.aiPosterTricks.unshift(value.data)
-    }, error => alert(error.error.detail))
-  }
-
-  updateAiPosterOptionTricks(index: number) {
-    this.http.post(url + "/now/ai-poster/option", this.aiPosterTricks[index], this.login.getHeader()).subscribe((value: any) => {
-      this.aiPosterTricks[index] = value.data
-    }, error => alert(error.error.detail))
-  }
-
-  deleteAiPosterOptionTricks(index: number) {
-    this.http.delete(url + "/now/ai-poster/option/" + this.aiPosterTricks[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.aiPosterTricks.splice(index, 1)
-    }, error => alert(error.error.detail))
-  }
-
-  createAiPosterOptionSuggests() {
-    let a = new AiPosterOption();
-    a.type = "suggestion"
-    this.http.post(url + "/now/ai-poster/option", a, this.login.getHeader()).subscribe((value: any) => {
-      this.aiPosterSuggests.unshift(value.data)
-    }, error => alert(error.error.detail))
-  }
-
-  updateAiPosterOptionSuggest(index: number) {
-    this.http.post(url + "/now/ai-poster/option", this.aiPosterSuggests[index], this.login.getHeader()).subscribe((value: any) => {
-      this.aiPosterSuggests[index] = value.data
-    }, error => alert(error.error.detail))
-  }
-
-  deleteAiPosterOptionSuggest(index: number) {
-    this.http.delete(url + "/now/ai-poster/option/" + this.aiPosterSuggests[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.aiPosterSuggests.splice(index, 1)
-    }, error => alert(error.error.detail))
-  }
-
-  //--------------------------------- AiProfile ---------------------------------------------
-  aiProfiles: AiProfile[] = []
-  aiProfilePage = 0;
-  aiProfilePageTotal = 0;
-  aiProfileCategory!:Category
-
-  nextAiProfile() {
-    if (this.aiProfilePage < this.aiProfilePageTotal) {
-      this.aiProfilePage++
-      this.getAiProfile()
-    }
-  }
-
-  previousAiProfile() {
-    if (this.aiProfilePage > 0) {
-      this.aiProfilePage--
-      this.getAiProfile()
-    }
-  }
-
-  getAiProfile() {
-    this.http.get(url + "/now/ai-profile?page=" + this.aiProfilePage + ((this.aiProfileCategory)?("&category_id=" + this.aiProfileCategory.id):"")).subscribe((value: any) => {
-      this.aiProfiles = value.data.content
-      this.aiProfilePage = value.data.number
-      this.aiProfilePageTotal = value.data.totalPages
-    }, error => alert(error.error.detail))
-  }
-
-  createAiProfile() {
-    this.http.post(url + "/now/ai-profile", new AiProfile(), this.login.getHeader()).subscribe((value: any) => {
-      this.aiProfiles.unshift(value.data)
-    }, error => alert(error.error.detail))
-  }
-
-  updateAiProfile(index: number) {
-    this.http.post(url + "/now/ai-profile", this.aiProfiles[index], this.login.getHeader()).subscribe((value: any) => {
-      this.aiProfiles[index] = value.data
-    }, error => alert(error.error.detail))
-  }
-
-  deleteAiProfile(index: number) {
-    this.http.delete(url + "/now/ai-profile/" + this.aiProfiles[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.aiProfiles.splice(index, 1)
-    }, error => alert(error.error.detail))
+  sessionDelete(i : number) {
+    this.http.delete(url + "/prox/edit/session/" + this.sessions[i].id).subscribe((value: any) => this.sessions.splice(i,1), error => alert(error.error.detail))
   }
 
 
-  //--------------------------------- Template ---------------------------------------------
-  templates: Template[] = []
-  templatePage = 0;
-  templatePageTotal = 0;
-  templateCategory!:Category
-
-  nextTemplate() {
-    if (this.templatePage < this.templatePageTotal) {
-      this.templatePage++
-      this.getTemplate()
-    }
-  }
-
-  previousTemplate() {
-    if (this.templatePage > 0) {
-      this.templatePage--
-      this.getTemplate()
-    }
-  }
-
-  getTemplate() {
-    this.http.get(url + "/now/template?page=" + this.templatePage + ((this.templateCategory)?("&category_id=" + this.templateCategory.id):"")).subscribe((value: any) => {
-      this.templates = value.data.content
-      this.templatePage = value.data.number
-      this.templatePageTotal = value.data.totalPages
-    }, error => alert(error.error.detail))
-  }
-
-  createTemplate() {
-    this.http.post(url + "/now/template", new Template(), this.login.getHeader()).subscribe((value: any) => {
-      this.templates.unshift(value.data)
-    }, error => alert(error.error.detail))
-  }
-
-  updateTemplate(index: number) {
-    this.http.post(url + "/now/template", this.templates[index], this.login.getHeader()).subscribe((value: any) => {
-      this.templates[index] = value.data
-    }, error => alert(error.error.detail))
-  }
-
-  deleteTemplate(index: number) {
-    this.http.delete(url + "/now/template/" + this.templates[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.templates.splice(index, 1)
-    }, error => alert(error.error.detail))
-  }
 }

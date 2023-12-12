@@ -1,28 +1,30 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {ImgUploadComponent} from "./img-upload/img-upload.component";
 import {LoginComponent} from "./login/login.component";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { CategoryComponent } from './category/category.component';
-import { ThemeComponent } from './theme/theme.component';
-import { AiPosterComponent } from './ai-poster/ai-poster.component';
-import { AiProfileComponent } from './ai-profile/ai-profile.component';
-import { TemplateComponent } from './template/template.component';
+import {AudioComponent} from './audio/audio.component';
+import {ModelComponent} from './model/model.component';
+import {TypeComponent} from './type/type.component';
+import {FilterComponent} from './filter/filter.component';
+import {UploadMultipleComponent} from "./upload-multiple/upload-multiple.component";
+import { SessionComponent } from './session/session.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ImgUploadComponent,
     LoginComponent,
-    CategoryComponent,
-    ThemeComponent,
-    AiPosterComponent,
-    AiProfileComponent,
-    TemplateComponent,
+    AudioComponent,
+    ModelComponent,
+    TypeComponent,
+    FilterComponent,
+    UploadMultipleComponent,
+    SessionComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,4 +35,5 @@ import { TemplateComponent } from './template/template.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
