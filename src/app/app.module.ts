@@ -15,6 +15,7 @@ import { StyleTextComponent } from './style-text/style-text.component';
 import { StyleImageComponent } from './style-image/style-image.component';
 import { StickerComponent } from './sticker/sticker.component';
 import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
+import { UploadCloudFlareComponent } from './upload-cloud-flare/upload-cloud-flare.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UploadMultipleComponent } from './upload-multiple/upload-multiple.compo
     StyleTextComponent,
     StyleImageComponent,
     StickerComponent,
-    UploadMultipleComponent
+    UploadMultipleComponent,
+    UploadCloudFlareComponent
   ],
   imports: [
     BrowserModule,

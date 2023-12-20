@@ -10,7 +10,7 @@
     <td>Delete</td>
   </tr>
   <tr *ngFor="let image of api.images let i = index">
-    <td><app-img-upload [img]="image.url" (dataEvent)="image.url = $event; api.updateImageSticker(i)"></app-img-upload></td>
+    <td><app-upload-cloud-flare [img]="image.url" (dataEvent)="image.url = $event; api.updateImageSticker(i)"></app-upload-cloud-flare></td>
     <td><button (click)="api.deleteImageSticker(i)">Delete</button></td>
   </tr>
 </table>

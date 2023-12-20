@@ -1,3 +1,6 @@
+<app-upload-cloud-flare img="'https://bootdey.com/img/Content/avatar/avatar5.png'"></app-upload-cloud-flare>
+
+
 <table>
   <tr>
     <td colspan="11">
@@ -26,8 +29,8 @@
     <td>Delete</td>
   </tr>
   <tr *ngFor="let trending of api.trendings let i = index">
-    <td><app-img-upload [imgWith]="'100px'" [imgHeight]="'150px'" [type]="'video'" [img]="trending.url" (dataEvent)="trending.url = $event; api.updateTrending(i)"></app-img-upload></td>
-    <td><app-img-upload [img]="trending.thumb" (dataEvent)="trending.thumb = $event; api.updateTrending(i)"></app-img-upload></td>
+    <td><app-upload-cloud-flare [imgWith]="'100px'" [imgHeight]="'150px'" [type]="'video'" [img]="trending.url" (dataEvent)="trending.url = $event; api.updateTrending(i)"></app-upload-cloud-flare></td>
+    <td><app-upload-cloud-flare [img]="trending.thumb" (dataEvent)="trending.thumb = $event; api.updateTrending(i)"></app-upload-cloud-flare></td>
     <td><input style="width: 100px" type="text" [(ngModel)]="trending.name" (change)="api.updateTrending(i)"></td>
     <td><input style="width: 100px" type="text" [(ngModel)]="trending.description" (change)="api.updateTrending(i)"></td>
     <td><input style="width: 100px" type="number" [(ngModel)]="trending.top" (change)="api.updateTrending(i)"></td>
