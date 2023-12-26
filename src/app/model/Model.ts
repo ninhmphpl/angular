@@ -72,6 +72,7 @@ export class TrendingType {
   top!: number;
 
   banner!: string;
+  requiredVersion!:number;
 }
 
 export class FormIcon {

@@ -13,9 +13,9 @@ import { MusicComponent } from './music/music.component';
 import { StyleTextComponent } from './style-text/style-text.component';
 import { StyleImageComponent } from './style-image/style-image.component';
 import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
-import { UploadFtpComponent } from './upload-ftp/upload-ftp.component';
 import { FormIconComponent } from './form-icon/form-icon.component';
 import { QuestionComponent } from './question/question.component';
+import {UploadCloudFlareComponent} from "./upload-cloud-flare/upload-cloud-flare.component";
 
 @NgModule({
   declarations: [
@@ -28,9 +28,9 @@ import { QuestionComponent } from './question/question.component';
     StyleTextComponent,
     StyleImageComponent,
     UploadMultipleComponent,
-    UploadFtpComponent,
     FormIconComponent,
-    QuestionComponent
+    QuestionComponent,
+    UploadCloudFlareComponent
   ],
   imports: [
     BrowserModule,

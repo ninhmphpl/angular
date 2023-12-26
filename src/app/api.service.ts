@@ -21,7 +21,7 @@ export class ApiService {
 
   getTrending() {
     let group = (this.group) ? "&group=" + this.group : ""
-    this.http.get(urlHost + "/now/v1/trending?edit=true" + group).subscribe((value: any) => {
+    this.http.get(urlHost + "/now/v1/trending?edit=true&version=9999" + group).subscribe((value: any) => {
       this.trendings = value.data
     }, error => alert(error.error.detail))
   }
@@ -57,7 +57,7 @@ export class ApiService {
   trendingTypes: TrendingType[] = []
 
   getTrendingType() {
-    this.http.get(urlHost + "/now/v1/trendingType").subscribe((value: any) => {
+    this.http.get(urlHost + "/now/v1/trendingType?version=9999").subscribe((value: any) => {
       this.trendingTypes = value.data
     }, error => alert(error.error.detail))
   }
