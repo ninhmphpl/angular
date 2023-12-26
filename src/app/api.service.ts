@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginService} from "./login/login.service";
 import {environment} from "./environment";
-import {Image, Music, Style, Trending, TrendingType} from "./model/Model";
+import {Image, Music, PopupTrending, Style, Trending, TrendingType} from "./model/Model";
 
 
 export const urlHost = environment.url
@@ -21,7 +21,7 @@ export class ApiService {
 
   getTrending() {
     let group = (this.group) ? "&group=" + this.group : ""
-    this.http.get(urlHost + "/now/v1/trending?edit=true" + group).subscribe((value: any) => {
+    this.http.get(urlHost + "/now/v1/trending?edit=true&version=100" + group).subscribe((value: any) => {
       this.trendings = value.data
     }, error => alert(error.error.detail))
   }
@@ -57,7 +57,7 @@ export class ApiService {
   trendingTypes: TrendingType[] = []
 
   getTrendingType() {
-    this.http.get(urlHost + "/now/v1/trendingType").subscribe((value: any) => {
+    this.http.get(urlHost + "/now/v1/trendingType?version=100").subscribe((value: any) => {
       this.trendingTypes = value.data
     }, error => alert(error.error.detail))
   }
@@ -195,5 +195,34 @@ export class ApiService {
       this.images.splice(i, 1)
     }, error => alert(error.error.detail))
   }
+
+  //--------------------------------- PopupTrending ---------------------------------------------
+  popupTrendings: PopupTrending[] = []
+
+  getPopupTrending() {
+    this.http.get(urlHost + "/now/v1/popupTrending").subscribe((value: any) => {
+      this.popupTrendings = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  createPopupTrending() {
+    this.http.post(urlHost + "/now/v1/popupTrending", new PopupTrending(), this.login.getHeader()).subscribe((value: any) => {
+      this.popupTrendings.unshift(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  updatePopupTrending(index: number) {
+    this.http.post(urlHost + "/now/v1/popupTrending", this.popupTrendings[index], this.login.getHeader()).subscribe((value: any) => {
+      this.popupTrendings[index] = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  deletePopupTrending(index: number) {
+    this.http.delete(urlHost + "/now/v1/popupTrending/" + this.popupTrendings[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.popupTrendings[index] = value.data
+      this.popupTrendings.splice(index, 1)
+    }, error => alert(error.error.detail))
+  }
+
 
 }

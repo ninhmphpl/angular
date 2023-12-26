@@ -16,6 +16,7 @@ import { StyleImageComponent } from './style-image/style-image.component';
 import { StickerComponent } from './sticker/sticker.component';
 import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
 import { UploadCloudFlareComponent } from './upload-cloud-flare/upload-cloud-flare.component';
+import { PopupTrendingComponent } from './popup-trending/popup-trending.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UploadCloudFlareComponent } from './upload-cloud-flare/upload-cloud-fla
     StyleImageComponent,
     StickerComponent,
     UploadMultipleComponent,
-    UploadCloudFlareComponent
+    UploadCloudFlareComponent,
+    PopupTrendingComponent
   ],
   imports: [
     BrowserModule,

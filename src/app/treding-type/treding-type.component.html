@@ -11,6 +11,7 @@
     <td>Name</td>
     <td>Top</td>
     <td>Value</td>
+    <td>Required Version</td>
     <td>Delete</td>
   </tr>
   <tr *ngFor="let trendingType of api.trendingTypes let i = index">
@@ -18,6 +19,7 @@
     <td><input type="text" [(ngModel)]="trendingType.name" (change)="api.updateTrendingType(i)"></td>
     <td><input type="number" [(ngModel)]="trendingType.top" (change)="api.updateTrendingType(i)"></td>
     <td><input type="number" [(ngModel)]="trendingType.value" (change)="api.updateTrendingType(i)"></td>
+    <td><input type="number" [(ngModel)]="trendingType.requiredVersion" (change)="api.updateTrendingType(i)"></td>
     <td><button (click)="api.deleteTrendingType(i)">Delete</button></td>
   </tr>
 </table>
