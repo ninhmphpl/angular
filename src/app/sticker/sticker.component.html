@@ -1,0 +1,31 @@
+<table>
+  <tbody>
+  <tr>
+    <td colspan="3">
+      <button (click)="api.createSticker()">Create new</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td>Premium</td>
+    <td>Image</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let sticker of api.stickers, let i = index">
+    <td><input type="text" [(ngModel)]="sticker.name" (change)="api.updateSticker(i)"></td>
+    <td><input type="checkbox" [(ngModel)]="sticker.premium" (change)="api.updateSticker(i)"></td>
+    <td>
+      <div class="row row-cols-auto">
+        <div class="col" *ngFor="let image of sticker.images, let j = index">
+          <img style="height: 40px; width: 40px" alt="" [src]="image">
+          <span><button (click)="sticker.images.splice(j,1); api.updateSticker(i)">X</button></span>
+        </div>
+      </div>
+      <app-upload-multiple (uploadDone)="sticker.images = sticker.images.concat($event); api.updateSticker(i)"></app-upload-multiple>
+    </td>
+    <td>
+      <button (click)="api.deleteSticker(i)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,36 @@
+<table>
+  <tbody>
+  <tr>
+    <td colspan="3">
+      <button (click)="api.createCategory()">Create new</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td>Image</td>
+    <td>Stickers</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let category of api.cagegorys, let i = index">
+    <td><input type="text" [(ngModel)]="category.name" (change)="api.updateCategory(i)"></td>
+    <td><app-upload-cloud-flare [img]="category.image" (dataEvent)="category.image = $event; api.updateCategory(i)"></app-upload-cloud-flare></td>
+    <td>
+      <div *ngFor="let s of category.stickers, let j = index">
+        <img style="width: 20px; height: 20px" [src]="(s.images && s.images.length > 0)?s.images[0] : ''" alt="image">
+        <span>{{s.name}}</span>
+        <span><button (click)="category.stickers.splice(j,1); api.updateCategory(i)">X</button></span>
+      </div>
+      <div>
+        <span>Add Sticker</span>
+        <select [(ngModel)]="stickerSelected" (change)="addSticker(i)">
+          <option *ngFor="let sticker of api.stickers" [ngValue]="sticker">{{sticker.name}}</option>
+        </select>
+      </div>
+    </td>
+    <td>
+      <button (click)="api.deleteCategory(i)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
