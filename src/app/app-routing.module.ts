@@ -3,7 +3,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {TrendingComponent} from "./trending/trending.component";
 import {TredingTypeComponent} from "./treding-type/treding-type.component";
 import {MusicComponent} from "./music/music.component";
-import {PopupTrending, Style} from "./model/Model";
 import {StyleComponent} from "./style/style.component";
 import {StickerComponent} from "./sticker/sticker.component";
 import {PopupTrendingComponent} from "./popup-trending/popup-trending.component";
@@ -14,7 +13,7 @@ const routes: Routes = [
   {path:"music",component:MusicComponent},
   {path:"style",component:StyleComponent},
   {path:"sticker",component:StickerComponent},
-  // {path:"popup",component:PopupTrendingComponent},
+  {path:"popup",component:PopupTrendingComponent},
 ];
 
 
