@@ -32,7 +32,8 @@ import { PopupTrendingComponent } from './popup-trending/popup-trending.componen
     StickerComponent,
     UploadMultipleComponent,
     UploadCloudFlareComponent,
-    PopupTrendingComponent
+    PopupTrendingComponent,
+    // PopupTrendingComponent
   ],
   imports: [
     BrowserModule,

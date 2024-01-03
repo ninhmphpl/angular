@@ -14,7 +14,7 @@ const routes: Routes = [
   {path:"music",component:MusicComponent},
   {path:"style",component:StyleComponent},
   {path:"sticker",component:StickerComponent},
-  {path:"popup",component:PopupTrendingComponent},
+  // {path:"popup",component:PopupTrendingComponent},
 ];
 
 
