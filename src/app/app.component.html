@@ -1,8 +1,9 @@
 <app-login></app-login>
 <div *ngIf="login.userInfo">
-  <div>
-    <button routerLink="/category">Category</button>
-    <button routerLink="/sticker">Sticker</button>
+  <div class="btn-group">
+    <button class="btn btn-primary" routerLink="/category">Category</button>
+    <button class="btn btn-primary" routerLink="/sticker">Sticker</button>
+    <button class="btn btn-primary" routerLink="/style">Style</button>
   </div>
   <router-outlet></router-outlet>
 </div>

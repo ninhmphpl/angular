@@ -11,7 +11,7 @@ export class UploadMultipleComponent {
   @Output() dataEvent = new EventEmitter<string>();
   @Output() uploadDone = new EventEmitter<string[]>();
   @Input() path : string = '';
-  @Input() buttonName : string = 'button';
+  @Input() buttonName : string = 'Upload multiple';
   numberUpload = 0
   numberUploadDone = 0
 

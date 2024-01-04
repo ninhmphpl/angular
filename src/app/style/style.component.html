@@ -1,1 +1,26 @@
-<p>style works!</p>
+<table class="table table-striped">
+  <tbody>
+  <tr>
+    <td colspan="4">
+      <button class="btn btn-outline-primary" (click)="api.createStyle()">Create new</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Image</td>
+    <td>Name</td>
+    <td>Detail</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let style of api.styles, let i = index">
+    <td>
+      <app-upload-cloud-flare [img]="style.image"
+                              (dataEvent)="style.image=$event;api.updateStyle(i)"></app-upload-cloud-flare>
+    </td>
+    <td><input class="form-control" type="text" [(ngModel)]="style.name" (change)="api.updateStyle(i)"></td>
+    <td><input class="form-control" type="text" [(ngModel)]="style.detail" (change)="api.updateStyle(i)"></td>
+    <td>
+      <button class="btn btn-outline-primary" (click)="api.deleteStyle(i)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
