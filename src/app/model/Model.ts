@@ -11,3 +11,11 @@ export class Category {
   image!: string;
   stickers!: Sticker[]; // Assuming Sticker is another TypeScript class
 }
+
+export class Style {
+  id!: number;
+  name!: string;
+  image!: string;
+  detail!: string;
+}
+

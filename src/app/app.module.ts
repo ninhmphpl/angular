@@ -10,6 +10,7 @@ import { UploadMultipleComponent } from './upload-multiple/upload-multiple.compo
 import {UploadCloudFlareComponent} from "./upload-cloud-flare/upload-cloud-flare.component";
 import { StickerComponent } from './sticker/sticker.component';
 import { CategoryComponent } from './category/category.component';
+import { StyleComponent } from './style/style.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CategoryComponent } from './category/category.component';
     UploadMultipleComponent,
     UploadCloudFlareComponent,
     StickerComponent,
-    CategoryComponent
+    CategoryComponent,
+    StyleComponent
   ],
   imports: [
     BrowserModule,

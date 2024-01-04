@@ -7,11 +7,11 @@ import {Sticker} from "../model/Model";
   templateUrl: './sticker.component.html',
   styleUrls: ['./sticker.component.scss']
 })
-export class StickerComponent implements OnInit{
+export class StickerComponent implements OnInit {
 
-  stickerSelected : Sticker | null = null;
-  constructor(public api : ApiService) {
+  constructor(public api: ApiService) {
   }
+
   ngOnInit(): void {
     this.api.getSticker()
   }
