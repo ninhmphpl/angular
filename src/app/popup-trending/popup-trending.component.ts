@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../api.service";
-import {publishFacade} from "@angular/compiler";
 
 @Component({
   selector: 'app-popup-trending',
@@ -15,5 +14,4 @@ export class PopupTrendingComponent implements OnInit{
     this.api.getTrending()
   }
 
-  protected readonly publishFacade = publishFacade;
 }
