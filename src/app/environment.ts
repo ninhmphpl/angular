@@ -1,4 +1,4 @@
 export const environment = {
-  url : "http://taptap.procyoni.com:81",
+  url : "http://taptap-test.heratech.space",
   keySaveToken : "TOKEN-AI-ART"
 }

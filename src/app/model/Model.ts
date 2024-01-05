@@ -69,6 +69,8 @@ export class TrendingType {
 
   premium!: boolean;
 
+  rank!: number;
+
   top!: number;
 
   banner!: string;

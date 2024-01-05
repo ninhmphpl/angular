@@ -11,6 +11,7 @@
     <td>Name</td>
     <td>Top</td>
     <td>Value</td>
+    <td>Rank</td>
     <td>Required Version</td>
     <td>Delete</td>
   </tr>
@@ -19,6 +20,7 @@
     <td><input type="text" [(ngModel)]="trendingType.name" (change)="api.updateTrendingType(i)"></td>
     <td><input type="number" [(ngModel)]="trendingType.top" (change)="api.updateTrendingType(i)"></td>
     <td><input type="number" [(ngModel)]="trendingType.value" (change)="api.updateTrendingType(i)"></td>
+    <td><input type="number" [(ngModel)]="trendingType.rank" (change)="api.updateTrendingType(i)"></td>
     <td><input type="number" [(ngModel)]="trendingType.requiredVersion" (change)="api.updateTrendingType(i)"></td>
     <td><button (click)="api.deleteTrendingType(i)">Delete</button></td>
   </tr>
