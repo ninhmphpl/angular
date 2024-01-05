@@ -1,85 +1,37 @@
-export class Image {
-  id!: string;
-
-  url!: string;
-  type!: string;
-}
-
-export class Music {
-  id!: string;
-
-  name!: string;
-
-  url!: string;
-
-  description!: string;
-
-  thumb!: string;
-
-  show!: boolean;
-
-  top!: number;
-}
-
-export class Style {
-  id!: string;
-
-  text!: string[];
-
-  images!: Image[];
-  type!: string;
-}
-
-export class Trending {
-  id!: string;
-
-  name!: string;
-
-  url!: string;
-
-  description!: string;
-
-  thumb!: string;
-
-  show!: boolean;
-
-  trendingType!: TrendingType;
-
-  top!: number;
-
-  group!: string;
-
-  like!: string;
-
-  music!: Music;
-}
-
-export class TrendingType {
-  id!: string;
-
-  name!: string;
-
-  value!: number;
-
-  url!: string;
-
-  show!: boolean;
-
-  musics!: Music[];
-
-  premium!: boolean;
-
-  top!: number;
-
-  banner!: string;
-  requiredVersion!: number;
-}
-
-export class PopupTrending {
+export class Template {
   id!: number;
+
   name!: string;
-  detail!: string;
-  trendingTarget!: Trending;
-  image!: string;
+
+  thumb!: string;
+
+  url!: string;
+
+  type!: string;
+
+  group!: Group;
+
+  femaleLeft: boolean = false;
+
+  femaleImage!: string;
+
+  maleImage!: string;
+
+  premium: boolean = false;
+
+  version: number = 0;
+
+  rank: number = 0;
 }
 
+export class Group {
+
+  id!: number;
+
+  name!: string;
+
+  version: number = 0;
+
+  rank: number = 0;
+
+}

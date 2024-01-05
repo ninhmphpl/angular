@@ -1,12 +1,8 @@
 <app-login></app-login>
 <div *ngIf="login.userInfo">
-  <div>
-    <button routerLink="/trending">Trending</button>
-    <button routerLink="/trendingType">TrendingType</button>
-    <button routerLink="/popup">Popup</button>
-    <button routerLink="/style">Style</button>
-    <button routerLink="/music">Music</button>
-    <button routerLink="/sticker">Sicker</button>
+  <div class="btn-group">
+    <button class="btn btn-primary" routerLink="/trending">Template</button>
+    <button class="btn btn-primary" routerLink="/trendingType">Group</button>
   </div>
   <router-outlet></router-outlet>
 </div>
