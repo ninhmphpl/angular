@@ -1,0 +1,37 @@
+<table class="table table-striped">
+  <tbody>
+  <tr><button class="btn btn-outline-primary" (click)="api.createTemplate()">Create new</button></tr>
+  <tr>
+    <td>
+      <select class="form-select" [(ngModel)]="api.group">
+        <option [ngValue]="null">All</option>
+        <option *ngFor="let group of api.groups" [ngValue]="group">{{group.name}}</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td>Thumb</td>
+    <td>Url</td>
+    <td>Female Image</td>
+    <td>Male Image</td>
+    <td>Name</td>
+    <td>Rank</td>
+    <td>Version requirement</td>
+    <td>Female Left</td>
+    <td>Premium</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let template of api.templates, let i = index">
+    <td><app-upload-cloud-flare [img]="template.thumb" (dataEvent)="template.thumb = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
+    <td><app-upload-cloud-flare [img]="template.url" (dataEvent)="template.url = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
+    <td><app-upload-cloud-flare [img]="template.femaleImage" (dataEvent)="template.femaleImage = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
+    <td><app-upload-cloud-flare [img]="template.maleImage" (dataEvent)="template.maleImage = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
+    <td><input class="form-control" type="text" [(ngModel)]="template.name" (change)="api.updateTemplate(i)"></td>
+    <td><input class="form-control" type="number" [(ngModel)]="template.rank" (change)="api.updateTemplate(i)"></td>
+    <td><input class="form-control" type="number" [(ngModel)]="template.version" (change)="api.updateTemplate(i)"></td>
+    <td><input class="form-check" type="checkbox" [(ngModel)]="template.femaleLeft" (change)="api.updateTemplate(i)"></td>
+    <td><input class="form-check" type="checkbox" [(ngModel)]="template.premium" (change)="api.updateTemplate(i)"></td>
+    <td><button class="btn btn-outline-danger" (click)="api.deleteTemplate(i)">Delete</button></td>
+  </tr>
+  </tbody>
+</table>
