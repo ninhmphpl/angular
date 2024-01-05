@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginService} from "./login/login.service";
 import {environment} from "./environment";
-import {Group, Template} from "./model/Model";
+import {Music, Group, Template} from "./model/Model";
 
 
 export const urlHost = environment.url
@@ -70,6 +70,34 @@ export class ApiService {
     this.http.delete(urlHost + "/api/couple/group/" + this.groups[index].id, this.login.getHeader()).subscribe((value: any) => {
       this.groups[index] = value.data
       this.groups.splice(index, 1)
+    }, error => alert(error.error.detail))
+  }
+
+  //--------------------------------- Music ---------------------------------------------
+  musics: Music[] = []
+
+  getMusic() {
+    this.http.get(urlHost + "/api/couple/music?edit=true&version=100").subscribe((value: any) => {
+      this.musics = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  createMusic() {
+    this.http.post(urlHost + "/api/couple/music", new Music(), this.login.getHeader()).subscribe((value: any) => {
+      this.musics.unshift(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  updateMusic(index: number) {
+    this.http.post(urlHost + "/api/couple/music", this.musics[index], this.login.getHeader()).subscribe((value: any) => {
+      this.musics[index] = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  deleteMusic(index: number) {
+    this.http.delete(urlHost + "/api/couple/music/" + this.musics[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.musics[index] = value.data
+      this.musics.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 

@@ -1,8 +1,10 @@
 <table class="table table-striped">
   <tbody>
-  <tr><button class="btn btn-outline-primary" (click)="api.createTemplate()">Create new</button></tr>
   <tr>
-    <td>
+    <td colspan="10"><button class="btn btn-outline-primary" (click)="api.createTemplate()">Create new</button></td>
+  </tr>
+  <tr>
+    <td colspan="10">
       <select class="form-select" [(ngModel)]="api.group">
         <option [ngValue]="null">All</option>
         <option *ngFor="let group of api.groups" [ngValue]="group">{{group.name}}</option>
@@ -26,6 +28,24 @@
     <td><app-upload-cloud-flare [img]="template.url" (dataEvent)="template.url = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
     <td><app-upload-cloud-flare [img]="template.femaleImage" (dataEvent)="template.femaleImage = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
     <td><app-upload-cloud-flare [img]="template.maleImage" (dataEvent)="template.maleImage = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
+    <td>
+      <select class="form-select">
+        <option [hidden]="true" [ngValue]="template.group">{{(template.group)?template.group.name:"None"}}</option>
+        <option *ngFor="let group of api.groups"  [ngValue]="group">{{group.name}}</option>
+      </select>
+    </td>
+    <td>
+      <select class="form-select">
+        <option [hidden]="true" [ngValue]="template.group">{{(template.group)?template.group.name:"None"}}</option>
+        <option *ngFor="let group of api.groups"  [ngValue]="group">{{group.name}}</option>
+      </select>
+    </td>
+    <td>
+      <select class="form-select">
+        <option [hidden]="true" [ngValue]="template.music">{{(template.music)?template.music.name:"None"}}</option>
+        <option *ngFor="let group of api.groups"  [ngValue]="group">{{group.name}}</option>
+      </select>
+    </td>
     <td><input class="form-control" type="text" [(ngModel)]="template.name" (change)="api.updateTemplate(i)"></td>
     <td><input class="form-control" type="number" [(ngModel)]="template.rank" (change)="api.updateTemplate(i)"></td>
     <td><input class="form-control" type="number" [(ngModel)]="template.version" (change)="api.updateTemplate(i)"></td>

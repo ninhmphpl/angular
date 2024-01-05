@@ -11,6 +11,8 @@ export class Template {
 
   group!: Group;
 
+  music!: Music;
+
   femaleLeft: boolean = false;
 
   femaleImage!: string;
@@ -35,3 +37,14 @@ export class Group {
   rank: number = 0;
 
 }
+
+export class Music {
+
+  id!: number;
+
+  name!: string;
+
+  url!: string;
+
+}
+
