@@ -10,7 +10,7 @@ export class GroupComponent implements OnInit{
   constructor(public api : ApiService) {
   }
   ngOnInit(): void {
-    this.api.getTemplate()
+    this.api.getGroup()
   }
 
 

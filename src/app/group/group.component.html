@@ -1,0 +1,19 @@
+<table class="table table-striped">
+  <tbody>
+  <tr>
+    <td colspan="4"><button class="btn btn-outline-primary" (click)="api.createGroup()">Create</button></td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td>Version</td>
+    <td>Rank</td>
+    <td>Delete</td>
+  </tr>
+  <tr *ngFor="let group of api.groups, let i = index">
+    <td><input class="form-control" type="text" [(ngModel)]="group.name" (change)="api.updateGroup(i)"></td>
+    <td><input class="form-control" type="number" [(ngModel)]="group.version" (change)="api.updateGroup(i)"></td>
+    <td><input class="form-control" type="number" [(ngModel)]="group.rank" (change)="api.updateGroup(i)"></td>
+    <td><button class="btn btn-outline-danger" (click)="api.deleteGroup(i)">Delete</button></td>
+  </tr>
+  </tbody>
+</table>

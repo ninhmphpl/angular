@@ -12,6 +12,7 @@ export class TemplateComponent implements OnInit{
   ngOnInit(): void {
     this.api.getTemplate()
     this.api.getGroup()
+    this.api.getMusic()
   }
 
 
