@@ -3,6 +3,8 @@ export class Sticker {
   images!: string[];
   name!: string;
   premium!: boolean;
+  trending! :boolean;
+  rank!: number;
 }
 
 export class Category {
@@ -10,6 +12,7 @@ export class Category {
   name!: string;
   image!: string;
   stickers!: Sticker[]; // Assuming Sticker is another TypeScript class
+  rank! : number;
 }
 
 export class Style {

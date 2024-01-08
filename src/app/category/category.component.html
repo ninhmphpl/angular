@@ -1,18 +1,20 @@
 <table class="table table-striped">
   <tbody>
   <tr>
-    <td colspan="4">
+    <td colspan="5">
       <button class="btn-outline-primary btn"  (click)="api.createCategory()">Create new</button>
     </td>
   </tr>
   <tr>
     <td>Name</td>
+    <td>Rank</td>
     <td>Image</td>
     <td>Stickers</td>
     <td>Delete</td>
   </tr>
   <tr *ngFor="let category of api.cagegorys, let i = index">
     <td><input class="form-control" type="text" [(ngModel)]="category.name" (change)="api.updateCategory(i)"></td>
+    <td><input class="form-control" type="number" [(ngModel)]="category.rank" (change)="api.updateCategory(i)"></td>
     <td><app-upload-cloud-flare [img]="category.image" (dataEvent)="category.image = $event; api.updateCategory(i)"></app-upload-cloud-flare></td>
     <td>
       <div class="input-group" *ngFor="let s of category.stickers, let j = index">

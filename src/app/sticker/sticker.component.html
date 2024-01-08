@@ -1,21 +1,25 @@
 <table class="table table-striped">
   <tbody>
   <tr>
-    <td colspan="4">
+    <td colspan="6">
       <button class="btn-outline-primary btn" (click)="api.createSticker()">Create new</button>
     </td>
   </tr>
   <tr>
     <td>Name</td>
+    <td>Rank</td>
     <td>Premium</td>
+    <td>Trending</td>
     <td>Image</td>
     <td>Delete</td>
   </tr>
   <tr *ngFor="let sticker of api.stickers, let i = index">
     <td><input class="form-control" type="text" [(ngModel)]="sticker.name" (change)="api.updateSticker(i)"></td>
+    <td><input class="form-control" type="number" [(ngModel)]="sticker.rank" (change)="api.updateSticker(i)"></td>
     <td><input class="form-check" type="checkbox" [(ngModel)]="sticker.premium" (change)="api.updateSticker(i)"></td>
-    <td>
-      <div class="row row-cols-auto">
+    <td><input class="form-check" type="checkbox" [(ngModel)]="sticker.trending" (change)="api.updateSticker(i)"></td>
+    <td class="col-lg-5">
+      <div class="row row-cols-auto overflow-y-scroll" style="max-height: 200px">
         <div class="col" *ngFor="let image of sticker.images, let j = index">
           <div class="input-group">
             <img class="img-thumbnail" style="height: 38px; width: 38px" alt="" [src]="image">
