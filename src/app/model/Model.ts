@@ -20,5 +20,6 @@ export class Style {
   name!: string;
   image!: string;
   detail!: string;
+  premium!: boolean;
 }
 

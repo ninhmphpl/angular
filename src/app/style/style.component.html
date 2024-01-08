@@ -9,6 +9,7 @@
     <td>Image</td>
     <td>Name</td>
     <td>Detail</td>
+    <td>Premium</td>
     <td>Delete</td>
   </tr>
   <tr *ngFor="let style of api.styles, let i = index">
@@ -18,6 +19,7 @@
     </td>
     <td><input class="form-control" type="text" [(ngModel)]="style.name" (change)="api.updateStyle(i)"></td>
     <td><input class="form-control" type="text" [(ngModel)]="style.detail" (change)="api.updateStyle(i)"></td>
+    <td><input class="form-check" type="checkbox" [(ngModel)]="style.premium" (change)="api.updateStyle(i)"></td>
     <td>
       <button class="btn btn-outline-primary" (click)="api.deleteStyle(i)">Delete</button>
     </td>
