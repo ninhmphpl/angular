@@ -1,10 +1,10 @@
 <table class="table table-striped">
   <tbody>
   <tr>
-    <td colspan="12"><button class="btn btn-outline-primary" (click)="api.createTemplate()">Create new</button></td>
+    <td colspan="13"><button class="btn btn-outline-primary" (click)="api.createTemplate()">Create new</button></td>
   </tr>
   <tr>
-    <td colspan="12">
+    <td colspan="13">
       <select class="form-select" [(ngModel)]="api.group" (change)="api.getTemplate()">
         <option [ngValue]="null">All</option>
         <option *ngFor="let group of api.groups" [ngValue]="group">{{group.name}}</option>
@@ -18,6 +18,7 @@
     <td>Male Image</td>
     <td>Group</td>
     <td>Music</td>
+    <td>Type picture (số lượng người trong ảnh)</td>
     <td>Name</td>
     <td>Rank</td>
     <td>Version requirement</td>
@@ -40,6 +41,13 @@
       <select class="form-select" [(ngModel)]="template.music" (change)="api.updateTemplate(i)">
         <option [hidden]="true" [ngValue]="template.music">{{(template.music)?template.music.name:"None"}}</option>
         <option *ngFor="let music of api.musics"  [ngValue]="music">{{music.name}}</option>
+      </select>
+    </td>
+    <td>
+      <select class="form-select" [(ngModel)]="template.type" (change)="api.updateTemplate(i)">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="couple">Couple</option>
       </select>
     </td>
     <td><input class="form-control" type="text" [(ngModel)]="template.name" (change)="api.updateTemplate(i)"></td>
