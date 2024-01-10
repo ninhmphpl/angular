@@ -1,4 +1,5 @@
 export const environment = {
-  url : "http://couple.nowtechai.com",
-  keySaveToken : "TOKEN-AI-ART"
+  url : "http://localhost:8080",
+  // url : "http://couple.nowtechai.com",
+  keySaveToken : "TOKEN-PROX"
 }

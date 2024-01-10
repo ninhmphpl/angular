@@ -1,4 +1,4 @@
 <div>
   <input hidden="hidden" type="file" multiple #inputFile (change)="sendData(inputFile.files)">
-  <button (click)="inputFile.click()">{{buttonName + "(" + numberUploadDone + "/" + numberUpload + ")"}}</button>
+  <button class="btn btn-outline-primary" (click)="inputFile.click()">{{buttonName + "(" + numberUploadDone + "/" + numberUpload + ")"}}</button>
 </div>

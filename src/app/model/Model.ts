@@ -7,6 +7,8 @@ export class Template {
 
   url!: string;
 
+  images! : string[];
+
   type!: string;
 
   group!: Group;

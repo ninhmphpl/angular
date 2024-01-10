@@ -16,6 +16,7 @@
     <td>Url</td>
     <td>Female Image</td>
     <td>Male Image</td>
+    <td>Image Groups</td>
     <td>Group</td>
     <td>Music</td>
     <td>Type picture (số lượng người trong ảnh)</td>
@@ -28,9 +29,16 @@
   </tr>
   <tr *ngFor="let template of api.templates, let i = index">
     <td><app-upload-cloud-flare [img]="template.thumb" (dataEvent)="template.thumb = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
-    <td><app-upload-cloud-flare [img]="template.url" (dataEvent)="template.url = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
+    <td><app-upload-cloud-flare [type]="'video'" [imgWith]="'70px'" [imgHeight]="'100px'" [img]="template.url" (dataEvent)="template.url = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
     <td><app-upload-cloud-flare [img]="template.femaleImage" (dataEvent)="template.femaleImage = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
     <td><app-upload-cloud-flare [img]="template.maleImage" (dataEvent)="template.maleImage = $event; api.updateTemplate(i)"></app-upload-cloud-flare></td>
+    <td>
+      <div *ngFor="let img of template.images, let j = index" class="btn btn-group">
+        <img class="img-thumbnail" style="width: 50px; height: 50px" [src]="img" alt="">
+        <button class="btn btn-outline-danger" (click)="template.images.splice(j, 1); api.updateTemplate(i)">X</button>
+      </div>
+      <app-upload-multiple (dataEvent)="template.images.push($event)" (uploadDone)="api.updateTemplate(i)"></app-upload-multiple>
+    </td>
     <td>
       <select class="form-select" [(ngModel)]="template.group" (change)="api.updateTemplate(i)">
         <option [hidden]="true" [ngValue]="template.group">{{(template.group)?template.group.name:"None"}}</option>
