@@ -1,10 +1,10 @@
 <table class="table table-striped">
   <tbody>
   <tr>
-    <td colspan="13"><button class="btn btn-outline-primary" (click)="api.createTemplate()">Create new</button></td>
+    <td colspan="14"><button class="btn btn-outline-primary" (click)="api.createTemplate()">Create new</button></td>
   </tr>
   <tr>
-    <td colspan="13">
+    <td colspan="14">
       <select class="form-select" [(ngModel)]="api.group" (change)="api.getTemplate()">
         <option [ngValue]="null">All</option>
         <option *ngFor="let group of api.groups" [ngValue]="group">{{group.name}}</option>
