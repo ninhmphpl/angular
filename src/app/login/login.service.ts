@@ -87,8 +87,7 @@ export class LoginService {
   getHeader(){
     return {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": "*",
+        // 'Content-Type': 'application/json',
         'Authorization': localStorage.getItem(environment.keySaveToken)??""
       })
     };
