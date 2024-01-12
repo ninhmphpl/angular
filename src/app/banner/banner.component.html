@@ -16,7 +16,7 @@
   </tr>
   <tr *ngFor="let banner of api.banners, let i = index">
     <td>
-      <app-img-upload [img]="banner.url" (dataEvent)="banner.url = $event; api.updateBanner(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="banner.url" (dataEvent)="banner.url = $event; api.updateBanner(i)"></app-upload-cloud-flare>
     </td>
     <td><input type="text" [(ngModel)]="banner.title" (change)="api.updateBanner(i)"></td>
     <td><input type="number" [(ngModel)]="banner.sort" (change)="api.updateBanner(i)"></td>

@@ -17,7 +17,7 @@
   </tr>
   <tr *ngFor="let intro of api.intros, let i = index">
     <td>
-      <app-img-upload [img]="intro.url" (dataEvent)="intro.url = $event; api.updateIntro(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="intro.url" (dataEvent)="intro.url = $event; api.updateIntro(i)"></app-upload-cloud-flare>
     </td>
     <td><input type="text" [(ngModel)]="intro.title" (change)="api.updateIntro(i)"></td>
     <td><input type="text" [(ngModel)]="intro.description" (change)="api.updateIntro(i)"></td>

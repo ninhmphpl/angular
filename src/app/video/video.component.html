@@ -17,7 +17,7 @@
   </tr>
   <tr *ngFor="let video of api.videos, let i = index">
     <td>
-      <app-img-upload [img]="video.url" (dataEvent)="video.url = $event; api.updateVideo(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="video.url" (dataEvent)="video.url = $event; api.updateVideo(i)"></app-upload-cloud-flare>
     </td>
     <td><input type="text" [(ngModel)]="video.title" (change)="api.updateVideo(i)"></td>
     <td><input type="number" [(ngModel)]="video.sort" (change)="api.updateVideo(i)"></td>
