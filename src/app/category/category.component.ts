@@ -14,16 +14,6 @@ export class CategoryComponent implements OnInit{
   }
   ngOnInit(): void {
     this.api.getCategory()
-    this.api.getSticker()
-  }
-
-  addSticker(i : number){
-    if(this.stickerSelected){
-      if(this.api.cagegorys[i].stickers == null) this.api.cagegorys[i].stickers = []
-      this.api.cagegorys[i].stickers.push(this.stickerSelected)
-      this.api.updateCategory(i)
-    }
-    this.stickerSelected = null;
   }
 
 }

@@ -1,7 +1,7 @@
 <table class="table table-striped">
   <tbody>
   <tr>
-    <td colspan="6">
+    <td colspan="7">
       <button class="btn-outline-primary btn" (click)="api.createSticker()">Create new</button>
     </td>
   </tr>
@@ -10,6 +10,7 @@
     <td>Rank</td>
     <td>Premium</td>
     <td>Trending</td>
+    <td>Category</td>
     <td>Image</td>
     <td>Delete</td>
   </tr>
@@ -18,6 +19,12 @@
     <td><input class="form-control" type="number" [(ngModel)]="sticker.rank" (change)="api.updateSticker(i)"></td>
     <td><input class="form-check" type="checkbox" [(ngModel)]="sticker.premium" (change)="api.updateSticker(i)"></td>
     <td><input class="form-check" type="checkbox" [(ngModel)]="sticker.trending" (change)="api.updateSticker(i)"></td>
+    <td>
+      <select class="form-select" [(ngModel)]="sticker.category" (change)="api.updateSticker(i)">
+        <option [hidden]="true" [ngValue]="sticker.category">{{(sticker.category)?sticker.category.name:'Category'}}</option>
+        <option *ngFor="let category of api.cagegorys" [ngValue]="category">{{category.name}}</option>
+      </select>
+    </td>
     <td class="col-lg-5">
       <div class="row row-cols-auto overflow-y-scroll" style="max-height: 200px">
         <div class="col" *ngFor="let image of sticker.images, let j = index">

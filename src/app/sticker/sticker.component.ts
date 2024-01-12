@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../api.service";
-import {Sticker} from "../model/Model";
 
 @Component({
   selector: 'app-sticker',
@@ -14,6 +13,7 @@ export class StickerComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.getSticker()
+    this.api.getCategory()
   }
 
 }

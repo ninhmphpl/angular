@@ -5,13 +5,13 @@ export class Sticker {
   premium!: boolean;
   trending! :boolean;
   rank!: number;
+  category!: Category;
 }
 
 export class Category {
   id!: number;
   name!: string;
   image!: string;
-  stickers!: Sticker[]; // Assuming Sticker is another TypeScript class
   rank! : number;
 }
 
