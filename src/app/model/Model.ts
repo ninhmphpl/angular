@@ -23,3 +23,13 @@ export class Style {
   premium!: boolean;
 }
 
+export class Gif{
+  constructor(url? : string) {
+    if(url != null) {
+      this.url = url;
+    }
+  }
+  id!: number;
+  url!: string;
+}
+

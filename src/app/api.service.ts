@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginService} from "./login/login.service";
 import {environment} from "./environment";
-import {Category, Sticker, Style} from "./model/Model";
+import {Category, Gif, Sticker, Style} from "./model/Model";
 
 
 export const urlHost = environment.url
@@ -95,6 +95,34 @@ export class ApiService {
       this.styles.splice(i, 1)
     }, error => alert(error.error.detail))
   }
+
+  // gif
+  gifs : Gif[] = []
+
+  getGif() {
+    this.http.get<{ code: string, data: Gif[] }>(urlHost + "/api/sticker/gif?edit=true").subscribe(value => {
+      this.gifs = value.data;
+    }, error => alert(error.error.detail))
+  }
+
+  createGif(url : string) {
+    this.http.post<{ code: string, data: Gif}>(urlHost + "/api/sticker/gif", new Gif(url), this.login.getHeader()).subscribe(value => {
+      this.gifs.unshift(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  updateGif(i: number) {
+    this.http.post<{ code: string, data: Gif}>(urlHost + "/api/sticker/gif", this.gifs[i], this.login.getHeader()).subscribe(value => {
+      this.gifs[i] = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  deleteGif(i: number) {
+    this.http.delete<undefined>(urlHost + "/api/sticker/gif/" + this.gifs[i].id, this.login.getHeader()).subscribe(value => {
+      this.gifs.splice(i, 1)
+    }, error => alert(error.error.detail))
+  }
+
 
 
 

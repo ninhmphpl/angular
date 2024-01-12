@@ -11,6 +11,7 @@ import {UploadCloudFlareComponent} from "./upload-cloud-flare/upload-cloud-flare
 import { StickerComponent } from './sticker/sticker.component';
 import { CategoryComponent } from './category/category.component';
 import { StyleComponent } from './style/style.component';
+import { GifComponent } from './gif/gif.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { StyleComponent } from './style/style.component';
     UploadCloudFlareComponent,
     StickerComponent,
     CategoryComponent,
-    StyleComponent
+    StyleComponent,
+    GifComponent
   ],
   imports: [
     BrowserModule,
