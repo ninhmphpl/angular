@@ -4,8 +4,8 @@ import {HttpClient} from "@angular/common/http";
 const uploadUrl = 'http://s3.heratech.space/cloudflare/upload-file';
 const params = {
   folder: '',
-  bucket: 'ai-art',
-  domain: 'http://ai-art.proxglobal.co/'
+  bucket: 'ai-art-2',
+  domain: 'http://ai-art-2.proxglobal.co/'
 };
 @Injectable({
   providedIn: 'root'
