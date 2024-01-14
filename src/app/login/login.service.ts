@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "./User";
 import {Router} from "@angular/router";
 import {Auth, GoogleAuthProvider, signInWithPopup} from "@angular/fire/auth";
-import {environment} from "../../../environment/environments";
+import {environment} from "../environments";
 const url = environment.url
 @Injectable({
   providedIn: 'root'

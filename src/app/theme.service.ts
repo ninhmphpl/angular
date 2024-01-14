@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Source} from "../model/Source";
 import {HttpClient} from "@angular/common/http";
-import {environment, errorAlert, successAlert} from "../../environment/environments";
+import {environment, errorAlert, successAlert} from "./environments";
 import {Theme} from "../model/Theme";
 import {Category} from "../model/Category";
 import {CallIcon} from "../model/CallIcon";

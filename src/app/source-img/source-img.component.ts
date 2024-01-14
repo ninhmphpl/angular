@@ -1,5 +1,5 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {environment} from "../../../environment/environments";
+import {environment} from "../environments";
 import {Source} from "../../model/Source";
 import {HttpClient} from "@angular/common/http";
 import {ThemeService} from "../theme.service";

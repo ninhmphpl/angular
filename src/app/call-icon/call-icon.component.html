@@ -21,14 +21,14 @@
     <tbody>
     <tr *ngFor="let icon of themeService.callIcons, let i = index">
       <td>
-        <app-img-upload [src]="icon.accept" (dataEvent)="icon.accept = $event; save(i)"></app-img-upload>
+        <app-upload-cloud-flare [img]="icon.accept" (dataEvent)="icon.accept = $event; save(i)"></app-upload-cloud-flare>
       </td>
       <td>
-        <app-img-upload [src]="icon.deny" (dataEvent)="icon.deny = $event; save(i)"></app-img-upload>
+        <app-upload-cloud-flare [img]="icon.deny" (dataEvent)="icon.deny = $event; save(i)"></app-upload-cloud-flare>
       </td>
       <td>
-        <app-img-upload [type]="'input'" [imgWith]="'100%'" [imgHeight]="'40px'" [src]="icon.acceptJson" (dataEvent)="icon.acceptJson = $event; save(i)"></app-img-upload>
-        <app-img-upload [type]="'input'" [imgWith]="'100%'" [imgHeight]="'40px'" [src]="icon.denyJson" (dataEvent)="icon.denyJson = $event; save(i)"></app-img-upload>
+        <app-upload-cloud-flare [type]="'input'" [imgWith]="'100%'" [imgHeight]="'40px'" [img]="icon.acceptJson" (dataEvent)="icon.acceptJson = $event; save(i)"></app-upload-cloud-flare>
+        <app-upload-cloud-flare [type]="'input'" [imgWith]="'100%'" [imgHeight]="'40px'" [img]="icon.denyJson" (dataEvent)="icon.denyJson = $event; save(i)"></app-upload-cloud-flare>
         <div class="input-group">
           <span class="input-group-text">Type</span>
           <select class="form-select" [(ngModel)]="icon.type" (change)="save(i)">

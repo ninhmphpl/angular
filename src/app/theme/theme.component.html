@@ -89,8 +89,8 @@
       <img class="w-25 position-absolute bottom-0 end-0 m-3" [src]="theme.call_icon.deny" alt="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" (click)="themeSelection = i">
     </div>
     <div class=" position-relative" style="width: 150px">
-      <app-img-upload [imgWith]="'100%'" [imgHeight]="'40px'" [type]="'audio'" [src]="theme.ringstone_url"
-                      (dataEvent)="theme.ringstone_url = $event; save(i)"></app-img-upload>
+      <app-upload-cloud-flare [imgWith]="'100%'" [imgHeight]="'40px'" [type]="'audio'" [img]="theme.ringstone_url"
+                      (dataEvent)="theme.ringstone_url = $event; save(i)"></app-upload-cloud-flare>
 
       <div class="input-group input-group-sm w-100">
         <span class="input-group-text w-50">Priority</span>

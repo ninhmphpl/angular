@@ -1,7 +1,8 @@
 import Swal from 'sweetalert2';
 
 export const environment = {
-  url : "http://theme.tolimanspaceni.com",
+  url : "http://theme-android-test.heratech.space",
+  // url : "http://theme.tolimanspaceni.com",
   keySaveToken : "Paw-Patrol-X-Token",
   firebase: {
     apiKey: "AIzaSyBk7gs8EjXEiVROAY326uHKdFC6eLLNE8A",

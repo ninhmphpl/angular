@@ -5,7 +5,7 @@
   <tr *ngFor="let category of themeService.categories; let i = index">
     <td>{{category.id}}</td>
     <td>
-      <app-img-upload [src]="category.img" (dataEvent)="category.img = $event; save(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="category.img" (dataEvent)="category.img = $event; save(i)"></app-upload-cloud-flare>
     </td>
     <td>
       <div class="input-group">

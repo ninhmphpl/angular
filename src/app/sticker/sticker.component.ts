@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {environment} from "../../../environment/environments";
+import {environment} from "../environments";
 import {HttpClient} from "@angular/common/http";
 import {Sticker} from "../../model/Sticker";
 const url = environment.url

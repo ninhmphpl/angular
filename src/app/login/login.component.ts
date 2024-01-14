@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {Auth, GoogleAuthProvider, signInWithPopup} from "@angular/fire/auth";
 import {User} from "./User";
 import {LoginService} from "./login.service";
-import {environment} from "../../../environment/environments";
+import {environment} from "../environments";
 
 const url = environment.url
 @Component({

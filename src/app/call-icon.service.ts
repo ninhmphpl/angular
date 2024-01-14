@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {environment, errorAlert} from "../../environment/environments";
+import {environment, errorAlert} from "./environments";
 import {HttpClient} from "@angular/common/http";
 import {CallIcon} from "../model/CallIcon";
 

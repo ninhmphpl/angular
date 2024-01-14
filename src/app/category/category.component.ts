@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {environment, errorAlert, successAlert} from "../../../environment/environments";
+import {environment, errorAlert, successAlert} from "../environments";
 import {HttpClient} from "@angular/common/http";
 import {Category} from "../../model/Category";
 import {ThemeService} from "../theme.service";
