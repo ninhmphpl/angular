@@ -9,7 +9,7 @@
   </tr>
   <tr *ngFor="let aiPoster of api.aiPosters let i = index">
     <td>
-      <app-img-upload [img]="aiPoster.url" (dataEvent)="aiPoster.url = $event ; api.updateAiPoster(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="aiPoster.url" (dataEvent)="aiPoster.url = $event ; api.updateAiPoster(i)"></app-upload-cloud-flare>
     </td>
     <td>
       <input type="text" [(ngModel)]="aiPoster.name" (change)="api.updateAiPoster(i)">

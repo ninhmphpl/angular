@@ -20,10 +20,10 @@
       <input type="text" style="width: 50px" [(ngModel)]="theme.priority" (change)="api.updateTheme(i)">
     </td>
     <td>
-      <app-img-upload [img]="theme.url" (dataEvent)="theme.url = $event; api.updateTheme(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="theme.url" (dataEvent)="theme.url = $event; api.updateTheme(i)"></app-upload-cloud-flare>
     </td>
     <td>
-      <app-img-upload [img]="theme.thumb" (dataEvent)="theme.thumb = $event; api.updateTheme(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="theme.thumb" (dataEvent)="theme.thumb = $event; api.updateTheme(i)"></app-upload-cloud-flare>
     </td>
     <td>
       <select [(ngModel)]="theme.type" (change)="api.updateTheme(i)">

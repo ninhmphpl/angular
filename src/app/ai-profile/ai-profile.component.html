@@ -23,13 +23,13 @@
   </tr>
   <tr *ngFor="let aiProfile of api.aiProfiles let i = index">
     <td>
-      <app-img-upload [img]="aiProfile.url" (dataEvent)="aiProfile.url = $event; api.updateAiProfile(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="aiProfile.url" (dataEvent)="aiProfile.url = $event; api.updateAiProfile(i)"></app-upload-cloud-flare>
     </td>
     <td>
-      <app-img-upload [img]="aiProfile.thumb" (dataEvent)="aiProfile.thumb = $event; api.updateAiProfile(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="aiProfile.thumb" (dataEvent)="aiProfile.thumb = $event; api.updateAiProfile(i)"></app-upload-cloud-flare>
     </td>
     <td>
-      <app-img-upload [img]="aiProfile.object" (dataEvent)="aiProfile.object = $event; api.updateAiProfile(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="aiProfile.object" (dataEvent)="aiProfile.object = $event; api.updateAiProfile(i)"></app-upload-cloud-flare>
     </td>
     <td>
       <input type="text" [(ngModel)]="aiProfile.name" (change)="api.updateAiProfile(i)">
