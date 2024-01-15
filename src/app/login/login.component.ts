@@ -1,105 +1,65 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {environment} from "../Environment";
-import {Auth, GoogleAuthProvider, signInWithPopup} from "@angular/fire/auth";
 import {User} from "./User";
-
-const url = environment.url
+import {LoginService} from "./login.service";
+import {environment} from "../Environment";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
-  crateUser : User = new User();
+
+  createUser : User = new User();
   email = "";
   password = "";
   users : User[] = []
 
-  constructor(private http: HttpClient, private auth: Auth, private router : Router) {
+  constructor(public loginService : LoginService) {
   }
 
   ngOnInit(): void {
     // localStorage.removeItem(environment.keySaveToken)
+    this.getUserInfo()
+  }
+  getUserInfo(){
+    this.loginService.getUser()
   }
 
   getListUser(){
-    this.http.get(environment.url + "/security/user-list",this.getHeader()).subscribe((value : any) => {
-      if(value.code == 200) this.users = value.data
-    }, error => {
-      alert(error.error.detail)
-    })
+    this.loginService.getListUser(listUser => this.users = listUser)
   }
   addUser(){
-    this.http.post(environment.url + `/security/save-user`,this.crateUser,this.getHeader()).subscribe((value : any) => {
-      if(value.code == 200) this.users.push(value.data)
-    }, error => {
-      alert(error.error.detail)
+    this.loginService.saveUser(this.createUser, user => {
+      this.users.push(user)
     })
   }
   saveUser(i : number){
-    this.http.post(environment.url + `/security/save-user`,this.users[i],this.getHeader()).subscribe((value : any) => {
-      if(value.code == 200) this.users[i] = value.data
-    }, error => {
-      alert(error.error.detail)
+    this.loginService.saveUser(this.users[i], user => {
+      this.users[i] = user
     })
   }
   deleteUser(i : number){
-    this.http.post(environment.url + `/security/delete-user?email=${this.users[i].email}`,{},this.getHeader()).subscribe((value : any) => {
-      if(value.code == 200) this.users.splice(i, 1)
-    }, error => {
-      alert(error.error.detail)
+    this.loginService.deleteUser(this.users[i], () =>{
+      this.users.splice(i, 1)
     })
   }
 
   loginBase() {
-    this.http.post(url + "/public/login", {email : this.email, password : this.password}).subscribe((payload : any)=>{
-      if(payload.code === 200) localStorage.setItem(environment.keySaveToken, payload.data)
-      console.log("Login Success")
-      this.router.navigate(["/video"])
-    }, (error : any)=>{
-      console.log(error)
-      alert(error.error.detail)
+    this.loginService.loginBase(this.email, this.password, () => {
+      this.getUserInfo()
     })
   }
 
   loginEmailGoogle() {
-    const provider = new GoogleAuthProvider();
-    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-    provider.setCustomParameters({
-      'login_hint': 'user@example.com'
-    });
-
-    signInWithPopup(this.auth, provider)
-      .then((result) => {
-        this.auth.currentUser?.getIdToken(/* forceRefresh */ true).then((idToken) => {
-          this.http.post(environment.url + "/public/login-email",{tokenId : idToken}).subscribe((value : any) => {
-            localStorage.setItem(environment.keySaveToken, value.data)
-            this.router.navigate(["/video"])
-          }, error => {
-            console.log(error)
-            alert(error.error.detail)
-          })
-        }).catch((error) => {
-          // Handle error
-        });
-        const user = result.user;
-        console.log(user)
-      }).catch((error) => {
-      console.log(error)
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.log(credential)
-    });
+    this.loginService.loginEmailGoogle(() => {
+      this.getUserInfo()
+    })
   }
 
-  getHeader(){
-    return {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem(environment.keySaveToken)??""
-      })
-    };
+  logout(){
+    this.loginService.userInfo = null
+    localStorage.removeItem(environment.keySaveToken)
   }
+
 
 }

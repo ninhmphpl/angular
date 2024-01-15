@@ -9,11 +9,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { VideoTypeComponent } from './video-type/video-type.component';
 import { LoginComponent } from './login/login.component';
-import {ImgUploadComponent} from "./upload/img-upload/img-upload.component";
 import { SelectComponent } from './select/select.component';
 import {environment} from "./Environment";
 import {initializeApp, provideFirebaseApp} from "@angular/fire/app";
 import {getAuth, provideAuth} from "@angular/fire/auth";
+import {UploadCloudFlareComponent} from "./upload-cloud-flare/upload-cloud-flare.component";
 
 @NgModule({
   declarations: [
@@ -22,8 +22,8 @@ import {getAuth, provideAuth} from "@angular/fire/auth";
     MusicComponent,
     VideoTypeComponent,
     LoginComponent,
-    ImgUploadComponent,
     SelectComponent,
+    UploadCloudFlareComponent
   ],
   imports: [
     BrowserModule,

@@ -43,10 +43,10 @@
         <td><input class="form-control" type="number" style="width: 50px" [(ngModel)]="music.top" (change)="saveMusic(i)" placeholder="Top"></td>
         <td><input class="form-check-input" type="checkbox" [(ngModel)]="music.show" (change)="saveMusic(i)"></td>
         <td>
-          <app-img-upload [imgHeight]="'100px'" [imgWith]="'100px'" (dataEvent)="music.thumb = $event; saveMusic(i)" [img]="music.thumb"></app-img-upload>
+          <app-upload-cloud-flare [imgHeight]="'100px'" [imgWith]="'100px'" (dataEvent)="music.thumb = $event; saveMusic(i)" [img]="music.thumb"></app-upload-cloud-flare>
         </td>
         <td>
-          <app-img-upload [type]="'audio'" [imgHeight]="'50px'" [imgWith]="'300px'" (dataEvent)="music.url = $event; saveMusic(i)" [img]="music.url"></app-img-upload>
+          <app-upload-cloud-flare [type]="'audio'" [imgHeight]="'50px'" [imgWith]="'300px'" (dataEvent)="music.url = $event; saveMusic(i)" [img]="music.url"></app-upload-cloud-flare>
         </td>
         <td><input class="form-control" type="text" [(ngModel)]="music.name" (change)="saveMusic(i)" placeholder="Name"></td>
         <td><input class="form-control" type="text" [(ngModel)]="music.description" (change)="saveMusic(i)" placeholder="Description"></td>

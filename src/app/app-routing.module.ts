@@ -9,7 +9,6 @@ const routes: Routes = [
   {path:"video",component:VideoComponent},
   {path:"music",component:MusicComponent},
   {path:"video-type",component:VideoTypeComponent},
-  {path:"login",component:LoginComponent},
   {path:"",component:VideoComponent}
 ];
 @NgModule({

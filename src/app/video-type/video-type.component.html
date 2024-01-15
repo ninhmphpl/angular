@@ -38,12 +38,12 @@
       </td>
       <td><input class="form-control w-100" type="text" [(ngModel)]="type.name" (change)="save(i)" placeholder="Name"></td>
       <td>
-        <app-img-upload [imgHeight]="'100px'" [imgWith]="'100px'" [img]="type.url"
-                        (dataEvent)="type.url = $event; save(i)"></app-img-upload>
+        <app-upload-cloud-flare [imgHeight]="'100px'" [imgWith]="'100px'" [img]="type.url"
+                        (dataEvent)="type.url = $event; save(i)"></app-upload-cloud-flare>
       </td>
       <td>
-        <app-img-upload [imgHeight]="'50px'" [imgWith]="'100px'" [img]="type.banner"
-                        (dataEvent)="type.banner = $event; save(i)"></app-img-upload>
+        <app-upload-cloud-flare [imgHeight]="'50px'" [imgWith]="'100px'" [img]="type.banner"
+                        (dataEvent)="type.banner = $event; save(i)"></app-upload-cloud-flare>
       </td>
       <td><input class="form-control w-100" type="number" [(ngModel)]="type.value" (change)="save(i)" placeholder="Value"></td>
       <td>

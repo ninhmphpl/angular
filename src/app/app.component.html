@@ -1,13 +1,13 @@
 <img class="position-fixed w-100 h-100 z-0" src="./assets/background.jpg" alt="">
 <div class="position-fixed z-3 end-0 bottom-0 text-light p-1">By G-Coder</div>
-<div class="position-relative">
+<app-login></app-login>
+<div class="position-relative" *ngIf="login.userInfo">
   <div class="">
     <h5 class="h-100 text-light p-2 px-5">Anime Version 1.0</h5>
     <div class="px-3">
       <a routerLink="/video" class="btn btn-outline-warning">Video</a>
       <a routerLink="/video-type" class="btn btn-outline-warning">Video Type</a>
       <a routerLink="/music" class="btn btn-outline-warning">Music</a>
-      <a routerLink="/login" class="btn btn-outline-warning">Login</a>
     </div>
     <router-outlet class="bg-opacity-10"></router-outlet>
   </div>

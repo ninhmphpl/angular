@@ -41,12 +41,12 @@
         </div>
       </td>
       <td>
-        <app-img-upload [type]="'img'" [imgWith]="'100px'" [imgHeight]="'150px'" [img]="video.thumb"
-                        (dataEvent)="video.thumb = $event; saveVideo(i)"></app-img-upload>
+        <app-upload-cloud-flare [type]="'img'" [imgWith]="'100px'" [imgHeight]="'150px'" [img]="video.thumb"
+                        (dataEvent)="video.thumb = $event; saveVideo(i)"></app-upload-cloud-flare>
       </td>
       <td>
-        <app-img-upload [type]="'video'" [imgWith]="'100px'" [imgHeight]="'150px'" [img]="video.url"
-                        (dataEvent)="video.url = $event; saveVideo(i)"></app-img-upload>
+        <app-upload-cloud-flare [type]="'video'" [imgWith]="'100px'" [imgHeight]="'150px'" [img]="video.url"
+                        (dataEvent)="video.url = $event; saveVideo(i)"></app-upload-cloud-flare>
       </td>
       <td>
         <input class="form-control w-100" type="text" [(ngModel)]="video.name" (change)="saveVideo(i)"

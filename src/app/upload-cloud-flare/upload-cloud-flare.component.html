@@ -11,10 +11,5 @@
       </svg>
     </button>
   </div>
-  <div *ngIf="percent > 0">
-    <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-      <div class="progress-bar" [style.width]="percent + '%'"></div>
-    </div>
-  </div>
   <input hidden="hidden"  #input type="file" (change)="sendData($event)">
 </div>
