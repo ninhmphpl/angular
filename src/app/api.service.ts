@@ -44,17 +44,22 @@ export class ApiService {
 
   // sticker
   stickers: Sticker[] = []
-
+  categoryStickerSelected! : Category
   getSticker() {
-    this.http.get<{ code: string, data: Sticker[] }>(urlHost + "/api/sticker/sticker").subscribe(value => {
-      this.stickers = value.data;
-    }, error => alert(error.error.detail))
+    if(this.categoryStickerSelected){
+      this.http.get<{ code: string, data: Sticker[] }>(urlHost + "/api/sticker/sticker/" + this.categoryStickerSelected.id).subscribe(value => {
+        this.stickers = value.data;
+      }, error => alert(error.error.detail))
+    }
   }
 
   createSticker() {
-    this.http.post<{ code: string, data: Sticker}>(urlHost + "/api/sticker/sticker", new Sticker(), this.login.getHeader()).subscribe(value => {
-      this.stickers.unshift(value.data)
-    }, error => alert(error.error.detail))
+    if(this.categoryStickerSelected){
+      this.http.post<{ code: string, data: Sticker}>(urlHost + "/api/sticker/sticker", new Sticker(this.categoryStickerSelected), this.login.getHeader()).subscribe(value => {
+        this.stickers.unshift(value.data)
+      }, error => alert(error.error.detail))
+    }
+
   }
 
   updateSticker(i: number) {

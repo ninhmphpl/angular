@@ -3,6 +3,10 @@
   <tr>
     <td colspan="7">
       <button class="btn-outline-primary btn" (click)="api.createSticker()">Create new</button>
+      <select class="form-select" id="" [(ngModel)]="api.categoryStickerSelected" (change)="api.getSticker()">
+        <option [ngValue]="undefined">Select Category</option>
+        <option *ngFor="let category of api.cagegorys" [ngValue]="category">{{category.name}}</option>
+      </select>
     </td>
   </tr>
   <tr>

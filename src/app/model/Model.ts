@@ -1,4 +1,8 @@
 export class Sticker {
+  constructor(category : Category) {
+    this.category = category
+  }
+
   id!: number;
   images!: string[];
   name!: string;
