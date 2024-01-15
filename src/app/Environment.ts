@@ -1,7 +1,7 @@
 import {HttpHeaders} from "@angular/common/http";
 
 export const environment = {
-  url : "http://74.50.81.148", // Expand
+  url : "http://expand-test.heratech.space", // Expand
   keySaveToken : "Paw-Patrol-X-Token",
   firebase: {
     apiKey: "AIzaSyBk7gs8EjXEiVROAY326uHKdFC6eLLNE8A",
