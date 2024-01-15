@@ -21,7 +21,7 @@
   </tr>
   <tr *ngFor="let theme of api.themes, let i = index">
     <td>
-      <app-img-upload [img]="theme.thumb" (dataEvent)="theme.thumb = $event; api.updateTheme(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="theme.thumb" (dataEvent)="theme.thumb = $event; api.updateTheme(i)"></app-upload-cloud-flare>
     </td>
     <td><input type="text" [(ngModel)]="theme.name" (change)="api.updateTheme(i)"></td>
     <td>

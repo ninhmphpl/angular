@@ -17,7 +17,7 @@
     <td>Delete</td>
   </tr>
   <tr *ngFor="let widget of api.widgets, let i = index">
-    <td><app-img-upload [img]="widget.url" (dataEvent)="widget.url = $event; api.updateWidget(i)"></app-img-upload></td>
+    <td><app-upload-cloud-flare [img]="widget.url" (dataEvent)="widget.url = $event; api.updateWidget(i)"></app-upload-cloud-flare></td>
     <td><input type="text" [(ngModel)]="widget.name" (change)="api.updateWidget(i)"></td>
     <td>
       <select [(ngModel)]="widget.size" (change)="api.updateWidget(i)">

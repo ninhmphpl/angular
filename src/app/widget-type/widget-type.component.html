@@ -26,7 +26,7 @@
           <td>Delete Source</td>
         </tr>
         <tr *ngFor="let source of widgetType.sourceConvert let j = index">
-          <td><app-img-upload [img]="source[1]" (dataEvent)="source[1] = $event; api.updateWidgetType(i)"></app-img-upload></td>
+          <td><app-upload-cloud-flare [img]="source[1]" (dataEvent)="source[1] = $event; api.updateWidgetType(i)"></app-upload-cloud-flare></td>
           <td><input type="text" [(ngModel)]="source[0]" placeholder="key" (change)="api.updateWidgetType(i)"></td>
           <td><button (click)="widgetType.sourceConvert.splice(j,1); api.updateWidgetType(i)">Delete Source</button></td>
         </tr>

@@ -25,10 +25,10 @@
   </tr>
   <tr *ngFor="let wall of api.wallPapers, let i = index">
     <td>
-      <app-img-upload [img]="wall.url" (dataEvent)="wall.url = $event; api.updateWallPaper(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="wall.url" (dataEvent)="wall.url = $event; api.updateWallPaper(i)"></app-upload-cloud-flare>
     </td>
     <td>
-      <app-img-upload [img]="wall.thumb" (dataEvent)="wall.thumb = $event; api.updateWallPaper(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="wall.thumb" (dataEvent)="wall.thumb = $event; api.updateWallPaper(i)"></app-upload-cloud-flare>
     </td>
     <td><input type="text" [(ngModel)]="wall.name" (change)="api.updateWallPaper(i)"></td>
     <td><input type="text" [(ngModel)]="wall.detail" (change)="api.updateWallPaper(i)"></td>

@@ -11,7 +11,7 @@
     <td>Delete</td>
   </tr>
   <tr *ngFor="let icon of api.icons, let i = index">
-    <td><app-img-upload [img]="icon.url" [imgWith]="'50px'" [imgHeight]="'50px'" (dataEvent)="icon.url = $event; api.updateIcon(i)"></app-img-upload></td>
+    <td><app-upload-cloud-flare [img]="icon.url" [imgWith]="'50px'" [imgHeight]="'50px'" (dataEvent)="icon.url = $event; api.updateIcon(i)"></app-upload-cloud-flare></td>
     <td>
       <span>{{(icon.app) ? icon.app.name : "none"}}</span>
       <select class="border-0" style="width: 20px" [(ngModel)]="icon.app" (change)="api.updateIcon(i)">
