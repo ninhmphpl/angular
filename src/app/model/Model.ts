@@ -73,6 +73,7 @@ export class TrendingType {
 
   banner!: string;
   requiredVersion!: number;
+  icons! : string[]
 }
 
 export class PopupTrending {

@@ -12,5 +12,9 @@ export class TredingTypeComponent implements OnInit{
   ngOnInit(): void {
     this.api.getTrendingType()
   }
+  public addIcon(indexTrendingType : number, url : string){
+    if(this.api.trendingTypes[indexTrendingType].icons == null)this.api.trendingTypes[indexTrendingType].icons = []
+    this.api.trendingTypes[indexTrendingType].icons.push(url)
+  }
 
 }
