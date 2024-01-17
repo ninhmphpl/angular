@@ -4,8 +4,8 @@ import {HttpClient} from "@angular/common/http";
 const uploadUrl = 'http://s3.heratech.space/cloudflare/upload-file';
 const params = {
   folder: '',
-  bucket: 'palestine',
-  domain: 'http://palestine.proxglobal.co/'
+  bucket: 'cartoon',
+  domain: 'http://cartoon.proxglobal.co/'
 };
 @Injectable({
   providedIn: 'root'
