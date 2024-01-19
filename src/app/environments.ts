@@ -1,3 +1,3 @@
 export const environments = {
-  url : "http://localhost"
+  url : "http://server.nowtechai.com"
 }
