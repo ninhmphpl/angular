@@ -14,8 +14,16 @@ export class Template {
   top!: number;
   versionRequired!: number;
   alphabet!: Alphabet; // Giả sử bạn đã định nghĩa export class Alphabet như trước
+  sound!: Sound; // Giả sử bạn đã định nghĩa export class Alphabet như trước
 
 }
+
+export class Sound{
+  id!: string;
+  name!: string;
+  soundUrl!:string;
+}
+
 
 export class Color {
   x!: number;

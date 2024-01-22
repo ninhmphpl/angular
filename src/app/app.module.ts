@@ -10,6 +10,7 @@ import { UploadMultipleComponent } from './upload-multiple/upload-multiple.compo
 import { UploadCloudFlareComponent } from './upload-cloud-flare/upload-cloud-flare.component';
 import { AlphabetRenderComponent } from './alphabet-render/alphabet-render.component';
 import { TemplateComponent } from './template/template.component';
+import { SoundComponent } from './sound/sound.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TemplateComponent } from './template/template.component';
     UploadCloudFlareComponent,
     AlphabetRenderComponent,
     TemplateComponent,
+    SoundComponent,
   ],
   imports: [
     BrowserModule,

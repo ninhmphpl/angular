@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginService} from "./login/login.service";
 import {environment} from "./environment";
-import {Alphabet, Template} from "./model/Model";
+import {Alphabet, Sound, Template} from "./model/Model";
 
 
 export const urlHost = environment.url
@@ -66,6 +66,33 @@ export class ApiService {
     this.http.delete(urlHost + "/api/v1/alphabet/" + this.alphabets[index].id, this.login.getHeader()).subscribe((value: any) => {
       this.alphabets[index] = value.data
       this.alphabets.splice(index, 1)
+    }, error => alert(error.error.detail))
+  }
+
+  //--------------------------------- sound ---------------------------------------------
+  public sounds: Sound[] = []
+  public getSound() {
+    this.http.get(urlHost + "/api/v1/sound?edit=true").subscribe((value: any) => {
+      this.sounds = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  public createSound() {
+    this.http.post(urlHost + "/api/v1/sound", new Sound(), this.login.getHeader()).subscribe((value: any) => {
+      this.sounds.unshift(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  public updateSound(index: number) {
+    this.http.post(urlHost + "/api/v1/sound", this.sounds[index], this.login.getHeader()).subscribe((value: any) => {
+      this.sounds[index] = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  public deleteSound(index: number) {
+    this.http.delete(urlHost + "/api/v1/sound/" + this.sounds[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.sounds[index] = value.data
+      this.sounds.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 
