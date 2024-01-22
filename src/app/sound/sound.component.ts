@@ -12,5 +12,11 @@ export class SoundComponent implements OnInit{
   ngOnInit(): void {
     this.api.getSound()
   }
+  next(){
+    this.api.soundPage ++; this.api.getSound()
+  }
+  previous(){
+    this.api.soundPage --; this.api.getSound()
+  }
 
 }

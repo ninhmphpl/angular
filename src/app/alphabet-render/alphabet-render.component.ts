@@ -12,5 +12,11 @@ export class AlphabetRenderComponent implements OnInit{
   ngOnInit(): void {
     this.api.getAlphabet()
   }
+  next(){
+    this.api.alphabetPage ++; this.api.getAlphabet()
+  }
+  previous(){
+    this.api.alphabetPage --; this.api.getAlphabet()
+  }
 
 }

@@ -3,22 +3,28 @@
     <thead>
     <tr>
       <td colspan="3">
-        <button class="btn btn-outline-primary" (click)="api.createSound()">Create Sound</button>
+        <div class="btn-group">
+          <button class="btn btn-outline-primary" (click)="api.createSound()">Create new</button>
+          <button class="btn btn-outline-primary" (click)="previous()"><</button>
+          <span class="input-group-text">{{api.soundPage}}</span>
+          <button class="btn btn-outline-primary" (click)="next()">></button>
+        </div>
       </td>
     </tr>
     <tr>
+      <td>Thumb</td>
       <td>Sound URL</td>
       <td>Name</td>
+      <td>Author</td>
       <td>Delete</td>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor=" let sound of api.sounds, let i = index">
-      <td>
-        <app-upload-cloud-flare imgWith="200px" imgHeight="50px" [type]="'audio'" [img]="sound.soundUrl"
-                                (dataEvent)="sound.soundUrl = $event; api.updateSound(i)"></app-upload-cloud-flare>
-      </td>
+      <td><app-upload-cloud-flare imgWith="50px" imgHeight="50px" [img]="sound.thumb" (dataEvent)="sound.thumb = $event; api.updateSound(i)"></app-upload-cloud-flare></td>
+      <td><app-upload-cloud-flare imgWith="200px" imgHeight="50px" [type]="'audio'" [img]="sound.soundUrl" (dataEvent)="sound.soundUrl = $event; api.updateSound(i)"></app-upload-cloud-flare></td>
       <td><input class="form-control" type="text" [(ngModel)]="sound.name" (change)="api.updateSound(i)"></td>
+      <td><input class="form-control" type="text" [(ngModel)]="sound.author" (change)="api.updateSound(i)"></td>
       <td><button class="btn btn-outline-danger" (click)="api.deleteSound(i)">Delete</button></td>
     </tr>
     </tbody>

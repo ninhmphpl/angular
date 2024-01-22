@@ -11,6 +11,7 @@ import { UploadCloudFlareComponent } from './upload-cloud-flare/upload-cloud-fla
 import { AlphabetRenderComponent } from './alphabet-render/alphabet-render.component';
 import { TemplateComponent } from './template/template.component';
 import { SoundComponent } from './sound/sound.component';
+import { TemplateTypeComponent } from './template-type/template-type.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SoundComponent } from './sound/sound.component';
     AlphabetRenderComponent,
     TemplateComponent,
     SoundComponent,
+    TemplateTypeComponent,
   ],
   imports: [
     BrowserModule,

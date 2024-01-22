@@ -15,6 +15,7 @@ export class UploadCloudFlareComponent {
   @Input() type: string = 'img';
   @Input() imgWith: string = "50px";
   @Input() imgHeight: string = "50px";
+  @Input() placeHolder: string = "";
   urlDefault = "https://th.bing.com/th/id/OIP.VH7cg73Iesjoi9lvFyirCgHaHa?pid=ImgDet&rs=1"
   constructor(private uploadService: UploadCloudFlareService) {
   }

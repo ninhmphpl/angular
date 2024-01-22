@@ -13,6 +13,14 @@ export class TemplateComponent implements OnInit{
     this.api.getTemplate()
     this.api.getAlphabet()
     this.api.getSound()
+    this.api.getTemplateType()
+  }
+
+  next(){
+    this.api.templatePage ++; this.api.getTemplate()
+  }
+  previous(){
+    this.api.templatePage --; this.api.getTemplate()
   }
 
 }
