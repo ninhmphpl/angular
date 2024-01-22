@@ -9,6 +9,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
 import { UploadCloudFlareComponent } from './upload-cloud-flare/upload-cloud-flare.component';
 import { AlphabetRenderComponent } from './alphabet-render/alphabet-render.component';
+import { TemplateComponent } from './template/template.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { AlphabetRenderComponent } from './alphabet-render/alphabet-render.compo
     UploadMultipleComponent,
     UploadCloudFlareComponent,
     AlphabetRenderComponent,
-    // PopupTrendingComponent
+    TemplateComponent,
   ],
   imports: [
     BrowserModule,

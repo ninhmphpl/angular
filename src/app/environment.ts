@@ -1,4 +1,4 @@
 export const environment = {
-  url : "http://cartoon.procyoni.com",
+  url : "http://hue.procyoni.com",
   keySaveToken : "TOKEN-AI-ART"
 }
