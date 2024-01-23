@@ -2,6 +2,7 @@ export class Alphabet {
   id!: string;
   name!: string;
   image!: string;
+  thumb!: string;
   result!: string;
   colors!: Color[];
 }
