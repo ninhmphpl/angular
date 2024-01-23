@@ -11,9 +11,9 @@
       </svg>
     </button>
   </div>
-  <div *ngIf="type !== 'audio' && type !== 'video' && type !== 'img'" class="input-group w-100 h-100">
-    <span class="input-group-text" (click)="input.click()">{{placeHolder}}</span>
-    <input type="text" [disabled]="true" [value]="img">
+  <div *ngIf="type !== 'audio' && type !== 'video' && type !== 'img'" class="input-group w-100 h-100, row">
+    <span [style]="{'font-size': fontSize}" class="input-group-text h-100 col-4"  (click)="input.click()">{{placeHolder}}</span>
+    <input [style]="{'font-size': fontSize}" class="h-100 col-8 form-control" type="text" [disabled]="true" [value]="img">
   </div>
   <input hidden="hidden"  #input type="file" (change)="sendData($event)">
 </div>

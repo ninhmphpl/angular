@@ -35,7 +35,7 @@
       <td><app-upload-cloud-flare [imgHeight]="'150px'" [imgWith]="'100px'" [img]="template.thumb" (dataEvent)="template.thumb = $event ; api.updateTemplate(i)"></app-upload-cloud-flare></td>
       <td><app-upload-cloud-flare [imgHeight]="'150px'" [imgWith]="'100px'" [type]="'video'" [img]="template.video" (dataEvent)="template.video = $event ; api.updateTemplate(i)"></app-upload-cloud-flare></td>
       <td><input class="form-control" type="text" [(ngModel)]="template.name" (change)="api.updateTemplate(i)"></td>
-      <td class="col-1"><input class="form-control" type="number" [(ngModel)]="template.author" (change)="api.updateTemplate(i)"></td>
+      <td class="col-1"><input class="form-control" type="text" [(ngModel)]="template.author" (change)="api.updateTemplate(i)"></td>
       <td class="col-1"><input class="form-control" type="number" [(ngModel)]="template.top" (change)="api.updateTemplate(i)"></td>
       <td class="col-1"><input class="form-control" type="number" [(ngModel)]="template.versionRequired" (change)="api.updateTemplate(i)"></td>
       <td class="col-1"><input class="form-control" type="number" [(ngModel)]="template.like" (change)="api.updateTemplate(i)"></td>

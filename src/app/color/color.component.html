@@ -4,5 +4,6 @@
     <input type="checkbox" style="top: 0px; left: 19px" class="position-absolute" [(ngModel)]="color.center" (change)="update()">
     <input type="checkbox" style="top: 0px; right: 5px" class="position-absolute" [(ngModel)]="color.right" (change)="update()">
     <app-upload-cloud-flare [img]="color.url" (dataEvent)="color.url = $event; update()"></app-upload-cloud-flare>
+    <span style="font-size: 6px" class="position-absolute bottom-0 w-100 text-center">{{color.id + ' : (' + color.x + ':' + color.y + ')' }}</span>
   </div>
 </div>

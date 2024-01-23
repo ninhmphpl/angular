@@ -13,6 +13,7 @@ export class UploadCloudFlareComponent {
   @Output() dataEvent = new EventEmitter<string>();
   @Input() img!: string;
   @Input() type: string = 'img';
+  @Input() fontSize: string = '12px';
   @Input() imgWith: string = "50px";
   @Input() imgHeight: string = "50px";
   @Input() placeHolder: string = "";

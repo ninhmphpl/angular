@@ -2,7 +2,7 @@ export class Alphabet {
   id!: string;
   name!: string;
   image!: string;
-  json!:string;
+  result!: string;
   colors!: Color[];
 }
 
@@ -13,33 +13,36 @@ export class Template {
   video!: string;
   show!: boolean;
   top!: number;
-  like!:number;
-  author!:string;
+  like!: number;
+  author!: string;
   versionRequired!: number;
   alphabet!: Alphabet; // Giả sử bạn đã định nghĩa export class Alphabet như trước
   sound!: Sound; // Giả sử bạn đã định nghĩa export class Alphabet như trước
-  type!:TemplateType
+  type!: TemplateType
 }
 
-export class Sound{
+export class Sound {
   id!: string;
   name!: string;
-  soundUrl!:string;
-  thumb!:string;
-  author!:string;
+  soundUrl!: string;
+  thumb!: string;
+  author!: string;
 }
-export class TemplateType{
-  id!:string;
-  name!:string;
-  thumb!:string;
+
+export class TemplateType {
+  id!: string;
+  name!: string;
+  thumb!: string;
 }
 
 
 export class Color {
+  id!:number;
   x!: number;
   y!: number;
+  json!:string;
   url!: string;
-  left!:boolean;
-  right!:boolean;
-  center!:boolean;
+  left!: boolean;
+  right!: boolean;
+  center!: boolean;
 }

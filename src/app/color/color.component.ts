@@ -12,4 +12,6 @@ export class ColorComponent {
   update(){
     this.colorResult.emit(this.color)
   }
+
+  protected readonly top = top;
 }
