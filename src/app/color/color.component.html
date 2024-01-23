@@ -1,0 +1,8 @@
+<div>
+  <div class="position-relative">
+    <input type="checkbox" style="top: 0px; left: 5px" class="position-absolute" [(ngModel)]="color.left" (change)="update()">
+    <input type="checkbox" style="top: 0px; left: 19px" class="position-absolute" [(ngModel)]="color.center" (change)="update()">
+    <input type="checkbox" style="top: 0px; right: 5px" class="position-absolute" [(ngModel)]="color.right" (change)="update()">
+    <app-upload-cloud-flare [img]="color.url" (dataEvent)="color.url = $event; update()"></app-upload-cloud-flare>
+  </div>
+</div>

@@ -39,4 +39,7 @@ export class Color {
   x!: number;
   y!: number;
   url!: string;
+  left!:boolean;
+  right!:boolean;
+  center!:boolean;
 }

@@ -12,6 +12,7 @@ import { AlphabetRenderComponent } from './alphabet-render/alphabet-render.compo
 import { TemplateComponent } from './template/template.component';
 import { SoundComponent } from './sound/sound.component';
 import { TemplateTypeComponent } from './template-type/template-type.component';
+import { ColorComponent } from './color/color.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TemplateTypeComponent } from './template-type/template-type.component';
     TemplateComponent,
     SoundComponent,
     TemplateTypeComponent,
+    ColorComponent,
   ],
   imports: [
     BrowserModule,

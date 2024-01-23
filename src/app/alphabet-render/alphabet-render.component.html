@@ -25,79 +25,76 @@
         <app-upload-cloud-flare [imgWith]="'150px'" [imgHeight]="'150px'" [img]="alphabet.image"
                                 (dataEvent)="alphabet.image = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
       </div>
-      <div class="R1" style="width: 50px; height: 50px; left: 0px; top: 0px; position: absolute; background: #F6D3D3">
-        <app-upload-cloud-flare [img]="alphabet.colors[0].url"
-                                (dataEvent)="alphabet.colors[0].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+      <div class="R1" style="width: 50px; height: 50px; left: 0px; top: 0px; position: absolute; background: #F6D3D3; transform: rotate(315deg);">
+        <app-color [color]="alphabet.colors[0]" (colorResult)="alphabet.colors[0] = $event; api.updateAlphabet(i)"></app-color>
       </div>
       <div class="R2" style="width: 50px; height: 50px; left: 50px; top: 0px; position: absolute; background: #A67979">
-        <app-upload-cloud-flare [img]="alphabet.colors[1].url"
-                                (dataEvent)="alphabet.colors[1].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+        <app-color [color]="alphabet.colors[1]" (colorResult)="alphabet.colors[1] = $event; api.updateAlphabet(i)"></app-color>
       </div>
       <div class="R3" style="width: 50px; height: 50px; left: 100px; top: 0px; position: absolute; background: #A1C1E7">
-        <app-upload-cloud-flare [img]="alphabet.colors[2].url"
-                                (dataEvent)="alphabet.colors[2].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+        <app-color [color]="alphabet.colors[2]" (colorResult)="alphabet.colors[2] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
       <div class="R4" style="width: 50px; height: 50px; left: 150px; top: 0px; position: absolute; background: #F82222">
-        <app-upload-cloud-flare [img]="alphabet.colors[3].url"
-                                (dataEvent)="alphabet.colors[3].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+        <app-color [color]="alphabet.colors[3]" (colorResult)="alphabet.colors[3] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
-      <div class="R5" style="width: 50px; height: 50px; left: 200px; top: 0px; position: absolute; background: #827D7D">
-        <app-upload-cloud-flare [img]="alphabet.colors[4].url"
-                                (dataEvent)="alphabet.colors[4].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+      <div class="R5" style="width: 50px; height: 50px; left: 200px; top: 0px; position: absolute; background: #827D7D; transform: rotate(45deg);">
+        <app-color [color]="alphabet.colors[4]" (colorResult)="alphabet.colors[4] = $event; api.updateAlphabet(i)"></app-color>
       </div>
       <div class="R6"
-           style="width: 50px; height: 50px; left: 200px; top: 50px; position: absolute; background: #46868A">
-        <app-upload-cloud-flare [img]="alphabet.colors[5].url"
-                                (dataEvent)="alphabet.colors[5].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+           style="width: 50px; height: 50px; left: 200px; top: 50px; position: absolute; background: #46868A; transform: rotate(90deg);">
+        <app-color [color]="alphabet.colors[5]" (colorResult)="alphabet.colors[5] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
       <div class="R7"
-           style="width: 50px; height: 50px; left: 200px; top: 100px; position: absolute; background: #4FA24E">
-        <app-upload-cloud-flare [img]="alphabet.colors[6].url"
-                                (dataEvent)="alphabet.colors[6].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+           style="width: 50px; height: 50px; left: 200px; top: 100px; position: absolute; background: #4FA24E; transform: rotate(90deg);">
+        <app-color [color]="alphabet.colors[6]" (colorResult)="alphabet.colors[6] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
       <div class="R8"
-           style="width: 50px; height: 50px; left: 200px; top: 150px; position: absolute; background: #AE61A6">
-        <app-upload-cloud-flare [img]="alphabet.colors[7].url"
-                                (dataEvent)="alphabet.colors[7].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+           style="width: 50px; height: 50px; left: 200px; top: 150px; position: absolute; background: #AE61A6; transform: rotate(90deg);">
+        <app-color [color]="alphabet.colors[7]" (colorResult)="alphabet.colors[7] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
       <div class="R9"
-           style="width: 50px; height: 50px; left: 200px; top: 200px; position: absolute; background: #6A7262">
-        <app-upload-cloud-flare [img]="alphabet.colors[8].url"
-                                (dataEvent)="alphabet.colors[8].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+           style="width: 50px; height: 50px; left: 200px; top: 200px; position: absolute; background: #6A7262; transform: rotate(135deg);">
+        <app-color [color]="alphabet.colors[8]" (colorResult)="alphabet.colors[8] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
       <div class="R10"
-           style="width: 50px; height: 50px; left: 150px; top: 200px; position: absolute; background: #C53838">
-        <app-upload-cloud-flare [img]="alphabet.colors[9].url"
-                                (dataEvent)="alphabet.colors[9].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+           style="width: 50px; height: 50px; left: 150px; top: 200px; position: absolute; background: #C53838; transform: rotate(180deg);">
+        <app-color [color]="alphabet.colors[9]" (colorResult)="alphabet.colors[9] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
       <div class="R11"
-           style="width: 50px; height: 50px; left: 100px; top: 200px; position: absolute; background: #9A3666">
-        <app-upload-cloud-flare [img]="alphabet.colors[10].url"
-                                (dataEvent)="alphabet.colors[10].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+           style="width: 50px; height: 50px; left: 100px; top: 200px; position: absolute; background: #9A3666; transform: rotate(180deg);">
+        <app-color [color]="alphabet.colors[10]" (colorResult)="alphabet.colors[10] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
       <div class="R12"
-           style="width: 50px; height: 50px; left: 50px; top: 200px; position: absolute; background: #8BA97E">
-        <app-upload-cloud-flare [img]="alphabet.colors[11].url"
-                                (dataEvent)="alphabet.colors[11].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+           style="width: 50px; height: 50px; left: 50px; top: 200px; position: absolute; background: #8BA97E; transform: rotate(180deg);">
+        <app-color [color]="alphabet.colors[11]" (colorResult)="alphabet.colors[11] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
       <div class="R13"
-           style="width: 50px; height: 50px; left: 0px; top: 200px; position: absolute; background: #F4B8B8">
-        <app-upload-cloud-flare [img]="alphabet.colors[12].url"
-                                (dataEvent)="alphabet.colors[12].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+           style="width: 50px; height: 50px; left: 0px; top: 200px; position: absolute; background: #F4B8B8; transform: rotate(225deg);">
+        <app-color [color]="alphabet.colors[12]" (colorResult)="alphabet.colors[12] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
       <div class="R14"
-           style="width: 50px; height: 50px; left: 0px; top: 150px; position: absolute; background: #AE61A6">
-        <app-upload-cloud-flare [img]="alphabet.colors[13].url"
-                                (dataEvent)="alphabet.colors[13].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+           style="width: 50px; height: 50px; left: 0px; top: 150px; position: absolute; background: #AE61A6; transform: rotate(270deg);">
+        <app-color [color]="alphabet.colors[13]" (colorResult)="alphabet.colors[13] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
       <div class="R15"
-           style="width: 50px; height: 50px; left: 0px; top: 100px; position: absolute; background: #A1C1E7">
-        <app-upload-cloud-flare [img]="alphabet.colors[14].url"
-                                (dataEvent)="alphabet.colors[14].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+           style="width: 50px; height: 50px; left: 0px; top: 100px; position: absolute; background: #A1C1E7; transform: rotate(270deg);">
+        <app-color [color]="alphabet.colors[14]" (colorResult)="alphabet.colors[14] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
-      <div class="R16" style="width: 50px; height: 50px; left: 0px; top: 50px; position: absolute; background: #F82222">
-        <app-upload-cloud-flare [img]="alphabet.colors[15].url"
-                                (dataEvent)="alphabet.colors[15].url = $event; api.updateAlphabet(i)"></app-upload-cloud-flare>
+      <div class="R16" style="width: 50px; height: 50px; left: 0px; top: 50px; position: absolute; background: #F82222; transform: rotate(270deg);">
+        <app-color [color]="alphabet.colors[15]" (colorResult)="alphabet.colors[15] = $event; api.updateAlphabet(i)"></app-color>
+
       </div>
       <div class="11"
            style="left: 65px; top: 18px; position: absolute; color: black; font-size: 12px; font-family: Inter; font-weight: 400; word-wrap: break-word">
