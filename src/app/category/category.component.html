@@ -12,12 +12,14 @@
   <tr>
     <td>Url</td>
     <td>Name</td>
+    <td>Version Required</td>
     <td>Category</td>
     <td>Delete</td>
   </tr>
   <tr *ngFor="let category of api.categories let i = index">
     <td><app-upload-cloud-flare [img]="category.url" (dataEvent)="category.url = $event; api.updateCategory(i)"></app-upload-cloud-flare></td>
     <td><input type="text" [(ngModel)]="category.name" placeholder="Category" (change)="api.updateCategory(i)"></td>
+    <td><input type="text" [(ngModel)]="category.versionRequired" placeholder="Version required" (change)="api.updateCategory(i)"></td>
     <td>
       <select [(ngModel)]="category.type" (change)="api.updateCategory(i)">
         <option value="wall">Wall Paper</option>

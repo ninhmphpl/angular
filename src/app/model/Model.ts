@@ -5,6 +5,7 @@ export class Animation {
   thumb!: string;
   image!: string;
   category!: Category;
+  versionRequired!:number;
 }
 
 export class Category {
@@ -13,6 +14,7 @@ export class Category {
   name!: string;
   type!: string;
   url! : string;
+  versionRequired!:number;
 }
 
 export class WallPaper {
@@ -22,5 +24,6 @@ export class WallPaper {
   image!: string;
   thumb!: string;
   category!: Category;
+  versionRequired!:number;
 }
 

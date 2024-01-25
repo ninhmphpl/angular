@@ -12,6 +12,7 @@
     <td>Image</td>
     <td>Thumb</td>
     <td>Name</td>
+    <td>Version Required</td>
     <td>Category</td>
     <td>Delete</td>
   </tr>
@@ -25,6 +26,7 @@
                       (dataEvent)="animation.thumb = $event; api.updateAnimation(i)"></app-upload-cloud-flare>
     </td>
     <td><input type="text" [(ngModel)]="animation.name" placeholder="Animation" (change)="api.updateAnimation(i)"></td>
+    <td><input type="text" [(ngModel)]="animation.versionRequired" placeholder="Version Required" (change)="api.updateAnimation(i)"></td>
     <td>
       <span>{{(animation.category) ? animation.category.name : "none"}}</span>
       <select style="width: 18px" [(ngModel)]="animation.category" (change)="api.updateAnimation(i)">

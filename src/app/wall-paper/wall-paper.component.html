@@ -12,6 +12,7 @@
     <td>Image</td>
     <td>Thumb</td>
     <td>Name</td>
+    <td>Version Required</td>
     <td>Category</td>
     <td>Delete</td>
   </tr>
@@ -25,6 +26,7 @@
                       (dataEvent)="wallPaper.thumb = $event; api.updateWallPaper(i)"></app-upload-cloud-flare>
     </td>
     <td><input type="text" [(ngModel)]="wallPaper.name" placeholder="WallPaper" (change)="api.updateWallPaper(i)"></td>
+    <td><input type="text" [(ngModel)]="wallPaper.versionRequired" placeholder="Version Required" (change)="api.updateWallPaper(i)"></td>
     <td>
       <span>{{(wallPaper.category) ? wallPaper.category.name : "none"}}</span>
       <select style="width: 18px" [(ngModel)]="wallPaper.category" (change)="api.updateWallPaper(i)">
