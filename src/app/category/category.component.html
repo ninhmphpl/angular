@@ -16,7 +16,7 @@
     <td>Delete</td>
   </tr>
   <tr *ngFor="let category of api.categories let i = index">
-    <td><app-img-upload [img]="category.url" (dataEvent)="category.url = $event; api.updateCategory(i)"></app-img-upload></td>
+    <td><app-upload-cloud-flare [img]="category.url" (dataEvent)="category.url = $event; api.updateCategory(i)"></app-upload-cloud-flare></td>
     <td><input type="text" [(ngModel)]="category.name" placeholder="Category" (change)="api.updateCategory(i)"></td>
     <td>
       <select [(ngModel)]="category.type" (change)="api.updateCategory(i)">

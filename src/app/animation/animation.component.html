@@ -17,12 +17,12 @@
   </tr>
   <tr *ngFor="let animation of api.animations let i = index">
     <td>
-      <app-img-upload [img]="animation.image"
-                      (dataEvent)="animation.image = $event; api.updateAnimation(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="animation.image"
+                      (dataEvent)="animation.image = $event; api.updateAnimation(i)"></app-upload-cloud-flare>
     </td>
     <td>
-      <app-img-upload [img]="animation.thumb"
-                      (dataEvent)="animation.thumb = $event; api.updateAnimation(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="animation.thumb"
+                      (dataEvent)="animation.thumb = $event; api.updateAnimation(i)"></app-upload-cloud-flare>
     </td>
     <td><input type="text" [(ngModel)]="animation.name" placeholder="Animation" (change)="api.updateAnimation(i)"></td>
     <td>
