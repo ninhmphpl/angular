@@ -1,6 +1,7 @@
 export class Alphabet {
   id!: string;
   name!: string;
+  type!: number;
   image!: string;
   thumb!: string;
   result!: string;
