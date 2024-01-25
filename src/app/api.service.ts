@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginService} from "./login/login.service";
 import {environment} from "./environment";
-import {Alphabet, Sound, Template, TemplateType} from "./model/Model";
+import {Category, Item, Template} from "./model/Model";
 
 
 export const urlHost = environment.url
@@ -17,117 +17,86 @@ export class ApiService {
 
   //--------------------------------- template ---------------------------------------------
   templates: Template[] = []
-  templatePage : number = 0
-  type!: TemplateType;
   public getTemplate() {
-    let type = (this.type) ? "&type_id=" + this.type.id : ""
-    this.http.get(urlHost + "/api/v1/template?edit=true&page=" + this.templatePage + type).subscribe((value: any) => {
+    this.http.get(urlHost + "/api/v2/template?edit=true").subscribe((value: any) => {
       this.templates = value.data
     }, error => alert(error.error.detail))
   }
 
   public createTemplate() {
-    this.http.post(urlHost + "/api/v1/template", new Template(), this.login.getHeader()).subscribe((value: any) => {
+    this.http.post(urlHost + "/api/v2/template", new Template(), this.login.getHeader()).subscribe((value: any) => {
       this.templates.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
   public updateTemplate(index: number) {
-    this.http.post(urlHost + "/api/v1/template", this.templates[index], this.login.getHeader()).subscribe((value: any) => {
+    console.log(this.templates[index])
+    this.http.post(urlHost + "/api/v2/template", this.templates[index], this.login.getHeader()).subscribe((value: any) => {
       this.templates[index] = value.data
     }, error => alert(error.error.detail))
   }
 
   public deleteTemplate(index: number) {
-    this.http.delete(urlHost + "/api/v1/template/" + this.templates[index].id, this.login.getHeader()).subscribe((value: any) => {
+    this.http.delete(urlHost + "/api/v2/template/" + this.templates[index].id, this.login.getHeader()).subscribe((value: any) => {
       this.templates[index] = value.data
       this.templates.splice(index, 1)
     }, error => alert(error.error.detail))
   }
-
-  //--------------------------------- alphabet ---------------------------------------------
-  public alphabets: Alphabet[] = []
-  alphabetPage : number = 0
-
-  public getAlphabet() {
-    this.http.get(urlHost + "/api/v1/alphabet?edit=true&page=" + this.alphabetPage ).subscribe((value: any) => {
-      this.alphabets = value.data
+  //--------------------------------- category ---------------------------------------------
+  categorys: Category[] = []
+  public getCategory() {
+    this.http.get(urlHost + "/api/v2/category?edit=true").subscribe((value: any) => {
+      this.categorys = value.data
     }, error => alert(error.error.detail))
   }
 
-  public createAlphabet() {
-    this.http.post(urlHost + "/api/v1/alphabet", new Alphabet(), this.login.getHeader()).subscribe((value: any) => {
-      this.alphabets.unshift(value.data)
+  public createCategory() {
+    this.http.post(urlHost + "/api/v2/category", new Category(), this.login.getHeader()).subscribe((value: any) => {
+      this.categorys.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
-  public updateAlphabet(index: number) {
-    this.http.post(urlHost + "/api/v1/alphabet", this.alphabets[index], this.login.getHeader()).subscribe((value: any) => {
-      this.alphabets[index] = value.data
+  public updateCategory(index: number) {
+    this.http.post(urlHost + "/api/v2/category", this.categorys[index], this.login.getHeader()).subscribe((value: any) => {
+      this.categorys[index] = value.data
     }, error => alert(error.error.detail))
   }
 
-  public deleteAlphabet(index: number) {
-    this.http.delete(urlHost + "/api/v1/alphabet/" + this.alphabets[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.alphabets[index] = value.data
-      this.alphabets.splice(index, 1)
+  public deleteCategory(index: number) {
+    this.http.delete(urlHost + "/api/v2/category/" + this.categorys[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.categorys[index] = value.data
+      this.categorys.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 
-  //--------------------------------- sound ---------------------------------------------
-  public sounds: Sound[] = []
-  soundPage : number = 0
-  public getSound() {
-    this.http.get(urlHost + "/api/v1/sound?edit=true&page=" + this.soundPage).subscribe((value: any) => {
-      this.sounds = value.data
+  //--------------------------------- item ---------------------------------------------
+  items: Item[] = []
+  public getItem() {
+    this.http.get(urlHost + "/api/v2/item?edit=true").subscribe((value: any) => {
+      this.items = value.data
     }, error => alert(error.error.detail))
   }
 
-  public createSound() {
-    this.http.post(urlHost + "/api/v1/sound", new Sound(), this.login.getHeader()).subscribe((value: any) => {
-      this.sounds.unshift(value.data)
+  public createItem() {
+    this.http.post(urlHost + "/api/v2/item", new Item(), this.login.getHeader()).subscribe((value: any) => {
+      this.items.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
-  public updateSound(index: number) {
-    this.http.post(urlHost + "/api/v1/sound", this.sounds[index], this.login.getHeader()).subscribe((value: any) => {
-      this.sounds[index] = value.data
+  public updateItem(index: number) {
+    this.http.post(urlHost + "/api/v2/item", this.items[index], this.login.getHeader()).subscribe((value: any) => {
+      this.items[index] = value.data
     }, error => alert(error.error.detail))
   }
 
-  public deleteSound(index: number) {
-    this.http.delete(urlHost + "/api/v1/sound/" + this.sounds[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.sounds[index] = value.data
-      this.sounds.splice(index, 1)
+  public deleteItem(index: number) {
+    this.http.delete(urlHost + "/api/v2/item/" + this.items[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.items[index] = value.data
+      this.items.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 
-  //--------------------------------- templateType ---------------------------------------------
-  public templateTypes: TemplateType[] = []
-  templateTypePage : number = 0
-  public getTemplateType() {
-    this.http.get(urlHost + "/api/v1/templateType?edit=true&page=" + this.templateTypePage).subscribe((value: any) => {
-      this.templateTypes = value.data
-    }, error => alert(error.error.detail))
-  }
 
-  public createTemplateType() {
-    this.http.post(urlHost + "/api/v1/templateType", new TemplateType(), this.login.getHeader()).subscribe((value: any) => {
-      this.templateTypes.unshift(value.data)
-    }, error => alert(error.error.detail))
-  }
 
-  public updateTemplateType(index: number) {
-    this.http.post(urlHost + "/api/v1/templateType", this.templateTypes[index], this.login.getHeader()).subscribe((value: any) => {
-      this.templateTypes[index] = value.data
-    }, error => alert(error.error.detail))
-  }
-
-  public deleteTemplateType(index: number) {
-    this.http.delete(urlHost + "/api/v1/templateType/" + this.templateTypes[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.templateTypes[index] = value.data
-      this.templateTypes.splice(index, 1)
-    }, error => alert(error.error.detail))
-  }
 
 }

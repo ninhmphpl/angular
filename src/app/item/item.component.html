@@ -1,0 +1,23 @@
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <td><button class="btn btn-primary" (click)="api.createItem()">Create</button></td>
+  </tr>
+  <tr>
+    <td>Image</td>
+    <td>Name</td>
+    <td>Detail</td>
+    <td>Delete</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of api.items, let i = index">
+    <td><app-upload-cloud-flare [img]="item.imageUrl" (dataEvent)="item.imageUrl = $event ; api.updateItem(i)"></app-upload-cloud-flare></td>
+    <td><input type="text" class="form-control" [(ngModel)]="item.name" placeholder="Name" (change)="api.updateItem(i)"></td>
+    <td><input type="text" class="form-control" [(ngModel)]="item.detail" placeholder="Detail" (change)="api.updateItem(i)"></td>
+    <td><button class="btn btn-outline-danger" (click)="api.deleteItem(i)">Delete</button></td>
+  </tr>
+  </tbody>
+
+
+</table>

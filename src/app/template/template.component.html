@@ -1,65 +1,49 @@
-<div>
-  <table class="table table-bordered">
-    <thead>
-    <tr>
-      <td colspan="12">
-        <div class="btn-group">
-          <button class="btn btn-outline-primary" (click)="api.createTemplate()">Create new</button>
-          <select class="form-select" id="" [(ngModel)]="api.type" (change)="api.getTemplate()">
-            <option [ngValue]="undefined">All</option>
-            <option *ngFor="let type of api.templateTypes" [ngValue]="type">{{type.name}}</option>
-          </select>
-          <button class="btn btn-outline-primary" (click)="previous()"><</button>
-          <span class="input-group-text">{{api.templatePage}}</span>
-          <button class="btn btn-outline-primary" (click)="next()">></button>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>Thumb</td>
-      <td>Video</td>
-      <td>Name</td>
-      <td>Author</td>
-      <td>Top</td>
-      <td>Version Required</td>
-      <td>Like</td>
-      <td>Show</td>
-      <td>Alphabet</td>
-      <td>Sound</td>
-      <td>Template type</td>
-      <td>Delete</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let template of api.templates, let i = index">
-      <td><app-upload-cloud-flare [imgHeight]="'150px'" [imgWith]="'100px'" [img]="template.thumb" (dataEvent)="template.thumb = $event ; api.updateTemplate(i)"></app-upload-cloud-flare></td>
-      <td><app-upload-cloud-flare [imgHeight]="'150px'" [imgWith]="'100px'" [type]="'video'" [img]="template.video" (dataEvent)="template.video = $event ; api.updateTemplate(i)"></app-upload-cloud-flare></td>
-      <td><input class="form-control" type="text" [(ngModel)]="template.name" (change)="api.updateTemplate(i)"></td>
-      <td class="col-1"><input class="form-control" type="text" [(ngModel)]="template.author" (change)="api.updateTemplate(i)"></td>
-      <td class="col-1"><input class="form-control" type="number" [(ngModel)]="template.top" (change)="api.updateTemplate(i)"></td>
-      <td class="col-1"><input class="form-control" type="number" [(ngModel)]="template.versionRequired" (change)="api.updateTemplate(i)"></td>
-      <td class="col-1"><input class="form-control" type="number" [(ngModel)]="template.like" (change)="api.updateTemplate(i)"></td>
-      <td><input class="form-check-input" type="checkbox" [(ngModel)]="template.show" (change)="api.updateTemplate(i)"></td>
-      <td>
-        <select class="form-select" [(ngModel)]="template.alphabet" (change)="api.updateTemplate(i)">
-          <option [hidden]="true" [ngValue]="template.alphabet">{{(template.alphabet)?template.alphabet.name : "Select Template"}}</option>
-          <option *ngFor="let alphabet of api.alphabets" [ngValue]="alphabet">{{alphabet.name}}</option>
-        </select>
-      </td>
-      <td>
-        <select class="form-select" [(ngModel)]="template.sound" (change)="api.updateTemplate(i)">
-          <option [hidden]="true" [ngValue]="template.sound">{{(template.sound)?template.sound.name : "Select Sound"}}</option>
-          <option *ngFor="let sound of api.sounds" [ngValue]="sound">{{sound.name}}</option>
-        </select>
-      </td>
-      <td>
-        <select class="form-select" [(ngModel)]="template.type" (change)="api.updateTemplate(i)">
-          <option [hidden]="true" [ngValue]="template.type">{{(template.type)?template.type.name : "Select Template Type"}}</option>
-          <option *ngFor="let type of api.templateTypes" [ngValue]="type">{{type.name}}</option>
-        </select>
-      </td>
-      <td><button class="btn btn-outline-danger" (click)="api.deleteTemplate(i)">Delete</button></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <td colspan="7">
+      <button class="btn btn-primary" (click)="api.createTemplate()">Create</button>
+    </td>
+  </tr>
+  <tr>
+    <td>Image</td>
+    <td>Video</td>
+    <td>Name</td>
+    <td>Detail</td>
+    <td>Version Required</td>
+    <td>Top</td>
+    <td>Category</td>
+    <td>Delete</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let template of api.templates, let i = index">
+    <td>
+      <app-upload-cloud-flare imgWith="70px" imgHeight="100px" [img]="template.imageUrl"
+                              (dataEvent)="template.imageUrl=$event; api.updateTemplate(i)"></app-upload-cloud-flare>
+    </td>
+    <td>
+      <app-upload-cloud-flare imgWith="70px" imgHeight="100px" type="video" [img]="template.videoUrl"
+                              (dataEvent)="template.videoUrl=$event; api.updateTemplate(i)"></app-upload-cloud-flare>
+    </td>
+    <td><input class="form-control" type="text" [(ngModel)]="template.name" placeholder="Name"
+               (change)="api.updateTemplate(i)"></td>
+    <td><input class="form-control" type="text" [(ngModel)]="template.detail" placeholder="Detail"
+               (change)="api.updateTemplate(i)"></td>
+    <td><input class="form-control" type="number" [(ngModel)]="template.versionRequired" placeholder="Version Required"
+               (change)="api.updateTemplate(i)"></td>
+    <td><input class="form-control" type="number" [(ngModel)]="template.top" placeholder="Top"
+               (change)="api.updateTemplate(i)"></td>
+    <td><select [(ngModel)]="template.category" name="" id="" class="form-select" (change)="api.updateTemplate(i)">
+      <option hidden
+              [ngValue]="template.category">{{(template.category) ? template.category.name : "Category"}}</option>
+      <option *ngFor="let category of api.categorys" [ngValue]="category">{{category.name}}</option>
+    </select></td>
+    <td>
+      <button class="btn btn-outline-danger" (click)="api.deleteTemplate(i)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+
+
+</table>

@@ -1,15 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {TemplateComponent} from "./template/template.component";
-import {AlphabetRenderComponent} from "./alphabet-render/alphabet-render.component";
-import {SoundComponent} from "./sound/sound.component";
-import {TemplateTypeComponent} from "./template-type/template-type.component";
+import {ItemComponent} from "./item/item.component";
+import {CategoryComponent} from "./category/category.component";
 
 const routes: Routes = [
   {path:"template",component:TemplateComponent},
-  {path:"templateType",component:TemplateTypeComponent},
-  {path:"alphabet",component:AlphabetRenderComponent},
-  {path:"sound",component:SoundComponent}
+  {path:"category",component:CategoryComponent},
+  {path:"item",component:ItemComponent},
 ];
 
 

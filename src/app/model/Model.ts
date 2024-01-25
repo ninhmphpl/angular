@@ -1,50 +1,23 @@
-export class Alphabet {
-  id!: string;
-  name!: string;
-  type!: number;
-  image!: string;
-  thumb!: string;
-  result!: string;
-  colors!: Color[];
-}
-
 export class Template {
   id!: string;
   name!: string;
-  thumb!: string;
-  video!: string;
-  show!: boolean;
+  imageUrl!: string;
+  videoUrl!: string;
+  detail!: string;
   top!: number;
-  like!: number;
-  author!: string;
+  show!: boolean;
   versionRequired!: number;
-  alphabet!: Alphabet; // Giả sử bạn đã định nghĩa export class Alphabet như trước
-  sound!: Sound; // Giả sử bạn đã định nghĩa export class Alphabet như trước
-  type!: TemplateType
+  category!: Category;
 }
 
-export class Sound {
+export class Item {
+  id!: string;
+  imageUrl!: string;
+  name!: string;
+  detail!: string;
+}
+
+export class Category {
   id!: string;
   name!: string;
-  soundUrl!: string;
-  thumb!: string;
-  author!: string;
-}
-
-export class TemplateType {
-  id!: string;
-  name!: string;
-  thumb!: string;
-}
-
-
-export class Color {
-  id!:number;
-  x!: number;
-  y!: number;
-  json!:string;
-  url!: string;
-  left!: boolean;
-  right!: boolean;
-  center!: boolean;
 }
