@@ -5,6 +5,7 @@
       <select [(ngModel)]="api.styleType" (change)="api.getStyle()">
         <option [ngValue]="undefined">All</option>
         <option value="boy-friend">Boy Friend</option>
+        <option value="top-trending">Top Trending</option>
         <option value="girl-friend">Girl Friend</option>
         <option value="trending">Trending</option>
         <option value="twin">Twin</option>
@@ -27,6 +28,7 @@
       <select [(ngModel)]="style.type" (change)="api.updateStyle(i)">
         <option value="boy-friend">Boy Friend</option>
         <option value="girl-friend">Girl Friend</option>
+        <option value="top-trending">Top Trending</option>
         <option value="trending">Trending</option>
         <option value="twin">Twin</option>
         <option value="end2023">End 2023</option>
