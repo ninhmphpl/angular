@@ -5,14 +5,12 @@
       <app-upload-multiple [buttonName]="'Create Trending Multiple'" (dataEvent)="api.createTrendingByUrl($event)"></app-upload-multiple>
       <select [(ngModel)]="api.group" (change)="api.getTrending()">
         <option [ngValue]="undefined">All</option>
-
         <option value="boy-friend">Boy Friend</option>
         <option value="girl-friend">Girl Friend</option>
         <option value="trending">Trending</option>
         <option value="twin">Twin</option>
-<!--        <option value="trending">Trending</option>-->
-<!--        <option value="end2023">End 2023</option>-->
-<!--        <option value="start2024">Start 2024</option>-->
+        <option value="end2023">End 2023</option>
+        <option value="start2024">Start 2024</option>
       </select>
     </td>
 
@@ -58,9 +56,8 @@
         <option value="girl-friend">Girl Friend</option>
         <option value="trending">Trending</option>
         <option value="twin">Twin</option>
-
-<!--        <option value="end2023">End 2023</option>-->
-<!--        <option value="start2024">Start 2024</option>-->
+        <option value="end2023">End 2023</option>
+        <option value="start2024">Start 2024</option>
       </select>
     </td>
     <td><button (click)="api.deleteTrending(i)">Delete</button></td>

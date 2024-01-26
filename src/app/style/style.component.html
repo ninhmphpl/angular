@@ -4,6 +4,10 @@
       <button (click)="api.createStyle()">Create Style</button>
       <select [(ngModel)]="api.styleType" (change)="api.getStyle()">
         <option [ngValue]="undefined">All</option>
+        <option value="boy-friend">Boy Friend</option>
+        <option value="girl-friend">Girl Friend</option>
+        <option value="trending">Trending</option>
+        <option value="twin">Twin</option>
         <option value="monthly">Monthly</option>
         <option value="message">Message</option>
         <option value="disco">Disco</option>
@@ -21,6 +25,12 @@
   <tr *ngFor="let style of api.styles let i = index">
     <td>
       <select [(ngModel)]="style.type" (change)="api.updateStyle(i)">
+        <option value="boy-friend">Boy Friend</option>
+        <option value="girl-friend">Girl Friend</option>
+        <option value="trending">Trending</option>
+        <option value="twin">Twin</option>
+        <option value="end2023">End 2023</option>
+        <option value="start2024">Start 2024</option>
         <option value="monthly">Monthly</option>
         <option value="message">Message</option>
         <option value="disco">Disco</option>
