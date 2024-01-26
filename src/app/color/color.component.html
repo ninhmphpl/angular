@@ -3,6 +3,7 @@
     <input type="checkbox" style="top: 0px; left: 5px" class="position-absolute" [(ngModel)]="color.left" (change)="update()">
     <input type="checkbox" style="top: 0px; left: 19px" class="position-absolute" [(ngModel)]="color.center" (change)="update()">
     <input type="checkbox" style="top: 0px; right: 5px" class="position-absolute" [(ngModel)]="color.right" (change)="update()">
+    <button style="top: 13px; right: 0px; width: 20px; height: 20px; font-size: 10px" class="p-0 btn btn-danger rounded-5 position-absolute" (click)="color.url = '';update() ">X</button>
     <app-upload-cloud-flare [img]="color.url" (dataEvent)="color.url = $event; update()"></app-upload-cloud-flare>
     <span style="font-size: 6px" class="position-absolute bottom-0 w-100 text-center">{{color.id + ' : (' + color.x + ':' + color.y + ')' }}</span>
   </div>
