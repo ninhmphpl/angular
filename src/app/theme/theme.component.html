@@ -9,9 +9,6 @@
   <input type="text" [(ngModel)]="themeService.limitDefault" (change)="get()">
 </div>
 <div class="p-3 row row-cols-auto rounded-4" style="background-color: rgba(0,0,0,0.0)">
-
-
-
   <div (mouseover)="createForm.hidden = false"
        (mouseout)="createForm.hidden = true"
        (click)="create()"
@@ -50,6 +47,9 @@
             </li>
             <li class="dropdown-item w-100 text-light">
               <input class="form-check-input" title="Lock" type="checkbox" [(ngModel)]="theme.trending" (change)="save(i)"> Trending
+            </li>
+            <li class="dropdown-item w-100 text-light">
+              <input class="form-check-input" title="Lock" type="checkbox" [(ngModel)]="theme.topGallery" (change)="save(i)"> Top Gallery
             </li>
             <li class="dropdown-item w-100 text-light">
               <button class="btn-sm btn-danger btn" (click)="delete(i)">

@@ -17,4 +17,5 @@ export class Theme {
   trending! : boolean;
   source! : Source;
   sourceAvatar! : Source;
+  topGallery!:boolean;
 }
