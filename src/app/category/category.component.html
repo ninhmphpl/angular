@@ -8,12 +8,16 @@
   <tr>
     <td>Name</td>
     <td>Rank</td>
+    <td>Version Required</td>
+    <td>Show</td>
     <td>Image</td>
     <td>Delete</td>
   </tr>
   <tr *ngFor="let category of api.cagegorys, let i = index">
     <td><input class="form-control" type="text" [(ngModel)]="category.name" (change)="api.updateCategory(i)"></td>
     <td><input class="form-control" type="number" [(ngModel)]="category.rank" (change)="api.updateCategory(i)"></td>
+    <td><input class="form-control" type="number" [(ngModel)]="category.versionRequired" (change)="api.updateCategory(i)"></td>
+    <td><input class="form-check-input" type="checkbox" [(ngModel)]="category.show" (change)="api.updateCategory(i)"></td>
     <td><app-upload-cloud-flare [img]="category.image" (dataEvent)="category.image = $event; api.updateCategory(i)"></app-upload-cloud-flare></td>
     <td>
       <button class="btn btn-outline-danger" (click)="api.deleteCategory(i)">Delete</button>

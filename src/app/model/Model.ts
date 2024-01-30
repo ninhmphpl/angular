@@ -17,6 +17,8 @@ export class Category {
   name!: string;
   image!: string;
   rank! : number;
+  versionRequired! : number;
+  show!: boolean;
 }
 
 export class Style {
