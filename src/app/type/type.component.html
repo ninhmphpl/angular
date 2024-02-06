@@ -1,21 +1,22 @@
 <table class="table table-bordered">
   <tbody>
   <tr>
-    <td colspan="3">
+    <td colspan="4">
       <button class="btn btn-sm btn-outline-primary" (click)="api.typeCreate()">Create type</button>
     </td>
   </tr>
   <tr>
     <td>Name</td>
     <td>Priority</td>
+    <td>Version Required</td>
     <td>Delete</td>
-
   </tr>
   <tr>
   </tr>
   <tr *ngFor="let element of api.types, let i = index">
     <td><input class="form-control" type="text" [(ngModel)]="element.name" (change)="api.typeUpdate(i)"></td>
     <td><input class="form-control" type="number" [(ngModel)]="element.priority" (change)="api.typeUpdate(i)"></td>
+    <td><input class="form-control" type="number" [(ngModel)]="element.versionRequired" (change)="api.typeUpdate(i)"></td>
     <td><button class="btn btn-sm btn-outline-primary" (click)="api.typeDelete(i)">delete</button></td>
   </tr>
   </tbody>

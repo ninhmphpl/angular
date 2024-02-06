@@ -1,7 +1,7 @@
 <table class="table table-bordered">
   <tbody>
   <tr>
-    <td colspan="9">
+    <td colspan="10">
       <button class="btn btn-sm btn-outline-primary" (click)="api.modelCreate()">Create model</button>
     </td>
   </tr>
@@ -12,6 +12,7 @@
     <td class="col-2">Description</td>
     <td class="col-1">Like</td>
     <td class="col-1">Priority</td>
+    <td class="col-1">Show</td>
     <td class="col-1">Filter</td>
     <td class="col-1">Type</td>
     <td class="col-1">Session</td>
@@ -19,16 +20,17 @@
   </tr>
   <tr *ngFor="let element of api.models, let i = index">
     <td>
-      <app-img-upload [type]="'video'" [img]="element.videoUrl"
-                      (dataEvent)="element.videoUrl = $event; api.modelUpdate(i)"></app-img-upload>
+      <app-upload-cloud-flare [type]="'video'" [img]="element.videoUrl"
+                      (dataEvent)="element.videoUrl = $event; api.modelUpdate(i)"></app-upload-cloud-flare>
     </td>
     <td >
-      <app-img-upload [img]="element.thumb" (dataEvent)="element.thumb = $event; api.modelUpdate(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="element.thumb" (dataEvent)="element.thumb = $event; api.modelUpdate(i)"></app-upload-cloud-flare>
     </td>
     <td ><input class="form-control" type="text" [(ngModel)]="element.name" (change)="api.modelUpdate(i)"></td>
     <td ><input class="form-control" type="text" [(ngModel)]="element.description" (change)="api.modelUpdate(i)"></td>
     <td ><input class="form-control" type="number" [(ngModel)]="element.like" (change)="api.modelUpdate(i)"></td>
     <td ><input class="form-control" type="number" [(ngModel)]="element.priority" (change)="api.modelUpdate(i)"></td>
+    <td ><input class="form-check-input" type="checkbox" [(ngModel)]="element.show" (change)="api.modelUpdate(i)"></td>
     <td >
       <label for="filter">{{(element.filter) ? element.filter.name : "none"}}</label>
       <select id="filter" style="width: 18px; border: none" [(ngModel)]="element.filter" (change)="api.modelUpdate(i)">

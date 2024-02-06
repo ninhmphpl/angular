@@ -1,5 +1,4 @@
 export const environment = {
-  // url : "http://localhost:8080",
-  url : "http://guess.procyoni.com",
+  url : "http://clg-test.heratech.space",
   keySaveToken : "TOKEN-WALL-PAPER"
 }

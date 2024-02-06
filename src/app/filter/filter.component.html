@@ -14,8 +14,8 @@
   </tr>
   <tr *ngFor="let element of api.filters, let i = index">
     <td>
-      <app-img-upload [img]="element.resultImage"
-                      (dataEvent)="element.resultImage = $event; api.filterUpdate(i)"></app-img-upload>
+      <app-upload-cloud-flare [img]="element.resultImage"
+                      (dataEvent)="element.resultImage = $event; api.filterUpdate(i)"></app-upload-cloud-flare>
     </td>
     <td>
       <app-upload-multiple [buttonName]="'Add Image Suggest'"

@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {ImgUploadComponent} from "./img-upload/img-upload.component";
 import {LoginComponent} from "./login/login.component";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
@@ -13,11 +12,12 @@ import {TypeComponent} from './type/type.component';
 import {FilterComponent} from './filter/filter.component';
 import {UploadMultipleComponent} from "./upload-multiple/upload-multiple.component";
 import { SessionComponent } from './session/session.component';
+import {UploadCloudFlareComponent} from "./upload-cloud-flare/upload-cloud-flare.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    ImgUploadComponent,
+    UploadCloudFlareComponent,
     LoginComponent,
     AudioComponent,
     ModelComponent,

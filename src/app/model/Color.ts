@@ -27,12 +27,14 @@ export class Model {
   like!: number;
   priority!: number;
   session! : Session;
+  show!:boolean;
 }
 
 export class Type {
   id!: number;
   name!: string;
   priority!: number;
+  versionRequired!: number;
 }
 
 export class Session {
