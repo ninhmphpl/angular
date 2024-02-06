@@ -15,8 +15,10 @@ export class ApiService {
 
   // crud model
   models: Model[] = []
+  offset = 0;
+  limit = 20;
   modelGet() {
-    this.http.get(url + "/prox/api/model?edit=true").subscribe((value: any) => this.models = value.data, error => alert(error.error.detail))
+    this.http.get(url + "/prox/api/model?edit=true&offset=" + this.offset + "&limit=" +this.limit).subscribe((value: any) => this.models = value.data, error => alert(error.error.detail))
   }
   modelCreate() {
     this.http.post(url + "/prox/api/model", new Model()).subscribe((value: any) => this.models.unshift(value.data), error => alert(error.error.detail))

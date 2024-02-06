@@ -1,8 +1,11 @@
 <table class="table table-bordered">
   <tbody>
   <tr>
-    <td colspan="11">
+    <td colspan="11" class="btn-group">
       <button class="btn btn-sm btn-outline-primary" (click)="api.modelCreate()">Create model</button>
+      <button class="btn btn-sm btn-outline-primary" (click)="previous()"><</button>
+      <span class="input-group-text">{{api.offset/api.limit + 1}}</span>
+      <button class="btn btn-sm btn-outline-primary" (click)="next()">></button>
     </td>
   </tr>
   <tr>
