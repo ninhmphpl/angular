@@ -28,13 +28,13 @@ export class Model {
   priority!: number;
   session! : Session;
   show!:boolean;
+  versionRequired!: number;
 }
 
 export class Type {
   id!: number;
   name!: string;
   priority!: number;
-  versionRequired!: number;
 }
 
 export class Session {
