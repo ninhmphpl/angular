@@ -19,7 +19,8 @@ export class VideoComponent implements OnInit {
   uploadList: Upload[] = []
   videos: Video[] = []
   types: Type[] = []
-
+  version = 100
+  showAll = true;
   constructor(private http: HttpClient, private typeService: TypeService, public musicService : MusicService) {
   }
 
@@ -32,7 +33,7 @@ export class VideoComponent implements OnInit {
   }
 
   get() {
-    this.http.get(urlPatrol + "/video?edit=true").subscribe((payload: any) => {
+    this.http.get(urlPatrol + "/video?edit=" + this.showAll + "&version=V_" + this.version).subscribe((payload: any) => {
       if (payload.code == 200) {
         this.videos = payload.data
         for (const video of this.videos) {

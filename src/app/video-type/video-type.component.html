@@ -9,6 +9,7 @@
           d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4z"/>
       </svg>
     </button>
+    <input type="number" class="form-control" [(ngModel)]="typeService.version" (change)="ngOnInit()">
   </div>
 
   <table class="text-light w-100">
@@ -36,21 +37,20 @@
           </div>
         </div>
       </td>
-      <td><input class="form-control w-100" type="text" [(ngModel)]="type.name" (change)="save(i)" placeholder="Name"></td>
+      <td><input class="form-control w-100" type="text" [(ngModel)]="type.name" (change)="save(i)" placeholder="Name">
+      </td>
       <td>
         <app-upload-cloud-flare [imgHeight]="'100px'" [imgWith]="'100px'" [img]="type.url"
-                        (dataEvent)="type.url = $event; save(i)"></app-upload-cloud-flare>
+                                (dataEvent)="type.url = $event; save(i)"></app-upload-cloud-flare>
       </td>
       <td>
         <app-upload-cloud-flare [imgHeight]="'50px'" [imgWith]="'100px'" [img]="type.banner"
-                        (dataEvent)="type.banner = $event; save(i)"></app-upload-cloud-flare>
+                                (dataEvent)="type.banner = $event; save(i)"></app-upload-cloud-flare>
       </td>
-      <td><input class="form-control w-100" type="number" [(ngModel)]="type.value" (change)="save(i)" placeholder="Value"></td>
+      <td><input class="form-control w-100" type="number" [(ngModel)]="type.value" (change)="save(i)"
+                 placeholder="Value"></td>
       <td>
-        <div>V16<input class="form-check-input w-100" type="checkbox" [(ngModel)]="type.premiumV16" (change)="save(i)">
-        </div>
-        <div>V17<input class="form-check-input w-100" type="checkbox" [(ngModel)]="type.premiumV17" (change)="save(i)">
-        </div>
+        <input class="form-check-input w-100" type="checkbox" [(ngModel)]="type.premium" (change)="save(i)">
       </td>
       <td>
         <button (click)="delete(i)" class="m-2 btn btn-outline-danger">

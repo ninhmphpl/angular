@@ -13,4 +13,5 @@ export class Video{
   top : any;
   music! : Music;
   like : any;
+  versionRequired!: number;
 }
