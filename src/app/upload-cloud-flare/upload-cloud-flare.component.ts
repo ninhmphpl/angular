@@ -11,7 +11,7 @@ import {UploadCloudFlareService} from "./upload-cloud-flare.service";
 })
 export class UploadCloudFlareComponent {
   @Output() dataEvent = new EventEmitter<string>();
-  @Input() img!: string;
+  @Input() img!: string | null;
   @Input() type: string = 'img';
   @Input() fontSize: string = '12px';
   @Input() imgWith: string = "50px";

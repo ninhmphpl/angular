@@ -9,7 +9,7 @@
 </div>
 <div class="row row-cols-auto" style="">
   <div class="col m-4 shadow-lg rounded-3 row" *ngFor="let alphabet of api.alphabets, let i = index">
-    <div class="col" style="width: 320px; height: 400px; padding: 10px;position: relative">
+    <div class="col" style="width: 320px; height: 450px; padding: 10px;position: relative">
       <div class="btn-group">
         <input type="text" style="width: 170px" class="form-control" [(ngModel)]="alphabet.name"
                (change)="api.updateAlphabet(i)" placeholder="Name">
@@ -128,11 +128,12 @@
         </div>
       </div>
     </div>
-    <div class="col py-3" style="width: 100px; height: 370px">
-      <div *ngFor="let color of alphabet.colors ">
+    <div class="col py-3" style="width: 150px; height: 400px">
+      <div *ngFor="let color of alphabet.colors" class="btn-group">
         <app-upload-cloud-flare fontSize="8px" imgHeight="23px" imgWith="150px" type="json"
                                 [placeHolder]="'json:' + color.id" [img]="color.json"
                                 (dataEvent)="color.json = $event;api.updateAlphabet(i)"></app-upload-cloud-flare>
+        <button class="btn btn-danger" style="height: 23px; width: 30px; padding: 0; font-size: 8px" (click)="color.json = null; api.updateAlphabet(i) ">Clear</button>
       </div>
     </div>
   </div>

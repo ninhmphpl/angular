@@ -42,7 +42,7 @@ export class Color {
   id!:number;
   x!: number;
   y!: number;
-  json!:string;
+  json!:string | null;
   url!: string;
   left!: boolean;
   right!: boolean;
