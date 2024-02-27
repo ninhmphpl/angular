@@ -1,4 +1,4 @@
 export const environment = {
-  url : "http://analysic.procyoni.com",
+  url : "http://localhost:8080",
   keySaveToken : "TOKEN-AI-ART"
 }

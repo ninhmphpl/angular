@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginService} from "./login/login.service";
 import {environment} from "./environment";
-import {Image, Music, PopupTrending, Style, Trending, TrendingType} from "./model/Model";
+import {Image, Item, Music, PopupTrending, Style, Trending, TrendingType} from "./model/Model";
 
 
 export const urlHost = environment.url
@@ -18,6 +18,19 @@ export class ApiService {
   //--------------------------------- Trending ---------------------------------------------
   trendings: Trending[] = []
   group!: string;
+  limit = 20;
+  offset = 0;
+  previous() {
+    if (this.offset > this.limit) {
+      this.offset -= this.limit
+    } else {
+      this.offset = 0
+    }
+  }
+
+  next(){
+    this.offset += this.limit
+  }
 
   getTrending() {
     let group = (this.group) ? "&group=" + this.group : ""
@@ -62,9 +75,9 @@ export class ApiService {
     }, error => alert(error.error.detail))
   }
 
-  createTrendingType(url? : string) {
+  createTrendingType(url?: string) {
     let trendingType = new Trending()
-    if(url) trendingType.url = url
+    if (url) trendingType.url = url
     this.http.post(urlHost + "/now/v1/trendingType", trendingType, this.login.getHeader()).subscribe((value: any) => {
       this.trendingTypes.unshift(value.data)
     }, error => alert(error.error.detail))
@@ -93,9 +106,9 @@ export class ApiService {
     }, error => alert(error.error.detail))
   }
 
-  createMusic(url?:string) {
+  createMusic(url?: string) {
     let music = new Music();
-    if(url) music.url = url
+    if (url) music.url = url
     this.http.post(urlHost + "/now/v1/music", music, this.login.getHeader()).subscribe((value: any) => {
       this.musics.unshift(value.data)
     }, error => alert(error.error.detail))
@@ -154,18 +167,18 @@ export class ApiService {
     }, error => alert(error.error.detail))
   }
 
-  createImageSticker(url?:string) {
+  createImageSticker(url?: string) {
     let image = new Image()
     image.type = 'sticker'
-    if(url) image.url = url
+    if (url) image.url = url
     this.http.post(urlHost + "/now/v1/image", image, this.login.getHeader()).subscribe((value: any) => {
       this.images.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
-  createImage(url : string | null , action: (image: Image) => any) {
+  createImage(url: string | null, action: (image: Image) => any) {
     let image = new Image()
-    if(url)image.url = url
+    if (url) image.url = url
     this.http.post(urlHost + "/now/v1/image", image, this.login.getHeader()).subscribe((value: any) => {
       this.images.unshift(value.data)
       action(value.data)
@@ -199,6 +212,10 @@ export class ApiService {
   //--------------------------------- PopupTrending ---------------------------------------------
   popupTrendings: PopupTrending[] = []
 
+
+
+
+
   getPopupTrending() {
     this.http.get(urlHost + "/now/v1/popupTrending").subscribe((value: any) => {
       this.popupTrendings = value.data
@@ -221,6 +238,35 @@ export class ApiService {
     this.http.delete(urlHost + "/now/v1/popupTrending/" + this.popupTrendings[index].id, this.login.getHeader()).subscribe((value: any) => {
       this.popupTrendings[index] = value.data
       this.popupTrendings.splice(index, 1)
+    }, error => alert(error.error.detail))
+  }
+
+  //--------------------------------- Item ---------------------------------------------
+  items: Item[] = []
+  typeFilter = 'all'
+
+  getItem() {
+    this.http.get(urlHost + `/now/v1/item?edit=true&offset=${this.offset}&limit=${this.limit}&type=${this.typeFilter}`).subscribe((value: any) => {
+      this.items = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  createItem() {
+    this.http.post(urlHost + "/now/v1/item", new Item(), this.login.getHeader()).subscribe((value: any) => {
+      this.items.unshift(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  updateItem(index: number) {
+    this.http.post(urlHost + "/now/v1/item", this.items[index], this.login.getHeader()).subscribe((value: any) => {
+      this.items[index] = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  deleteItem(index: number) {
+    this.http.delete(urlHost + "/now/v1/item/" + this.items[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.items[index] = value.data
+      this.items.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 

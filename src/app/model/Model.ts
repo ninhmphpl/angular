@@ -83,4 +83,16 @@ export class PopupTrending {
   trendingTarget!: Trending;
   image!: string;
 }
+export class Item {
+  id!: number;
+  name!: string;
+  detail!: string;
+  image!: string;
+  lock!: boolean;
+  type!: string;
+  createAt!: number;
+  versionRequired!: number;
+  show!: number;
+  top!: number;
+}
 
