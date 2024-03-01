@@ -88,6 +88,8 @@ export class Item {
   name!: string;
   detail!: string;
   image!: string;
+  image1!: string;
+  image2!: string;
   lock!: boolean;
   type!: string;
   createAt!: number;

@@ -2,7 +2,7 @@
   <table class="table table-bordered shadow-sm table-hover">
     <thead>
     <tr>
-      <td colspan="9">
+      <td colspan="11">
         <div class="row m-2">
 
           <button class="btn btn btn-primary col-2" (click)="api.createItem()">Create New</button>
@@ -35,6 +35,8 @@
     </tr>
     <tr>
       <th>Image</th>
+      <th>Image1</th>
+      <th>Image2</th>
       <th>Name</th>
       <th>Detail</th>
       <th>Top</th>
@@ -48,6 +50,8 @@
     <tbody>
     <tr *ngFor="let item of api.items, let i = index">
       <td><app-upload-cloud-flare [img]="item.image" (dataEvent)="item.image = $event; api.updateItem(i)"></app-upload-cloud-flare></td>
+      <td><app-upload-cloud-flare [img]="item.image1" (dataEvent)="item.image1 = $event; api.updateItem(i)"></app-upload-cloud-flare></td>
+      <td><app-upload-cloud-flare [img]="item.image2" (dataEvent)="item.image2 = $event; api.updateItem(i)"></app-upload-cloud-flare></td>
       <td><input type="text" class="form-control" [(ngModel)]="item.name" (change)="api.updateItem(i)"></td>
       <td><input type="text" class="form-control" [(ngModel)]="item.detail" (change)="api.updateItem(i)"></td>
       <td><input type="text" class="form-control" [(ngModel)]="item.top" (change)="api.updateItem(i)"></td>
