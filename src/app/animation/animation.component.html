@@ -1,41 +1,55 @@
-<table>
-  <tr>
-    <td colspan="5">
-      <button (click)="api.createAnimation()">Create Animation</button>
-      Category : <select [(ngModel)]="api.categorySelect" (change)="api.getAnimation()">
-        <option [ngValue]="undefined">All</option>
-        <option *ngFor="let category of api.categories" [ngValue]="category">{{category.name}}</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td>Image</td>
-    <td>Thumb</td>
-    <td>Name</td>
-    <td>Version Required</td>
-    <td>Category</td>
-    <td>Delete</td>
-  </tr>
-  <tr *ngFor="let animation of api.animations let i = index">
-    <td>
-      <app-upload-cloud-flare [img]="animation.image"
-                      (dataEvent)="animation.image = $event; api.updateAnimation(i)"></app-upload-cloud-flare>
-    </td>
-    <td>
-      <app-upload-cloud-flare [img]="animation.thumb"
-                      (dataEvent)="animation.thumb = $event; api.updateAnimation(i)"></app-upload-cloud-flare>
-    </td>
-    <td><input type="text" [(ngModel)]="animation.name" placeholder="Animation" (change)="api.updateAnimation(i)"></td>
-    <td><input type="text" [(ngModel)]="animation.versionRequired" placeholder="Version Required" (change)="api.updateAnimation(i)"></td>
-    <td>
-      <span>{{(animation.category) ? animation.category.name : "none"}}</span>
-      <select style="width: 18px" [(ngModel)]="animation.category" (change)="api.updateAnimation(i)">
-        <option [ngValue]="undefined">None</option>
-        <option *ngFor="let category of api.categories" [ngValue]="category">{{category.name}}</option>
-      </select>
-    </td>
-    <td>
-      <button (click)="api.deleteAnimation(i)">Delete</button>
-    </td>
-  </tr>
-</table>
+
+<div class="container my-2">
+  <table class="table table-bordered table-hover">
+    <tbody>
+    <tr>
+      <td colspan="7">
+        <button class="btn btn-outline-primary" (click)="api.createAnimation()">Create Animation</button>
+        <div class="input-group">
+          <span class="input-group-text">Category </span>
+          <select class="form-select" [(ngModel)]="api.categorySelect" (change)="api.getAnimation()">
+            <option [ngValue]="undefined">All</option>
+            <option *ngFor="let category of api.categories" [ngValue]="category">{{category.name}}</option>
+          </select>
+        </div>
+
+      </td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td>Thumb</td>
+      <td>Name</td>
+      <td>Version Required</td>
+      <td>Category</td>
+      <td>Premium</td>
+      <td>Delete</td>
+    </tr>
+    <tr *ngFor="let animation of api.animations let i = index">
+      <td>
+        <app-upload-cloud-flare [img]="animation.image"
+                                (dataEvent)="animation.image = $event; api.updateAnimation(i)"></app-upload-cloud-flare>
+      </td>
+      <td>
+        <app-upload-cloud-flare [img]="animation.thumb"
+                                (dataEvent)="animation.thumb = $event; api.updateAnimation(i)"></app-upload-cloud-flare>
+      </td>
+      <td><input class="form-control" type="text" [(ngModel)]="animation.name" placeholder="Animation" (change)="api.updateAnimation(i)"></td>
+      <td><input class="form-control" type="text" [(ngModel)]="animation.versionRequired" placeholder="Version Required" (change)="api.updateAnimation(i)"></td>
+      <td>
+        <select class="form-select" [(ngModel)]="animation.category" (change)="api.updateAnimation(i)">
+          <option [hidden]="true" [ngValue]="animation.category">{{(animation.category)?animation.category.name:"None"}}</option>
+          <option *ngFor="let category of api.categories" [ngValue]="category">{{category.name}}</option>
+        </select>
+      </td>
+      <td>
+        <input type="checkbox" class="form-check-input" [(ngModel)]="animation.premium" (change)="api.updateAnimation(i)">
+      </td>
+      <td>
+        <button class="btn btn-outline-danger" (click)="api.deleteAnimation(i)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+

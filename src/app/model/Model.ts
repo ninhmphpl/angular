@@ -6,6 +6,7 @@ export class Animation {
   image!: string;
   category!: Category;
   versionRequired!:number;
+  premium!:boolean
 }
 
 export class Category {
