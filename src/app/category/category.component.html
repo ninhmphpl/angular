@@ -1,20 +1,27 @@
-<table>
-  <tbody>
-  <tr>
-    <td colspan="2">
-      <select [(ngModel)]="api.categoryOptionSelect" (change)="api.getCategory()">
-        <option *ngFor="let category of api.categoryOption" [value]="category">{{category}}</option>
-      </select>
-      <button (click)="api.createCategory()">New Category</button>
-    </td>
-  </tr>
-  <tr>
-    <td>Name</td>
-    <td>Delete</td>
-  </tr>
-  <tr *ngFor="let style of api.categories, let i = index">
-    <td><input type="text" [(ngModel)]="style.name" (change)="api.updateCategory(i)"></td>
-    <td><button (click)="api.deleteCategory(i)">Delete</button></td>
-  </tr>
-  </tbody>
-</table>
+<div class="container">
+  <table class="table table table-hover table-bordered my-2">
+    <tbody>
+    <tr>
+      <td colspan="4">
+        <select [(ngModel)]="api.categoryOptionSelect" (change)="api.getCategory()">
+          <option *ngFor="let category of api.categoryOption" [value]="category">{{category}}</option>
+        </select>
+        <button (click)="api.createCategory()">New Category</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Thumb</td>
+      <td>Name</td>
+      <td>Type</td>
+      <td>Delete</td>
+    </tr>
+    <tr *ngFor="let category of api.categories, let i = index">
+      <td><app-upload-cloud-flare imgWith="50px" imgHeight="50px" [img]="category.thumb" (dataEvent)="category.thumb = $event; api.updateCategory(i)"></app-upload-cloud-flare></td>
+      <td><input class="form-control" type="text" [(ngModel)]="category.name" (change)="api.updateCategory(i)"></td>
+      <td>{{category.type}}</td>
+      <td><button class="btn btn-sm btn-outline-danger" (click)="api.deleteCategory(i)">Delete</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
