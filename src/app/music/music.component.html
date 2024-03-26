@@ -1,23 +1,31 @@
-<table>
-  <tr>
-    <td colspan="5">
-      <button (click)="api.createMusic()">Create Music</button>
-      <app-upload-multiple [buttonName]="'Create Music Multiple'" (dataEvent)="api.createMusic($event)"></app-upload-multiple>
+<div class="container my-2">
+  <table class="table table-bordered table-hover">
+    <tbody>
+    <tr>
+      <td colspan="5">
+        <button class="btn btn-primary btn-sm" (click)="api.createMusic()">Create Music</button>
+        <app-upload-multiple [buttonName]="'Create Music Multiple'" (dataEvent)="api.createMusic($event)"></app-upload-multiple>
 
-    </td>
-  </tr>
-  <tr>
-    <td>Thumb</td>
-    <td>Audio</td>
-    <td>Name</td>
-    <td>Description</td>
-    <td>Delete</td>
-  </tr>
-  <tr *ngFor="let music of api.musics let i = index">
-    <td><app-upload-cloud-flare [img]="music.thumb" (dataEvent)="music.thumb = $event; api.updateMusic(i)"></app-upload-cloud-flare></td>
-    <td><app-upload-cloud-flare [imgWith]="'200px'" [type]="'audio'" [img]="music.url" (dataEvent)="music.url = $event; api.updateMusic(i)"></app-upload-cloud-flare></td>
-    <td><input type="text" [(ngModel)]="music.name" (change)="api.updateMusic(i)"></td>
-    <td><input type="text" [(ngModel)]="music.description" (change)="api.updateMusic(i)"></td>
-    <td><button (click)="api.deleteMusic(i)">Delete</button></td>
-  </tr>
-</table>
+      </td>
+    </tr>
+    <tr>
+      <td>Thumb</td>
+      <td>Audio</td>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Delete</td>
+    </tr>
+    </tbody>
+    <thead>
+    <tr *ngFor="let music of api.musics let i = index">
+      <td><app-upload-cloud-flare [img]="music.thumb" (dataEvent)="music.thumb = $event; api.updateMusic(i)"></app-upload-cloud-flare></td>
+      <td><app-upload-cloud-flare [imgWith]="'200px'" [type]="'audio'" [img]="music.url" (dataEvent)="music.url = $event; api.updateMusic(i)"></app-upload-cloud-flare></td>
+      <td><input class="form-control" type="text" [(ngModel)]="music.name" (change)="api.updateMusic(i)"></td>
+      <td><input class="form-control" type="text" [(ngModel)]="music.description" (change)="api.updateMusic(i)"></td>
+      <td><button class="btn btn-primary btn-sm" (click)="api.deleteMusic(i)">Delete</button></td>
+    </tr>
+    </thead>
+  </table>
+</div>
+
+

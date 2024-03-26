@@ -1,67 +1,71 @@
-<table>
-  <tr>
-    <td colspan="11">
-      <button (click)="api.createTrending()">Create Trending</button>
-      <app-upload-multiple [buttonName]="'Create Trending Multiple'" (dataEvent)="api.createTrendingByUrl($event)"></app-upload-multiple>
-      <select [(ngModel)]="api.group" (change)="api.getTrending()">
-        <option [ngValue]="undefined">All</option>
-        <option value="boy-friend">Boy Friend</option>
-        <option value="girl-friend">Girl Friend</option>
-        <option value="top-trending">Top Trending</option>
-        <option value="trending">Trending</option>
-        <option value="twin">Twin</option>
-        <option value="end2023">End 2023</option>
-        <option value="start2024">Start 2024</option>
-      </select>
-    </td>
+<div class="container my-2">
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <td colspan="11">
+        <button class="btn btn-primary" (click)="api.createTrending()">Create Trending</button>
+        <app-upload-multiple [buttonName]="'Create Trending Multiple'" (dataEvent)="api.createTrendingByUrl($event)"></app-upload-multiple>
+        <select class="form-select" [(ngModel)]="api.group" (change)="api.getTrending()">
+          <option [ngValue]="undefined">All</option>
+          <option value="boy-friend">Boy Friend</option>
+          <option value="girl-friend">Girl Friend</option>
+          <option value="top-trending">Top Trending</option>
+          <option value="trending">Trending</option>
+          <option value="twin">Twin</option>
+          <option value="end2023">End 2023</option>
+          <option value="start2024">Start 2024</option>
+        </select>
+      </td>
 
-  </tr>
-  <tr>
-    <td>Video</td>
-    <td>Thumb</td>
-    <td>Name</td>
-    <td>Description</td>
-    <td>Top</td>
-    <td>Like</td>
-    <td>Show</td>
-    <td>Trending Type</td>
-    <td>Music</td>
-    <td>Group</td>
-    <td>Delete</td>
-  </tr>
-  <tr *ngFor="let trending of api.trendings let i = index">
-    <td><app-upload-cloud-flare [imgWith]="'100px'" [imgHeight]="'150px'" [type]="'video'" [img]="trending.url" (dataEvent)="trending.url = $event; api.updateTrending(i)"></app-upload-cloud-flare></td>
-    <td><app-upload-cloud-flare [img]="trending.thumb" (dataEvent)="trending.thumb = $event; api.updateTrending(i)"></app-upload-cloud-flare></td>
-    <td><input style="width: 100px" type="text" [(ngModel)]="trending.name" (change)="api.updateTrending(i)"></td>
-    <td><input style="width: 100px" type="text" [(ngModel)]="trending.description" (change)="api.updateTrending(i)"></td>
-    <td><input style="width: 100px" type="number" [(ngModel)]="trending.top" (change)="api.updateTrending(i)"></td>
-    <td><input style="width: 100px" type="number" [(ngModel)]="trending.like" (change)="api.updateTrending(i)"></td>
-    <td><input style="width: 100px" type="checkbox" [(ngModel)]="trending.show" (change)="api.updateTrending(i)"></td>
-    <td>
-      <span>{{(trending.trendingType)?trending.trendingType.name:"none"}}</span>
-      <select style="width: 18px" [(ngModel)]="trending.trendingType" (change)="api.updateTrending(i)">
-        <option [ngValue]="undefined">None</option>
-        <option *ngFor="let trendingType of api.trendingTypes" [ngValue]="trendingType">{{trendingType.name}}</option>
-      </select>
-    </td>
-    <td>
-      <span>{{(trending.music)?trending.music.name:"none"}}</span>
-      <select style="width: 18px" [(ngModel)]="trending.music" (change)="api.updateTrending(i)">
-        <option [ngValue]="undefined">None</option>
-        <option *ngFor="let music of api.musics" [ngValue]="music">{{music.name}}</option>
-      </select>
-    </td>
-    <td>
-      <select [(ngModel)]="trending.group" (change)="api.updateTrending(i)">
-        <option value="boy-friend">Boy Friend</option>
-        <option value="top-trending">Top Trending</option>
-        <option value="girl-friend">Girl Friend</option>
-        <option value="trending">Trending</option>
-        <option value="twin">Twin</option>
-        <option value="end2023">End 2023</option>
-        <option value="start2024">Start 2024</option>
-      </select>
-    </td>
-    <td><button (click)="api.deleteTrending(i)">Delete</button></td>
-  </tr>
-</table>
+    </tr>
+    <tr>
+      <td>Video</td>
+      <td>Thumb</td>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Top</td>
+      <td>Like</td>
+      <td>Show</td>
+      <td>Trending Type</td>
+      <td>Music</td>
+      <td>Group</td>
+      <td>Delete</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let trending of api.trendings let i = index">
+      <td><app-upload-cloud-flare [imgWith]="'100px'" [imgHeight]="'150px'" [type]="'video'" [img]="trending.url" (dataEvent)="trending.url = $event; api.updateTrending(i)"></app-upload-cloud-flare></td>
+      <td><app-upload-cloud-flare [img]="trending.thumb" (dataEvent)="trending.thumb = $event; api.updateTrending(i)"></app-upload-cloud-flare></td>
+      <td><input class="form-control"  type="text" [(ngModel)]="trending.name" (change)="api.updateTrending(i)"></td>
+      <td><input class="form-control"  type="text" [(ngModel)]="trending.description" (change)="api.updateTrending(i)"></td>
+      <td><input class="form-control"  type="number" [(ngModel)]="trending.top" (change)="api.updateTrending(i)"></td>
+      <td><input class="form-control"  type="number" [(ngModel)]="trending.like" (change)="api.updateTrending(i)"></td>
+      <td><input class="form-check-input"  type="checkbox" [(ngModel)]="trending.show" (change)="api.updateTrending(i)"></td>
+      <td>
+        <select class="form-select"  [(ngModel)]="trending.trendingType" (change)="api.updateTrending(i)">
+          <option [hidden]="true" [ngValue]="trending.trendingType">{{(trending.trendingType)?trending.trendingType.name:"none"}}</option>
+          <option *ngFor="let trendingType of api.trendingTypes" [ngValue]="trendingType">{{trendingType.name}}</option>
+        </select>
+      </td>
+      <td>
+        <select class="form-select" [(ngModel)]="trending.music" (change)="api.updateTrending(i)">
+          <option [hidden]="true" [ngValue]="trending.music">{{(trending.music)?trending.music.name:"none"}}</option>
+          <option *ngFor="let music of api.musics" [ngValue]="music">{{music.name}}</option>
+        </select>
+      </td>
+      <td>
+        <select class="form-select" [(ngModel)]="trending.group" (change)="api.updateTrending(i)">
+          <option value="boy-friend">Boy Friend</option>
+          <option value="top-trending">Top Trending</option>
+          <option value="girl-friend">Girl Friend</option>
+          <option value="trending">Trending</option>
+          <option value="twin">Twin</option>
+          <option value="end2023">End 2023</option>
+          <option value="start2024">Start 2024</option>
+        </select>
+      </td>
+      <td><button class="btn btn-primary" (click)="api.deleteTrending(i)">Delete</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

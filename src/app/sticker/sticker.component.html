@@ -1,16 +1,20 @@
-<table>
-  <tr>
-    <td colspan="2">
-      <button (click)="api.createImageSticker()">Create Sticker</button>
-      <app-upload-multiple [buttonName]="'Create Sticker Multiple'" (dataEvent)="api.createImageSticker($event)"></app-upload-multiple>
-    </td>
-  </tr>
-  <tr>
-    <td>Image</td>
-    <td>Delete</td>
-  </tr>
-  <tr *ngFor="let image of api.images let i = index">
-    <td><app-upload-cloud-flare [img]="image.url" (dataEvent)="image.url = $event; api.updateImageSticker(i)"></app-upload-cloud-flare></td>
-    <td><button (click)="api.deleteImageSticker(i)">Delete</button></td>
-  </tr>
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <td colspan="2">
+        <button class="btn btn-primary btn-sm" (click)="api.createImageSticker()">Create Sticker</button>
+        <app-upload-multiple [buttonName]="'Create Sticker Multiple'" (dataEvent)="api.createImageSticker($event)"></app-upload-multiple>
+      </td>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td>Delete</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let image of api.images let i = index">
+      <td><app-upload-cloud-flare [img]="image.url" (dataEvent)="image.url = $event; api.updateImageSticker(i)"></app-upload-cloud-flare></td>
+      <td><button class="btn btn-primary btn-sm" (click)="api.deleteImageSticker(i)">Delete</button></td>
+    </tr>
+  </tbody>
 </table>
