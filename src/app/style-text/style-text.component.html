@@ -1,10 +1,10 @@
 <table>
   <tr>
-    <td><input type="text" #newText></td>
-    <td><button (click)="add(newText.value)">Create Text</button></td>
+    <td><input class="form-control" type="text" #newText></td>
+    <td><button class="btn btn-primary" (click)="add(newText.value)">Create Text</button></td>
   </tr>
   <tr *ngFor="let image of text let i = index">
     <td>{{image}}</td>
-    <td><button (click)="delete(i)">Delete</button></td>
+    <td><button class="btn btn-primary" (click)="delete(i)">Delete</button></td>
   </tr>
 </table>

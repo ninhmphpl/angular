@@ -1,22 +1,26 @@
-<table>
-  <tr>
-    <td colspan="2">
-      <button (click)="api.createPopupTrending()">Create PopupTrending</button>
-    </td>
-  </tr>
-  <tr>
-    <td>Name</td>
-    <td>Detail</td>
-    <td>Trending</td>
-  </tr>
-  <tr *ngFor="let popupTrending of api.popupTrendings let i = index">
-    <td><input type="text" [(ngModel)]="popupTrending.name" (change)="api.updatePopupTrending(i)"></td>
-    <td><input type="text" [(ngModel)]="popupTrending.detail" (change)="api.updatePopupTrending(i)"></td>
-    <td>
-      <select [(ngModel)]="popupTrending.trendingTarget" (change)="api.updatePopupTrending(i)">
-        <option [hidden]="true" [ngValue]="popupTrending.trendingTarget">{{(popupTrending.trendingTarget)?popupTrending.trendingTarget.name : 'None'}}</option>
-        <option *ngFor="let p of api.trendings" [ngValue]="p">{{p.name}}</option>
-      </select>
-    </td>
-  </tr>
-</table>
+<div class="container my-2">
+  <table class="table table-hover table-bordered">
+    <tbody>
+    <tr>
+      <td colspan="2">
+        <button class="btn btn-primary" (click)="api.createPopupTrending()">Create PopupTrending</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>Detail</td>
+      <td>Trending</td>
+    </tr>
+    <tr *ngFor="let popupTrending of api.popupTrendings let i = index">
+      <td><input class="form-control" type="text" [(ngModel)]="popupTrending.name" (change)="api.updatePopupTrending(i)"></td>
+      <td><input class="form-control" type="text" [(ngModel)]="popupTrending.detail" (change)="api.updatePopupTrending(i)"></td>
+      <td>
+        <select class="form-select" [(ngModel)]="popupTrending.trendingTarget" (change)="api.updatePopupTrending(i)">
+          <option [hidden]="true" [ngValue]="popupTrending.trendingTarget">{{(popupTrending.trendingTarget)?popupTrending.trendingTarget.name : 'None'}}</option>
+          <option *ngFor="let p of api.trendings" [ngValue]="p">{{p.name}}</option>
+        </select>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

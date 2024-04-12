@@ -1,9 +1,20 @@
-<table>
+<table class="table table-bordered table-hover">
+  <tbody>
   <tr>
-    <td><button (click)="create()">Create Image</button></td>
+    <td>
+      <button class="btn btn-primary" (click)="create()">Create Image</button>
+    </td>
   </tr>
   <tr *ngFor="let image of images let i = index">
-    <td><app-upload-cloud-flare [img]="image.url" (dataEvent)="image.url = $event; update(i)"></app-upload-cloud-flare></td>
-    <td><button (click)="delete(i)">Delete</button></td>
+    <td>
+      <app-upload-cloud-flare [img]="image.url" (dataEvent)="image.url = $event; update(i)"></app-upload-cloud-flare>
+    </td>
+    <td>
+      <button class="btn-primary" (click)="delete(i)">Delete</button>
+    </td>
   </tr>
+  </tbody>
 </table>
+
+
+

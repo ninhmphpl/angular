@@ -1,54 +1,34 @@
-<table>
-  <tr>
-    <td colspan="4">
-      <button (click)="api.createStyle()">Create Style</button>
-      <select [(ngModel)]="api.styleType" (change)="api.getStyle()">
-        <option [ngValue]="undefined">All</option>
-        <option value="boy-friend">Boy Friend</option>
-        <option value="top-trending">Top Trending</option>
-        <option value="girl-friend">Girl Friend</option>
-        <option value="trending">Trending</option>
-        <option value="twin">Twin</option>
-        <option value="monthly">Monthly</option>
-        <option value="message">Message</option>
-        <option value="disco">Disco</option>
-        <option value="bucket">Bucket</option>
-        <option value="will-end-2023">Will end 2023</option>
-      </select>
-    </td>
-  </tr>
-  <tr>
-    <td>Type</td>
-    <td>Images</td>
-    <td>Texts</td>
-    <td>Delete</td>
-  </tr>
-  <tr *ngFor="let style of api.styles let i = index">
-    <td>
-      <select [(ngModel)]="style.type" (change)="api.updateStyle(i)">
-        <option value="boy-friend">Boy Friend</option>
-        <option value="girl-friend">Girl Friend</option>
-        <option value="top-trending">Top Trending</option>
-        <option value="trending">Trending</option>
-        <option value="twin">Twin</option>
-        <option value="end2023">End 2023</option>
-        <option value="start2024">Start 2024</option>
-        <option value="monthly">Monthly</option>
-        <option value="message">Message</option>
-        <option value="disco">Disco</option>
-        <option value="bucket">Bucket</option>
-        <option value="will-end-2023">Will end 2023</option>
-      </select>
-    </td>
-    <td>
-      <app-style-image [images]="style.images" (dataEvent)="api.updateStyle(i)"></app-style-image>
-    </td>
-    <td>
-      <app-style-text [text]="style.text" (dataEvent)="style.text = $event; api.updateStyle(i)"></app-style-text>
-    </td>
-    <td>
-      <button (click)="api.deleteStyle(i)">Delete</button>
-    </td>
-  </tr>
-</table>
+<div class="container my-2">
+  <table class="table table-bordered table-hover">
+    <tbody>
+    <tr>
+      <td colspan="4">
+        <button class="btn btn-primary" (click)="api.createStyle()">Create Style</button>
+        <input class="form-control" [(ngModel)]="api.styleType" (change)="api.getStyle()" placeholder="Search Type">
+      </td>
+    </tr>
+    <tr>
+      <td>Type</td>
+      <td>Images</td>
+      <td>Texts</td>
+      <td>Delete</td>
+    </tr>
+    <tr *ngFor="let style of api.styles let i = index">
+      <td>
+        <input class="form-control" [(ngModel)]="style.type" (change)="api.updateStyle(i)">
+      </td>
+      <td>
+        <app-style-image [images]="style.images" (dataEvent)="api.updateStyle(i)"></app-style-image>
+      </td>
+      <td>
+        <app-style-text [text]="style.text" (dataEvent)="style.text = $event; api.updateStyle(i)"></app-style-text>
+      </td>
+      <td>
+        <button class="btn btn-primary" (click)="api.deleteStyle(i)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
 
