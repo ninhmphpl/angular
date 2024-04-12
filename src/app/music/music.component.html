@@ -2,11 +2,12 @@
   <table class="table table-bordered table-hover shadow-sm">
     <thead>
     <tr>
-      <td colspan="5">
+      <td colspan="7">
         <div class="row px-2">
           <button class="btn btn-primary col" (click)="api.createMusic()">Create Music</button>
           <div class="col">
-            <app-upload-multiple [buttonName]="'Create Music Multiple'" (dataEvent)="api.createMusic($event)"></app-upload-multiple>
+            <app-upload-multiple [buttonName]="'Create Music Multiple'"
+                                 (dataEvent)="api.createMusic($event)"></app-upload-multiple>
           </div>
         </div>
       </td>
@@ -14,8 +15,11 @@
     <tr>
       <th>Thumb</th>
       <th>Audio</th>
+      <th>Show</th>
       <th>Name</th>
       <th>Description</th>
+      <th>Version Required</th>
+      <th>Unlock By</th>
       <th>Delete</th>
     </tr>
     </thead>
@@ -29,8 +33,18 @@
         <app-upload-cloud-flare [imgWith]="'200px'" [type]="'audio'" [img]="music.url"
                                 (dataEvent)="music.url = $event; api.updateMusic(i)"></app-upload-cloud-flare>
       </td>
+      <td><input class="form-check-input" type="checkbox" [(ngModel)]="music.show" (change)="api.updateMusic(i)"></td>
       <td><input class="form-control" type="text" [(ngModel)]="music.name" (change)="api.updateMusic(i)"></td>
       <td><input class="form-control" type="text" [(ngModel)]="music.description" (change)="api.updateMusic(i)"></td>
+      <td><input class="form-control" type="number" [(ngModel)]="music.versionRequired" (change)="api.updateMusic(i)">
+      </td>
+      <td>
+        <select class="form-select" [(ngModel)]="music.unlockBy" (change)="api.updateMusic(i)">
+          <option value="NONE">NONE</option>
+          <option value="ADS">ADS</option>
+          <option value="PREMIUM">PREMIUM</option>
+        </select>
+      </td>
       <td>
         <button class="btn btn-danger" (click)="api.deleteMusic(i)">Delete</button>
       </td>

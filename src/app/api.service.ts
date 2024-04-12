@@ -101,7 +101,7 @@ export class ApiService {
   musics: Music[] = []
 
   getMusic() {
-    this.http.get(urlHost + "/now/v1/music").subscribe((value: any) => {
+    this.http.get(urlHost + "/now/v1/music?show_all=true&page=" + this.offset ).subscribe((value: any) => {
       this.musics = value.data
     }, error => alert(error.error.detail))
   }

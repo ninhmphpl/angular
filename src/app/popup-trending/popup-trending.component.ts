@@ -13,5 +13,4 @@ export class PopupTrendingComponent implements OnInit{
     this.api.getPopupTrending()
     this.api.getTrending()
   }
-
 }

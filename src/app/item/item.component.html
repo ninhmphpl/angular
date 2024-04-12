@@ -44,7 +44,9 @@
       <th>Type</th>
       <th>Show</th>
       <th>Lock</th>
-      <th>Delete</th>
+      <th>LockBy</th>
+      <th>Percent</th>
+      <th>Knife Color</th>
     </tr>
     </thead>
     <tbody>
@@ -65,6 +67,15 @@
       </td>
       <td><input type="checkbox" class="form-check-input" [(ngModel)]="item.show" (change)="api.updateItem(i)"></td>
       <td><input type="checkbox" class="form-check-input" [(ngModel)]="item.lock" (change)="api.updateItem(i)"></td>
+      <td>
+        <select class="form-select" [(ngModel)]="item.unlockBy" (change)="api.updateItem(i)">
+          <option value="NONE">NONE</option>
+          <option value="ADS">ADS</option>
+          <option value="PREMIUM"> PREMIUM </option>
+        </select>
+      </td>
+      <td><input type="number" class="form-control" [(ngModel)]="item.percent" (change)="api.updateItem(i)"></td>
+      <td><input type="text" class="form-control" [(ngModel)]="item.knifeColor" (change)="api.updateItem(i)"></td>
       <td><button class="btn btn-danger" (click)="api.deleteItem(i)">Delete</button></td>
     </tr>
     </tbody>

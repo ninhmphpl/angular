@@ -19,6 +19,10 @@ export class Music {
   show!: boolean;
 
   top!: number;
+
+  unlockBy !: string;
+
+  versionRequired !: number;
 }
 
 export class Style {
@@ -73,7 +77,7 @@ export class TrendingType {
 
   banner!: string;
   requiredVersion!: number;
-  icons! : string[]
+  icons!: string[]
 }
 
 export class PopupTrending {
@@ -83,6 +87,7 @@ export class PopupTrending {
   trendingTarget!: Trending;
   image!: string;
 }
+
 export class Item {
   id!: number;
   name!: string;
@@ -96,5 +101,10 @@ export class Item {
   versionRequired!: number;
   show!: number;
   top!: number;
+
+  percent !: number;
+  unlockBy !: string;
+  knifeColor !: string;
+
 }
 
