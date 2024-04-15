@@ -62,6 +62,17 @@ export class ApiService {
     }, error => alert(error.error.detail))
   }
 
+  makeStep(id : string, width: number, height : number) {
+    let header : any = this.login.getHeader();
+    header.params = {
+      width : width,
+      height : height
+    }
+    this.http.get(urlHost + "/now/v1/trendingType/step/" + id, header).subscribe((value: any) => {
+      this.trendingTypes = value.data
+    }, error => alert(error.error.detail))
+  }
+
   createTrendingType(url? : string) {
     let trendingType = new Trending()
     if(url) trendingType.url = url

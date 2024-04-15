@@ -9,6 +9,11 @@ import {ApiService} from "../api.service";
 export class TredingTypeComponent implements OnInit{
   constructor(public api : ApiService) {
   }
+
+  idSelect : string = "";
+  widthSelect : number = 4;
+  heightSelect : number = 4;
+
   ngOnInit(): void {
     this.api.getTrendingType()
   }
@@ -17,4 +22,16 @@ export class TredingTypeComponent implements OnInit{
     this.api.trendingTypes[indexTrendingType].icons.push(url)
   }
 
+
+  public makeStep(index : number, modalMakeStep : any, modalEditModal : any){
+    if(this.api.trendingTypes[index].step == null){
+      modalMakeStep.click();
+      this.api.makeStep(this.idSelect, this.widthSelect, this.heightSelect)
+    }else {
+      modalEditModal.click();
+    }
+  }
+
+
+  protected readonly indexedDB = indexedDB;
 }

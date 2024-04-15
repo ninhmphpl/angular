@@ -14,6 +14,7 @@
       <td>Value</td>
       <td>Icons</td>
       <td>Required Version</td>
+      <td>Step</td>
       <td>Delete</td>
     </tr>
     <tr *ngFor="let trendingType of api.trendingTypes let i = index">
@@ -31,8 +32,71 @@
         ></app-upload-cloud-flare>
       </td>
       <td><input class="form-control" type="number" [(ngModel)]="trendingType.requiredVersion" (change)="api.updateTrendingType(i)"></td>
+
+      <td><button class="btn btn-primary" (click)="makeStep(i, modalMakeStep, modalEdit)">Step</button></td>
       <td><button class="btn btn-primary" (click)="api.deleteTrendingType(i)">Delete</button></td>
     </tr>
     </tbody>
   </table>
+</div>
+
+<div>
+  <!-- Button trigger modal -->
+  <button [hidden]="true" #modalMakeStep class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+    Launch demo modal
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Step Option</h1>
+          <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table>
+            <tr>
+              <td class="col-3">Width</td>
+              <td><input class="form-control" type="text" [(ngModel)]="widthSelect"></td>
+            </tr>
+            <tr>
+              <td class="col-3">Height</td>
+              <td><input class="form-control" type="text" [(ngModel)]="heightSelect"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary" >Make Step</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  <!-- Button trigger modal -->
+  <button [hidden]="true" #modalEdit class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEdit">
+    Launch demo modal
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" >Edit Step</h1>
+          <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
