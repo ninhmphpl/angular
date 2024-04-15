@@ -1,0 +1,17 @@
+<table *ngIf="model">
+  <tbody>
+  <tr>
+    <td>Model Name</td>
+    <td>Percent</td>
+  </tr>
+  <tr *ngFor="let configModel of model.entries">
+    <td>
+      {{configModel.key}}
+    </td>
+    <td>
+      <input type="range" maxlength="100" [(ngModel)]="configModel.value">
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button (click)="updateSetting()">Save</button>
