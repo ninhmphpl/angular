@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {LoginService} from "./login/login.service";
 import {environment} from "./environment";
-import {Image, Music, PopupTrending, Style, Trending, TrendingType} from "./model/Model";
+import {Image, Music, PopupTrending, Step, Style, Trending, TrendingType} from "./model/Model";
 
 
 export const urlHost = environment.url
@@ -237,5 +237,34 @@ export class ApiService {
     }, error => alert(error.error.detail))
   }
 
+  //--------------------------------- Step ---------------------------------------------
+  teps: Step[] = []
+  stepType!: TrendingType;
 
+  getStep() {
+    this.http.get(urlHost + "/now/v1/tep").subscribe((value: any) => {
+      this.teps = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  createStep() {
+    if (this.stepType == null) return alert("Please select a Trending Type")
+    this.http.post(urlHost + "/now/v1/step/" + this.stepType.id, new Step(), this.login.getHeader()).subscribe((value: any) => {
+      this.teps.unshift(value.data)
+    }, error => alert(error.error.detail))
+  }
+
+  updateStep(index: number) {
+    if (this.stepType == null) return alert("Please select a Trending Type")
+    this.http.post(urlHost + "/now/v1/step/" + this.stepType.id, this.teps[index], this.login.getHeader()).subscribe((value: any) => {
+      this.teps[index] = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  deleteStep(index: number) {
+    this.http.delete(urlHost + "/now/v1/step/" + this.teps[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.teps[index] = value.data
+      this.teps.splice(index, 1)
+    }, error => alert(error.error.detail))
+  }
 }

@@ -86,6 +86,7 @@ export class PopupTrending {
 }
 
 export class Step {
+  id!: number;
   width!: number;
   height!: number;
   points!: Point[];
