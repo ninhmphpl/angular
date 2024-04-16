@@ -1,0 +1,65 @@
+<div>
+  <table>
+    <tr>
+      <td>Width</td>
+      <td>Height</td>
+      <td>Step</td>
+    </tr>
+    <tr *ngFor="let step of api.teps let i = index">
+      <td><input [(ngModel)]="step.width" type="text" id="width" value="100"></td>
+      <td><input [(ngModel)]="step.height" type="text" id="height" value="100"></td>
+      <td><button>Point</button></td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <!-- Button trigger modal -->
+  <button [hidden]="true" #modalEdit class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEdit">
+    Launch demo modal
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-between align-items-center">
+          <div class="col">
+            <h1 class="modal-title fs-5">Edit Step</h1>
+          </div>
+          <div class="col">
+            <div class="input-group">
+              <div>
+                <div class="input-group">
+                  <span [style.width]="'100px'" class="input-group-text">width</span>
+                  <input [style.width]="'100px'" class="form-control" type="number" placeholder="Width" [(ngModel)]="api.trendingTypes[indexSelect].step.width">
+                </div>
+                <div class="input-group">
+                  <span [style.width]="'100px'" class="input-group-text">height</span>
+                  <input [style.width]="'100px'" class="form-control" type="number" placeholder="Height" [(ngModel)]="api.trendingTypes[indexSelect].step.height">
+                </div>
+              </div>
+              <button (click)="updateStepSubmit()" class="btn btn-primary">Edit Size</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body d-flex justify-content-center align-items-center">
+          <div class="position-relative"
+               [style.width]="100 * api.trendingTypes[indexSelect].step.width  + 'px'"
+               [style.height]="100 * api.trendingTypes[indexSelect].step.height + 'px'">
+            <div *ngFor="let point of api.trendingTypes[indexSelect].step.points, let i = index"
+                 class="position-absolute"
+                 [style.top]="100 * point.row + 'px'"
+                 [style.left]="100 * point.column + 'px'">
+              <button class="text-center border-0 rounded-circle" [ngClass]="point.state == 'none' ? 'bg-white' : 'bg-light' " (click)="editStep(i)"  [style.width]="'90px'" [style.height]="'90px'">{{point.state}}</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button #closeEditStep class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary" (click)="api.updateTrendingType(indexSelect); closeEditStep.click()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
