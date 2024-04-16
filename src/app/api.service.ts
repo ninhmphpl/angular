@@ -57,25 +57,27 @@ export class ApiService {
   trendingTypes: TrendingType[] = []
 
   getTrendingType() {
-    this.http.get(urlHost + "/now/v1/trendingType?version=100").subscribe((value: any) => {
+    this.http.get(urlHost + "/now/v1/trendingType?show_all=true").subscribe((value: any) => {
       this.trendingTypes = value.data
+      console.table(this.trendingTypes)
     }, error => alert(error.error.detail))
   }
 
-  makeStep(id : string, width: number, height : number) {
-    let header : any = this.login.getHeader();
+  makeStep(i: number, width: number, height: number) {
+    let id = this.trendingTypes[i].id;
+    let header: any = this.login.getHeader();
     header.params = {
-      width : width,
-      height : height
+      width: width,
+      height: height
     }
     this.http.get(urlHost + "/now/v1/trendingType/step/" + id, header).subscribe((value: any) => {
-      this.trendingTypes = value.data
+      this.trendingTypes[i] = value.data
     }, error => alert(error.error.detail))
   }
 
-  createTrendingType(url? : string) {
+  createTrendingType(url?: string) {
     let trendingType = new Trending()
-    if(url) trendingType.url = url
+    if (url) trendingType.url = url
     this.http.post(urlHost + "/now/v1/trendingType", trendingType, this.login.getHeader()).subscribe((value: any) => {
       this.trendingTypes.unshift(value.data)
     }, error => alert(error.error.detail))
@@ -104,9 +106,9 @@ export class ApiService {
     }, error => alert(error.error.detail))
   }
 
-  createMusic(url?:string) {
+  createMusic(url?: string) {
     let music = new Music();
-    if(url) music.url = url
+    if (url) music.url = url
     this.http.post(urlHost + "/now/v1/music", music, this.login.getHeader()).subscribe((value: any) => {
       this.musics.unshift(value.data)
     }, error => alert(error.error.detail))
@@ -165,18 +167,18 @@ export class ApiService {
     }, error => alert(error.error.detail))
   }
 
-  createImageSticker(url?:string) {
+  createImageSticker(url?: string) {
     let image = new Image()
     image.type = 'sticker'
-    if(url) image.url = url
+    if (url) image.url = url
     this.http.post(urlHost + "/now/v1/image", image, this.login.getHeader()).subscribe((value: any) => {
       this.images.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
-  createImage(url : string | null , action: (image: Image) => any) {
+  createImage(url: string | null, action: (image: Image) => any) {
     let image = new Image()
-    if(url)image.url = url
+    if (url) image.url = url
     this.http.post(urlHost + "/now/v1/image", image, this.login.getHeader()).subscribe((value: any) => {
       this.images.unshift(value.data)
       action(value.data)
