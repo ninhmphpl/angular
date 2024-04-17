@@ -74,7 +74,7 @@ export class TrendingType {
   banner!: string;
   requiredVersion!: number;
   icons! : string[]
-  step! : Step;
+  step! : Step[];
 }
 
 export class PopupTrending {
@@ -89,6 +89,7 @@ export class Step {
   id!: number;
   width!: number;
   height!: number;
+  lvl!: number;
   points!: Point[];
 }
 

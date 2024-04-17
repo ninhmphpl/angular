@@ -17,7 +17,6 @@ import { StickerComponent } from './sticker/sticker.component';
 import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
 import { UploadCloudFlareComponent } from './upload-cloud-flare/upload-cloud-flare.component';
 import { PopupTrendingComponent } from './popup-trending/popup-trending.component';
-import { ExitComponent } from './exit/exit.component';
 import { StepComponent } from './step/step.component';
 
 @NgModule({
@@ -35,7 +34,6 @@ import { StepComponent } from './step/step.component';
     UploadMultipleComponent,
     UploadCloudFlareComponent,
     PopupTrendingComponent,
-    ExitComponent,
     StepComponent,
     // PopupTrendingComponent
   ],

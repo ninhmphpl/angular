@@ -238,33 +238,42 @@ export class ApiService {
   }
 
   //--------------------------------- Step ---------------------------------------------
-  teps: Step[] = []
+  steps: Step[] = []
   stepType!: TrendingType;
 
   getStep() {
-    this.http.get(urlHost + "/now/v1/tep").subscribe((value: any) => {
-      this.teps = value.data
+    if(this.stepType == null) return
+    this.http.get(urlHost + "/now/v1/step/" + this.stepType.id).subscribe((value: any) => {
+      this.steps = value.data
+    }, error => alert(error.error.detail))
+  }
+
+  resizeStep(i : number) {
+    if(this.stepType == null) return
+    this.http.get(urlHost + "/now/v1/step/resize?id=" + this.steps[i].id + "&width=" + this.steps[i].width + "&height=" + this.steps[i].height, this.login.getHeader()).subscribe((value: any) => {
+      this.steps[i] = value.data
+      alert("Resize Success")
     }, error => alert(error.error.detail))
   }
 
   createStep() {
     if (this.stepType == null) return alert("Please select a Trending Type")
     this.http.post(urlHost + "/now/v1/step/" + this.stepType.id, new Step(), this.login.getHeader()).subscribe((value: any) => {
-      this.teps.unshift(value.data)
+      this.steps.unshift(value.data)
     }, error => alert(error.error.detail))
   }
 
   updateStep(index: number) {
     if (this.stepType == null) return alert("Please select a Trending Type")
-    this.http.post(urlHost + "/now/v1/step/" + this.stepType.id, this.teps[index], this.login.getHeader()).subscribe((value: any) => {
-      this.teps[index] = value.data
+    this.http.post(urlHost + "/now/v1/step/" + this.stepType.id, this.steps[index], this.login.getHeader()).subscribe((value: any) => {
+      this.steps[index] = value.data
     }, error => alert(error.error.detail))
   }
 
   deleteStep(index: number) {
-    this.http.delete(urlHost + "/now/v1/step/" + this.teps[index].id, this.login.getHeader()).subscribe((value: any) => {
-      this.teps[index] = value.data
-      this.teps.splice(index, 1)
+    this.http.delete(urlHost + "/now/v1/step/" + this.steps[index].id, this.login.getHeader()).subscribe((value: any) => {
+      this.steps[index] = value.data
+      this.steps.splice(index, 1)
     }, error => alert(error.error.detail))
   }
 }

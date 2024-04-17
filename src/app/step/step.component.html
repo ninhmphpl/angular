@@ -1,63 +1,90 @@
-<div>
-  <table>
-    <tr>
-      <td>Width</td>
-      <td>Height</td>
-      <td>Step</td>
-    </tr>
-    <tr *ngFor="let step of api.teps let i = index">
-      <td><input [(ngModel)]="step.width" type="text" id="width" value="100"></td>
-      <td><input [(ngModel)]="step.height" type="text" id="height" value="100"></td>
-      <td><button>Point</button></td>
-    </tr>
-  </table>
+
+
+
+
+<div class="container my-2">
+  <div class="input-group my-2">
+    <!--Type-->
+    <div>
+      <div>
+        <select class="form-select" [(ngModel)]="api.stepType" (change)="api.getStep()">
+          <option [ngValue]="undefined">Type Of Step</option>
+          <option *ngFor="let trendingType of api.trendingTypes" [ngValue]="trendingType">{{trendingType.name}}</option>
+        </select>
+      </div>
+    </div>
+    <!--Type-->
+
+    <!--Crate-->
+    <div>
+      <div>
+        <button class="btn btn-primary" (click)="api.createStep()" >Create Step</button>
+      </div>
+    </div>
+    <!--Crate-->
+  </div>
+
+<!--  View-->
+  <!--Table-->
+  <div>
+    <table class="table table-bordered table-hover">
+      <tbody>
+      <tr>
+        <td class="text-center">Level</td>
+        <td class="text-center">Width</td>
+        <td class="text-center">Height</td>
+        <td class="text-center" colspan="3">Action</td>
+      </tr>
+      <tr *ngFor="let step of api.steps let i = index">
+        <td><input class="form-control" type="number" [(ngModel)]="step.lvl" (change)="api.updateStep(i)"></td>
+        <td><input class="form-control" type="number" [(ngModel)]="step.width"></td>
+        <td><input class="form-control" type="number" [(ngModel)]="step.height"></td>
+        <td><button class="btn btn-primary" (click)="api.resizeStep(i)">Resize</button></td>
+        <td><button class="btn btn-primary" (click)="editStep(i, modalEdit)">Edit</button></td>
+        <td><button class="btn btn-primary" (click)="api.deleteStep(i)">Delete</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--Table-->
+<!--  View-->
+
 </div>
 
-<div>
-  <!-- Button trigger modal -->
-  <button [hidden]="true" #modalEdit class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEdit">
-    Launch demo modal
-  </button>
 
-  <!-- Modal -->
-  <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header d-flex justify-content-between align-items-center">
-          <div class="col">
-            <h1 class="modal-title fs-5">Edit Step</h1>
+
+<div>
+  <div>
+    <!-- Button trigger modal -->
+    <button [hidden]="true" #modalEdit class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEdit">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-between align-items-center">
+            <div class="col">
+              <h1 class="modal-title fs-5">Edit Step</h1>
+            </div>
           </div>
-          <div class="col">
-            <div class="input-group">
-              <div>
-                <div class="input-group">
-                  <span [style.width]="'100px'" class="input-group-text">width</span>
-                  <input [style.width]="'100px'" class="form-control" type="number" placeholder="Width" [(ngModel)]="api.trendingTypes[indexSelect].step.width">
-                </div>
-                <div class="input-group">
-                  <span [style.width]="'100px'" class="input-group-text">height</span>
-                  <input [style.width]="'100px'" class="form-control" type="number" placeholder="Height" [(ngModel)]="api.trendingTypes[indexSelect].step.height">
-                </div>
+          <div class="modal-body d-flex justify-content-center align-items-center">
+            <div *ngIf="iStep != -1" class="position-relative"
+                 [style.width]="100 * api.steps[iStep].width  + 'px'"
+                 [style.height]="100 * api.steps[iStep].height + 'px'">
+              <div *ngFor="let point of api.steps[iStep].points, let i = index"
+                   class="position-absolute"
+                   [style.top]="100 * point.row + 'px'"
+                   [style.left]="100 * point.column + 'px'">
+                <button class="text-center border-0 rounded-circle" [ngClass]="point.state == 'none' ? 'bg-white' : 'bg-light' " (click)="editPoint(i)" [style.width]="'90px'" [style.height]="'90px'">{{point.state}}</button>
               </div>
-              <button (click)="updateStepSubmit()" class="btn btn-primary">Edit Size</button>
             </div>
           </div>
-        </div>
-        <div class="modal-body d-flex justify-content-center align-items-center">
-          <div class="position-relative"
-               [style.width]="100 * api.trendingTypes[indexSelect].step.width  + 'px'"
-               [style.height]="100 * api.trendingTypes[indexSelect].step.height + 'px'">
-            <div *ngFor="let point of api.trendingTypes[indexSelect].step.points, let i = index"
-                 class="position-absolute"
-                 [style.top]="100 * point.row + 'px'"
-                 [style.left]="100 * point.column + 'px'">
-              <button class="text-center border-0 rounded-circle" [ngClass]="point.state == 'none' ? 'bg-white' : 'bg-light' " (click)="editStep(i)"  [style.width]="'90px'" [style.height]="'90px'">{{point.state}}</button>
-            </div>
+          <div class="modal-footer">
+            <button #closeEditStep class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-primary" (click)="api.updateStep(iStep); closeEditStep.click()">Save changes</button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button #closeEditStep class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-primary" (click)="api.updateTrendingType(indexSelect); closeEditStep.click()">Save changes</button>
         </div>
       </div>
     </div>

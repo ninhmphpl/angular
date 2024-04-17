@@ -6,6 +6,7 @@ import {MusicComponent} from "./music/music.component";
 import {StyleComponent} from "./style/style.component";
 import {StickerComponent} from "./sticker/sticker.component";
 import {PopupTrendingComponent} from "./popup-trending/popup-trending.component";
+import {StepComponent} from "./step/step.component";
 
 const routes: Routes = [
   {path:"trending",component:TrendingComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:"style",component:StyleComponent},
   {path:"sticker",component:StickerComponent},
   {path:"popup",component:PopupTrendingComponent},
+  {path:"step",component:StepComponent},
 ];
 
 
