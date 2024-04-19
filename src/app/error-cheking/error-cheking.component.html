@@ -1,0 +1,45 @@
+<div class="container my-2">
+
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="h6 d-flex justify-content-center align-items-center">
+      Token Error
+    </div>
+    <div class="btn btn-group">
+      <button class="btn btn-primary" (click)="previous()"><</button>
+      <button class="btn btn-primary" (click)="next()">></button>
+    </div>
+  </div>
+
+  <table *ngIf="data" class="table table-bordered small text-center">
+    <thead>
+    <tr>
+      <th>Date</th>
+      <th>GPT Error</th>
+      <th>GPT Error 400</th>
+      <th>GPT Error 429</th>
+      <th>GPT Error 403</th>
+      <th>GPT Error Timeout</th>
+      <th>Gemini Error</th>
+      <th>Gemini Error 400</th>
+      <th>Gemini Error 429</th>
+      <th>Gemini Error 403</th>
+      <th>Gemini Error Timeout</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of data">
+      <td>{{item.date}}</td>
+      <td>{{item.gptError}}</td>
+      <td>{{item.gptError400}}</td>
+      <td>{{item.gptError429}}</td>
+      <td>{{item.gptError403}}</td>
+      <td>{{item.gptErrorTimeout}}</td>
+      <td>{{item.geminiError}}</td>
+      <td>{{item.geminiError400}}</td>
+      <td>{{item.geminiError429}}</td>
+      <td>{{item.geminiError403}}</td>
+      <td>{{item.geminiErrorTimeout}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

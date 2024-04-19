@@ -1,17 +1,31 @@
-<table *ngIf="model">
-  <tbody>
-  <tr>
-    <td>Model Name</td>
-    <td>Percent</td>
-  </tr>
-  <tr *ngFor="let configModel of model.entries">
-    <td>
-      {{configModel.key}}
-    </td>
-    <td>
-      <input type="range" maxlength="100" [(ngModel)]="configModel.value">
-    </td>
-  </tr>
-  </tbody>
-</table>
-<button (click)="updateSetting()">Save</button>
+<div class="container my-2">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="h6 d-flex justify-content-center align-items-center">
+      Config Model
+    </div>
+  </div>
+
+  <table *ngIf="model" class="table table-bordered">
+    <thead>
+    <tr>
+      <th class="text-center">Model Name</th>
+      <th class="text-center">Percent</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let configModel of model.entries">
+      <td>
+        <span class="form-text mx-2">{{configModel.key}}</span>
+      </td>
+      <td class="d-flex justify-content-center">
+        <div class="input-group">
+          <input class="col form-range" type="range" maxlength="100" [(ngModel)]="configModel.value">
+          <span class="col form-text mx-2">{{ configModel.value + '%'}}</span>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" (click)="updateSetting()">Save</button>
+</div>
+
