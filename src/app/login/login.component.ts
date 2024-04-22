@@ -1,25 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {Auth, GoogleAuthProvider, signInWithPopup} from "@angular/fire/auth";
 import {User} from "./User";
 import {LoginService} from "./login.service";
 import {environment} from "../environments";
-
-const url = environment.url
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
-  userInfo : User | null = null;
+
   createUser : User = new User();
   email = "";
   password = "";
   users : User[] = []
 
-  constructor(private http: HttpClient, private auth: Auth, private router : Router, private loginService : LoginService) {
+  constructor(public loginService : LoginService) {
   }
 
   ngOnInit(): void {
@@ -27,11 +22,7 @@ export class LoginComponent implements OnInit{
     this.getUserInfo()
   }
   getUserInfo(){
-    this.loginService.getUser(user => {
-      this.userInfo = user
-    }, error => {
-      this.userInfo = null
-    })
+    this.loginService.getUser()
   }
 
   getListUser(){
@@ -66,9 +57,7 @@ export class LoginComponent implements OnInit{
   }
 
   logout(){
-    this.userInfo = null;
+    this.loginService.userInfo = null
     localStorage.removeItem(environment.keySaveToken)
   }
-
-
 }

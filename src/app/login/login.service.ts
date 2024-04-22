@@ -2,38 +2,41 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "./User";
 import {Router} from "@angular/router";
-import {Auth, GoogleAuthProvider, signInWithPopup} from "@angular/fire/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import {environment} from "../environments";
-const url = environment.url
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  constructor(private auth: Auth, private router : Router, private http : HttpClient) { }
-  getUser(user : (user : User)=> any, errorAction : (error : any)=> any){
-    this.http.get(url + "/security/user-info", this.getHeader()).subscribe((value:any) => {
-      user(value.data)
+  userInfo : User | null = null;
+  constructor(private http : HttpClient) { }
+  getUser(){
+    this.http.get(environment.url + "/security/user-info", this.getHeader()).subscribe((value:any) => {
+      this.userInfo = value.data
     }, error => {
-      errorAction(error)
+      this.userInfo = null
     })
   }
 
   getListUser(listUser : (listUser : User[])=> any){
-    this.http.get(url + "/security/user-list",this.getHeader()).subscribe((value : any) => {
+    this.http.get(environment.url + "/security/user-list",this.getHeader()).subscribe((value : any) => {
       if(value.code == 200) listUser(value.data)
     }, error => {
       alert(error.error.detail)
     })
   }
   saveUser(user : User, userResult : (user : User)=> any){
-    this.http.post(url + `/security/save-user`,user,this.getHeader()).subscribe((value : any) => {
+    this.http.post(environment.url + `/security/save-user`,user,this.getHeader()).subscribe((value : any) => {
       if(value.code == 200) userResult(value.data)
     }, error => {
       alert(error.error.detail)
     })
   }
   deleteUser(user : User, action : ()=> any){
-    this.http.post(url + `/security/delete-user?email=${user.email}`,{},this.getHeader()).subscribe((value : any) => {
+    this.http.post(environment.url + `/security/delete-user?email=${user.email}`,{},this.getHeader()).subscribe((value : any) => {
       if(value.code == 200) action()
     }, error => {
       alert(error.error.detail)
@@ -41,7 +44,7 @@ export class LoginService {
   }
 
   loginBase(email : string, password : string, action : ()=> any) {
-    this.http.post(url + "/public/login", {email : email, password : password}).subscribe((payload : any)=>{
+    this.http.post(environment.url + "/public/login", {email : email, password : password}).subscribe((payload : any)=>{
       if(payload.code === 200) localStorage.setItem(environment.keySaveToken, payload.data)
       console.log("Login Success")
       action()
@@ -52,37 +55,48 @@ export class LoginService {
   }
 
   loginEmailGoogle(action : ()=> any) {
-    const provider = new GoogleAuthProvider();
-    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-    provider.setCustomParameters({
-      'login_hint': 'user@example.com'
-    });
-
-    signInWithPopup(this.auth, provider)
-      .then((result) => {
-        this.auth.currentUser?.getIdToken(/* forceRefresh */ true).then((idToken) => {
-          this.http.post(url + "/public/login-email",{tokenId : idToken}).subscribe((value : any) => {
-            localStorage.setItem(environment.keySaveToken, value.data)
-            action()
-          }, error => {
+    this.http.get(environment.url + "/public/firebase-client").subscribe((value : any) => {
+      const app = initializeApp(value);
+      let auth = getAuth(app)
+      const provider = new GoogleAuthProvider();
+      // provider.addScope('https://www.googleapis.com/auth/cloud-platform.read-only');
+      provider.setCustomParameters({
+        'login_hint': 'user@example.com'
+      });
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          auth.currentUser?.getIdToken(/* forceRefresh */ true).then((idToken) => {
+            this.http.post(environment.url + "/public/login-email",{tokenId : idToken}).subscribe((value : any) => {
+              localStorage.setItem(environment.keySaveToken, value.data)
+              action()
+            }, error => {
+              alert(error.error.detail)
+            })
+          }).catch((error) => {
             console.log(error)
-            alert(error.error.detail)
-          })
+          });
+          const user = result.user;
         }).catch((error) => {
-          console.log(error)
-        });
-        const user = result.user;
-        console.log(user)
-      }).catch((error) => {
-      console.log(error)
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      console.log(credential)
-    });
+        console.log(error)
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        console.log(credential)
+      });
+    }, error => {
+      alert(error.error.detail)
+    })
   }
   getHeader(){
     return {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem(environment.keySaveToken)??""
+      })
+    };
+  }
+  getHeaderFormData(){
+    return {
+      headers: new HttpHeaders({
+        // 'Content-Type': 'multipart/form-data',
         'Authorization': localStorage.getItem(environment.keySaveToken)??""
       })
     };
