@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
-const uploadUrl = 'http://s3.heratech.space/cloudflare/upload-file';
+const uploadUrl = 'https://s3.tolimanspaceni.com/cloudflare/upload-file';
 const params = {
   folder: '',
   bucket: 'theme-android',
